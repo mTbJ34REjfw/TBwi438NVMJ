@@ -1,0 +1,7 @@
+2014-09-06 14:29:35,492 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-06 14:32:55,709 [11](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/NavilationLink/Index
+异常信息:未找到路径“/NavilationLink/Index”的控制器或该控制器未实现 IController。
+2014-09-06 16:02:19,590 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-06 17:12:20,915 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启

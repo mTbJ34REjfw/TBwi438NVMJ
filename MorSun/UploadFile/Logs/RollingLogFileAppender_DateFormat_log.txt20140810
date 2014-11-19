@@ -1,0 +1,72 @@
+2014-08-10 09:17:48,095 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-08-10 11:02:51,646 [129](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - youhong@hoho18.net被::1恶意登录
+2014-08-10 11:06:42,944 [135](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - youhong@hoho18.net被::1恶意登录
+2014-08-10 12:02:56,022 [110](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用关闭
+2014-08-10 12:03:29,406 [134](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-08-10 12:04:14,291 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-08-10 12:42:15,432 [34](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/refgroup/Index
+异常信息:遇到的结束标记“td”没有匹配的起始标记。您的起始标记/结束标记是否匹配?
+
+2014-08-10 12:43:39,673 [17](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/refgroup/Index
+异常信息:d:\NET\晨曦项目\20140621\App\UC\MorSun\Views\RefGroup\Index.cshtml(61): error CS1056: 意外的字符“｝”
+2014-08-10 17:08:49,866 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-08-10 17:17:48,994 [31](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - youhong@hoho18.net被::1恶意登录
+2014-08-10 17:18:39,294 [31](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - youhong@hoho18.net被::1恶意登录
+2014-08-10 17:29:12,941 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-08-10 17:30:00,486 [9](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - youhong@hoho18.net被::1恶意登录
+2014-08-10 17:46:43,763 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-08-10 17:51:29,229 [9](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - youhong@hoho18.net被::1恶意登录
+2014-08-10 17:53:25,917 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-08-10 17:56:38,375 [13](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - youhong@hoho18.net被::1恶意登录
+2014-08-10 20:00:51,765 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-08-10 20:08:20,328 [9](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - youhong@hoho18.net被::1恶意登录
+2014-08-10 20:35:50,911 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-08-10 20:36:40,133 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/refgroup/Sort?sSort=true&sParentId=
+异常信息:未能更新类型“MorSun.Controllers.ViewModel.RefGroupVModel”的模型。
+2014-08-10 20:38:19,006 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/refgroup/Sort?sSort=true&sParentId=
+异常信息:未能更新类型“MorSun.Controllers.ViewModel.RefGroupVModel”的模型。
+2014-08-10 22:45:54,438 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-08-10 22:56:44,743 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-08-10 23:17:43,496 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-08-10 23:18:21,395 [9](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/refgroup/Sort?sSort=true&sParentId=c2a3034a-f29c-4a33-8742-6413e46f6f36
+异常信息:传入字典的模型项的类型为“MorSun.Controllers.ViewModel.BaseVModel`1[MorSun.Model.wmfRefGroup]”，但此字典需要类型“MorSun.Controllers.ViewModel.RefGroupVModel”的模型项。
+2014-08-10 23:19:01,738 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/refgroup/Sort?sSort=true&sParentId=
+异常信息:传入字典的模型项的类型为“MorSun.Controllers.ViewModel.BaseVModel`1[MorSun.Model.wmfRefGroup]”，但此字典需要类型“MorSun.Controllers.ViewModel.RefGroupVModel”的模型项。
+2014-08-10 23:22:02,972 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-08-10 23:24:58,879 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-08-10 23:37:02,456 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-08-10 23:38:38,981 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/refgroup/Sort?sSort=true&sParentId=
+异常信息:无法识别的 GUID 格式。
+2014-08-10 23:55:53,531 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-08-10 23:57:05,485 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-08-10 23:57:25,602 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/refgroup/RGSort?sSort=true&sParentId=
+异常信息:在控制器“MorSun.Controllers.SystemController.RefGroupController”上未找到公共操作方法“RGSort”。
+2014-08-10 23:57:55,020 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/refgroup/SortRG?sSort=true&sParentId=
+异常信息:未找到视图“SortRG”或其母版视图，或没有视图引擎支持搜索的位置。搜索了以下位置: 
+~/Views/refgroup/SortRG.aspx
+~/Views/refgroup/SortRG.ascx
+~/Views/Shared/SortRG.aspx
+~/Views/Shared/SortRG.ascx
+~/Views/refgroup/SortRG.cshtml
+~/Views/refgroup/SortRG.vbhtml
+~/Views/Shared/SortRG.cshtml
+~/Views/Shared/SortRG.vbhtml
+2014-08-10 23:58:51,800 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启

@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{85D316A9-F411-4D50-BC06-0DACDDC78D46}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MorSun.WX.ZYB.Service</RootNamespace>
+    <AssemblyName>MorSun.WX.ZYB.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Senparc.Weixin">
+      <HintPath>..\packages\Senparc\Senparc.Weixin.dll</HintPath>
+    </Reference>
+    <Reference Include="Senparc.Weixin.MP">
+      <HintPath>..\packages\Senparc\Senparc.Weixin.MP.dll</HintPath>
+    </Reference>
+    <Reference Include="Senparc.Weixin.MP.MvcExtension">
+      <HintPath>..\packages\Senparc\Senparc.Weixin.MP.MvcExtension.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Service\EventService.cs" />
+    <Compile Include="Service\BoundService.cs" />
+    <Compile Include="Service\UnboundService.cs" />
+    <Compile Include="Service\InvalidCommondService.cs" />
+    <Compile Include="Service\CommonService.cs" />
+    <Compile Include="Service\AnswerService.cs" />
+    <Compile Include="Service\QuestionService.cs" />
+    <Compile Include="Service\LocationService.cs" />
+    <Compile Include="MessageHandlers\CustomMessageHandler\CustomMessageContext.cs" />
+    <Compile Include="MessageHandlers\CustomMessageHandler\CustomMessageHandler.cs" />
+    <Compile Include="MessageHandlers\CustomMessageHandler\CustomMessageHandler_Events.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserQA\UserQADistributionService.cs" />
+    <Compile Include="UserQA\UserQAService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MessageHandlers\QyMessageHandler\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HOHO18.Common\HOHO18.Common.csproj">
+      <Project>{308eb538-190a-4e93-97ea-044e061190ba}</Project>
+      <Name>HOHO18.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MorSun.Bll\MorSun.Bll.csproj">
+      <Project>{d5787304-295a-46b2-a850-faa8dbd86ceb}</Project>
+      <Name>MorSun.Bll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MorSun.Common\MorSun.Common.csproj">
+      <Project>{6ddcd303-7fe5-4b58-89dc-597bbd940c84}</Project>
+      <Name>MorSun.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MorSun.Model\MorSun.Model.csproj">
+      <Project>{d335634f-20b7-464a-87a0-6d4718cf264e}</Project>
+      <Name>MorSun.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

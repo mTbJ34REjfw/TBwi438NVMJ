@@ -1,0 +1,6 @@
+2014-10-15 22:20:28,360 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-15 22:32:09,367 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-15 22:37:34,317 [18](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Account/Account/AppLogin?Token=E29H4yHHKSZpLhIkYzAg8voUyy2Xe5vD/HwSZ6eYLx94HgaCfVhzpkM4RINX7GTxwz+rQW7FvGtqoMNwffJW6JBNVnbCfaLY+1nU4tOCx3Y=
+异常信息:在控制器“MorSun.Controllers.AccountController”上未找到公共操作方法“Account”。

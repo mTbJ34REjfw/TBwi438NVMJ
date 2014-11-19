@@ -1,0 +1,83 @@
+﻿@model MorSun.Model.ForgetModel
+@{
+    ViewBag.Title = "找回密码";
+    int yzmR = new Random().Next(100000);
+}
+
+<div class="content-wrapper clear-fix">
+    <section id="formWizard">
+        <h2>@ViewBag.Title</h2>
+        <div class="navbar steps">
+            <div class="navbar-inner">
+                <ul class="row-fluid nav nav-pills">
+                    <li class="span3 active">
+                        <a class="step active" data-toggle="tab" href="/Account/ForgetPass">
+                            <span class="number">1</span>
+                            <span class="desc"><i class="icon-ok"></i> 录入账号 </span>
+                        </a>
+                    </li>
+                    <li class="span3">
+                        <a class="step" data-toggle="tab" href="#tab2">
+                            <span class="number">2</span>
+                            <span class="desc"><i class="icon-ok"></i> 账号验证 </span>
+                        </a>
+                    </li>
+                    <li class="span3">
+                        <a class="step" data-toggle="tab" href="#tab3">
+                            <span class="number">3</span>
+                            <span class="desc"><i class="icon-ok"></i> 发送邮件 </span>
+                        </a>
+                    </li>
+                    <li class="span3">
+                        <a class="step" data-toggle="tab" href="#tab4">
+                            <span class="number">4</span>
+                            <span class="desc"><i class="icon-ok"></i> 修改密码 </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="progress progress-success progress-striped" id="bar">
+            <div class="bar" style="width: 25%;"></div>
+        </div>
+    </section>
+    <section id="loginForm">        
+        @using (Html.BeginForm("ForgetPass", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "fmForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <fieldset>
+                <legend>找回密码</legend>
+                <ol>
+                    <li>
+                        @Html.LabelFor(m => m.UserName)
+                        @Html.TextBoxFor(m => m.UserName)
+                    </li>
+                    
+                    @if ("ForgetPassCode".GX().ToAs<bool>())
+                    {
+                        <li>
+                            @Html.LabelFor(m => m.Verifycode)
+                            @Html.TextBoxFor(m => m.Verifycode, new { @class = "loginYZMText", onfocus = "getVerifyCode('#Verifycode', '#VerifyCodeImg')" })
+                            <img id="VerifyCodeImg" height="35px" src="/images/VerifyCode.aspx?type=@yzmR"
+                                 title="看不清?点击换张图片!" style="vertical-align: middle; cursor: pointer; " onclick="this.src=this.src+'&';" />
+                        </li>
+                    }
+                </ol>
+                <input type="button" id="submitBtn" value="下一步" />
+                <input name="VerifycodeRandom" type="hidden" value="@yzmR" />                
+            </fieldset>
+        }
+    </section>
+</div>
+    @section Scripts {       
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/validator")
+       
+        @Styles.Render("~/Content/JQueryQtipCss")
+        @Scripts.Render("~/bundles/jqueryqtip")
+        @Scripts.Render("~/bundles/morsuncommon")
+
+        <script type="text/javascript">
+            $(ajaxSubmitFormHandle('#submitBtn', '#fmForm', '提交失败', '#divInfo', true));
+        </script>
+    }

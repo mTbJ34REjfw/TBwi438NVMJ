@@ -1,0 +1,17 @@
+2014-07-31 00:00:28,940 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-07-31 00:06:03,239 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-07-31 00:10:37,165 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-07-31 00:16:08,141 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-07-31 00:37:10,357 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-07-31 00:40:02,711 [9](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Account/ConfirmQuestion?ReturnUrl=/Account/ForgetPass
+异常信息:值不能为 null。
+参数名: address
+2014-07-31 00:41:55,698 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用关闭
+2014-07-31 00:42:15,661 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-07-31 00:45:47,795 [11](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Account/SendPassEmail?returnUrl=/Account/ConfirmQuestion?UserName=youhong%2540hoho18.net
+异常信息:传入字典的模型项的类型为“MorSun.Model.ForgetModel”，但此字典需要类型“MorSun.Model.wmfUserInfo”的模型项。
+2014-07-31 00:51:52,164 [27](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用关闭

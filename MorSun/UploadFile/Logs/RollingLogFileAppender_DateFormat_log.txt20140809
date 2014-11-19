@@ -1,0 +1,12 @@
+2014-08-09 20:53:30,885 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-08-09 20:54:12,943 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - youhong@hoho18.net被::1恶意登录
+2014-08-09 20:54:59,103 [6](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/refgroup/Index
+异常信息:无法对 null 引用执行运行时绑定
+2014-08-09 20:56:45,887 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/refgroup/Index
+异常信息:“string”未包含“havePrivilege”的定义
+2014-08-09 20:58:31,691 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-08-09 21:01:12,004 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启

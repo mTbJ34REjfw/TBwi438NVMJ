@@ -1,0 +1,229 @@
+﻿@model IndexModel
+@{
+    ViewBag.Title = "ServiceName".GX();    
+}
+@section featured {    
+    <section class="featured">
+        <div class="content-wrapper">
+                <div class="content-leftExp">
+                    <img class="weixinImg" title="作业邦" src="~/Images/zyb/zyb258.jpg" />
+                    <div><span class="weixinText">微信扫一扫</span></div>
+                    <div><span class="weixinText">老师学霸跟着走</span></div>
+                </div>
+                <div class="content-login">
+                    @Html.Partial("_TableLogon",new LoginModel())
+                </div>
+                <div style="display:none" id="DIVSL"></div>
+            </div>
+    </section>
+}
+
+<section class="voicedRedPewterR">
+    <div class="content-wrapper clear-fix">
+        <div id="DIVVoice" class="voiceDiv">
+            <div class="zbSlides_Contain">
+                @foreach(var item in Model.nList)
+                {
+                    <div>
+                        <span class="iconVoiceWhite"><a href="/N/S/@item.ID" target="_blank">@item.NewTitle</a></span>
+                    </div>     
+                }
+                           
+            </div>
+        </div>
+        @*<h3>We suggest the following:</h3>
+            <ol class="round">
+                <li class="one">
+                    <h5>Getting Started</h5>
+                    ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                    enables a clean separation of concerns and that gives you full control over markup
+                    for enjoyable, agile development. ASP.NET MVC includes many features that enable
+                    fast, TDD-friendly development for creating sophisticated applications that use
+                    the latest web standards.
+                    <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
+                </li>
+                <li class="two">
+                    @("s5kdmqwertyuiop".EP())  @("C220C54A34828FBF12BB35E02AE35AE1".DP())
+                    <h5>Add NuGet packages and jump-start your coding</h5>
+                    NuGet makes it easy to install and update free libraries and tools.
+                    <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
+                </li>
+                <li class="three">
+                    <h5>Find Web Hosting</h5>
+                    You can easily find a web hosting company that offers the right mix of features
+                    and price for your applications.
+                    <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
+                </li>
+            </ol>*@
+    </div>
+</section>
+
+<section class="voicedPewterWhiteL">
+    <div class="content-wrapper clear-fix">
+        @*<h3>We suggest the following:</h3>
+        <ol class="round">
+            <li class="one">
+                <h5>Getting Started</h5>
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and that gives you full control over markup
+                for enjoyable, agile development. ASP.NET MVC includes many features that enable
+                fast, TDD-friendly development for creating sophisticated applications that use
+                the latest web standards.
+                <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
+            </li>
+            <li class="two">
+                
+                <h5>Add NuGet packages and jump-start your coding</h5>
+                NuGet makes it easy to install and update free libraries and tools.
+                <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
+            </li>
+            <li class="three">
+                <h5>Find Web Hosting</h5>
+                You can easily find a web hosting company that offers the right mix of features
+                and price for your applications.
+                <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
+            </li>
+        </ol>*@
+    </div>
+</section>
+
+<section class="voicedWhiteRedR">
+    <div class="content-wrapper clear-fix">
+        @*<h3>We suggest the following:</h3>
+        <ol class="round">
+            <li class="one">
+                <h5>Getting Started</h5>
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and that gives you full control over markup
+                for enjoyable, agile development. ASP.NET MVC includes many features that enable
+                fast, TDD-friendly development for creating sophisticated applications that use
+                the latest web standards.
+                <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
+            </li>
+            <li class="two">
+                
+                <h5>Add NuGet packages and jump-start your coding</h5>
+                NuGet makes it easy to install and update free libraries and tools.
+                <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
+            </li>
+            <li class="three">
+                <h5>Find Web Hosting</h5>
+                You can easily find a web hosting company that offers the right mix of features
+                and price for your applications.
+                <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
+            </li>
+        </ol>*@
+    </div>
+</section>
+
+<section class="voicedRedPewterL">
+    <div class="content-wrapper clear-fix">
+        
+        @*<h3>We suggest the following:</h3>
+            <ol class="round">
+                <li class="one">
+                    <h5>Getting Started</h5>
+                    ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                    enables a clean separation of concerns and that gives you full control over markup
+                    for enjoyable, agile development. ASP.NET MVC includes many features that enable
+                    fast, TDD-friendly development for creating sophisticated applications that use
+                    the latest web standards.
+                    <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
+                </li>
+                <li class="two">
+                    @("s5kdmqwertyuiop".EP())  @("C220C54A34828FBF12BB35E02AE35AE1".DP())
+                    <h5>Add NuGet packages and jump-start your coding</h5>
+                    NuGet makes it easy to install and update free libraries and tools.
+                    <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
+                </li>
+                <li class="three">
+                    <h5>Find Web Hosting</h5>
+                    You can easily find a web hosting company that offers the right mix of features
+                    and price for your applications.
+                    <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
+                </li>
+            </ol>*@
+    </div>
+</section>
+
+<section class="voicedPewterWhiteR">
+    <div class="content-wrapper clear-fix">
+        @*<h3>We suggest the following:</h3>
+        <ol class="round">
+            <li class="one">
+                <h5>Getting Started</h5>
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and that gives you full control over markup
+                for enjoyable, agile development. ASP.NET MVC includes many features that enable
+                fast, TDD-friendly development for creating sophisticated applications that use
+                the latest web standards.
+                <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
+            </li>
+            <li class="two">
+                
+                <h5>Add NuGet packages and jump-start your coding</h5>
+                NuGet makes it easy to install and update free libraries and tools.
+                <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
+            </li>
+            <li class="three">
+                <h5>Find Web Hosting</h5>
+                You can easily find a web hosting company that offers the right mix of features
+                and price for your applications.
+                <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
+            </li>
+        </ol>*@
+    </div>
+</section>
+
+@*<section class="voicedWhiteRedL">
+    <div class="content-wrapper clear-fix">
+        <h3>We suggest the following:</h3>
+        <ol class="round">
+            <li class="one">
+                <h5>Getting Started</h5>
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and that gives you full control over markup
+                for enjoyable, agile development. ASP.NET MVC includes many features that enable
+                fast, TDD-friendly development for creating sophisticated applications that use
+                the latest web standards.
+                <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
+            </li>
+            <li class="two">
+               
+                <h5>Add NuGet packages and jump-start your coding</h5>
+                NuGet makes it easy to install and update free libraries and tools.
+                <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
+            </li>
+            <li class="three">
+                <h5>Find Web Hosting</h5>
+                You can easily find a web hosting company that offers the right mix of features
+                and price for your applications.
+                <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
+            </li>
+        </ol>
+    </div>
+</section>*@
+
+
+    @section Scripts {       
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/validator")
+        @Styles.Render("~/Content/JQueryQtipCss")
+        @Scripts.Render("~/bundles/jqueryqtip")
+        @Scripts.Render("~/bundles/morsuncommon")
+        @Scripts.Render("~/bundles/slides")
+        <script type="text/javascript">
+            $(ajaxSubmitFormHandle('#submitBtn', '#logonForm', '登录失败，请联系管理员', '#divInfo', true));
+            $(document).ready(function () {
+                $('#DIVVoice').slides({
+                    preload: true,
+                    preloadImage: 'img/loading.gif',
+                    container: 'zbSlides_Contain',
+                    generatePagination: false,
+                    play: 4000,
+                    pause: 1,
+                    hoverPause: true
+                });
+            });            
+        </script>
+    }

@@ -1,0 +1,4 @@
+2014-11-16 20:55:08,526 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-16 20:55:17,760 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-16 20:57:18,520 [13](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - zsfyou@qq.com登录
+2014-11-16 20:57:20,655 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL

@@ -1,0 +1,76 @@
+﻿@model MorSun.Model.LoginModel
+@{
+    int yzmR = new Random().Next(100000);
+    HttpCookie Cookie_login = Request.Cookies["HIC"];
+    var bic = Cookie_login["HIC"].ToString();
+}
+
+<div class="divLogon" style="height:86px;">
+    @if (!Request.IsAuthenticated)
+    {
+        using (Html.BeginForm("AjaxLogin", "Account", new { returnUrl = "/Home/Index" }, FormMethod.Post, new { id = "logonForm" }))
+        {
+            @Html.AntiForgeryToken()
+        <hgroup class="title">
+                    <h2>登录@("ServiceName".GX())</h2>
+                </hgroup>
+        <table class="tableLogon">
+            <tr>
+                <th>
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "logonText iconUser" })     
+                </th>                
+            </tr>
+            <tr>
+                <th>
+                    @Html.PasswordFor(m => m.Password, new { @class = "logonText iconPwd" })                   
+                </th>                
+            </tr>
+            @if("LoginVerificationCode".GX().ToAs<bool>()){
+            <tr>
+                <th>                    
+                    @Html.TextBoxFor(m => m.Verifycode, new { @class = "logonYZMText iconMa", onfocus = "getVerifyCode('#Verifycode', '#VerifyCodeImg')" })
+                    <img id="VerifyCodeImg" height="35px" src="/images/VerifyCode.aspx?type=@yzmR"
+                         title="看不清?点击换张图片!" style="vertical-align: middle; cursor: pointer; " onclick="this.src=this.src+'&';" />                                       
+                </th>                
+            </tr>
+            }
+            <tr>
+                <th>
+                    <input type="button" id="submitBtn" value="登录" class="logonBtn green" />
+                </th>
+            </tr>
+            <tr><td></td></tr>
+            <tr>
+                <td>
+                    <a href="/Account/ForgetPass">忘记密码？</a>
+                </td>
+            </tr>
+            
+            <tr><td class="tdHR"></td></tr>
+            <tr><td><input name="VerifycodeRandom" type="hidden" value="@yzmR" /></td></tr>
+            <tr>
+                <td>
+                    @if ("Register".GX() == "true")
+                    { 
+                        @:没有账号？   <a href="/Account/Register">注册新账号</a>
+                    }
+                </td>
+            </tr>
+        </table>
+        }
+    }
+    else
+    {var user=MorSun.Controllers.BasisController.CurrentAspNetUser;
+    var umb = MorSun.Controllers.BasisController.CurrentUserMabi;        
+            <p class="logonP">欢迎您：@(user.wmfUserInfo == null ? user.UserName:user.wmfUserInfo.NickName) <span class="logonSpanReight"><a href="/Member/Index">进入会员中心</a></span></p>
+            <p class="logonP"><input type="button" value="充值" class="logonBtn green" onclick="jumptourl('/Member/Recharge')" /></p>
+
+            <p class="logonP">马币:<span class="logonSpanRed">@umb.NMB.ToString("f2")</span>   <span class="logonSpanReight"><a href="@("ServiceDomain".GHU() + "TipsMB".GX())">@Html.Partial("_Lamp")</a></span></p>
+            <p class="logonP">邦币:<span class="logonSpanGreenMabi">@umb.NBB.ToString("f2")</span>    <span class="logonSpanReight"><a href="@("ServiceDomain".GHU() + "TipsBB".GX())">@Html.Partial("_Lamp")</a></span></p>
+            <p class="logonP">绑币:<span class="logonSpanYellow">@umb.NBANB.ToString("f2")</span>    <span class="logonSpanReight"><a href="@("ServiceDomain".GHU() + "TipsBDB".GX())">@Html.Partial("_Lamp")</a></span></p>
+            <p class="logonP">推广链接： <span class="logonSpanReight"><a href="@("ServiceDomain".GHU() + "TipsEXT".GX())">@Html.Partial("_Lamp")</a></span></p>
+            <span class="logonSpanGreen">@("ServiceDomain".GHU())/Home/Index/</span>
+            <span class="logonSpanGreen">@(bic)</span>
+            }
+</div>
+

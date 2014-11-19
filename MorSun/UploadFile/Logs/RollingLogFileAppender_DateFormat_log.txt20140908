@@ -1,0 +1,35 @@
+2014-09-08 16:18:26,210 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-08 16:36:30,521 [34](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/NavigationLink/GetP
+异常信息:在控制器“MorSun.Controllers.SystemController.NavigationLinkController”上未找到公共操作方法“GetP”。
+2014-09-08 17:21:39,967 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-08 17:30:49,174 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-08 17:33:35,036 [9](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/NavigationLink/GetP
+异常信息:在控制器“MorSun.Controllers.SystemController.NavigationLinkController”上未找到公共操作方法“GetP”。
+2014-09-08 17:33:58,813 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/NavigationLink/getp
+异常信息:在控制器“MorSun.Controllers.SystemController.NavigationLinkController”上未找到公共操作方法“getp”。
+2014-09-08 17:37:11,672 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-08 17:53:25,419 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-08 17:56:13,046 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-08 18:43:13,191 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-08 19:08:08,661 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-08 19:34:14,466 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-08 19:43:05,520 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-08 20:04:12,267 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-08 20:14:52,186 [9](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/NavigationLink/Sort?sIsSort=true&sParentId=&returnUrl=/NavigationLink?RefId=f8de5f60-98f5-4030-8574-588d43a4acef&FlagTrashed=0
+异常信息:d:\NET\晨曦项目\20140621\App\UC\MorSun\Views\NavigationLink\Sort.cshtml(29): error CS1061: “MorSun.Model.wmfNavigationLink”不包含“ResourceCNName”的定义，并且找不到可接受类型为“MorSun.Model.wmfNavigationLink”的第一个参数的扩展方法“ResourceCNName”(是否缺少 using 指令或程序集引用?)
+2014-09-08 20:20:46,853 [21](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/NavigationLink/Sort?RefId=f8de5f60-98f5-4030-8574-588d43a4acefsIsSort=true&sParentId=&returnUrl=/NavigationLink?RefId=f8de5f60-98f5-4030-8574-588d43a4acef&FlagTrashed=0
+异常信息:未能更新类型“MorSun.Controllers.ViewModel.NavigationLinkVModel”的模型。
+2014-09-08 20:21:31,839 [24](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/NavigationLink/Sort?RefId=f8de5f60-98f5-4030-8574-588d43a4acefsIsSort=true&sParentId=&returnUrl=/NavigationLink?RefId=f8de5f60-98f5-4030-8574-588d43a4acef&FlagTrashed=0
+异常信息:未能更新类型“MorSun.Controllers.ViewModel.NavigationLinkVModel”的模型。

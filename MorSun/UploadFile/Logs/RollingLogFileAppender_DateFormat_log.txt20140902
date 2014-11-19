@@ -1,0 +1,78 @@
+2014-09-02 00:26:10,755 [13](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Role/Manage?RoleId=98dcfbe9-fa44-4832-8a1b-5a82de8d1abf
+异常信息:对象必须实现 IConvertible。
+2014-09-02 21:03:16,287 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-02 21:49:24,245 [59](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Role/Manage?RoleId=98dcfbe9-fa44-4832-8a1b-5a82de8d1abf
+异常信息:对象必须实现 IConvertible。
+2014-09-02 21:54:08,851 [81](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Role/Manage?RoleId=98dcfbe9-fa44-4832-8a1b-5a82de8d1abf
+异常信息:对象必须实现 IConvertible。
+2014-09-02 22:02:25,189 [76](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Role/Manage?RoleId=98dcfbe9-fa44-4832-8a1b-5a82de8d1abf
+异常信息:对象必须实现 IConvertible。
+2014-09-02 22:03:55,174 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Role/Manage?RoleId=98dcfbe9-fa44-4832-8a1b-5a82de8d1abf
+异常信息:对象必须实现 IConvertible。
+2014-09-02 22:05:07,694 [77](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Role/Manage?RoleId=98dcfbe9-fa44-4832-8a1b-5a82de8d1abf
+异常信息:d:\NET\晨曦项目\20140621\App\UC\MorSun\Views\Role\Manage.cshtml(99): error CS1061: “System.Guid”不包含“ID”的定义，并且找不到可接受类型为“System.Guid”的第一个参数的扩展方法“ID”(是否缺少 using 指令或程序集引用?)
+2014-09-02 22:05:41,337 [68](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Role/Manage?RoleId=98dcfbe9-fa44-4832-8a1b-5a82de8d1abf
+异常信息:对象必须实现 IConvertible。
+2014-09-02 22:16:05,335 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-02 23:03:54,233 [13](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Role/SavePriv
+异常信息:所需的防伪表单字段“__RequestVerificationToken”不存在。
+2014-09-02 23:06:15,168 [12](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Role/SavePriv
+异常信息:索引超出了数组界限。
+2014-09-02 23:08:53,101 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-02 23:09:11,496 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Role/Manage?RoleId=98dcfbe9-fa44-4832-8a1b-5a82de8d1abf
+异常信息:此请求已被阻止，因为当用在 GET 请求中时，会将敏感信息透漏给第三方网站。若要允许 GET 请求，请将 JsonRequestBehavior 设置为 AllowGet。
+2014-09-02 23:09:18,375 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Role/Manage?RoleId=98dcfbe9-fa44-4832-8a1b-5a82de8d1abf
+异常信息:此请求已被阻止，因为当用在 GET 请求中时，会将敏感信息透漏给第三方网站。若要允许 GET 请求，请将 JsonRequestBehavior 设置为 AllowGet。
+2014-09-02 23:09:38,153 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Role/Manage
+异常信息:此请求已被阻止，因为当用在 GET 请求中时，会将敏感信息透漏给第三方网站。若要允许 GET 请求，请将 JsonRequestBehavior 设置为 AllowGet。
+2014-09-02 23:11:14,444 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-02 23:11:58,973 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Role/Manage
+异常信息:此请求已被阻止，因为当用在 GET 请求中时，会将敏感信息透漏给第三方网站。若要允许 GET 请求，请将 JsonRequestBehavior 设置为 AllowGet。
+2014-09-02 23:14:02,801 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-02 23:14:31,664 [6](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Role/Manage
+异常信息:此请求已被阻止，因为当用在 GET 请求中时，会将敏感信息透漏给第三方网站。若要允许 GET 请求，请将 JsonRequestBehavior 设置为 AllowGet。
+2014-09-02 23:17:07,501 [12](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Role/Manage
+异常信息:此请求已被阻止，因为当用在 GET 请求中时，会将敏感信息透漏给第三方网站。若要允许 GET 请求，请将 JsonRequestBehavior 设置为 AllowGet。
+2014-09-02 23:18:40,313 [13](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/role/manage
+异常信息:此请求已被阻止，因为当用在 GET 请求中时，会将敏感信息透漏给第三方网站。若要允许 GET 请求，请将 JsonRequestBehavior 设置为 AllowGet。
+2014-09-02 23:19:52,037 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-02 23:26:29,640 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-02 23:34:01,806 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-02 23:45:02,600 [18](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Role/Manage
+异常信息:索引超出了数组界限。
+2014-09-02 23:49:38,285 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-02 23:53:57,455 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启

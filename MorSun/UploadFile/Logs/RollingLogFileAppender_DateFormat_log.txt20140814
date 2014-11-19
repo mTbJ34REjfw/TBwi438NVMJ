@@ -1,0 +1,16 @@
+2014-08-14 00:00:58,131 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-08-14 00:03:54,973 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Reference/Sort?RefGroupId=87ac53b7-b872-4fa0-9eaa-491714f57b1c&returnUrl=/Reference/Index
+异常信息:d:\NET\晨曦项目\20140621\App\UC\MorSun\Views\Reference\Sort.cshtml(31): error CS1061: “MorSun.Model.wmfReference”不包含“RefGroupName”的定义，并且找不到可接受类型为“MorSun.Model.wmfReference”的第一个参数的扩展方法“RefGroupName”(是否缺少 using 指令或程序集引用?)
+2014-08-14 00:04:01,930 [11](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Reference/Sort?RefGroupId=87ac53b7-b872-4fa0-9eaa-491714f57b1c&returnUrl=/Reference/Index
+异常信息:d:\NET\晨曦项目\20140621\App\UC\MorSun\Views\Reference\Sort.cshtml(31): error CS1061: “MorSun.Model.wmfReference”不包含“RefGroupName”的定义，并且找不到可接受类型为“MorSun.Model.wmfReference”的第一个参数的扩展方法“RefGroupName”(是否缺少 using 指令或程序集引用?)
+2014-08-14 00:04:04,832 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Reference/Sort?RefGroupId=87ac53b7-b872-4fa0-9eaa-491714f57b1c&returnUrl=/Reference/Index
+异常信息:d:\NET\晨曦项目\20140621\App\UC\MorSun\Views\Reference\Sort.cshtml(31): error CS1061: “MorSun.Model.wmfReference”不包含“RefGroupName”的定义，并且找不到可接受类型为“MorSun.Model.wmfReference”的第一个参数的扩展方法“RefGroupName”(是否缺少 using 指令或程序集引用?)
+2014-08-14 22:56:53,797 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-08-14 23:18:50,450 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-08-14 23:51:27,189 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启

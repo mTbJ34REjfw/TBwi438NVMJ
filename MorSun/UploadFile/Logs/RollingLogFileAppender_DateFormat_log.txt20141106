@@ -1,0 +1,9 @@
+2014-11-06 22:50:04,856 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-06 22:53:41,316 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-06 22:55:23,568 [11](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Account/AppLogin?Token=RKt2J0qrq54ZrkCEqcSQ+A+tbUJ8iOh3ixQ3pqECKy0J3RahMaI7A3esGHaa7l/VXa0kMC8GHoJTgAM0mpsZ0Q3SayglZDEPfHk5kmsxTkY=
+异常信息:长度不能小于 0。
+参数名: length
+2014-11-06 23:18:35,768 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-06 23:39:14,798 [30](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用关闭

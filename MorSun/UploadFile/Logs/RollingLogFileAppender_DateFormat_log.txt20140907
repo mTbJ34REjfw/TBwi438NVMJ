@@ -1,0 +1,21 @@
+2014-09-07 13:20:27,114 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-07 14:01:02,980 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-07 14:41:38,220 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/NavigationLink/GetP
+异常信息:在控制器“MorSun.Controllers.SystemController.NavigationLinkController”上未找到公共操作方法“GetP”。
+2014-09-07 14:55:23,320 [13](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/NavigationLink/GetP
+异常信息:在控制器“MorSun.Controllers.SystemController.NavigationLinkController”上未找到公共操作方法“GetP”。
+2014-09-07 14:56:44,860 [13](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/NavigationLink/GetP
+异常信息:在控制器“MorSun.Controllers.SystemController.NavigationLinkController”上未找到公共操作方法“GetP”。
+2014-09-07 15:03:48,576 [42](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用关闭
+2014-09-07 15:04:56,884 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-09-07 16:47:16,725 [15](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/NavigationLink?RefId=31ef3afb-6da0-4f97-b106-ac28a42667fc&FlagTrashed=0
+异常信息:“@”字符后不应有“if”关键字。在代码内部，不需要在像“if”这样的构造前加上前缀“@”。
+

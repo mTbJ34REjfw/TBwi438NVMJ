@@ -1,0 +1,57 @@
+﻿@model wmfPrivilege
+@{
+    ViewBag.Title = "修改权限";
+    Layout = "~/Views/Shared/_SysLayout.cshtml";    
+    string rs = ViewBag.RS;
+    var backurl = ViewBag.ReturnUrl ?? "/Privilege/Index";
+
+    var resList = new ResourceVModel().List.ToList();
+    var operList = new OperationVModel().List.ToList();
+}
+@Styles.Render("~/Content/themes/base/css")
+@Scripts.Render("~/bundles/jqueryui")
+<section class="featuredwhite">
+    <div class="content-wrapper clear-fix">     
+        <div class="topmenu alert @("alert-success".getBC("BootStrapCssAlert"))">
+            <button class="btn green" type="button" id="submitBtn">@("提交".GX())</button>
+            <button class="btn" type="button" onclick="jumptourl('@backurl')">@("返回".GX())</button>
+            </div>
+            <div class="portlet box @("red".getBC("BootStrapCssTable"))">
+                <div class="portlet-title">
+                    <div class="caption"><i class="icon-cogs"></i>修改权限</div>
+                </div>
+                <div class="portlet-body">
+                    @using (Html.BeginForm("Update", "Privilege", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "fmForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(m => m.ID)
+                        <table class="tableadd table-hover">
+                            <thead>
+                                <tr>
+                                    <th>@Html.LabelFor(m => m.ResourceId)</th>
+                                    <td>@MvcHtmlString.Create(Html.DropDownList(resList, "ID", "ResourceCNName", "ResourceTree", "ParentId", "ResourceID", "ResourceID", Model.ResourceId.ToSecureString(), "class=\"m-wrap medium\"", "", "==资源==")) </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>@Html.LabelFor(m => m.OperationId)</th>
+                                    <td>@MvcHtmlString.Create(Html.DropDownList("OperationID", "OperationID", operList, Model.OperationId.ToSecureString(), "class=\"m-wrap small\"", "ID", "OperationCNName", "", "==操作=="))</td>
+                                </tr>                               
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>    
+</section>
+    @section Scripts {        
+        @Scripts.Render("~/bundles/jqueryval")        
+        @Scripts.Render("~/bundles/validator")
+        @Styles.Render("~/Content/JQueryQtipCss")
+        @Scripts.Render("~/bundles/jqueryqtip")
+        @Scripts.Render("~/bundles/morsuncommon")
+         
+        <script type="text/javascript">  
+            $(ajaxSubmitFormHandle('#submitBtn', '#fmForm', '提交失败，请联系管理员', '#divInfo', false));            
+        </script>
+    }

@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="../Content/JQueryTreeTable/screen.css" rel="stylesheet" media="screen" />
+    <link href="../Content/JQueryTreeTable/jquery.treetable.css" rel="stylesheet" type="text/css">
+    <link href="../Content/JQueryTreeTable/jquery.treetable.theme.default.css" rel="stylesheet" type="text/css">
+    <script src="jquery-1.8.2.js" type="text/javascript"> </script>
+    <script src="../Content/JQueryTreeTable/jquery.treetable.js" type="text/javascript"> </script>
+    <script type="text/javascript">
+        $(function () {
+
+            //$("#treeTable1").treetable({onNodeExpand:function(){alert(1);}});
+            $("#treeTable1").treetable({ expandable: true });
+            $("#treeTable1").treetable("expandAll");
+
+        });
+
+        function setValue1() {
+
+            var nameValue = '';
+            var idValue = '';
+            $('#treeTable1').find('input[type="checkbox"]:checked').each(function () {
+                nameValue += $(this).parent().text() + ',';
+                idValue += $(this).val() + ',';
+            });
+
+            $("#a").val(nameValue.substr(0, nameValue.length - 1));
+            $("#b").val(idValue.substr(0, idValue.length - 1));
+            //window.close();
+
+        }
+    </script>
+    
+</head>
+<body>
+    <table id="treeTable1" style="width: 100%">
+        <tr data-tt-id="0">
+
+            <td><input type="checkbox" value="0">app</td>
+        </tr>
+        <tr data-tt-id="1" data-tt-parent-id="0">
+            <td><input type="checkbox" value="1">controllers</td>
+        </tr>
+        <tr data-tt-id="5" data-tt-parent-id="1">
+            <td><input type="checkbox" value="5">application_controller.rb</td>
+        </tr>
+        <tr data-tt-id="2" data-tt-parent-id="0">
+            <td><input type="checkbox" value="2">helpers</td>
+        </tr>
+        <tr data-tt-id="3" data-tt-parent-id="0">
+            <td><input type="checkbox" value="3">models</td>
+        </tr>
+        <tr data-tt-id="4" data-tt-parent-id="0">
+            <td><input type="checkbox" value="4">views</td>
+        </tr>
+    </table>
+    <input type="text" id="a" /><input type="text" id="b" />
+    <button onclick="setValue1();" value="选择"></button>
+</body>
+</html>

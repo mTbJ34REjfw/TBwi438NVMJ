@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - 您身边的问题解决专家 作业 作业神器 拍题神器 作业帮 作业邦  @("ServiceName".GX())</title>
+    <link href="~/Images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="keywords" content="@ViewBag.Title - 作业,作业神器,拍题神器,作业帮,作业邦,课外辅导,远程答题,远程代答,@("ServiceName".GX()),@("ServiceName".GX())官网" />
+    <meta name="description" content="@ViewBag.Title - @("ServiceName".GX())是全球最先进的课外辅导平台、最常用的中小学生学习社区,专注于中小学生的课外辅导，快速解答问题。充分学习并具备了前辈作业帮、作业神器、魔方格、拍题神器、问他作业、作业 的高速答题、准确答题的优点，为广大中小学生，网民，和所有乐享生活的高大上人士提供周到、准确、快速的答题服务" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/uniformmetroCss")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/uniform")
+    @Scripts.Render("~/bundles/hoho18")    
+</head>
+<body>
+    <header>
+        <div id="top" class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title"><a href="http://@("ServiceDomain".GX())"><img src="/images/bungmalogo.gif" width="68" class="float-left" /><span class="logohspan">@("ServiceName".GX())</span></a><span class="logoyspan">@("ServiceDomain".GX())</span></p>
+            </div>
+            <div class="float-right">
+                <section id="login">
+                    @Html.Partial("_LoginPartial")<span class="telStringSpan">Tel.</span> <span class="telSpan">133 137 88387</span>
+                </section>
+                <nav>
+                    <ul id="menu">
+                        <li>@Html.ActionLink("首页", "Index", "Home")</li>
+                        <li>@Html.ActionLink("会员中心", "Index", "Member")</li>
+                        <li>@Html.ActionLink("充值", "Recharge", "Member")</li>
+                        @if (资源.取现.HP(操作.添加))
+                        {<li>@Html.ActionLink("取现", "Take", "Member")</li> }                        
+                        <li>@Html.ActionLink("个人信息", "Info", "Member")</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+        <div id="Loading" class="Loading" style="display: none;">
+        </div>
+        <div id="divInfo" style="margin-top: 10px;">
+        </div>
+        <div id="back-to-top" style="display: block;">
+            <a href="#top"></a>
+        </div>
+        <div id="zt_pf">
+            <a class="pf1" target="_blank" href="@("ServiceDomain".GHU())"></a>
+            <a class="pf2" target="_blank" href="@("ServiceDomain".GHU())/Account/Register"></a>
+            <a class="pf3" target="_blank" href="@("ServiceDomain".GHU())"></a>
+        </div>
+        @RenderSection("featured", required: false)
+        @RenderBody()
+    </div>
+    <footer>
+        <div>
+            <div class="float-none"><span class="flink">友情链接：<a href="@("ServiceDomain".GHU())">作业</a>|<a href="@("ServiceDomain".GHU())">作业帮</a>|<a href="@("ServiceDomain".GHU())">作业神器</a>|<a href="@("ServiceDomain".GHU())">问他作业</a>|<a href="@("ServiceDomain".GHU())">作业辅导</a>|<a href="@("ServiceDomain".GHU())">拍题神器</a></span></div>
+            <div class="float-none"><span class="fExplan">@("ServiceName".GX())是全球最先进的课外辅导平台、最常用的中小学生学习社区,专注于中小学生的课外辅导，快速解答问题。是您身边的问题解决专家。</span></div>
+
+            <div class="float-none"><span class="fExplan">地址：福州市台江区世纪百联大厦 电话：13313788387		<a href="http://www.miitbeian.gov.cn/"><span class="fExplan">闽ICP备14017527号</span></a></span></div>
+            <div class="float-none">
+                <p><span class="fExplan">&copy; @DateTime.Now.Year - All rights reserved</span></p>
+            </div>
+        </div>
+    </footer>     
+    <script>
+        $(backtop());
+        $($('#fmForm').keydown(function (e) { var curKey = e.which; if (curKey == 13) { $('#submitBtn').click(); return false; } }));
+        $(function () {
+            $uniformed = $(".styleThese").find("input:checkbox").not(".skipThese");
+            $uniformed.uniform();
+            //waypoint 
+            $('.topmenu').waypoint(function (event, direction) {
+                $(this).toggleClass('stickytopmenu', direction === "down");
+                event.stopPropagation();
+            });
+        });
+    </script>
+    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/waypoint")    
+</body>
+</html>

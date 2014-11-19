@@ -1,0 +1,9 @@
+2014-10-19 22:14:20,244 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-19 22:27:32,220 [21](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:168/Home/Index
+异常信息:未将对象引用设置到对象的实例。
+2014-10-19 22:31:01,624 [19](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用关闭
+2014-10-19 22:33:20,335 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:106) INFO  System.Object [(null)] - 应用开启
+2014-10-19 23:03:03,183 [29](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:106) INFO  System.Object [(null)] - 应用关闭
+2014-10-19 23:49:36,909 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:106) INFO  System.Object [(null)] - 应用开启

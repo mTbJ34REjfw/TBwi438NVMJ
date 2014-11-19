@@ -1,0 +1,145 @@
+2014-11-10 09:56:29,546 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-10 09:56:36,958 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 09:57:33,375 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - youhong@hoho18.com激活账号邮件发送失败！邮箱不可用。 服务器响应为:Mailbox not found or access denied
+2014-11-10 09:57:35,553 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 11:06:11,736 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-10 11:06:20,858 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 12:33:40,881 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-10 12:33:53,444 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 12:34:47,221 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 12:34:50,684 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/
+异常信息:d:\NET\晨曦项目\20140621\App\UC\MorSun\Views\Home\Index.cshtml(20): error CS1501: “AE”方法没有任何重载采用 0 个参数
+2014-11-10 12:35:16,837 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 12:40:40,117 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-10 12:40:41,590 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 12:41:30,257 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@bungma.comMembership添加用户成功
+2014-11-10 12:41:30,261 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@bungma.com准备添加UserInfo
+2014-11-10 12:41:30,329 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@bungma.com用户密码和操作密码加密
+2014-11-10 12:41:30,530 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@bungma.com取邀请人bungma
+2014-11-10 12:41:30,532 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - bic bungma
+2014-11-10 12:41:31,815 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@bungma.com用户基本信息和角色添加成功
+2014-11-10 12:41:31,818 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@bungma.com准备发送邮件
+2014-11-10 12:41:31,821 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@bungma.com发送邮件
+2014-11-10 12:41:35,163 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - youhong@bungma.com激活账号邮件发送失败！发送邮件失败。
+2014-11-10 12:41:37,261 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 12:43:23,765 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-10 12:43:24,736 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 12:44:56,822 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@bungma.comMembership添加用户成功
+2014-11-10 12:44:56,825 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@bungma.com准备添加UserInfo
+2014-11-10 12:44:56,843 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@bungma.com用户密码和操作密码加密
+2014-11-10 12:44:56,930 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@bungma.com取邀请人bungma
+2014-11-10 12:44:56,931 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - bic bungma
+2014-11-10 12:44:57,193 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@bungma.com用户基本信息和角色添加成功
+2014-11-10 12:44:57,195 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@bungma.com准备发送邮件
+2014-11-10 12:44:57,197 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@bungma.com发送邮件
+2014-11-10 12:44:59,316 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - youhong@bungma.com激活账号邮件发送失败！发送邮件失败。
+2014-11-10 12:45:01,362 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 12:45:22,898 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.netMembership添加用户成功
+2014-11-10 12:45:22,900 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net准备添加UserInfo
+2014-11-10 12:45:22,919 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net用户密码和操作密码加密
+2014-11-10 12:45:22,945 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net取邀请人bungma
+2014-11-10 12:45:22,946 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - bic bungma
+2014-11-10 12:45:23,006 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net用户基本信息和角色添加成功
+2014-11-10 12:45:23,007 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net准备发送邮件
+2014-11-10 12:45:23,008 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net发送邮件
+2014-11-10 12:45:24,521 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - youhong@hoho18.net激活账号邮件发送失败！发送邮件失败。
+2014-11-10 12:45:26,606 [12](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 12:48:08,835 [6](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.netMembership添加用户成功
+2014-11-10 12:48:08,836 [6](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net准备添加UserInfo
+2014-11-10 12:48:08,857 [6](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net用户密码和操作密码加密
+2014-11-10 12:48:08,881 [6](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net取邀请人bungma
+2014-11-10 12:48:08,882 [6](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - bic bungma
+2014-11-10 12:48:08,939 [6](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net用户基本信息和角色添加成功
+2014-11-10 12:48:08,941 [6](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net准备发送邮件
+2014-11-10 12:48:16,742 [6](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net发送邮件
+2014-11-10 12:51:37,746 [6](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - youhong@hoho18.net激活账号邮件发送失败！发送邮件失败。
+2014-11-10 12:51:39,872 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 12:51:58,000 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.netMembership添加用户成功
+2014-11-10 12:51:58,001 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net准备添加UserInfo
+2014-11-10 12:51:58,022 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net用户密码和操作密码加密
+2014-11-10 12:51:58,045 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net取邀请人bungma
+2014-11-10 12:51:58,046 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - bic bungma
+2014-11-10 12:51:58,123 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net用户基本信息和角色添加成功
+2014-11-10 12:51:58,124 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net准备发送邮件
+2014-11-10 12:51:59,664 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net发送邮件
+2014-11-10 12:52:01,172 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - youhong@hoho18.net激活账号邮件发送失败！发送邮件失败。
+2014-11-10 12:52:03,265 [13](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 12:53:11,854 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-10 12:53:12,469 [6](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 12:53:48,570 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.netMembership添加用户成功
+2014-11-10 12:53:48,573 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net准备添加UserInfo
+2014-11-10 12:53:48,589 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net用户密码和操作密码加密
+2014-11-10 12:53:48,659 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net取邀请人bungma
+2014-11-10 12:53:48,660 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - bic bungma
+2014-11-10 12:53:48,835 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net用户基本信息和角色添加成功
+2014-11-10 12:53:48,836 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net准备发送邮件
+2014-11-10 12:53:52,408 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net发送邮件
+2014-11-10 12:54:25,520 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - youhong@hoho18.net激活账号邮件发送失败！发送邮件失败。
+2014-11-10 12:54:27,622 [9](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 12:56:49,419 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-10 12:56:50,392 [6](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 12:57:56,375 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.netMembership添加用户成功
+2014-11-10 12:57:56,377 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net准备添加UserInfo
+2014-11-10 12:57:56,394 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net用户密码和操作密码加密
+2014-11-10 12:57:56,466 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net取邀请人bungma
+2014-11-10 12:57:56,467 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - bic bungma
+2014-11-10 12:57:56,670 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net用户基本信息和角色添加成功
+2014-11-10 12:57:56,672 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net准备发送邮件
+2014-11-10 12:58:00,461 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net发送邮件
+2014-11-10 12:58:12,710 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 12:58:25,651 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 13:02:51,204 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-10 13:02:52,272 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 13:03:24,092 [15](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 13:09:22,151 [25](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 13:10:02,975 [22](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 13:10:23,532 [16](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 13:10:59,759 [34](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 13:11:09,379 [22](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 13:11:21,072 [17](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 13:11:54,310 [37](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 13:14:21,487 [16](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 13:20:58,009 [49](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用关闭
+2014-11-10 13:22:05,174 [48](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-10 13:22:05,326 [49](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 13:22:18,653 [42](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 13:23:41,270 [49](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用关闭
+2014-11-10 13:28:02,884 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-10 13:28:08,026 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 13:30:05,826 [12](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.netMembership添加用户成功
+2014-11-10 13:30:05,831 [12](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net准备添加UserInfo
+2014-11-10 13:30:05,888 [12](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net用户密码和操作密码加密
+2014-11-10 13:30:06,033 [12](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net取邀请人bungma
+2014-11-10 13:30:06,035 [12](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - bic bungma
+2014-11-10 13:30:06,856 [12](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net用户基本信息和角色添加成功
+2014-11-10 13:30:06,857 [12](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net准备发送邮件
+2014-11-10 13:30:12,538 [12](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net发送邮件
+2014-11-10 13:35:25,685 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-10 13:35:26,662 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 13:35:54,805 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.netMembership添加用户成功
+2014-11-10 13:35:54,807 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net准备添加UserInfo
+2014-11-10 13:35:54,829 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net用户密码和操作密码加密
+2014-11-10 13:35:54,900 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net取邀请人bungma
+2014-11-10 13:35:54,901 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - bic bungma
+2014-11-10 13:35:55,147 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net用户基本信息和角色添加成功
+2014-11-10 13:35:55,149 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net准备发送邮件
+2014-11-10 13:35:59,718 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net发送邮件
+2014-11-10 13:36:23,353 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - youhong@hoho18.net激活账号邮件发送失败！发送邮件失败。
+2014-11-10 13:36:25,466 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 13:37:25,277 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-10 13:37:27,697 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 13:38:10,419 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.netMembership添加用户成功
+2014-11-10 13:38:10,422 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net准备添加UserInfo
+2014-11-10 13:38:10,443 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net用户密码和操作密码加密
+2014-11-10 13:38:10,527 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net取邀请人bungma
+2014-11-10 13:38:10,528 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - bic bungma
+2014-11-10 13:38:10,728 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net用户基本信息和角色添加成功
+2014-11-10 13:38:10,729 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net准备发送邮件
+2014-11-10 13:38:23,019 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net发送邮件
+2014-11-10 13:38:44,175 [11](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 14:42:15,416 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:106) INFO  System.Object [(null)] - 应用开启
+2014-11-10 14:42:18,675 [6](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:103) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 14:43:35,814 [6](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:103) DEBUG System.Object [(null)] - 跳转URL
+2014-11-10 14:44:50,625 [19](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:106) INFO  System.Object [(null)] - 应用关闭

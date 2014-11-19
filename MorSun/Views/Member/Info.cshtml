@@ -1,0 +1,53 @@
+﻿@model UInfo
+@{
+    ViewBag.Title = "个人信息";
+    Layout = "~/Views/Shared/_UCLayout.cshtml";
+    string rs = ViewBag.RS;
+    var backurl = ViewBag.ReturnUrl ?? "/Member/Index";
+    var user = MorSun.Controllers.BasisController.CurrentAspNetUser.wmfUserInfo;
+}
+@Styles.Render("~/Content/themes/base/css")
+@Scripts.Render("~/bundles/jqueryui")
+<section class="featuredwhite">
+    <div class="content-wrapper clear-fix">   
+        <div class="topmenu alert @("alert-success".getBC("BootStrapCssAlert"))">
+            <button class="btn green" type="button" id="submitBtn">@("提交".GX())</button>
+            <button class="btn blue" type="button" onclick="jumptourl('/Member/CPW')">修改密码</button>
+            @if (String.IsNullOrEmpty(user.Question1) && String.IsNullOrEmpty(user.Question2) && String.IsNullOrEmpty(user.Question3) && String.IsNullOrEmpty(user.Answer1) && String.IsNullOrEmpty(user.Answer2) && String.IsNullOrEmpty(user.Answer3))
+            {<button class="btn red" type="button" onclick="jumptourl('/Member/CMB')">修改密保</button> }  
+            </div>
+            <div class="portlet box @("red".getBC("BootStrapCssTable"))">
+                <div class="portlet-title">
+                    <div class="caption"><i class="icon-cogs"></i>个人信息</div>
+                </div>
+                <div class="portlet-body">
+                    @using (Html.BeginForm("Info", "Member", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "fmForm" }))
+                    {
+                        @Html.AntiForgeryToken()                       
+                        <table class="tableadd table-hover">
+                            <thead>
+                                <tr>
+                                    <th>@Html.LabelFor(m => m.NickName)</th>
+                                    <td>@Html.TextBoxFor(m => m.NickName, new { @class = "m-wrap large" })</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>    
+</section>
+    @section Scripts {        
+        @Scripts.Render("~/bundles/jqueryval")        
+        @Scripts.Render("~/bundles/validator")
+        @Styles.Render("~/Content/JQueryQtipCss")
+        @Scripts.Render("~/bundles/jqueryqtip")
+        @Scripts.Render("~/bundles/morsuncommon")
+         
+        <script type="text/javascript">  
+            $(ajaxSubmitFormHandle('#submitBtn', '#fmForm', '提交失败，请联系管理员', '#divInfo', false));            
+        </script>
+    }

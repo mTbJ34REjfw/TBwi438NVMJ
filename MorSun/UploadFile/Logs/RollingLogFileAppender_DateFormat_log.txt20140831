@@ -1,0 +1,5 @@
+2014-08-31 22:39:48,924 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-08-31 23:28:15,269 [12](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/role/resource
+异常信息:在控制器“MorSun.Controllers.SystemController.RoleController”上未找到公共操作方法“resource”。

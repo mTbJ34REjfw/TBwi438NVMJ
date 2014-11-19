@@ -1,0 +1,75 @@
+2014-10-07 08:55:44,493 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-07 09:51:21,134 [75](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用关闭
+2014-10-07 10:01:41,887 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-07 10:07:45,020 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-07 10:10:09,871 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-07 10:24:38,610 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-07 10:26:06,840 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - zsfyou@qq.comIP;::1修改呢称hoho;哈哈
+2014-10-07 10:26:42,403 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - zsfyou@qq.comIP;::1修改密码
+2014-10-07 10:27:25,933 [11](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - zsfyou@qq.comIP;::1提交卡密
+2014-10-07 10:28:19,254 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - tt@qq.comIP;::1修改密保
+2014-10-07 10:45:08,810 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-07 11:14:41,253 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-07 11:15:32,550 [6](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - zsfyou@qq.com被::1恶意登录
+2014-10-07 11:38:28,312 [40](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用关闭
+2014-10-07 12:03:57,717 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-07 12:11:23,845 [25](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用关闭
+2014-10-07 12:57:07,924 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-07 12:59:39,179 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - zsfyou@qq.com被::1恶意登录
+2014-10-07 13:07:34,362 [22](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/BMNew/Add?RefId=78fba6d7-ade7-46eb-9662-a9f75ea26b69&returnUrl=/BMNew/Index
+异常信息:d:\NET\晨曦项目\20140621\App\UC\MorSun\Views\BMNew\Add.cshtml(34): error CS1061: “MorSun.Model.bmNew”不包含“RefId”的定义，并且找不到可接受类型为“MorSun.Model.bmNew”的第一个参数的扩展方法“RefId”(是否缺少 using 指令或程序集引用?)
+2014-10-07 13:22:41,422 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-07 15:10:01,930 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-07 15:22:19,292 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-07 15:23:10,053 [9](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/n/s
+异常信息:对于“MorSun.Controllers.NController”中方法“System.Web.Mvc.ActionResult S(System.Guid)”的不可以为 null 的类型“System.Guid”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+2014-10-07 15:35:44,368 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:106) INFO  System.Object [(null)] - 应用开启
+2014-10-07 15:35:55,836 [9](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:112) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:168/n/s
+异常信息:对于“MorSun.Controllers.NController”中方法“System.Web.Mvc.ActionResult S(System.Guid, System.String)”的不可以为 null 的类型“System.Guid”的参数“id”，参数字典包含一个 null 项。可选参数必须为引用类型、可以为 null 的类型或声明为可选参数。
+参数名: parameters
+2014-10-07 15:38:49,212 [7](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:106) INFO  System.Object [(null)] - 应用关闭
+2014-10-07 15:40:31,760 [24](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:106) INFO  System.Object [(null)] - 应用开启
+2014-10-07 15:44:09,496 [20](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:106) INFO  System.Object [(null)] - 应用关闭
+2014-10-07 15:44:25,860 [24](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:106) INFO  System.Object [(null)] - 应用开启
+2014-10-07 15:46:30,333 [18](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:106) INFO  System.Object [(null)] - 应用关闭
+2014-10-07 15:47:32,649 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:106) INFO  System.Object [(null)] - 应用开启
+2014-10-07 15:48:12,201 [18](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:106) INFO  System.Object [(null)] - 应用关闭
+2014-10-07 15:52:01,591 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-07 16:12:37,003 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:106) INFO  System.Object [(null)] - 应用开启
+2014-10-07 16:14:52,248 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:106) INFO  System.Object [(null)] - 应用关闭
+2014-10-07 16:16:15,975 [22](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:106) INFO  System.Object [(null)] - 应用开启
+2014-10-07 16:26:47,140 [28](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:106) INFO  System.Object [(null)] - zsfyou@qq.com被::1恶意登录
+2014-10-07 16:48:14,562 [47](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:106) INFO  System.Object [(null)] - 应用关闭
+2014-10-07 17:02:38,103 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:106) INFO  System.Object [(null)] - 应用开启
+2014-10-07 17:04:12,549 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:112) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:168/
+异常信息:传入字典的模型项的类型为“MorSun.Model.IndexModel”，但此字典需要类型“MorSun.Model.LoginModel”的模型项。
+2014-10-07 17:05:46,846 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:106) INFO  System.Object [(null)] - 应用关闭
+2014-10-07 17:06:17,044 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-07 17:15:32,062 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-07 17:36:58,781 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:106) INFO  System.Object [(null)] - 应用开启
+2014-10-07 17:57:58,248 [45](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:106) INFO  System.Object [(null)] - 应用关闭
+2014-10-07 18:43:19,190 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:106) INFO  System.Object [(null)] - 应用开启
+2014-10-07 19:02:29,118 [35](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:106) INFO  System.Object [(null)] - 应用关闭
+2014-10-07 19:02:53,431 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-07 19:13:01,115 [20](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Home/EL/DDD9628C310778835E283E76CD6182EE4B95891DDD61CFD8E34EFB3537684808A7202A9F0F5D11D0
+异常信息:未将对象引用设置到对象的实例。
+2014-10-07 19:16:24,344 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-07 19:21:59,458 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-07 19:28:32,628 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-07 20:54:24,015 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-07 23:10:14,950 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-07 23:13:39,785 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-07 23:19:56,410 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-07 23:26:56,790 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-10-07 23:57:13,644 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启

@@ -1,0 +1,57 @@
+﻿@model MorSun.Model.LoginModel
+@{
+    ViewBag.Title = "登录" + "ServiceName".GX();
+    int yzmR = new Random().Next(100000);
+    //Layout = null;
+}
+<div class="content-wrapper clear-fix">
+    <section id="loginForm">
+
+        <h2>@ViewBag.Title</h2>
+        @using (Html.BeginForm("AjaxLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "fmForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <fieldset>
+                <legend>“登录”表单</legend>
+                <ol>
+                    <li>
+                        @Html.LabelFor(m => m.UserName)
+                        @Html.TextBoxFor(m => m.UserName)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password)
+                    </li>
+                    @if ("LoginVerificationCode".GX().ToAs<bool>())
+                    {
+                        <li>
+                            @Html.LabelFor(m => m.Verifycode)
+                            @Html.TextBoxFor(m => m.Verifycode, new { @class = "loginYZMText", onfocus = "getVerifyCode('#Verifycode', '#VerifyCodeImg')" })
+                            <img id="VerifyCodeImg" height="35px" src="/images/VerifyCode.aspx?type=@yzmR"
+                                 title="看不清?点击换张图片!" style="vertical-align: middle; cursor: pointer; " onclick="this.src=this.src+'&';" />
+                        </li>
+                    }
+                </ol>
+                <input type="button" id="submitBtn" value="登录" />   <a href="/Account/ForgetPass">忘记密码？</a>
+            </fieldset>
+            <p>
+                没有账号？@Html.ActionLink("注册新账号", "Register")。
+            </p>
+            <input name="VerifycodeRandom" type="hidden" value="@yzmR" />
+        }
+
+    </section>
+    <div style="display:none" id="DIVSL"></div>
+</div>
+@section Scripts {    
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/validator")
+    @Styles.Render("~/Content/JQueryQtipCss")
+    @Scripts.Render("~/bundles/jqueryqtip")
+    @Scripts.Render("~/bundles/morsuncommon")
+    
+    <script type="text/javascript">
+        $(ajaxSubmitFormHandle('#submitBtn', '#fmForm', '登录失败，请联系管理员', '#divInfo',true));
+    </script>
+    }
+

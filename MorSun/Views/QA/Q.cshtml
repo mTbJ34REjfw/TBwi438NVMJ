@@ -1,0 +1,87 @@
+﻿@model BMQAVModel
+@{
+    ViewBag.Title = "查看答案";    
+    var backurl = ViewBag.ReturnUrl ?? "/Home/Index";  
+        
+}
+@Styles.Render("~/Content/themes/base/css")
+@Scripts.Render("~/bundles/jqueryui")
+<section class="featuredwhite">
+    <div class="content-wrapper clear-fix">
+            <div class="portlet box @("red".getBC("BootStrapCssTable"))">
+                <div class="portlet-title">
+                    <div class="caption"><i class="icon-cogs"></i>查看答案</div>                    
+                </div>
+                <div class="portlet-body">
+                    <table id="MoreSunTreeTable" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>问题</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><img src="@Model.Q.PicUrl" width="800" /></td>
+                            </tr>
+                            @if(Model.A != null)
+                            { 
+                                <tr><td>答案</td></tr>
+                                <tr>
+                                    <td>                                    
+                                        @if(Model.A.MsgType == Guid.Parse(Reference.微信消息类别_文本))
+                                        { 
+                                            @Model.A.QAContent
+                                        }
+                                        else if(Model.A.MsgType == Guid.Parse(Reference.微信消息类别_图片))
+                                        {
+                                            <img src="@Model.A.PicUrl" width="800" />
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                            @if(Model.Others.Count() > 0)
+                            { 
+                                <tr><td>其他</td></tr>
+                                foreach(var item in Model.Others)
+                                {
+                                    <tr>
+                                        <td>
+                                            @if(item.QARef == Guid.Parse(Reference.问答类别_放弃))
+                                            {
+                                                @:被答题用户放弃
+                                            }
+                                            @if (item.QARef == Guid.Parse(Reference.问答类别_不是问题))
+                                            {
+                                                @:被答题用户标识为不是问题
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            
+                            <tr><td><img src="/Images/zyb/zyb258.jpg" title="作业邦" /></td></tr>
+                            <tr><td>
+                                <div><span class="weixinText">微信扫一扫</span></div>
+                                <div><span class="weixinText">老师学霸跟着走</span></div>
+                                </td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>    
+</section>
+    @section Scripts {        
+        @Scripts.Render("~/bundles/jqueryval")        
+        @Scripts.Render("~/bundles/validator")
+        @Styles.Render("~/Content/JQueryQtipCss")
+        @Scripts.Render("~/bundles/jqueryqtip")
+        @Scripts.Render("~/bundles/morsuncommon")
+        @Styles.Render("~/Content/treetableCss")
+        @Scripts.Render("~/bundles/treetable")  
+        <script type="text/javascript">  
+            @*@if (Model.FlagTrashed == "0")
+            {
+               @:morsunTreeTable('#MoreSunTreeTable', "expanded", true);
+            }*@
+        </script>
+    }

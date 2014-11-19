@@ -1,0 +1,33 @@
+2014-11-04 18:19:32,795 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-04 18:21:13,121 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Account/AppLogin?Token=afxCC/BTFLrqvbt6RWAJZUIy9I5r/KAe4dQjqzCvlSLNU+ikjWlsQ+Ry8wDZ4DUYX3yYF+fdCKq6r9MBP2mX4vhetKrlith9tspIQrCaTpc=
+异常信息:长度不能小于 0。
+参数名: length
+2014-11-04 22:35:21,169 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-04 22:36:09,338 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用关闭
+2014-11-04 22:37:09,277 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-04 22:37:49,046 [5](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/Account/AppLogin?Token=wa5er5OQTybbQjgS5isR/k2yNnm0j4XCu7c8r7Blarq7ZphZGG2HOV/hUmrV7odqI9xz/3/9JrnThUkKsuadf7OEeG6jxey5C5b8GaOQ79Q=
+异常信息:在控制器“MorSun.Controllers.AccountController”上未找到公共操作方法“AppLogin”。
+2014-11-04 22:38:12,517 [9](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/sysconfig/Index
+异常信息:传入字典的模型项的类型为“MorSun.Controllers.ViewModel.BaseVModel`1[MorSun.Model.bmOnlineQAUser]”，但此字典需要类型“MorSun.Controllers.ViewModel.UserVModel”的模型项。
+2014-11-04 22:39:53,354 [10](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/sysconfig/OnlineQAUser
+异常信息:值不能为 null。
+参数名: source
+2014-11-04 22:41:17,163 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-04 22:49:54,760 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-04 22:50:40,784 [9](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/SYSConfig/GenerateQAUserCache?ReturnUrl=/SYSConfig/SetOnlineQAUser
+异常信息:在控制器“MorSun.Controllers.SystemController.SYSConfigController”上未找到公共操作方法“GenerateQAUserCache”。
+2014-11-04 22:51:09,088 [8](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:37836/SYSConfig/GenerateQAUserCache?ReturnUrl=/SYSConfig/SetOnlineQAUser
+异常信息:在控制器“MorSun.Controllers.SystemController.SYSConfigController”上未找到公共操作方法“GenerateQAUserCache”。
+2014-11-04 22:54:28,223 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
