@@ -183,6 +183,21 @@ namespace MorSun.Model
     }
 
     /// <summary>
+    /// 批量增加卡密类
+    /// </summary>
+    public class BeachAddKaMe
+    {
+        [Display(Name = "卡密类别")]
+        [Required(ErrorMessage = "{0}必选")]
+        public System.Guid KaMeRef { get; set; }   
+
+        [Display(Name = "数量")]
+        [Required(ErrorMessage = "{0}必填")]
+        [RangeAttribute(1, 10000, ErrorMessage = "输入范围从1到10000")]
+        public System.Int32 Num { get; set; }        
+    }
+
+    /// <summary>
     /// 取现
     /// </summary>
     public class Take

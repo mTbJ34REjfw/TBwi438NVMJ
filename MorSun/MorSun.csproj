@@ -577,6 +577,7 @@
     <Content Include="Content\UEditor\third-party\video-js\font\vjs.eot" />
     <Content Include="Content\UEditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="Content\UEditor\third-party\video-js\font\vjs.woff" />
+    <None Include="Properties\PublishProfiles\bmdata.pubxml" />
     <None Include="Properties\PublishProfiles\kdm.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Images\bm\tbmobile.png" />
@@ -754,6 +755,9 @@
     <Content Include="Views\SYSConfig\OnlineQAUser.cshtml" />
     <Content Include="Views\SYSConfig\UserQACache.cshtml" />
     <Content Include="Views\CS\C.cshtml" />
+    <Content Include="Views\BMKaMe\BeachAdd.cshtml" />
+    <Content Include="Views\BMKaMe\Edit.cshtml" />
+    <Content Include="Views\BMKaMe\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -803,7 +807,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>37836</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:37836/</IISUrl>
+          <IISUrl>http://localhost:17836/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

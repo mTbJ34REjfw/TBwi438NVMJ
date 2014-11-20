@@ -122,6 +122,10 @@ namespace MorSun.Common
             //在线状态
             public const string 在线状态_在线 = "da2c77e5-cdf8-413f-a722-f4325a0e2d12";
             public const string 在线状态_退出 = "963cd36d-d1c3-44d0-9499-9a7d37ef3635";
+
+            //卡密导入
+            public const string 卡密导入_已导入 = "2e3048c1-6307-43ff-9059-eaa7a8eb8fb5";
+            public const string 卡密导入_未导入 = "39fea57c-04dc-49ce-ab7d-95be9dfe5070";
             #endregion
 
         }
@@ -192,6 +196,21 @@ namespace MorSun.Common
             /// 用户认证类别
             /// </summary>
             public const string 用户认证类别 = "3f348b47-1f4f-4328-b042-e4c3db3f30e2";
+
+            /// <summary>
+            /// 卡密导入
+            /// </summary>
+            public const string 卡密导入 = "a7dbfca1-af2b-4358-b0e4-3f2fa7ce8daf";
+
+            /// <summary>
+            /// 卡密类别
+            /// </summary>
+            public const string 卡密类别 = "a8a202d7-2dce-4cfe-b920-aa922d649cb0";
+
+            /// <summary>
+            /// 卡密类别
+            /// </summary>
+            public const string 卡密充值 = "13bf9af6-f93d-411d-8548-723c9878d48d";
         }
     }    
 

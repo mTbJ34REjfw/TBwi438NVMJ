@@ -1,6 +1,10 @@
-2014-11-20 00:12:36,271 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
-2014-11-20 00:13:49,182 [26](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
-2014-11-20 20:34:08,972 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
-2014-11-20 20:35:07,505 [22](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
-2014-11-20 20:36:14,564 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net发送邮件
-2014-11-20 20:36:52,951 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-21 00:39:11,269 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-21 00:40:11,566 [21](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-21 00:41:08,915 [5](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:17836/BMKaMe
+异常信息:对象“MorSun.Controllers.ViewModel.BMKaMeVModel”上的属性访问器“PCount”发生以下异常:“执行命令定义时出错。有关详细信息，请参阅内部异常。”
+2014-11-21 00:42:52,728 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-21 00:43:46,681 [22](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-21 01:01:41,130 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-21 01:02:41,350 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
