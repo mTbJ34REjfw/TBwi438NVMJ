@@ -79,11 +79,8 @@
     <Compile Include="Base\ExportExcel.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ControllersSystem\SYSConfigController.cs" />
     <Compile Include="ControllersSystem\MMController.cs" />
     <Compile Include="ControllersUserCenter\CSController.cs" />
-    <Compile Include="ControllersWeiXin\QAController.cs" />
-    <Compile Include="ControllersWeiXin\WXZYBController.cs" />
     <Compile Include="Filter\ExceptionFilter.cs" />
     <Compile Include="Filter\PrivilegeAttribute.cs" />
     <Compile Include="ModelBinder\SmartModelBinder.cs" />
@@ -110,8 +107,6 @@
     <Compile Include="ControllersUserCenter\HomeController.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Quartz\CheckingIn4\CheckingJob4.cs" />
-    <Compile Include="Quartz\CheckingIn4\CheckingTrigger4.cs" />
     <Compile Include="Quartz\MorSunScheduler.cs" />
     <Compile Include="ViewModel\BaseVM\BaseVModel.cs" />
     <Compile Include="ViewModel\BM\BMNewVModel.cs" />
@@ -164,10 +159,6 @@
     <ProjectReference Include="..\MorSun.Model\MorSun.Model.csproj">
       <Project>{d335634f-20b7-464a-87a0-6d4718cf264e}</Project>
       <Name>MorSun.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MorSun.WX.Service\MorSun.WX.ZYB.Service.csproj">
-      <Project>{85d316a9-f411-4d50-bc06-0dacddc78d46}</Project>
-      <Name>MorSun.WX.ZYB.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

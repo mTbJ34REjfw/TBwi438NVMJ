@@ -1,2 +1,6 @@
-2014-11-17 21:13:06,440 [1](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
-2014-11-17 21:14:18,243 [24](d:\NET\晨曦项目\20140621\App\UC\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-20 00:12:36,271 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-20 00:13:49,182 [26](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-20 20:34:08,972 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-20 20:35:07,505 [22](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-20 20:36:14,564 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net发送邮件
+2014-11-20 20:36:52,951 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL

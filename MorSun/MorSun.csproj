@@ -784,10 +784,6 @@
       <Project>{d335634f-20b7-464a-87a0-6d4718cf264e}</Project>
       <Name>MorSun.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MorSun.WX.Service\MorSun.WX.ZYB.Service.csproj">
-      <Project>{85d316a9-f411-4d50-bc06-0dacddc78d46}</Project>
-      <Name>MorSun.WX.ZYB.Service</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
