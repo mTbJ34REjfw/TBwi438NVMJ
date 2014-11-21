@@ -61,7 +61,7 @@ namespace MorSun.Controllers.SystemController
                 
                 if (ModelState.IsValid)
                 {
-                    for (var i = 0; i <= t.Num; i++)
+                    for (var i = 0; i < t.Num; i++)
                     {
                         var model = new bmKaMe();
                         model.ID = Guid.NewGuid();
@@ -88,6 +88,71 @@ namespace MorSun.Controllers.SystemController
                 var oper = new OperationResult(OperationResultType.Error, "无权限");
                 oper.AppendData = ModelState.GE();
                 return Json(oper, JsonRequestBehavior.AllowGet);                
+            }
+        }
+
+        /// <summary>
+        /// 批量将卡密设为已导入
+        /// </summary>
+        /// <param name="t"></param>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
+        public ActionResult BeachImport(BeachAddKaMe t, string returnUrl)
+        {
+            if (ResourceId.HP(操作.修改))
+            {
+                ViewBag.RS = ResourceId;
+                ViewBag.ReturnUrl = returnUrl;
+                return View(t);
+            }
+            else
+            {
+                "".AE("无权限", ModelState);
+                var oper = new OperationResult(OperationResultType.Error, "无权限");
+                oper.AppendData = ModelState.GE();
+                return Json(oper, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult BImport(BeachAddKaMe t, string returnUrl)
+        {
+            if (ResourceId.HP(操作.修改))
+            {
+                var oper = new OperationResult(OperationResultType.Error, "批量导入失败");
+                ViewBag.ReturnUrl = returnUrl;
+                var bll = new BaseBll<wmfReference>();
+                var r = bll.GetModel(t.KaMeRef);
+                if (r == null)
+                {
+                    "KaMeRef".AE("无此类别", ModelState);
+                }
+
+                if (ModelState.IsValid)
+                {
+                    var ipref = Guid.Parse(Reference.卡密导入_未导入);
+                    var list = Bll.All.Where(p => p.KaMeRef == t.KaMeRef && p.ImportRef == ipref);
+                    foreach(var item in list)
+                    {
+                        item.ImportRef = Guid.Parse(Reference.卡密导入_已导入);                        
+                    }                    
+                    Bll.UpdateChanges();
+                    fillOperationResult(returnUrl, oper, "批量导入成功");
+                }
+                else
+                {
+                    "".AE("修改失败", ModelState);
+                    oper.AppendData = ModelState.GE();
+                }
+                return Json(oper, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                "".AE("无权限", ModelState);
+                var oper = new OperationResult(OperationResultType.Error, "无权限");
+                oper.AppendData = ModelState.GE();
+                return Json(oper, JsonRequestBehavior.AllowGet);
             }
         }
 

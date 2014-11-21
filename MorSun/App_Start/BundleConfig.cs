@@ -76,6 +76,10 @@ namespace MorSun
 
             //waypoints
             bundles.Add(new ScriptBundle("~/bundles/waypoint").Include("~/Scripts/waypoints.js"));
+
+            //日期选择
+            bundles.Add(new StyleBundle("~/Content/DateCss").Include("~/Content/DatePick/skin/WdatePicker.css"));
+            bundles.Add(new ScriptBundle("~/bundles/Date").Include("~/Content/DatePick/WdatePicker.js"));
         }
     }
 }

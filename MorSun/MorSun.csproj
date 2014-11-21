@@ -215,6 +215,18 @@
     <Content Include="Content\JQueryTreeTable\jquery.treetable.js" />
     <Content Include="Content\JQueryTreeTable\jquery.treetable.theme.default.css" />
     <Content Include="Content\JQueryTreeTable\screen.css" />
+    <Content Include="Content\DatePick\calendar.js" />
+    <Content Include="Content\DatePick\lang\en.js" />
+    <Content Include="Content\DatePick\lang\zh-cn.js" />
+    <Content Include="Content\DatePick\lang\zh-tw.js" />
+    <Content Include="Content\DatePick\skin\datePicker.gif" />
+    <Content Include="Content\DatePick\skin\default\datepicker.css" />
+    <Content Include="Content\DatePick\skin\default\img.gif" />
+    <Content Include="Content\DatePick\skin\WdatePicker.css" />
+    <Content Include="Content\DatePick\skin\whyGreen\bg.jpg" />
+    <Content Include="Content\DatePick\skin\whyGreen\datepicker.css" />
+    <Content Include="Content\DatePick\skin\whyGreen\img.gif" />
+    <Content Include="Content\DatePick\WdatePicker.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -756,7 +768,7 @@
     <Content Include="Views\SYSConfig\UserQACache.cshtml" />
     <Content Include="Views\CS\C.cshtml" />
     <Content Include="Views\BMKaMe\BeachAdd.cshtml" />
-    <Content Include="Views\BMKaMe\Edit.cshtml" />
+    <Content Include="Views\BMKaMe\BeachImport.cshtml" />
     <Content Include="Views\BMKaMe\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

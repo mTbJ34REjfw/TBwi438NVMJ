@@ -35,14 +35,19 @@ namespace MorSun.Controllers.ViewModel
                 {
                     l = l.Where(p => p.Recharge == sRecharge);
                 }
-                //if(StartTime != null)
-                //{
-                //    l = l.Where(p => p.RegTime >= StartTime);
-                //}
-                //if(EndTime != null)
-                //{
-                //    l = l.Where(p => p.RegTime <= EndTime);
-                //}
+                if(sKaMeRef == null && sImportRef == null && sRecharge == null)
+                {
+                    l = l.Take(0);
+                }
+
+                if (sStartTime.HasValue)
+                {
+                    l = l.Where(p => p.RegTime >= sStartTime);
+                }
+                if (sEndTime.HasValue)
+                {
+                    l = l.Where(p => p.RegTime <= sEndTime);
+                }
                 return l.OrderBy(p => p.Sort).ThenBy(p => p.RegTime);
             }
         }
@@ -61,9 +66,9 @@ namespace MorSun.Controllers.ViewModel
 
         public virtual string FlagTrashed { get; set; }
 
-        public virtual DateTime StartTime { get; set; }
+        public virtual DateTime? sStartTime { get; set; }
 
-        public virtual DateTime EndTime { get; set; }
+        public virtual DateTime? sEndTime { get; set; }
         
     }
 }

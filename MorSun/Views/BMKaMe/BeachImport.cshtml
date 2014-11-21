@@ -1,0 +1,55 @@
+﻿@model BeachAddKaMe
+@{
+    ViewBag.Title = "修改卡密";
+    Layout = "~/Views/Shared/_SysLayout.cshtml";    
+    string rs = ViewBag.RS;
+    var backurl = ViewBag.ReturnUrl ?? "/BMKaMe/Index";
+    var refVModel = new ReferenceVModel();
+    var KaMeRefList = refVModel.GetReferencesByRefGroupId(MorSun.Common.类别组.RefGroup.卡密类别);   
+}
+@Styles.Render("~/Content/themes/base/css")
+@Scripts.Render("~/bundles/jqueryui")
+<section class="featuredwhite">
+    <div class="content-wrapper clear-fix">       
+        <div class="alert @("alert-success".getBC("BootStrapCssAlert"))">
+            <button class="btn green submitBtn" type="button" id="submitBtn">@("提交".GX())</button>            
+            <button class="btn" type="button" onclick="jumptourl('@backurl')">@("返回".GX())</button>
+        </div>  
+        <div class="portlet box @("red".getBC("BootStrapCssTable"))">
+            <div class="portlet-title">
+                <div class="caption"><i class="icon-cogs"></i>批量卡密导入</div>
+            </div>
+            <div class="portlet-body">
+            @using (Html.BeginForm("BImport", "BMKaMe", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "fmForm" }))
+                    {
+                @Html.AntiForgeryToken()
+                  
+                <table class="tableadd table-hover">
+                    <thead>
+                        <tr>
+                            <th>@Html.LabelFor(m => m.KaMeRef)</th>
+                            <td>@MvcHtmlString.Create(Html.DropDownList("KaMeRef", "KaMeRef", KaMeRefList, Model.KaMeRef.ToString(), "class=\"m-wrap large\"", "ID", "ItemValue", "", ""))</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="display:none">
+                            <th>@Html.LabelFor(m => m.Num)</th>
+                            <td>@Html.TextBoxFor(m => m.Num, new { @class = "m-wrap large",Value = "1" })</td>
+                        </tr>
+                    </tbody>
+                </table>
+        }
+            </div>
+        </div>
+    </div>    
+</section>
+    @section Scripts {        
+        @Scripts.Render("~/bundles/jqueryval")        
+        @Scripts.Render("~/bundles/validator")
+        @Styles.Render("~/Content/JQueryQtipCss")
+        @Scripts.Render("~/bundles/jqueryqtip")
+        @Scripts.Render("~/bundles/morsuncommon")        
+        <script type="text/javascript">  
+            $(ajaxSubmitFormHandle('.submitBtn', '#fmForm', '提交失败，请联系管理员', '#divInfo', false));  
+        </script>
+    }

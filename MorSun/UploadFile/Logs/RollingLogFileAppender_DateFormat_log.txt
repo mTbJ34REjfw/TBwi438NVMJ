@@ -8,3 +8,53 @@
 2014-11-21 00:43:46,681 [22](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
 2014-11-21 01:01:41,130 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
 2014-11-21 01:02:41,350 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-21 20:46:45,359 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-21 20:47:45,416 [10](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-21 20:48:17,102 [10](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:17836/
+异常信息:基础提供程序在 Open 上失败。
+2014-11-21 20:48:35,312 [7](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-21 20:48:55,966 [7](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:17836/
+异常信息:基础提供程序在 Open 上失败。
+2014-11-21 20:49:36,352 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-21 20:50:31,459 [22](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-21 20:50:56,467 [22](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:17836/
+异常信息:基础提供程序在 Open 上失败。
+2014-11-21 20:54:33,002 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-21 20:55:26,055 [23](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-21 20:55:49,998 [23](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:17836/
+异常信息:基础提供程序在 Open 上失败。
+2014-11-21 20:58:54,560 [25](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-21 20:59:35,002 [25](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net登录
+2014-11-21 20:59:37,132 [7](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-21 21:17:11,330 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-21 21:18:11,499 [20](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-21 21:29:23,234 [39](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-21 21:30:12,313 [42](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-21 21:30:52,769 [38](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-21 21:31:35,969 [38](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-21 21:31:49,989 [40](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-21 21:32:55,336 [26](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-21 21:36:58,207 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-21 21:37:53,663 [10](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-21 22:24:37,934 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-21 22:25:46,798 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-21 22:28:03,219 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:17836/BMKaMe/BeachImport?sKaMeRef=87e2e67a-a120-4003-851e-194ff75032bb&returnUrl=/bmkame
+异常信息:d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\MorSun\Views\BMKaMe\BeachImport.cshtml(30): error CS1061: “MorSun.Model.bmNew”不包含“KaMeRef”的定义，并且找不到可接受类型为“MorSun.Model.bmNew”的第一个参数的扩展方法“KaMeRef”(是否缺少 using 指令或程序集引用?)
+2014-11-21 22:28:32,104 [28](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:17836/BMKaMe/BeachImport?sKaMeRef=87e2e67a-a120-4003-851e-194ff75032bb&returnUrl=/bmkame
+异常信息:d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\MorSun\Views\BMKaMe\BeachImport.cshtml(26): error CS1061: “MorSun.Model.BeachAddKaMe”不包含“ID”的定义，并且找不到可接受类型为“MorSun.Model.BeachAddKaMe”的第一个参数的扩展方法“ID”(是否缺少 using 指令或程序集引用?)
+2014-11-21 22:28:51,541 [25](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:17836/BMKaMe/BeachImport?sKaMeRef=87e2e67a-a120-4003-851e-194ff75032bb&returnUrl=/bmkame
+异常信息:d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\MorSun\Views\BMKaMe\BeachImport.cshtml(31): error CS0103: 当前上下文中不存在名称“KaMeRefList”
