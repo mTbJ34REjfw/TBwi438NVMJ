@@ -18,6 +18,8 @@ namespace MorSun.Controllers
     {
         public ActionResult Index(string id, string returnUrl)
         {
+            if (!String.IsNullOrEmpty(id))
+                id = id.ToLower().Trim();
             LogHelper.Write("跳转URL" + returnUrl, LogHelper.LogMessageType.Debug);
             HttpCookie Cookie_login = Request.Cookies["HIC"];
             if (Cookie_login != null && !String.IsNullOrEmpty(Cookie_login["HIC"].ToString()))
