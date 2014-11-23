@@ -18,11 +18,11 @@
         <div class="topmenu alert @("alert-success".getBC("BootStrapCssAlert"))">
             @using (Html.BeginForm("Index", "BMKaMe", FormMethod.Get))
             {
-                @MvcHtmlString.Create(Html.DropDownList("sKaMeRef", "sKaMeRef", KaMeRefList, Model.sKaMeRef.ToString(), "class=\"m-wrap small\"", "ID", "ItemValue", "", ""))
-                @MvcHtmlString.Create(Html.DropDownList("sImportRef", "sImportRef", ImportRefList, Model.sImportRef.ToString(), "class=\"m-wrap small\"", "ID", "ItemValue", "", ""))
-                @MvcHtmlString.Create(Html.DropDownList("sRecharge", "sRecharge", RechargeRefList, Model.sRecharge.ToString(), "class=\"m-wrap small\"", "ID", "ItemValue", "", ""))
+                @MvcHtmlString.Create(Html.DropDownList("sKaMeRef", "sKaMeRef", KaMeRefList, Model.sKaMeRef.ToString(), "class=\"m-wrap small\"", "ID", "ItemValue", "", "==卡密类别=="))
+                @MvcHtmlString.Create(Html.DropDownList("sImportRef", "sImportRef", ImportRefList, Model.sImportRef.ToString(), "class=\"m-wrap small\"", "ID", "ItemValue", "", "==卡密导入=="))
+                @MvcHtmlString.Create(Html.DropDownList("sRecharge", "sRecharge", RechargeRefList, Model.sRecharge.ToString(), "class=\"m-wrap small\"", "ID", "ItemValue", "", "==卡密充值=="))
                 
-                @:时间： @Html.TextBox("sStartTimeBegin", Model.sStartTime.ToShortDateString(), new { @class = "Wdate", style = "width:100px;", onclick = "WdatePicker({dateFmt:'yyyy/MM/dd'})" })-@Html.TextBox("sStartTimeEnd", Model.sEndTime.ToShortDateString(), new { @class = "Wdate", style = "width:100px;", onclick = "WdatePicker({dateFmt:'yyyy/MM/dd'})" })</span>
+                @:生成时间 @Html.TextBox("sStartTimeBegin", Model.sStartTime.ToShortDateString(), new { @class = "Wdate", style = "width:100px;", onclick = "WdatePicker({dateFmt:'yyyy/MM/dd'})" })-@Html.TextBox("sStartTimeEnd", Model.sEndTime.ToShortDateString(), new { @class = "Wdate", style = "width:100px;", onclick = "WdatePicker({dateFmt:'yyyy/MM/dd'})" })</span>
                 <button class="btn yellow" type="submit">@("查询".GX())</button>
                 @Html.HiddenFor(m => m.FlagTrashed)
 
