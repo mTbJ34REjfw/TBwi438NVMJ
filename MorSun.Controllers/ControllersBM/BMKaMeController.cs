@@ -14,6 +14,8 @@ using MorSun.Common.类别;
 using MorSun.Common.配置;
 using HOHO18.Common.WEB;
 using HOHO18.Common.Web;
+using System.Web;
+using HOHO18.Common.SSO;
 
 namespace MorSun.Controllers.SystemController
 {
@@ -177,12 +179,73 @@ namespace MorSun.Controllers.SystemController
                     var result = "";
                     string strUrl = CFG.网站域名 + CFG.卡密检测结果_检测地址 + t.KaMe;
                     LogHelper.Write("检测卡密访问" + strUrl, LogHelper.LogMessageType.Info);
-                    result = GetHtmlHelper.getPage(strUrl, "");                    
-                    fillOperationResult(returnUrl, oper, "检测结果" + result);
+                    result = GetHtmlHelper.GetPage(strUrl, "");                    
+                    fillOperationResult(returnUrl, oper, "检测结果: " + result);
                 }
                 else
                 {
                     "".AE("检测失败", ModelState);
+                    oper.AppendData = ModelState.GE();
+                }
+                return Json(oper, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                "".AE("无权限", ModelState);
+                var oper = new OperationResult(OperationResultType.Error, "无权限");
+                oper.AppendData = ModelState.GE();
+                return Json(oper, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult TK(OperateKaMe t, string returnUrl)
+        {
+            if (ResourceId.HP(操作.修改))
+            {
+                var oper = new OperationResult(OperationResultType.Error, "退款失败");
+                ViewBag.ReturnUrl = returnUrl;               
+                if (String.IsNullOrEmpty(t.KaMe))
+                {
+                    "KaMe".AE("请选择卡密", ModelState);
+                }
+                var rc = Guid.Parse(Reference.卡密充值_已退款);
+                var model = Bll.All.FirstOrDefault(p => p.KaMe == t.KaMe);
+                if (model == null)
+                {
+                    "KaMe".AE("请选择卡密", ModelState);
+                }
+                if(model != null && model.Recharge == rc)
+                {
+                    "KaMe".AE("该卡密已退款", ModelState);
+                }
+
+                if (ModelState.IsValid)
+                {
+                    var result = "";
+                    var dt = DateTime.Now;
+                    var dts = dt.ToShortDateString() + " " + dt.ToShortTimeString();
+                    var tok = HttpUtility.UrlEncode(SecurityHelper.Encrypt(dts + ";" + "123"));
+                    string strUrl = CFG.网站域名 + CFG.卡密退款_退款地址 + "?id=" + t.KaMe + "&tok=" + tok;
+                    LogHelper.Write("卡密退款访问" + strUrl, LogHelper.LogMessageType.Info);
+                    result = GetHtmlHelper.GetPage(strUrl, ""); 
+                   
+                    //根据结果来操作卡密
+                    if (result == CFG.卡密退款_卡密退款操作成功)
+                    {
+                        model.Recharge = rc;
+                        Bll.Update(model);
+                        LogHelper.Write("卡密退款:" + t.KaMe, LogHelper.LogMessageType.Info);
+                        fillOperationResult(returnUrl, oper, "退款成功: " + result);
+                        return Json(oper, JsonRequestBehavior.AllowGet);
+                    }
+                    "".AE("退款失败: " + result, ModelState);
+                    oper.AppendData = ModelState.GE();                    
+                }
+                else
+                {
+                    "".AE("退款失败", ModelState);
                     oper.AppendData = ModelState.GE();
                 }
                 return Json(oper, JsonRequestBehavior.AllowGet);

@@ -629,7 +629,7 @@ namespace HOHO18.Common.Web
         /// <PARAM name="url"></PARAM>   
         /// <PARAM name="paramList"></PARAM>   
         /// <RETURNS></RETURNS>   
-        public static string getPage(String url, string referer)
+        public static string GetPage(String url, string referer)
         {
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
             string strResult = string.Empty;

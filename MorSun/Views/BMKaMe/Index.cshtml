@@ -88,7 +88,7 @@
                                             {
                                             @Html.AntiForgeryToken()
                                             <input type="hidden" name="KaMe" value="@item.KaMe" />
-                                            <button id="jcBtn" class="btn blue" type="button">@("检测".GX())</button>
+                                            <button id="jcBtn" class="btn yellow" type="button">@("检测".GX())</button>
                                             }
                                         </td>
                                         <td></td>
@@ -97,8 +97,12 @@
                                         <td>
                                             @if (rs.HP(操作.修改))
                                             {
-                                                <input type="hidden" name="ID" value="@item.ID" />
-                                                <button class="btn blue" type="button" onclick="jumptourl('/BMKaMe/TK?id=@item.ID&returnUrl=@(Url.Encode(Request.RawUrl))')">@("退款".GX())</button>
+                                                using (Html.BeginForm("TK", "BMKaMe", new { ReturnUrl = Url.Encode(Request.RawUrl) }, FormMethod.Post, new { id = "fmFormTK" }))
+                                                {
+                                                @Html.AntiForgeryToken()
+                                                <input type="hidden" name="KaMe" value="@item.KaMe" />
+                                                <button id="tkBtn" class="btn red" type="button" >@("退款".GX())</button>
+                                                }
                                             }                                            
                                         </td>
                                         <td></td>
@@ -120,9 +124,15 @@
         @Scripts.Render("~/bundles/jqueryqtip")
         @Scripts.Render("~/bundles/morsuncommon")      
         <script src="~/Content/DatePick/WdatePicker.js"></script>
-        <script type="text/javascript"> 
-            $(ajaxSubmitFormHandle('#jcBtn', '#fmFormJC', '提交失败，请联系管理员', '#divInfo', false, morsunInitform, []));
-            function morsunInitform() {                
-            }
-        </script>
+        @if (!String.IsNullOrEmpty(Model.sKaMe) && rs.HP(操作.修改))
+        {
+            <script type="text/javascript"> 
+            
+                $(ajaxSubmitFormHandle('#jcBtn', '#fmFormJC', '提交失败，请联系管理员', '#divInfo', false, morsunInitform, []));
+                $(ajaxSubmitFormHandle('#tkBtn', '#fmFormTK', '提交失败，请联系管理员', '#divInfo', false, morsunInitform, []));
+            
+                function morsunInitform() {                
+                }
+            </script>
+        }
     }
