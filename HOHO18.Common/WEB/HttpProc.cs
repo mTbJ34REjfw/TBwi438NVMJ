@@ -534,7 +534,7 @@ namespace HOHO18.Common.Web
     }
 
 
-    public class LogingHelper
+    public static class GetHtmlHelper
     {
         public static CookieContainer theCC = new CookieContainer();
         /// <summary>   

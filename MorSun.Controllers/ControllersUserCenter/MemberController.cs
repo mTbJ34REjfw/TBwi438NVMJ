@@ -35,17 +35,17 @@ namespace MorSun.Controllers
             var cu = CurrentAspNetUser.wmfUserInfo;
             var UInfo = new UInfo();
             UInfo.NickName = cu.NickName;
-            var uw = GetUserBound();
-            if(uw == null || String.IsNullOrEmpty(uw.WeiXinId))
-            {
-                UInfo.IsBoundZYB = false;
-                //缓存存储
-                UInfo.BoundCode = CFG.微信绑定前缀 + " " + GetUserBoundCache().BoundCode.ToString();
-            }
-            else
-            {
-                UInfo.IsBoundZYB = true;
-            }
+            //var uw = GetUserBound();
+            //if(uw == null || String.IsNullOrEmpty(uw.WeiXinId))
+            //{
+            //    UInfo.IsBoundZYB = false;
+            //    //缓存存储
+            //    UInfo.BoundCode = CFG.微信绑定前缀 + " " + GetUserBoundCache().BoundCode.ToString();
+            //}
+            //else
+            //{
+            //    UInfo.IsBoundZYB = true;
+            //}
             return View(UInfo);
         }
 

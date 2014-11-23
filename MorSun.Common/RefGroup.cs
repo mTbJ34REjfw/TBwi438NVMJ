@@ -247,56 +247,62 @@ namespace MorSun.Common
 
             public const string 默认推广代码 = "bungma";
 
-            //微信
-            public const string 作业邦微信令牌 = "WXZYBung34fdjs38";
-            public const string 看答案指令 = "DA==>";
+            ////微信
+            //public const string 作业邦微信令牌 = "WXZYBung34fdjs38";
+            //public const string 看答案指令 = "DA==>";
 
 
 
-            //提问默认消费马币值
-            public const string 提问默认收费马币值 = "500";
+            ////提问默认消费马币值
+            //public const string 提问默认收费马币值 = "500";
 
-            //默认微信账号
-            public const string 默认收费问题微信号 = "ocpytjv3sfsfsfsfsfsfsf-sfweixin-fjeiw-vneiwq";//"ocpytjv3hZIxb-GgNB0Q9-l3yWaI";//11
-            public const string 默认免费问题微信号 = "ocpytjv3mfmfmfmfmfmfmf-mfweisin-vnre-qnqvink";//"ocpytjqu5aLMNmuSoJPaNfD-O2UE";//12
+            ////默认微信账号
+            //public const string 默认收费问题微信号 = "ocpytjv3sfsfsfsfsfsfsf-sfweixin-fjeiw-vneiwq";//"ocpytjv3hZIxb-GgNB0Q9-l3yWaI";//11
+            //public const string 默认免费问题微信号 = "ocpytjv3mfmfmfmfmfmfmf-mfweisin-vnre-qnqvink";//"ocpytjqu5aLMNmuSoJPaNfD-O2UE";//12
 
 
-            //答题用户配置
+            ////答题用户配置
 
-            //在线答题用户缓存Key
-            public const string 在线答题用户缓存键 = "olineqausers"; //默认小写
-            public const string 用户待答题缓存键前缀 = "dt";
-            public const string 用户马币缓存键前缀 = "mb";
-            public const string 限制用户并发缓存键前缀 = "lrq";
+            ////在线答题用户缓存Key
+            //public const string 在线答题用户缓存键 = "olineqausers"; //默认小写
+            //public const string 用户待答题缓存键前缀 = "dt";
+            //public const string 用户马币缓存键前缀 = "mb";
+            //public const string 限制用户并发缓存键前缀 = "lrq";
 
-            //在线答题用户缓存更新时间
-            public const string 在线答题用户缓存更新时间 = "1";//单位 分钟
+            ////在线答题用户缓存更新时间
+            //public const string 在线答题用户缓存更新时间 = "1";//单位 分钟
 
-            public const string 疑似退出时间 = "5"; //单位 分钟  超过这个数值，5分钟内不再分配新答题
-            public const string 强制退出时间 = "7"; //单位 分钟  系统将该用户的答题分配给其他活跃用户，并更改该用户状态为退出
-            public const string 用户待答题保有量 = "7"; //单位 个 系统根据总的待答题数量，除以用户待答题的保有量，等于应该取出的用户量
-            public const string 未处理问题激活时间 = "5"; //单位 分钟 超过配置时间的未处理问题，系统主动激活
+            //public const string 疑似退出时间 = "5"; //单位 分钟  超过这个数值，5分钟内不再分配新答题
+            //public const string 强制退出时间 = "7"; //单位 分钟  系统将该用户的答题分配给其他活跃用户，并更改该用户状态为退出
+            //public const string 用户待答题保有量 = "7"; //单位 个 系统根据总的待答题数量，除以用户待答题的保有量，等于应该取出的用户量
+            //public const string 未处理问题激活时间 = "5"; //单位 分钟 超过配置时间的未处理问题，系统主动激活
             
-            public const string 用户连续请求时间间隔 = "15"; //单位秒 。
+            //public const string 用户连续请求时间间隔 = "15"; //单位秒 。
 
-            //微信答题命令            
-            public const string 开始答题 = "dt";
-            public const string 放弃本题 = "fq";
-            public const string 不是问题 = "bs";
-            public const string 退出答题 = "tc";
-            public const string 回答问题 = "hd";//文字回答问题 后面必须跟上答案
+            ////微信答题命令            
+            //public const string 开始答题 = "dt";
+            //public const string 放弃本题 = "fq";
+            //public const string 不是问题 = "bs";
+            //public const string 退出答题 = "tc";
+            //public const string 回答问题 = "hd";//文字回答问题 后面必须跟上答案
 
-            //独立或当前缀命令
-            public const string 我的问题前缀 = "wt";  //后面跟上数字，按提问时间逆序取问题，默认取最新的提问
+            ////独立或当前缀命令
+            //public const string 我的问题前缀 = "wt";  //后面跟上数字，按提问时间逆序取问题，默认取最新的提问
 
-            //有前缀的处理
-            public const string 看答案前缀 = "kda";
-            //public const string 文字答题前缀 = "hd";
-            public const string 微信绑定前缀 = "bd";
+            ////有前缀的处理
+            //public const string 看答案前缀 = "kda";
+            ////public const string 文字答题前缀 = "hd";
+            //public const string 微信绑定前缀 = "bd";
 
 
-            public const string 连续答退时间间隔 = "1";//单位 小时 限制一小时内
-            public const string 连续答退次数间隔 = "5";//限制5次以内
+            //public const string 连续答退时间间隔 = "1";//单位 小时 限制一小时内
+            //public const string 连续答退次数间隔 = "5";//限制5次以内
+
+
+            //卡密检测
+            public const string 卡密检测结果_已充值 = "已充值";
+            public const string 卡密检测结果_未充值 = "未充值";
+            public const string 卡密检测结果_检测地址 = "/H/JCKM/";
             
         }
     }
@@ -313,7 +319,7 @@ namespace MorSun.Common
             /// <summary>
             /// 默认答题分配用户
             /// </summary>
-            public static List<string> DefaultDISUser = new List<string>() { 配置.CFG.默认收费问题微信号, 配置.CFG.默认免费问题微信号 };
+            //public static List<string> DefaultDISUser = new List<string>() { 配置.CFG.默认收费问题微信号, 配置.CFG.默认免费问题微信号 };
             
         }
     }

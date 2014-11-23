@@ -197,6 +197,15 @@ namespace MorSun.Model
         public System.Int32 Num { get; set; }        
     }
 
+    public class OperateKaMe
+    {
+        [Display(Name = "ID")]        
+        public Guid? Id { get; set; }
+
+        [Display(Name = "卡密")] 
+        public String KaMe { get; set; }
+    }
+
     /// <summary>
     /// 取现
     /// </summary>

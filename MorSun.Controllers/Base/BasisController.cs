@@ -676,44 +676,44 @@ namespace MorSun.Controllers
         /// 获取用户绑定信息
         /// </summary>
         /// <returns></returns>
-        protected UserBoundCache GetUserBoundCache()
-        {
-            var key = CFG.微信绑定前缀 + UserID.ToString();
-            var ubc = CacheAccess.GetFromCache(key) as UserBoundCache;
-            //如果缓存为空，重新设置值
-            if(ubc == null)
-            {
-                ubc = new UserBoundCache();
-                ubc.UserId = UserID;
-                Random Rdm = new Random();
-                int iRdm = 0;
-                do
-                {
-                    iRdm = Rdm.Next(1, 999999);
+        //protected UserBoundCache GetUserBoundCache()
+        //{
+        //    var key = CFG.微信绑定前缀 + UserID.ToString();
+        //    var ubc = CacheAccess.GetFromCache(key) as UserBoundCache;
+        //    //如果缓存为空，重新设置值
+        //    if(ubc == null)
+        //    {
+        //        ubc = new UserBoundCache();
+        //        ubc.UserId = UserID;
+        //        Random Rdm = new Random();
+        //        int iRdm = 0;
+        //        do
+        //        {
+        //            iRdm = Rdm.Next(1, 999999);
 
-                } while (GetUserBoundCodeCache(iRdm) != null);//不为空才会再生成
-                //马上设置生成码缓存
-                var codeKey = CFG.微信绑定前缀 + iRdm.ToString();
-                var ubcc = new UserBoundCodeCache();
-                ubcc.UserId = UserID;
-                ubcc.BoundCode = iRdm;
-                CacheAccess.InsertToCacheByTime(codeKey, ubcc, 120);//两分钟内过期
-                ubc.BoundCode = iRdm;
-                CacheAccess.InsertToCacheByTime(key, ubc, 120);
-            }
-            return ubc;
-        }
+        //        } while (GetUserBoundCodeCache(iRdm) != null);//不为空才会再生成
+        //        //马上设置生成码缓存
+        //        var codeKey = CFG.微信绑定前缀 + iRdm.ToString();
+        //        var ubcc = new UserBoundCodeCache();
+        //        ubcc.UserId = UserID;
+        //        ubcc.BoundCode = iRdm;
+        //        CacheAccess.InsertToCacheByTime(codeKey, ubcc, 120);//两分钟内过期
+        //        ubc.BoundCode = iRdm;
+        //        CacheAccess.InsertToCacheByTime(key, ubc, 120);
+        //    }
+        //    return ubc;
+        //}
 
         /// <summary>
         /// 根据绑定代码取要绑定的用户
         /// </summary>
         /// <param name="boundCode"></param>
         /// <returns></returns>
-        protected UserBoundCodeCache GetUserBoundCodeCache(int boundCode)
-        {
-            var key = CFG.微信绑定前缀 + boundCode.ToString();
-            return CacheAccess.GetFromCache(key) as UserBoundCodeCache;
-        }
+        //protected UserBoundCodeCache GetUserBoundCodeCache(int boundCode)
+        //{
+        //    var key = CFG.微信绑定前缀 + boundCode.ToString();
+        //    return CacheAccess.GetFromCache(key) as UserBoundCodeCache;
+        //}
         #endregion
 
     }

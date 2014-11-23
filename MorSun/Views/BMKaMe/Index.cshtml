@@ -18,11 +18,12 @@
         <div class="topmenu alert @("alert-success".getBC("BootStrapCssAlert"))">
             @using (Html.BeginForm("Index", "BMKaMe", FormMethod.Get))
             {
+                @:卡密 @Html.TextBox("sKaMe", Model.sKaMe, new { @class = "m-wrap small" })
                 @MvcHtmlString.Create(Html.DropDownList("sKaMeRef", "sKaMeRef", KaMeRefList, Model.sKaMeRef.ToString(), "class=\"m-wrap small\"", "ID", "ItemValue", "", "==卡密类别=="))
                 @MvcHtmlString.Create(Html.DropDownList("sImportRef", "sImportRef", ImportRefList, Model.sImportRef.ToString(), "class=\"m-wrap small\"", "ID", "ItemValue", "", "==卡密导入=="))
                 @MvcHtmlString.Create(Html.DropDownList("sRecharge", "sRecharge", RechargeRefList, Model.sRecharge.ToString(), "class=\"m-wrap small\"", "ID", "ItemValue", "", "==卡密充值=="))
                 
-                @:生成时间 @Html.TextBox("sStartTimeBegin", Model.sStartTime.ToShortDateString(), new { @class = "Wdate", style = "width:100px;", onclick = "WdatePicker({dateFmt:'yyyy/MM/dd'})" })-@Html.TextBox("sStartTimeEnd", Model.sEndTime.ToShortDateString(), new { @class = "Wdate", style = "width:100px;", onclick = "WdatePicker({dateFmt:'yyyy/MM/dd'})" })</span>
+                @:生成时间 @Html.TextBox("sStartTimeBegin", Model.sStartTime.ToShortDateString(), new { @class = "Wdate", style = "width:100px;", onclick = "WdatePicker({dateFmt:'yyyy/MM/dd'})" })-@Html.TextBox("sStartTimeEnd", Model.sEndTime.ToShortDateString(), new { @class = "Wdate", style = "width:100px;", onclick = "WdatePicker({dateFmt:'yyyy/MM/dd'})" })
                 <button class="btn yellow" type="submit">@("查询".GX())</button>
                 @Html.HiddenFor(m => m.FlagTrashed)
 
@@ -55,19 +56,58 @@
                 <table id="MoreSunTreeTable" class="table table-hover">
                     <thead>
                         <tr>
-                            <th>卡密</th>                                                 
+                            <th>卡密</th>     
+                            @if(!String.IsNullOrEmpty(Model.sKaMe))
+                            {
+                                <th>状态</th>                                
+                            }                                            
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model.List)
                         {
                             <tr id="TR_@item.ID">
-                                <td>
+                                <td title="@(item.wmfReference2 == null ? "未充值" : item.wmfReference2.ItemValue)">
                                     @item.KaMe
-                                </td>                                
+                                </td>
+                                @if (!String.IsNullOrEmpty(Model.sKaMe))
+                                {
+                                    <td>
+                                        @(item.wmfReference2 == null ? "未充值" : item.wmfReference2.ItemValue)
+                                    </td>
+                                }
                             </tr>
-                        }                    
+                            if (!String.IsNullOrEmpty(Model.sKaMe) && rs.HP(操作.修改))
+                            {
+
+                                if (item.Recharge == null || item.Recharge == Guid.Parse(Reference.卡密充值_未充值))
+                                {
+                                    <tr>
+                                        <td>
+                                            @using (Html.BeginForm("JC", "BMKaMe", new { ReturnUrl = Url.Encode(Request.RawUrl) }, FormMethod.Post, new { id = "fmFormJC" }))
+                                            {
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="KaMe" value="@item.KaMe" />
+                                            <button id="jcBtn" class="btn blue" type="button">@("检测".GX())</button>
+                                            }
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @if (rs.HP(操作.修改))
+                                            {
+                                                <input type="hidden" name="ID" value="@item.ID" />
+                                                <button class="btn blue" type="button" onclick="jumptourl('/BMKaMe/TK?id=@item.ID&returnUrl=@(Url.Encode(Request.RawUrl))')">@("退款".GX())</button>
+                                            }                                            
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                }
+                            }
+                        }
                     </tbody>
+
                 </table>
             </div>
         </div>
@@ -81,6 +121,8 @@
         @Scripts.Render("~/bundles/morsuncommon")      
         <script src="~/Content/DatePick/WdatePicker.js"></script>
         <script type="text/javascript"> 
-            
+            $(ajaxSubmitFormHandle('#jcBtn', '#fmFormJC', '提交失败，请联系管理员', '#divInfo', false, morsunInitform, []));
+            function morsunInitform() {                
+            }
         </script>
     }

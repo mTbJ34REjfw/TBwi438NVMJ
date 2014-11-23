@@ -11,6 +11,9 @@ using MorSun.Controllers.ViewModel;
 using System.Xml;
 using MorSun.Common.Privelege;
 using MorSun.Common.类别;
+using MorSun.Common.配置;
+using HOHO18.Common.WEB;
+using HOHO18.Common.Web;
 
 namespace MorSun.Controllers.SystemController
 {
@@ -143,6 +146,43 @@ namespace MorSun.Controllers.SystemController
                 else
                 {
                     "".AE("修改失败", ModelState);
+                    oper.AppendData = ModelState.GE();
+                }
+                return Json(oper, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                "".AE("无权限", ModelState);
+                var oper = new OperationResult(OperationResultType.Error, "无权限");
+                oper.AppendData = ModelState.GE();
+                return Json(oper, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult JC(OperateKaMe t, string returnUrl)
+        {
+            if (ResourceId.HP(操作.修改))
+            {
+                var oper = new OperationResult(OperationResultType.Error, "检测失败");
+                ViewBag.ReturnUrl = returnUrl;               
+                if (String.IsNullOrEmpty(t.KaMe))
+                {
+                    "KaMe".AE("请选择卡密", ModelState);
+                }
+
+                if (ModelState.IsValid)
+                {
+                    var result = "";
+                    string strUrl = CFG.网站域名 + CFG.卡密检测结果_检测地址 + t.KaMe;
+                    LogHelper.Write("检测卡密访问" + strUrl, LogHelper.LogMessageType.Info);
+                    result = GetHtmlHelper.getPage(strUrl, "");                    
+                    fillOperationResult(returnUrl, oper, "检测结果" + result);
+                }
+                else
+                {
+                    "".AE("检测失败", ModelState);
                     oper.AppendData = ModelState.GE();
                 }
                 return Json(oper, JsonRequestBehavior.AllowGet);
