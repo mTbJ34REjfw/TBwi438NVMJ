@@ -72,7 +72,7 @@
                                 </td>
                                 @if (!String.IsNullOrEmpty(Model.sKaMe))
                                 {
-                                    <td>
+                                    <td title="@(item.wmfReference == null ? "" : item.wmfReference.ItemValue)">
                                         @(item.wmfReference2 == null ? "未充值" : item.wmfReference2.ItemValue)
                                     </td>
                                 }
@@ -84,7 +84,7 @@
                                 {
                                     <tr>
                                         <td>
-                                            @using (Html.BeginForm("JC", "BMKaMe", new { ReturnUrl = Url.Encode(Request.RawUrl) }, FormMethod.Post, new { id = "fmFormJC" }))
+                                            @using (Html.BeginForm("JC", "BMKaMe", new { ReturnUrl = Request.RawUrl }, FormMethod.Post, new { id = "fmFormJC" }))
                                             {
                                             @Html.AntiForgeryToken()
                                             <input type="hidden" name="KaMe" value="@item.KaMe" />
@@ -97,7 +97,7 @@
                                         <td>
                                             @if (rs.HP(操作.修改))
                                             {
-                                                using (Html.BeginForm("TK", "BMKaMe", new { ReturnUrl = Url.Encode(Request.RawUrl) }, FormMethod.Post, new { id = "fmFormTK" }))
+                                                using (Html.BeginForm("TK", "BMKaMe", new { ReturnUrl = Request.RawUrl }, FormMethod.Post, new { id = "fmFormTK" }))
                                                 {
                                                 @Html.AntiForgeryToken()
                                                 <input type="hidden" name="KaMe" value="@item.KaMe" />
@@ -129,7 +129,7 @@
             <script type="text/javascript"> 
             
                 $(ajaxSubmitFormHandle('#jcBtn', '#fmFormJC', '提交失败，请联系管理员', '#divInfo', false, morsunInitform, []));
-                $(ajaxSubmitFormHandle('#tkBtn', '#fmFormTK', '提交失败，请联系管理员', '#divInfo', false, morsunInitform, []));
+                $(ajaxSubmitFormHandle('#tkBtn', '#fmFormTK', '提交失败，请联系管理员', '#divInfo', true, morsunInitform, []));
             
                 function morsunInitform() {                
                 }

@@ -83,7 +83,7 @@ namespace MorSun.Common
             
 
             //卡密类别
-            public const string 卡密类别_认证50 = "767a26ea-58ae-4afa-b8a2-eadaf61c8ee4";
+            public const string 卡密类别_认证66 = "767a26ea-58ae-4afa-b8a2-eadaf61c8ee4";
             public const string 卡密类别_10 = "87e2e67a-a120-4003-851e-194ff75032bb";
             public const string 卡密类别_20 = "7f3154f2-63e4-4b47-be81-9810746f6bf0";
             public const string 卡密类别_50 = "27271639-0454-4d05-82f7-4a4ef2c62c55";
@@ -298,6 +298,8 @@ namespace MorSun.Common
             //public const string 连续答退时间间隔 = "1";//单位 小时 限制一小时内
             //public const string 连续答退次数间隔 = "5";//限制5次以内
 
+            //邦马网对接统一码
+            public const string 邦马网_对接统一码 = "F1W%I^v2&n^eJiw3";
 
             //卡密检测
             public const string 卡密检测结果_已充值 = "已充值";

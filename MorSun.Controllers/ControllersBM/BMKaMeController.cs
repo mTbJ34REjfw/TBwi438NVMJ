@@ -226,7 +226,7 @@ namespace MorSun.Controllers.SystemController
                     var result = "";
                     var dt = DateTime.Now;
                     var dts = dt.ToShortDateString() + " " + dt.ToShortTimeString();
-                    var tok = HttpUtility.UrlEncode(SecurityHelper.Encrypt(dts + ";" + "123"));
+                    var tok = HttpUtility.UrlEncode(SecurityHelper.Encrypt(dts + ";" + CFG.邦马网_对接统一码));
                     string strUrl = CFG.网站域名 + CFG.卡密退款_退款地址 + "?id=" + t.KaMe + "&tok=" + tok;
                     LogHelper.Write("卡密退款访问" + strUrl, LogHelper.LogMessageType.Info);
                     result = GetHtmlHelper.GetPage(strUrl, ""); 
