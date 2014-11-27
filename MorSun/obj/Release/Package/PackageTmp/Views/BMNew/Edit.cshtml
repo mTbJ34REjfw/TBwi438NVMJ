@@ -1,11 +1,11 @@
 ﻿@model bmNew
 @{
-    ViewBag.Title = "修改卡密";
+    ViewBag.Title = "修改新闻";
     Layout = "~/Views/Shared/_SysLayout.cshtml";    
     string rs = ViewBag.RS;
-    var backurl = ViewBag.ReturnUrl ?? "/BMKaMe/Index";
+    var backurl = ViewBag.ReturnUrl ?? "/BMNew/Index";
     var refVModel = new ReferenceVModel();
-    var NavList = refVModel.GetReferencesByRefGroupId(MorSun.Common.类别组.RefGroup.卡密类别).ToList();    
+    var NavList = refVModel.GetReferencesByRefGroupId(MorSun.Common.类别组.RefGroup.新闻类别).ToList();    
 }
 @Styles.Render("~/Content/themes/base/css")
 @Scripts.Render("~/bundles/jqueryui")
@@ -17,7 +17,7 @@
         </div>  
         <div class="portlet box @("red".getBC("BootStrapCssTable"))">
             <div class="portlet-title">
-                <div class="caption"><i class="icon-cogs"></i>修改卡密</div>
+                <div class="caption"><i class="icon-cogs"></i>修改新闻</div>
             </div>
             <div class="portlet-body">
             @using (Html.BeginForm("Update", "BMNew", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "fmForm" }))

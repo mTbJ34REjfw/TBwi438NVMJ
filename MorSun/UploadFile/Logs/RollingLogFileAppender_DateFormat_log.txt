@@ -1,60 +1,36 @@
-2014-11-21 00:39:11,269 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
-2014-11-21 00:40:11,566 [21](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
-2014-11-21 00:41:08,915 [5](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
-客户机IP:::1
-错误地址:http://localhost:17836/BMKaMe
-异常信息:对象“MorSun.Controllers.ViewModel.BMKaMeVModel”上的属性访问器“PCount”发生以下异常:“执行命令定义时出错。有关详细信息，请参阅内部异常。”
-2014-11-21 00:42:52,728 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
-2014-11-21 00:43:46,681 [22](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
-2014-11-21 01:01:41,130 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
-2014-11-21 01:02:41,350 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
-2014-11-21 20:46:45,359 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
-2014-11-21 20:47:45,416 [10](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
-2014-11-21 20:48:17,102 [10](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
-客户机IP:::1
-错误地址:http://localhost:17836/
-异常信息:基础提供程序在 Open 上失败。
-2014-11-21 20:48:35,312 [7](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
-2014-11-21 20:48:55,966 [7](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
-客户机IP:::1
-错误地址:http://localhost:17836/
-异常信息:基础提供程序在 Open 上失败。
-2014-11-21 20:49:36,352 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
-2014-11-21 20:50:31,459 [22](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
-2014-11-21 20:50:56,467 [22](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
-客户机IP:::1
-错误地址:http://localhost:17836/
-异常信息:基础提供程序在 Open 上失败。
-2014-11-21 20:54:33,002 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
-2014-11-21 20:55:26,055 [23](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
-2014-11-21 20:55:49,998 [23](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
-客户机IP:::1
-错误地址:http://localhost:17836/
-异常信息:基础提供程序在 Open 上失败。
-2014-11-21 20:58:54,560 [25](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
-2014-11-21 20:59:35,002 [25](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - youhong@hoho18.net登录
-2014-11-21 20:59:37,132 [7](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
-2014-11-21 21:17:11,330 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
-2014-11-21 21:18:11,499 [20](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
-2014-11-21 21:29:23,234 [39](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
-2014-11-21 21:30:12,313 [42](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
-2014-11-21 21:30:52,769 [38](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
-2014-11-21 21:31:35,969 [38](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
-2014-11-21 21:31:49,989 [40](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
-2014-11-21 21:32:55,336 [26](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
-2014-11-21 21:36:58,207 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
-2014-11-21 21:37:53,663 [10](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
-2014-11-21 22:24:37,934 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
-2014-11-21 22:25:46,798 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
-2014-11-21 22:28:03,219 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
-客户机IP:::1
-错误地址:http://localhost:17836/BMKaMe/BeachImport?sKaMeRef=87e2e67a-a120-4003-851e-194ff75032bb&returnUrl=/bmkame
-异常信息:d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\MorSun\Views\BMKaMe\BeachImport.cshtml(30): error CS1061: “MorSun.Model.bmNew”不包含“KaMeRef”的定义，并且找不到可接受类型为“MorSun.Model.bmNew”的第一个参数的扩展方法“KaMeRef”(是否缺少 using 指令或程序集引用?)
-2014-11-21 22:28:32,104 [28](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
-客户机IP:::1
-错误地址:http://localhost:17836/BMKaMe/BeachImport?sKaMeRef=87e2e67a-a120-4003-851e-194ff75032bb&returnUrl=/bmkame
-异常信息:d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\MorSun\Views\BMKaMe\BeachImport.cshtml(26): error CS1061: “MorSun.Model.BeachAddKaMe”不包含“ID”的定义，并且找不到可接受类型为“MorSun.Model.BeachAddKaMe”的第一个参数的扩展方法“ID”(是否缺少 using 指令或程序集引用?)
-2014-11-21 22:28:51,541 [25](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
-客户机IP:::1
-错误地址:http://localhost:17836/BMKaMe/BeachImport?sKaMeRef=87e2e67a-a120-4003-851e-194ff75032bb&returnUrl=/bmkame
-异常信息:d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\MorSun\Views\BMKaMe\BeachImport.cshtml(31): error CS0103: 当前上下文中不存在名称“KaMeRefList”
+2014-11-27 21:23:46,536 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-27 21:24:47,101 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启后开启任务调度器
+2014-11-27 21:24:50,727 [7](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-27 21:24:50,727 [5](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-27 21:25:28,337 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-27 21:26:31,020 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启后开启任务调度器
+2014-11-27 21:26:31,292 [22](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-27 21:27:04,052 [22](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-27 21:27:46,000 [18](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 检测卡密访问http://www.bungma.com/H/JCKM/F11EC5D184877766B14B2B1CDBD5C3D5680CA951CB1A724EDE8940E59E860342D5274B2CAF1B2FBD
+2014-11-27 21:28:36,081 [20](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 卡密退款访问http://www.bungma.com/KrniMxwai/TK?id=F11EC5D184877766B14B2B1CDBD5C3D5680CA951CB1A724EDE8940E59E860342D5274B2CAF1B2FBD&tok=I2Zbs5mm7Y6HqqREf9ULpBkblHerrUlBgS6zRtONz5hJKQeKrXgGNa6m4gFtxsdP
+2014-11-27 21:28:44,527 [20](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 卡密退款访问http://www.bungma.com/KrniMxwai/TK?id=F11EC5D184877766B14B2B1CDBD5C3D5680CA951CB1A724EDE8940E59E860342D5274B2CAF1B2FBD&tok=I2Zbs5mm7Y6HqqREf9ULpBkblHerrUlBgS6zRtONz5hJKQeKrXgGNa6m4gFtxsdP
+2014-11-27 21:28:47,741 [24](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 卡密退款访问http://www.bungma.com/KrniMxwai/TK?id=F11EC5D184877766B14B2B1CDBD5C3D5680CA951CB1A724EDE8940E59E860342D5274B2CAF1B2FBD&tok=I2Zbs5mm7Y6HqqREf9ULpBkblHerrUlBgS6zRtONz5hJKQeKrXgGNa6m4gFtxsdP
+2014-11-27 21:28:50,827 [25](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 卡密退款访问http://www.bungma.com/KrniMxwai/TK?id=F11EC5D184877766B14B2B1CDBD5C3D5680CA951CB1A724EDE8940E59E860342D5274B2CAF1B2FBD&tok=I2Zbs5mm7Y6HqqREf9ULpBkblHerrUlBgS6zRtONz5hJKQeKrXgGNa6m4gFtxsdP
+2014-11-27 21:28:54,461 [25](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 卡密退款访问http://www.bungma.com/KrniMxwai/TK?id=F11EC5D184877766B14B2B1CDBD5C3D5680CA951CB1A724EDE8940E59E860342D5274B2CAF1B2FBD&tok=I2Zbs5mm7Y6HqqREf9ULpBkblHerrUlBgS6zRtONz5hJKQeKrXgGNa6m4gFtxsdP
+2014-11-27 21:28:55,724 [24](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 卡密退款访问http://www.bungma.com/KrniMxwai/TK?id=F11EC5D184877766B14B2B1CDBD5C3D5680CA951CB1A724EDE8940E59E860342D5274B2CAF1B2FBD&tok=I2Zbs5mm7Y6HqqREf9ULpBkblHerrUlBgS6zRtONz5hJKQeKrXgGNa6m4gFtxsdP
+2014-11-27 21:28:56,686 [24](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 卡密退款访问http://www.bungma.com/KrniMxwai/TK?id=F11EC5D184877766B14B2B1CDBD5C3D5680CA951CB1A724EDE8940E59E860342D5274B2CAF1B2FBD&tok=I2Zbs5mm7Y6HqqREf9ULpBkblHerrUlBgS6zRtONz5hJKQeKrXgGNa6m4gFtxsdP
+2014-11-27 21:31:33,439 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-27 21:32:30,074 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启后开启任务调度器
+2014-11-27 21:32:30,310 [21](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-27 21:32:43,899 [22](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 检测卡密访问http://www.bungma.com/H/JCKM/F11EC5D184877766B14B2B1CDBD5C3D5680CA951CB1A724EDE8940E59E860342D5274B2CAF1B2FBD
+2014-11-27 21:32:46,642 [7](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 卡密退款访问http://www.bungma.com/KrniMxwai/TK?id=F11EC5D184877766B14B2B1CDBD5C3D5680CA951CB1A724EDE8940E59E860342D5274B2CAF1B2FBD&tok=vQtejEIprQphMUNZajtIUQHlLrTtAl0jBkbaYvXqLgkvxl9HVvcOPW%2fvXkbEy0Y5
+2014-11-27 21:32:47,847 [7](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 卡密退款:F11EC5D184877766B14B2B1CDBD5C3D5680CA951CB1A724EDE8940E59E860342D5274B2CAF1B2FBD
+2014-11-27 21:39:24,400 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-27 21:40:33,204 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启后开启任务调度器
+2014-11-27 21:40:34,503 [6](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-27 21:41:55,567 [5](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 检测卡密访问http://www.bungma.com/H/JCKM/CDEDE3F10DBF6168C8A6C596888FBEC2C40A153708118AD847161CC2CD6F141AEEB6FA266929C471
+2014-11-27 21:42:11,662 [7](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 检测卡密访问http://www.bungma.com/H/JCKM/CDEDE3F10DBF6168C8A6C596888FBEC2C40A153708118AD847161CC2CD6F141AEEB6FA266929C471
+2014-11-27 21:42:14,703 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 检测卡密访问http://www.bungma.com/H/JCKM/CDEDE3F10DBF6168C8A6C596888FBEC2C40A153708118AD847161CC2CD6F141AEEB6FA266929C471
+2014-11-27 21:42:18,161 [24](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - rlk30kfWzqT%2bOS4bYvMbuF3kAtoaQvHDiINA6DZFSi7AaS9mCUDlQRbPe1XEWwH%2f卡密退款访问http://www.bungma.com/KrniMxwai/TK?id=CDEDE3F10DBF6168C8A6C596888FBEC2C40A153708118AD847161CC2CD6F141AEEB6FA266929C471&tok=rlk30kfWzqT%2bOS4bYvMbuF3kAtoaQvHDiINA6DZFSi7AaS9mCUDlQRbPe1XEWwH%2f
+2014-11-27 21:42:18,826 [24](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 卡密退款:CDEDE3F10DBF6168C8A6C596888FBEC2C40A153708118AD847161CC2CD6F141AEEB6FA266929C471
+2014-11-27 21:45:30,153 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-11-27 21:46:37,055 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启后开启任务调度器
+2014-11-27 21:46:37,345 [21](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-11-27 21:47:08,971 [20](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 检测卡密访问http://www.bungma.com/H/JCKM/A8820F10149CE4C9DC5AE0DAC373879EC98B361063DF2B3599F191647FCF1EEB5BF068D3DD6B3373
+2014-11-27 21:47:11,657 [21](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 2014/11/27 21:47:11卡密退款访问http://www.bungma.com/KrniMxwai/TK?id=A8820F10149CE4C9DC5AE0DAC373879EC98B361063DF2B3599F191647FCF1EEB5BF068D3DD6B3373&tok=tzQWNpnjArvth5xPcMfj91gzG7HDGjTgXzOktMykQJMt3oK65KpF0q8RUFVs7Gis
+2014-11-27 21:47:11,900 [21](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 卡密退款:A8820F10149CE4C9DC5AE0DAC373879EC98B361063DF2B3599F191647FCF1EEB5BF068D3DD6B3373
