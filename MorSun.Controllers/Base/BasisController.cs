@@ -23,6 +23,7 @@ using MorSun.Common.配置;
 using HOHO18.Common.SSO;
 using HOHO18.Common.WEB;
 using HOHO18.Common.DEncrypt;
+using Newtonsoft.Json;
 
 namespace System
 {
@@ -150,7 +151,7 @@ namespace MorSun.Controllers
         {
             return UserID.ToString().Eql("FBE691B1B0C15342C9EA792B733369408D118C60F094D9440E00E4BD04B3E073B48504DB1A5F810A".DP());// ("AU".GX().DP());防止被串改，不从XML获取
         }
-
+       
         #region 认证访问操作
         /// <summary>
         /// 是否为认证访问
@@ -185,19 +186,30 @@ namespace MorSun.Controllers
         }
 
         /// <summary>
-        /// 对JSON进行压缩加密
+        /// 对象序列化为JSON并压缩
+        /// </summary>
+        /// <param name="v"></param>
+        /// <returns></returns>
+        protected static string ToJsonAndCompress(object v)
+        {
+            var jsonV = JsonConvert.SerializeObject(v);
+            return Compression.CompressString(jsonV);
+        }
+
+        /// <summary>
+        /// 对JSON进行加密
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
         protected static string EncodeJson(string s)
         {
-            var ys = Compression.CompressString(s);
+            //var ys = Compression.CompressString(s);
             var dts = DateTime.Now.ToString();
-            var eys = SecurityHelper.Encrypt(dts + ";" + ys);
+            var eys = SecurityHelper.Encrypt(dts + ";" + s);
             return eys;
         }
         /// <summary>
-        /// 对JSON进行解密解压
+        /// 对JSON进行解密
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -205,10 +217,11 @@ namespace MorSun.Controllers
         {
             var eys = SecurityHelper.Decrypt(id);
             var ys = eys.Substring(eys.IndexOf(';') + 1);
-            var s = Compression.DecompressString(ys);
-            return s;
+            //var s = Compression.DecompressString(ys);
+            return ys;
         }
         #endregion
+        
 
         #region 权限
         public static List<wmfRolePrivilegesView> getSessionPrivileges()

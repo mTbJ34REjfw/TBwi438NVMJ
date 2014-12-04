@@ -141,6 +141,8 @@ namespace MorSun.Common
             public const string 卡密导入_未导入 = "39fea57c-04dc-49ce-ab7d-95be9dfe5070";
             #endregion
 
+            //用户表数据同步时间
+            public const string 邦马网_JSON数据间隔 = "||====||";
         }
     }
 
@@ -298,20 +300,23 @@ namespace MorSun.Common
             //public const string 连续答退时间间隔 = "1";//单位 小时 限制一小时内
             //public const string 连续答退次数间隔 = "5";//限制5次以内
 
-            //邦马网对接统一码
-            public const string 邦马网_对接统一码 = "F1W%I^v2&n^eJiw3";
-
             //卡密检测
             public const string 卡密检测结果_已充值 = "已充值";
             public const string 卡密检测结果_未充值 = "未充值";
-            public const string 卡密检测结果_检测地址 = "/H/JCKM/";
+            public const string 卡密检测结果_检测地址 = "/KrniMxwai/JCKM/";
             //卡密退款
             public const string 卡密退款_退款地址 = "/KrniMxwai/TK";            
             public const string 卡密退款_退款操作失败 = "退款操作失败";
             public const string 卡密退款_请录入卡密 = "请录入卡密";
             public const string 卡密退款_该卡密已退款 = "该卡密已退款";
-                                
+
+            //邦马网对接统一码
+            public const string 邦马网_对接统一码 = "F1W%I^v2&n^eJiw3";     
             public const string 卡密退款_卡密退款操作成功 = "卡密退款操作成功";
+
+            public const string 邦马网_JSON数据间隔 = "||====||";
+            //用户信息同步
+            public const string 数据同步_用户信息 = "/DivniTxiuen/UJS/";
         }
     }
 

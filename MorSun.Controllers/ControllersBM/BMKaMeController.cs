@@ -177,7 +177,9 @@ namespace MorSun.Controllers.SystemController
                 if (ModelState.IsValid)
                 {
                     var result = "";
-                    string strUrl = CFG.网站域名 + CFG.卡密检测结果_检测地址 + t.KaMe;
+                    var dts = DateTime.Now.ToString();//dt.ToShortDateString() + " " + dt.ToShortTimeString();
+                    var tok = HttpUtility.UrlEncode(SecurityHelper.Encrypt(dts + ";" + CFG.邦马网_对接统一码));
+                    string strUrl = CFG.网站域名 + CFG.卡密检测结果_检测地址 + "?id=" + SecurityHelper.Encrypt(t.KaMe) + "&tok=" + tok;
                     LogHelper.Write("检测卡密访问" + strUrl, LogHelper.LogMessageType.Info);
                     result = GetHtmlHelper.GetPage(strUrl, "");                    
                     fillOperationResult(returnUrl, oper, "检测结果: " + result);
@@ -226,7 +228,7 @@ namespace MorSun.Controllers.SystemController
                     var result = "";                    
                     var dts = DateTime.Now.ToString();//dt.ToShortDateString() + " " + dt.ToShortTimeString();
                     var tok = HttpUtility.UrlEncode(SecurityHelper.Encrypt(dts + ";" + CFG.邦马网_对接统一码));
-                    string strUrl = CFG.网站域名 + CFG.卡密退款_退款地址 + "?id=" + t.KaMe + "&tok=" + tok;
+                    string strUrl = CFG.网站域名 + CFG.卡密退款_退款地址 + "?id=" + SecurityHelper.Encrypt(t.KaMe) + "&tok=" + tok;
                     LogHelper.Write(dts + "卡密退款访问" + strUrl, LogHelper.LogMessageType.Info);
                     result = GetHtmlHelper.GetPage(strUrl, ""); 
                    
