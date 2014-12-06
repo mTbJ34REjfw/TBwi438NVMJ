@@ -647,7 +647,7 @@ namespace MorSun.Controllers
                         //保存用户信息到 wmfuserinfo 表中
                         userinfobll.Insert(userinfoModel);
                         //设置默认角色
-                        var RoleName = "RoleName".GX();
+                        var RoleName = CFG.注册默认角色;// "RoleName".GX();
                         if (!string.IsNullOrEmpty(RoleName))
                         {
                             //添加角色  被注释的无效

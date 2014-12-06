@@ -83,6 +83,7 @@
     <Compile Include="ControllersBM\BMDataAncy.cs" />
     <Compile Include="ControllersBM\BMKaMeController.cs" />
     <Compile Include="ControllersSystem\MMController.cs" />
+    <Compile Include="ControllersSystem\SYSConfigController.cs" />
     <Compile Include="ControllersUserCenter\CSController.cs" />
     <Compile Include="Filter\ExceptionFilter.cs" />
     <Compile Include="Filter\PrivilegeAttribute.cs" />
@@ -110,6 +111,8 @@
     <Compile Include="ControllersUserCenter\HomeController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Quartz\AncyUserJOB5\CheckingJob5.cs" />
+    <Compile Include="Quartz\AncyUserJOB5\CheckingTrigger5.cs" />
     <Compile Include="Quartz\MorSunScheduler.cs" />
     <Compile Include="ViewModel\BaseVM\BaseVModel.cs" />
     <Compile Include="ViewModel\BM\BMKaMeVModel.cs" />

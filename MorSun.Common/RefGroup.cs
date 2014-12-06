@@ -248,7 +248,7 @@ namespace MorSun.Common
             public const string 网站域名 = "http://www.bungma.com";
 
             public const string 默认推广代码 = "bungma";
-
+            public const string 注册默认角色 = "98dcfbe9-fa44-4832-8a1b-5a82de8d1abf";
             ////微信
             //public const string 作业邦微信令牌 = "WXZYBung34fdjs38";
             //public const string 看答案指令 = "DA==>";
@@ -311,7 +311,8 @@ namespace MorSun.Common
             public const string 卡密退款_该卡密已退款 = "该卡密已退款";
 
             //邦马网对接统一码
-            public const string 邦马网_对接统一码 = "F1W%I^v2&n^eJiw3";     
+            public const string 邦马网_对接统一码 = "F1W%I^v2&n^eJiw3";
+            public const string 邦马网_字符串分隔符 = ",";
             public const string 卡密退款_卡密退款操作成功 = "卡密退款操作成功";
 
             public const string 邦马网_JSON数据间隔 = "||====||";

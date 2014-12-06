@@ -215,10 +215,17 @@ namespace MorSun.Controllers
         /// <returns></returns>
         protected static string DecodeJson(string id)
         {
-            var eys = SecurityHelper.Decrypt(id);
-            var ys = eys.Substring(eys.IndexOf(';') + 1);
-            //var s = Compression.DecompressString(ys);
-            return ys;
+            try
+            {
+                var eys = SecurityHelper.Decrypt(id);
+                var ys = eys.Substring(eys.IndexOf(';') + 1);
+                //var s = Compression.DecompressString(ys);
+                return ys;
+            }
+            catch
+            {
+                return "";
+            }
         }
         #endregion
         
@@ -788,6 +795,135 @@ namespace MorSun.Controllers
         //    var key = CFG.微信绑定前缀 + boundCode.ToString();
         //    return CacheAccess.GetFromCache(key) as UserBoundCodeCache;
         //}
+        #endregion
+
+        #region 数据同步
+        /// <summary>
+        /// 同步用户
+        /// </summary>
+        /// <param name="SyncDT">同步开始时间</param>
+        /// <param name="neURLuids">需要同步的用户ID：e26ef963-ff8d-4569-b019-7fe16103c934,1479a879-3427-40b0-a697-b7385ad9aa6d</param>
+        public void AncyUser(DateTime? SyncDT, string neURLuids)
+        {
+            var result = "";
+            var dts = DateTime.Now.ToString();//dt.ToShortDateString() + " " + dt.ToShortTimeString();
+            var neTok = SecurityHelper.Encrypt(dts + ";" + CFG.邦马网_对接统一码);
+            var tok = HttpUtility.UrlEncode(neTok);
+            string strUrl = CFG.网站域名 + CFG.数据同步_用户信息;
+            string appentUrl = "?tok=" + tok;
+            if (SyncDT != null)
+                appentUrl += "&SyncDT=" + SyncDT;
+            if (!string.IsNullOrEmpty(neURLuids))
+            {
+                var URLuids = HttpUtility.UrlEncode(neURLuids);
+                appentUrl += "&UIds=" + URLuids;
+            }
+
+            //未Encode的URL
+            string neAppentUrl = "?tok=" + neTok;
+            neAppentUrl += "&SyncDT=" + SyncDT;
+            if (!string.IsNullOrEmpty(neURLuids))
+            {
+                neAppentUrl += "&UIds=" + neURLuids;
+            }
+
+            LogHelper.Write("同步用户信息" + strUrl + appentUrl, LogHelper.LogMessageType.Info);
+            if (String.IsNullOrEmpty(neURLuids))
+            {
+                //当不传递UID时
+                result = GetHtmlHelper.GetPage(strUrl + appentUrl, "");
+            }
+            else
+            {
+                //有传递UID时用POST方法，参数有可能会超过URL长度
+                result = GetHtmlHelper.PostGetPage(strUrl, neAppentUrl.Substring(1), "");
+            }
+
+            if (!String.IsNullOrEmpty(result))
+            {
+                var s = DecodeJson(result);
+                if (!String.IsNullOrEmpty(s))
+                {
+                    //用户有三张表，要先分开
+                    var aspUS = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔));
+                    s = s.Substring(s.IndexOf(CFG.邦马网_JSON数据间隔) + CFG.邦马网_JSON数据间隔.Length);
+                    var aspMB = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔));
+                    s = s.Substring(s.IndexOf(CFG.邦马网_JSON数据间隔) + CFG.邦马网_JSON数据间隔.Length);
+                    var wmfUI = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔));
+
+                    var uids = new List<Guid>();
+                    //数据处理
+                    if (!String.IsNullOrEmpty(aspUS))
+                    {
+                        aspUS = Compression.DecompressString(aspUS);
+                        var _list = JsonConvert.DeserializeObject<List<aspnet_Users>>(aspUS);
+                        if (_list.Count() > 0)
+                        {
+                            uids = _list.Select(p => p.UserId).ToList();
+                            var bll = new BaseBll<aspnet_Users>();
+                            //过滤掉已经添加的数据
+                            var alreadyUIds = bll.All.Where(p => uids.Contains(p.UserId)).Select(p => p.UserId);
+                            uids = uids.Except(alreadyUIds).ToList();
+                            _list = _list.Where(p => uids.Contains(p.UserId)).ToList();
+
+                            foreach (var l in _list)
+                            {
+                                bll.Insert(l, false);
+                            }
+                            bll.UpdateChanges();
+
+                            Guid rid = Guid.Parse(CFG.注册默认角色);
+                            var role = new BaseBll<aspnet_Roles>().All.Where(p => p.RoleId == rid);
+                            var constr = "";
+                            if (role != null)
+                            {
+                                foreach (var l in _list)
+                                {
+                                    constr += @"Insert Into aspnet_UsersInRoles ([UserId],[RoleId])  VALUES ('" + l.UserId + "','" + CFG.注册默认角色 + "')";
+                                }
+                            }
+                            if (!String.IsNullOrEmpty(constr))
+                                bll.Db.ExecuteStoreCommand(constr);
+                        }
+                    }
+
+                    if (!String.IsNullOrEmpty(aspMB))
+                    {
+                        aspMB = Compression.DecompressString(aspMB);
+                        var _list = JsonConvert.DeserializeObject<List<aspnet_Membership>>(aspMB);
+                        if (_list.Count() > 0)
+                        {
+                            var bll = new BaseBll<aspnet_Membership>();
+                            //过滤掉已经添加的数据                                                       
+                            _list = _list.Where(p => uids.Contains(p.UserId)).ToList();
+                            foreach (var l in _list)
+                            {
+                                bll.Insert(l, false);
+                            }
+                            bll.UpdateChanges();
+                        }
+                    }
+
+                    if (!String.IsNullOrEmpty(wmfUI))
+                    {
+                        wmfUI = Compression.DecompressString(wmfUI);
+                        var _list = JsonConvert.DeserializeObject<List<wmfUserInfo>>(wmfUI);
+                        if (_list.Count() > 0)
+                        {
+
+                            var bll = new BaseBll<wmfUserInfo>();
+                            //过滤掉已经添加的数据                                
+                            _list = _list.Where(p => uids.Contains(p.ID)).ToList();
+                            foreach (var l in _list)
+                            {
+                                bll.Insert(l, false);
+                            }
+                            bll.UpdateChanges();
+                        }
+                    }
+                }
+            }
+        }
         #endregion
 
     }
