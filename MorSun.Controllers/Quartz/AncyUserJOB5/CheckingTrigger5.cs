@@ -16,7 +16,7 @@ namespace MorSun.Controllers.Quartz
                 .Build();
 
             ICronTrigger trigger = (ICronTrigger)TriggerBuilder.Create()
-                                                      .WithIdentity("trigger44", "group44")
+                                                      .WithIdentity("trigger55", "group55")
                                                       .WithCronSchedule("15 3 * * * ?")//.WithCronSchedule("20 30 9,14,22 * * ?")
                                                       .Build();
 

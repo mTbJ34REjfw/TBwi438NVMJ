@@ -303,7 +303,7 @@ namespace MorSun.Common
             //卡密检测
             public const string 卡密检测结果_已充值 = "已充值";
             public const string 卡密检测结果_未充值 = "未充值";
-            public const string 卡密检测结果_检测地址 = "/KrniMxwai/JCKM/";
+            public const string 卡密检测结果_检测地址 = "/KrniMxwai/JCKM";
             //卡密退款
             public const string 卡密退款_退款地址 = "/KrniMxwai/TK";            
             public const string 卡密退款_退款操作失败 = "退款操作失败";
@@ -317,7 +317,7 @@ namespace MorSun.Common
 
             public const string 邦马网_JSON数据间隔 = "||====||";
             //用户信息同步
-            public const string 数据同步_用户信息 = "/DivniTxiuen/UJS/";
+            public const string 数据同步_用户信息 = "/DivniTxiuen/UJS";
         }
     }
 

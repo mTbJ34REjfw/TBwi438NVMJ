@@ -136,5 +136,17 @@ namespace HOHO18.Common
             return dateDiff;
         }
         #endregion
+
+        #region 判断是否在某个时间范围内
+        public static bool IsInTime(DateTime beginT, DateTime endT)
+        {
+            var now = DateTime.Now;
+            //TimeSpan ts1, ts2;//TimeSpan 表示一个时间间隔
+            //ts1 = beginT - now;
+            //ts2 = endT - now;
+            return now > beginT && now < endT;//如果在这个时间间隔里面
+            //return ts1.Minutes < 0 || ts2.Minutes < 0;//如果不在这个时间间隔里面
+        }
+        #endregion
     }
 }

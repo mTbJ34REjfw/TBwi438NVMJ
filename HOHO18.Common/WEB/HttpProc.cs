@@ -650,7 +650,8 @@ namespace HOHO18.Common.Web
             }
             finally
             {
-                sr.Close();
+                if(sr != null)
+                    sr.Close();
             }
             return strResult;
         }

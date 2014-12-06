@@ -168,8 +168,9 @@ namespace MorSun.Controllers
                 //取时间戳
                 var ind = ts.IndexOf(';');
                 DateTime dt = DateTime.Parse(ts.Substring(0, ind));
-                if (dt.AddSeconds(5) < DateTime.Now || !ts.Contains(CFG.邦马网_对接统一码))
-                {//限制15秒内
+                //用定时器执行时会延迟，5秒不够
+                if (dt.AddSeconds(45) < DateTime.Now || !ts.Contains(CFG.邦马网_对接统一码))
+                {//限制45秒内
                     rz = false;
                 }
                 else
@@ -806,21 +807,19 @@ namespace MorSun.Controllers
         public void AncyUser(DateTime? SyncDT, string neURLuids)
         {
             var result = "";
-            var dts = DateTime.Now.ToString();//dt.ToShortDateString() + " " + dt.ToShortTimeString();
-            var neTok = SecurityHelper.Encrypt(dts + ";" + CFG.邦马网_对接统一码);
-            var tok = HttpUtility.UrlEncode(neTok);
+            var dts = DateTime.Now.ToString();//dt.ToShortDateString() + " " + dt.ToShortTimeString();            
+            var tok = SecurityHelper.Encrypt(dts + ";" + CFG.邦马网_对接统一码);
             string strUrl = CFG.网站域名 + CFG.数据同步_用户信息;
-            string appentUrl = "?tok=" + tok;
+            string appentUrl = "?tok=" + HttpUtility.UrlEncode(tok);
             if (SyncDT != null)
                 appentUrl += "&SyncDT=" + SyncDT;
             if (!string.IsNullOrEmpty(neURLuids))
-            {
-                var URLuids = HttpUtility.UrlEncode(neURLuids);
-                appentUrl += "&UIds=" + URLuids;
+            {                
+                appentUrl += "&UIds=" + HttpUtility.UrlEncode(neURLuids);
             }
 
             //未Encode的URL
-            string neAppentUrl = "?tok=" + neTok;
+            string neAppentUrl = "?tok=" + tok;
             neAppentUrl += "&SyncDT=" + SyncDT;
             if (!string.IsNullOrEmpty(neURLuids))
             {
@@ -828,7 +827,7 @@ namespace MorSun.Controllers
             }
 
             LogHelper.Write("同步用户信息" + strUrl + appentUrl, LogHelper.LogMessageType.Info);
-            if (String.IsNullOrEmpty(neURLuids))
+            if (String.IsNullOrEmpty(neURLuids))// && SyncDT == null)
             {
                 //当不传递UID时
                 result = GetHtmlHelper.GetPage(strUrl + appentUrl, "");
@@ -841,6 +840,7 @@ namespace MorSun.Controllers
 
             if (!String.IsNullOrEmpty(result))
             {
+                LogHelper.Write("有获取到用户数据", LogHelper.LogMessageType.Info);
                 var s = DecodeJson(result);
                 if (!String.IsNullOrEmpty(s))
                 {
@@ -854,7 +854,7 @@ namespace MorSun.Controllers
                     var uids = new List<Guid>();
                     //数据处理
                     if (!String.IsNullOrEmpty(aspUS))
-                    {
+                    {                        
                         aspUS = Compression.DecompressString(aspUS);
                         var _list = JsonConvert.DeserializeObject<List<aspnet_Users>>(aspUS);
                         if (_list.Count() > 0)
@@ -922,6 +922,10 @@ namespace MorSun.Controllers
                         }
                     }
                 }
+            }
+            else
+            {
+                LogHelper.Write("各种原因没有获取到用户数据", LogHelper.LogMessageType.Info);
             }
         }
         #endregion

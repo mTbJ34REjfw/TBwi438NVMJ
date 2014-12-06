@@ -42,6 +42,7 @@ namespace MorSun.Controllers.SystemController
             //t2.Run();
             //SimpleTriggerExample t3 = new SimpleTriggerExample();
             //t3.Run();
+            //用户数据同步
             CheckingTrigger5 t5 = new CheckingTrigger5();
             t5.Run();
             return "true";
@@ -103,6 +104,18 @@ namespace MorSun.Controllers.SystemController
         public string StopJob(string name, string group)
         {
             MorSunScheduler.Instance.StopJob(name, group);
+            return "true";
+        }
+
+        /// <summary>
+        /// 触发某项工作
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="group"></param>
+        /// <returns></returns>
+        public string TriggerJob(string name, string group)
+        {
+            MorSunScheduler.Instance.TrggerJob(name, group);
             return "true";
         }
         #endregion
