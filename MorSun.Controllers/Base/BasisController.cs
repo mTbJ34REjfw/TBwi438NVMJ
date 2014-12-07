@@ -810,12 +810,12 @@ namespace MorSun.Controllers
             var dts = DateTime.Now.ToString();//dt.ToShortDateString() + " " + dt.ToShortTimeString();            
             var tok = SecurityHelper.Encrypt(dts + ";" + CFG.邦马网_对接统一码);
             string strUrl = CFG.网站域名 + CFG.数据同步_用户信息;
-            string appentUrl = "?tok=" + HttpUtility.UrlEncode(tok);
+            string appendUrl = "?tok=" + HttpUtility.UrlEncode(tok);
             if (SyncDT != null)
-                appentUrl += "&SyncDT=" + SyncDT;
+                appendUrl += "&SyncDT=" + SyncDT;
             if (!string.IsNullOrEmpty(neURLuids))
             {                
-                appentUrl += "&UIds=" + HttpUtility.UrlEncode(neURLuids);
+                appendUrl += "&UIds=" + HttpUtility.UrlEncode(neURLuids);
             }
 
             //未Encode的URL
@@ -826,11 +826,11 @@ namespace MorSun.Controllers
                 neAppentUrl += "&UIds=" + SecurityHelper.Encrypt(neURLuids);
             }
 
-            LogHelper.Write("同步用户信息" + strUrl + appentUrl, LogHelper.LogMessageType.Info);
+            LogHelper.Write("同步用户信息" + strUrl + appendUrl, LogHelper.LogMessageType.Info);
             if (String.IsNullOrEmpty(neURLuids))// && SyncDT == null)
             {
                 //当不传递UID时
-                result = GetHtmlHelper.GetPage(strUrl + appentUrl, "");
+                result = GetHtmlHelper.GetPage(strUrl + appendUrl, "");
             }
             else
             {
@@ -939,12 +939,12 @@ namespace MorSun.Controllers
             var dts = DateTime.Now.ToString();//dt.ToShortDateString() + " " + dt.ToShortTimeString();            
             var tok = SecurityHelper.Encrypt(dts + ";" + CFG.邦马网_对接统一码);
             string strUrl = CFG.网站域名 + CFG.数据同步_作业邦信息;
-            string appentUrl = "?tok=" + HttpUtility.UrlEncode(tok);
+            string appendUrl = "?tok=" + HttpUtility.UrlEncode(tok);
             if (SyncDT != null)
-                appentUrl += "&SyncDT=" + SyncDT;
+                appendUrl += "&SyncDT=" + SyncDT;
 
-            LogHelper.Write("同步问题信息" + strUrl + appentUrl, LogHelper.LogMessageType.Info);
-            result = GetHtmlHelper.GetPage(strUrl + appentUrl, "");
+            LogHelper.Write("同步问题信息" + strUrl + appendUrl, LogHelper.LogMessageType.Info);
+            result = GetHtmlHelper.GetPage(strUrl + appendUrl, "");
 
 
             if (!String.IsNullOrEmpty(result))
@@ -963,6 +963,8 @@ namespace MorSun.Controllers
                     var bmOB = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔)).Trim();
                     s = s.Substring(s.IndexOf(CFG.邦马网_JSON数据间隔) + CFG.邦马网_JSON数据间隔.Length);
                     var bmUW = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔)).Trim();
+                    s = s.Substring(s.IndexOf(CFG.邦马网_JSON数据间隔) + CFG.邦马网_JSON数据间隔.Length);
+                    var bmTK = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔)).Trim();
 
                     var ubll = new BaseBll<aspnet_Users>();
                     var uids = new List<Guid>();
@@ -971,6 +973,7 @@ namespace MorSun.Controllers
                     var qaDISJson = "";
                     var bmOBJson = "";
                     var bmUWJson = "";
+                    var bmTKJson = "";
                     //用户需要先同步
                     if (!String.IsNullOrEmpty(bmQA))
                     {//跟UserId没关系，就不同步UserId
@@ -1044,6 +1047,23 @@ namespace MorSun.Controllers
                     {
                         bmUWJson = Compression.DecompressString(bmUW);
                         var _list = JsonConvert.DeserializeObject<List<bmUserWeixinJson>>(bmUWJson);
+                        if (_list.Count() > 0)
+                        {
+                            var uid = _list.Where(p => p.UserId != null).Select(p => p.UserId.Value);
+                            if (uid.Count() > 0)
+                            {
+                                foreach (var u in uid)
+                                {
+                                    uids.Add(u);
+                                }
+                            }
+                        }
+                    }
+
+                    if (!String.IsNullOrEmpty(bmTK))
+                    {//跟UserId没关系，就不同步UserId
+                        bmTKJson = Compression.DecompressString(bmTK);
+                        var _list = JsonConvert.DeserializeObject<List<bmTakeNow>>(bmTKJson);
                         if (_list.Count() > 0)
                         {
                             var uid = _list.Where(p => p.UserId != null).Select(p => p.UserId.Value);
@@ -1175,6 +1195,29 @@ namespace MorSun.Controllers
                                 bll.UpdateChanges();
                             }
                         }
+                        
+                        //取现
+                        if (!String.IsNullOrEmpty(bmTK))
+                        {
+                            //bmUW = Compression.DecompressString(bmUW);
+                            var _list = JsonConvert.DeserializeObject<List<bmTakeNow>>(bmTKJson);
+                            if (_list.Count() > 0)
+                            {
+                                var aids = new List<Guid>();
+                                aids = _list.Select(p => p.ID).ToList();
+                                var bll = new BaseBll<bmTakeNow>();
+                                //过滤掉已经添加的数据  
+                                var alreadyQIds = bll.All.Where(p => aids.Contains(p.ID)).Select(p => p.ID);
+                                aids = aids.Except(alreadyQIds).ToList();
+                                _list = _list.Where(p => aids.Contains(p.ID)).ToList();
+
+                                foreach (var l in _list)
+                                {
+                                    bll.Insert(l, false);
+                                }
+                                bll.UpdateChanges();
+                            }
+                        }
                     }
                     catch
                     {
@@ -1186,6 +1229,99 @@ namespace MorSun.Controllers
                     LogHelper.Write("各种原因没有获取到问题数据", LogHelper.LogMessageType.Info);
                 }            
             }            
+        }
+
+
+        /// <summary>
+        /// 用户充值数据同步
+        /// </summary>
+        /// <param name="SyncDT"></param>
+        public void AncyRC()
+        {
+            var result = "";
+            var dts = DateTime.Now.ToString();//dt.ToShortDateString() + " " + dt.ToShortTimeString();            
+            var tok = SecurityHelper.Encrypt(dts + ";" + CFG.邦马网_对接统一码);
+            string strUrl = CFG.网站域名 + CFG.数据同步_马币充值信息;
+            string appendUrl = "?tok=" + HttpUtility.UrlEncode(tok);            
+
+            //LogHelper.Write("同步充值信息" + strUrl + appendUrl, LogHelper.LogMessageType.Info);
+            result = GetHtmlHelper.GetPage(strUrl + appendUrl, "");
+
+            //同步充值信息            
+            if (!String.IsNullOrEmpty(result))
+            {
+                LogHelper.Write("有获取到充值数据", LogHelper.LogMessageType.Info);
+                var s = DecodeJson(result);
+                if (!String.IsNullOrEmpty(s))
+                {
+                    //用户有三张表，要先分开
+                    var bmRC = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔)).Trim();
+                    s = s.Substring(s.IndexOf(CFG.邦马网_JSON数据间隔) + CFG.邦马网_JSON数据间隔.Length);                    
+
+                    var ubll = new BaseBll<aspnet_Users>();
+                    var uids = new List<Guid>();
+                    var bmRCJson = "";
+                    
+                    //用户需要先同步
+                    if (!String.IsNullOrEmpty(bmRC))
+                    {//跟UserId没关系，就不同步UserId
+                        bmRCJson = Compression.DecompressString(bmRC);
+                        var _list = JsonConvert.DeserializeObject<List<bmRechargeJson>>(bmRCJson);
+                        if (_list.Count() > 0)
+                        {
+                            var uid = _list.Where(p => p.UserId != null).Select(p => p.UserId.Value);
+                            if (uid.Count() > 0)
+                            {
+                                foreach (var u in uid)
+                                {
+                                    uids.Add(u);
+                                }
+                            }
+                        }
+                    }
+
+                    //userids 去重复
+                    uids = uids.Distinct().ToList();
+
+                    //同步用户ID 下面的已经处理了哪里用户ID需要同步
+                    if (uids.Count() > 0)
+                        UIDAncyUser(ubll, uids);
+
+                    //问题记录
+                    try
+                    {
+                        //卡密充值记录
+                        if (!String.IsNullOrEmpty(bmRC))
+                        {
+                            var _list = JsonConvert.DeserializeObject<List<bmRecharge>>(bmRCJson);
+                            if (_list.Count() > 0)
+                            {
+                                var aids = new List<Guid>();
+                                aids = _list.Select(p => p.ID).ToList();
+                                var bll = new BaseBll<bmRecharge>();
+                                //过滤掉已经添加的数据
+                                var alreadyQIds = bll.All.Where(p => aids.Contains(p.ID)).Select(p => p.ID);
+                                aids = aids.Except(alreadyQIds).ToList();
+                                _list = _list.Where(p => aids.Contains(p.ID)).ToList();
+
+                                foreach (var l in _list)
+                                {
+                                    bll.Insert(l, false);
+                                }
+                                bll.UpdateChanges();
+                            }
+                        }                        
+                    }
+                    catch
+                    {
+                        LogHelper.Write("用户数据获取异常导致同步充值时一些数据同步不成功", LogHelper.LogMessageType.Info);
+                    }
+                }
+                else
+                {
+                    LogHelper.Write("各种原因没有获取到充值数据", LogHelper.LogMessageType.Info);
+                }
+            }
         }
 
         /// <summary>
@@ -1201,6 +1337,24 @@ namespace MorSun.Controllers
             if(nuids.Length > 5)//需要同步时才同步
                 AncyUser(null, nuids);
         }
+
+        /// <summary>
+        /// 马币充值
+        /// </summary>
+        public void RCMB()
+        {
+            var newRCList = new List<bmRechargeJson>();
+            var rcBll = new BaseBll<bmRecharge>();
+            var _rcList = rcBll.All.Where(p => p.Effective == null && p.Recharge == null);
+
+            if (_rcList.Count() != 0)
+            {
+                var rcMb = _rcList.Select(p => p.KaMe);
+                var kmBll = new BaseBll<bmKaMe>();
+                //var _kmList = 
+            }
+        }
+
         #endregion
 
     }

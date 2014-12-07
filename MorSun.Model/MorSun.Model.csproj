@@ -104,6 +104,7 @@
     <Compile Include="JsonObj\QA\bmObjectionJson.cs" />
     <Compile Include="JsonObj\QA\bmQADistributionJson.cs" />
     <Compile Include="JsonObj\QA\bmQAJson.cs" />
+    <Compile Include="JsonObj\QA\bmTakeNowJson.cs" />
     <Compile Include="JsonObj\QA\bmUserMaBiRecordJson.cs" />
     <Compile Include="JsonObj\QA\bmUserWeixinJson.cs" />
     <Compile Include="JsonObj\RC\bmRechargeJson.cs" />
