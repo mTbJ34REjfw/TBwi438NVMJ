@@ -80,7 +80,7 @@ namespace MorSun
             Exception objExp = HttpContext.Current.Server.GetLastError();
             LogHelper.Write("\r\n客户机IP:" + Request.UserHostAddress + "\r\n错误地址:" + Request.Url + "\r\n异常信息:" + Server.GetLastError().Message, LogHelper.LogMessageType.Error);
             //所有错误页面转发到百度去
-            Response.Redirect("http://www.baidu.com");
+            //Response.Redirect("http://www.baidu.com");
         }
     }
 

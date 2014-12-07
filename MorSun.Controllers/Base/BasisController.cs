@@ -169,7 +169,7 @@ namespace MorSun.Controllers
                 var ind = ts.IndexOf(';');
                 DateTime dt = DateTime.Parse(ts.Substring(0, ind));
                 //用定时器执行时会延迟，5秒不够
-                if (dt.AddSeconds(45) < DateTime.Now || !ts.Contains(CFG.邦马网_对接统一码))
+                if (dt.AddSeconds(12) < DateTime.Now || !ts.Contains(CFG.邦马网_对接统一码))
                 {//限制45秒内
                     rz = false;
                 }
@@ -823,7 +823,7 @@ namespace MorSun.Controllers
             neAppentUrl += "&SyncDT=" + SyncDT;
             if (!string.IsNullOrEmpty(neURLuids))
             {
-                neAppentUrl += "&UIds=" + neURLuids;
+                neAppentUrl += "&UIds=" + SecurityHelper.Encrypt(neURLuids);
             }
 
             LogHelper.Write("同步用户信息" + strUrl + appentUrl, LogHelper.LogMessageType.Info);
@@ -845,11 +845,11 @@ namespace MorSun.Controllers
                 if (!String.IsNullOrEmpty(s))
                 {
                     //用户有三张表，要先分开
-                    var aspUS = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔));
+                    var aspUS = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔)).Trim();
                     s = s.Substring(s.IndexOf(CFG.邦马网_JSON数据间隔) + CFG.邦马网_JSON数据间隔.Length);
-                    var aspMB = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔));
+                    var aspMB = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔)).Trim();
                     s = s.Substring(s.IndexOf(CFG.邦马网_JSON数据间隔) + CFG.邦马网_JSON数据间隔.Length);
-                    var wmfUI = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔));
+                    var wmfUI = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔)).Trim();
 
                     var uids = new List<Guid>();
                     //数据处理
@@ -927,6 +927,279 @@ namespace MorSun.Controllers
             {
                 LogHelper.Write("各种原因没有获取到用户数据", LogHelper.LogMessageType.Info);
             }
+        }
+
+        /// <summary>
+        /// 问题、用户绑定数据同步
+        /// </summary>
+        /// <param name="SyncDT"></param>
+        public void AncyQA(DateTime? SyncDT)
+        {
+            var result = "";
+            var dts = DateTime.Now.ToString();//dt.ToShortDateString() + " " + dt.ToShortTimeString();            
+            var tok = SecurityHelper.Encrypt(dts + ";" + CFG.邦马网_对接统一码);
+            string strUrl = CFG.网站域名 + CFG.数据同步_作业邦信息;
+            string appentUrl = "?tok=" + HttpUtility.UrlEncode(tok);
+            if (SyncDT != null)
+                appentUrl += "&SyncDT=" + SyncDT;
+
+            LogHelper.Write("同步问题信息" + strUrl + appentUrl, LogHelper.LogMessageType.Info);
+            result = GetHtmlHelper.GetPage(strUrl + appentUrl, "");
+
+
+            if (!String.IsNullOrEmpty(result))
+            {
+                LogHelper.Write("有获取到问题数据", LogHelper.LogMessageType.Info);
+                var s = DecodeJson(result);
+                if (!String.IsNullOrEmpty(s))
+                {
+                    //用户有三张表，要先分开
+                    var bmQA = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔)).Trim();
+                    s = s.Substring(s.IndexOf(CFG.邦马网_JSON数据间隔) + CFG.邦马网_JSON数据间隔.Length);
+                    var bmMB = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔)).Trim();
+                    s = s.Substring(s.IndexOf(CFG.邦马网_JSON数据间隔) + CFG.邦马网_JSON数据间隔.Length);
+                    var qaDIS = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔)).Trim();
+                    s = s.Substring(s.IndexOf(CFG.邦马网_JSON数据间隔) + CFG.邦马网_JSON数据间隔.Length);
+                    var bmOB = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔)).Trim();
+                    s = s.Substring(s.IndexOf(CFG.邦马网_JSON数据间隔) + CFG.邦马网_JSON数据间隔.Length);
+                    var bmUW = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔)).Trim();
+
+                    var ubll = new BaseBll<aspnet_Users>();
+                    var uids = new List<Guid>();
+                    var bmQAJson = "";
+                    var bmMBJson = "";
+                    var qaDISJson = "";
+                    var bmOBJson = "";
+                    var bmUWJson = "";
+                    //用户需要先同步
+                    if (!String.IsNullOrEmpty(bmQA))
+                    {//跟UserId没关系，就不同步UserId
+                        bmQAJson = Compression.DecompressString(bmQA);
+                        var _list = JsonConvert.DeserializeObject<List<bmQAJson>>(bmQAJson);
+                        if (_list.Count() > 0)
+                        {
+                            var uid = _list.Where(p => p.UserId != null).Select(p => p.UserId.Value);
+                            if (uid.Count() > 0)
+                            {
+                                foreach (var u in uid)
+                                {
+                                    uids.Add(u);
+                                }
+                            }
+                        }
+                    }
+
+                    if (!String.IsNullOrEmpty(bmMB))
+                    {
+                        bmMBJson = Compression.DecompressString(bmMB);
+                        var _list = JsonConvert.DeserializeObject<List<bmUserMaBiRecordJson>>(bmMBJson);
+                        if (_list.Count() > 0)
+                        {
+                            var uid = _list.Where(p => p.UserId != null).Select(p => p.UserId.Value);
+                            if (uid.Count() > 0)
+                            {
+                                foreach (var u in uid)
+                                {
+                                    uids.Add(u);
+                                }
+                            }
+                        }
+                    }
+
+                    if (!String.IsNullOrEmpty(qaDIS))
+                    {
+                        qaDISJson = Compression.DecompressString(qaDIS);
+                        var _list = JsonConvert.DeserializeObject<List<bmQADistributionJson>>(qaDISJson);
+                        if (_list.Count() > 0)
+                        {
+                            var uid = _list.Where(p => p.UserId != null).Select(p => p.UserId.Value);
+                            if (uid.Count() > 0)
+                            {
+                                foreach (var u in uid)
+                                {
+                                    uids.Add(u);
+                                }
+                            }
+                        }
+                    }
+
+                    if (!String.IsNullOrEmpty(bmOB))
+                    {
+                        bmOBJson = Compression.DecompressString(bmOB);
+                        var _list = JsonConvert.DeserializeObject<List<bmObjectionJson>>(bmOBJson);
+                        if (_list.Count() > 0)
+                        {
+                            var uid = _list.Where(p => p.UserId != null).Select(p => p.UserId.Value);
+                            if (uid.Count() > 0)
+                            {
+                                foreach (var u in uid)
+                                {
+                                    uids.Add(u);
+                                }
+                            }
+                        }
+                    }
+
+                    if (!String.IsNullOrEmpty(bmUW))
+                    {
+                        bmUWJson = Compression.DecompressString(bmUW);
+                        var _list = JsonConvert.DeserializeObject<List<bmUserWeixinJson>>(bmUWJson);
+                        if (_list.Count() > 0)
+                        {
+                            var uid = _list.Where(p => p.UserId != null).Select(p => p.UserId.Value);
+                            if (uid.Count() > 0)
+                            {
+                                foreach (var u in uid)
+                                {
+                                    uids.Add(u);
+                                }
+                            }
+                        }
+                    }
+
+                    //userids 去重复
+                    uids = uids.Distinct().ToList();
+
+                    //同步用户ID 下面的已经处理了哪里用户ID需要同步
+                    if (uids.Count() > 0)
+                        UIDAncyUser(ubll, uids);
+
+                    //问题记录
+                    try
+                    {
+                        if (!String.IsNullOrEmpty(bmQA))
+                        {
+                            //bmQA = Compression.DecompressString(bmQA);
+                            var _list = JsonConvert.DeserializeObject<List<bmQA>>(bmQAJson);
+                            if (_list.Count() > 0)
+                            {
+                                var aids = new List<Guid>();
+                                aids = _list.Select(p => p.ID).ToList();
+                                var bll = new BaseBll<bmQA>();
+                                //过滤掉已经添加的数据
+                                var alreadyQIds = bll.All.Where(p => aids.Contains(p.ID)).Select(p => p.ID);
+                                aids = aids.Except(alreadyQIds).ToList();
+                                _list = _list.Where(p => aids.Contains(p.ID)).ToList();
+
+                                foreach (var l in _list)
+                                {
+                                    bll.Insert(l, false);
+                                }
+                                bll.UpdateChanges();
+                            }
+                        }
+                        //马币记录
+                        if (!String.IsNullOrEmpty(bmMB))
+                        {
+                            //bmMB = Compression.DecompressString(bmMB);
+                            var _list = JsonConvert.DeserializeObject<List<bmUserMaBiRecord>>(bmMBJson);
+                            if (_list.Count() > 0)
+                            {
+                                var aids = new List<Guid>();
+                                aids = _list.Select(p => p.ID).ToList();
+                                var bll = new BaseBll<bmUserMaBiRecord>();
+                                //过滤掉已经添加的数据                    
+                                var alreadyQIds = bll.All.Where(p => aids.Contains(p.ID)).Select(p => p.ID);
+                                aids = aids.Except(alreadyQIds).ToList();
+                                _list = _list.Where(p => aids.Contains(p.ID)).ToList();
+                                foreach (var l in _list)
+                                {
+                                    bll.Insert(l, false);
+                                }
+                                bll.UpdateChanges();
+                            }
+                        }
+                        //问题分配
+                        if (!String.IsNullOrEmpty(qaDIS))
+                        {
+                            //qaDIS = Compression.DecompressString(qaDIS);
+                            var _list = JsonConvert.DeserializeObject<List<bmQADistribution>>(qaDISJson);
+                            if (_list.Count() > 0)
+                            {
+                                var aids = new List<Guid>();
+                                aids = _list.Select(p => p.ID).ToList();
+                                var bll = new BaseBll<bmQADistribution>();
+                                //过滤掉已经添加的数据  
+                                var alreadyQIds = bll.All.Where(p => aids.Contains(p.ID)).Select(p => p.ID);
+                                aids = aids.Except(alreadyQIds).ToList();
+                                _list = _list.Where(p => aids.Contains(p.ID)).ToList();
+
+                                foreach (var l in _list)
+                                {
+                                    bll.Insert(l, false);
+                                }
+                                bll.UpdateChanges();
+                            }
+                        }
+                        //异议分配
+                        if (!String.IsNullOrEmpty(bmOB))
+                        {
+                            //bmOB = Compression.DecompressString(bmOB);
+                            var _list = JsonConvert.DeserializeObject<List<bmObjection>>(bmOBJson);
+                            if (_list.Count() > 0)
+                            {
+                                var aids = new List<Guid>();
+                                aids = _list.Select(p => p.ID).ToList();
+                                var bll = new BaseBll<bmObjection>();
+                                //过滤掉已经添加的数据  
+                                var alreadyQIds = bll.All.Where(p => aids.Contains(p.ID)).Select(p => p.ID);
+                                aids = aids.Except(alreadyQIds).ToList();
+                                _list = _list.Where(p => aids.Contains(p.ID)).ToList();
+
+                                foreach (var l in _list)
+                                {
+                                    bll.Insert(l, false);
+                                }
+                                bll.UpdateChanges();
+                            }
+                        }
+                        //微信绑定
+                        if (!String.IsNullOrEmpty(bmUW))
+                        {
+                            //bmUW = Compression.DecompressString(bmUW);
+                            var _list = JsonConvert.DeserializeObject<List<bmUserWeixin>>(bmUWJson);
+                            if (_list.Count() > 0)
+                            {
+                                var aids = new List<Guid>();
+                                aids = _list.Select(p => p.ID).ToList();
+                                var bll = new BaseBll<bmUserWeixin>();
+                                //过滤掉已经添加的数据  
+                                var alreadyQIds = bll.All.Where(p => aids.Contains(p.ID)).Select(p => p.ID);
+                                aids = aids.Except(alreadyQIds).ToList();
+                                _list = _list.Where(p => aids.Contains(p.ID)).ToList();
+
+                                foreach (var l in _list)
+                                {
+                                    bll.Insert(l, false);
+                                }
+                                bll.UpdateChanges();
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        LogHelper.Write("用户数据获取异常导致同步问题时一些数据同步不成功", LogHelper.LogMessageType.Info);
+                    }
+                }                
+                else
+                {
+                    LogHelper.Write("各种原因没有获取到问题数据", LogHelper.LogMessageType.Info);
+                }            
+            }            
+        }
+
+        /// <summary>
+        /// 其他数据同步前，先同步用户数据
+        /// </summary>
+        /// <param name="bll"></param>
+        /// <param name="uids"></param>
+        private void UIDAncyUser(BaseBll<aspnet_Users> bll, List<Guid> uids)
+        {
+            //过滤掉已经添加的数据
+            var alreadyUIds = bll.All.Where(p => uids.Contains(p.UserId)).Select(p => p.UserId);
+            var nuids = uids.Except(alreadyUIds).ToList().Join(CFG.邦马网_字符串分隔符);
+            if(nuids.Length > 5)//需要同步时才同步
+                AncyUser(null, nuids);
         }
         #endregion
 

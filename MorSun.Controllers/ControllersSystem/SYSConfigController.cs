@@ -43,8 +43,11 @@ namespace MorSun.Controllers.SystemController
             //SimpleTriggerExample t3 = new SimpleTriggerExample();
             //t3.Run();
             //用户数据同步
-            CheckingTrigger5 t5 = new CheckingTrigger5();
-            t5.Run();
+            //CheckingTrigger5 t5 = new CheckingTrigger5();
+            //t5.Run();
+            //问题数据同步
+            CheckingTrigger6 t6 = new CheckingTrigger6();
+            t6.Run();
             return "true";
         }
 

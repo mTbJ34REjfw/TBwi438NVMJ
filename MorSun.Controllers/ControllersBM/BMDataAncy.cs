@@ -55,7 +55,36 @@ namespace MorSun.Controllers.SystemController
                 oper.AppendData = ModelState.GE();
                 return Json(oper, JsonRequestBehavior.AllowGet);
             }
-        }        
+        }
+
+        public ActionResult GetQAJS(DateTime? SyncDT, string returnUrl)
+        {
+            if (ResourceId.HP(操作.修改))
+            {
+                var oper = new OperationResult(OperationResultType.Error, "获取失败");
+                ViewBag.ReturnUrl = returnUrl;
+
+                if (ModelState.IsValid)
+                {
+                    //var neURLuids = SecurityHelper.Encrypt("e26ef963-ff8d-4569-b019-7fe16103c934,1479a879-3427-40b0-a697-b7385ad9aa6d");
+                    AncyQA(SyncDT);
+                    fillOperationResult(returnUrl, oper, "同步成功");
+                }
+                else
+                {
+                    "".AE("检测失败", ModelState);
+                    oper.AppendData = ModelState.GE();
+                }
+                return Json(oper, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                "".AE("无权限", ModelState);
+                var oper = new OperationResult(OperationResultType.Error, "无权限");
+                oper.AppendData = ModelState.GE();
+                return Json(oper, JsonRequestBehavior.AllowGet);
+            }
+        }   
 
         protected override string OnAddCK(bmKaMe t)
         {

@@ -318,6 +318,10 @@ namespace MorSun.Common
             public const string 邦马网_JSON数据间隔 = "||====||";
             //用户信息同步
             public const string 数据同步_用户信息 = "/DivniTxiuen/UJS";
+            //作业邦信息同步
+            public const string 数据同步_作业邦信息 = "/DivniTxiuen/QAJS";
+            //马币充值信息同步
+            public const string 数据同步_马币充值信息 = "/DivniTxiuen/RCJS";
         }
     }
 
