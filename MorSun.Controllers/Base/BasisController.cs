@@ -841,7 +841,13 @@ namespace MorSun.Controllers
             if (!String.IsNullOrEmpty(result))
             {
                 LogHelper.Write("有获取到用户数据", LogHelper.LogMessageType.Info);
-                var s = DecodeJson(result);
+                var s = "";
+                try { s = DecodeJson(result); }
+                catch
+                {
+                    s = "";
+                    LogHelper.Write("解密异常", LogHelper.LogMessageType.Info);
+                }
                 if (!String.IsNullOrEmpty(s))
                 {
                     //用户有三张表，要先分开
@@ -950,7 +956,11 @@ namespace MorSun.Controllers
             if (!String.IsNullOrEmpty(result))
             {
                 LogHelper.Write("有获取到问题数据", LogHelper.LogMessageType.Info);
-                var s = DecodeJson(result);
+                var s = "";
+                try { s = DecodeJson(result); }
+                catch { s = "";
+                LogHelper.Write("解密异常", LogHelper.LogMessageType.Info);
+                }
                 if (!String.IsNullOrEmpty(s))
                 {
                     //用户有三张表，要先分开
@@ -1251,7 +1261,13 @@ namespace MorSun.Controllers
             if (!String.IsNullOrEmpty(result))
             {
                 LogHelper.Write("有获取到充值数据", LogHelper.LogMessageType.Info);
-                var s = DecodeJson(result);
+                var s = "";
+                try { s = DecodeJson(result); }
+                catch
+                {
+                    s = "";
+                    LogHelper.Write("解密异常", LogHelper.LogMessageType.Info);
+                }
                 if (!String.IsNullOrEmpty(s))
                 {
                     //用户有三张表，要先分开
@@ -1344,14 +1360,126 @@ namespace MorSun.Controllers
         public void RCMB()
         {
             var newRCList = new List<bmRechargeJson>();
+            //充值BLL
             var rcBll = new BaseBll<bmRecharge>();
-            var _rcList = rcBll.All.Where(p => p.Effective == null && p.Recharge == null);
+            //取出未设置充值的卡密数据
+            var _rcList = rcBll.All.Where(p => p.Effective == null && p.Recharge == null && p.UserId != null);
 
+            //用户马币BLL
+            var bmMBRBll = new BaseBll<bmUserMaBiRecord>();
+            var sdMBR = new List<bmUserMaBiRecord>();
+            //用户BLL
+            var uiBll = new BaseBll<wmfUserInfo>();
+            var rzUserId = new List<Guid>();
+            //卡密BLL
+            var kmBll = new BaseBll<bmKaMe>();
             if (_rcList.Count() != 0)
             {
                 var rcMb = _rcList.Select(p => p.KaMe);
-                var kmBll = new BaseBll<bmKaMe>();
-                //var _kmList = 
+                
+                var wcz = Guid.Parse(Reference.卡密充值_未充值);
+                //从已充值的卡密信息取出有效卡密
+                var _kmList = kmBll.All.Where(p => rcMb.Contains(p.KaMe) && (p.Recharge == null || p.Recharge == wcz));
+
+                var ycz = Guid.Parse(Reference.卡密充值_已充值);
+                var yx = Guid.Parse(Reference.卡密有效性_有效);
+                var wx = Guid.Parse(Reference.卡密有效性_无效);
+
+                if(_kmList.Count() >0 )
+                {
+                    var yxKaMe = _kmList.Select(p => p.KaMe);                    
+                    foreach(var rc in _rcList)
+                    {
+                        if(yxKaMe.Contains(rc.KaMe))
+                        {//有效卡密
+                            rc.Recharge = ycz;
+                            rc.Effective = yx;
+
+                            //根据卡密类型生成马币记录或认证记录
+                            var ckm = _kmList.FirstOrDefault(p => p.KaMe == rc.KaMe);
+                            if (ckm.KaMeRef == Guid.Parse(Reference.卡密类别_认证66))
+                            {
+                                rzUserId.Add(rc.UserId.Value);
+                            }
+                            else
+                            {//根据马币类别，生成用户马币记录并添加到发送表去。保证本地的马币类别不能被修改
+                                var umbrModel = new bmUserMaBiRecord();
+                                umbrModel.SourceRef = Guid.Parse(Reference.马币来源_充值);
+                                umbrModel.MaBiRef = Guid.Parse(Reference.马币类别_马币);
+                                var mbNum = 10;
+                                try
+                                {
+                                    mbNum = Convert.ToInt32(ckm.wmfReference.ItemInfo);
+                                }
+                                catch
+                                {
+                                    LogHelper.Write("卡密充值类别设置错误导致充值失误", LogHelper.LogMessageType.Info);
+                                }
+                                if (mbNum > 1000)
+                                    mbNum = 10;
+                                umbrModel.MaBiNum = mbNum * 1000;//10元=10000马币
+                                umbrModel.RCId = rc.ID;
+
+                                umbrModel.IsSettle = false; //充值马币时，都是未结算的，但用户可以使用。后面结算是要将未结算的标识为结算
+                                umbrModel.RegTime = DateTime.Now;
+                                umbrModel.ModTime = DateTime.Now;
+                                umbrModel.FlagTrashed = false;
+                                umbrModel.FlagDeleted = false;
+
+                                umbrModel.ID = Guid.NewGuid();
+                                umbrModel.UserId = rc.UserId;
+                                umbrModel.RegUser = rc.UserId;
+
+                                sdMBR.Add(umbrModel);
+                                bmMBRBll.Insert(umbrModel, false);//这边直接设置，数据同步成功之后，再统一更新到数据库
+                            }
+                        }
+                        else
+                        {//无效卡密
+                            rc.Recharge = wcz;
+                            rc.Effective = wx;
+                        }
+                    }
+                    //卡密设置为充值状态
+                    foreach(var km in _kmList)
+                    {
+                        km.Recharge = ycz;
+                        km.OperateTime = DateTime.Now;
+                    }
+                    //设置本地需要认证的用户为认证
+                    if(rzUserId.Count() > 0)
+                    {
+                        var rzu = uiBll.All.Where(p => rzUserId.Contains(p.ID));
+                        foreach(var u in rzu)
+                        {
+                            u.CertificationLevel = Guid.Parse(Reference.认证类别_认证邦主);
+                        }
+                    }
+                }
+                else
+                {//如果都是无效的充值记录，直接将充值记录发送到服务器去修改记录
+                    //处理充值记录
+                    foreach(var rc in _rcList)
+                    {
+                        rc.Recharge = wcz;
+                        rc.Effective = wx;
+                    }
+                }
+
+                //同步数据到服务器有(处理好的充值数据，生成好的用户马币记录，需要认证的用户记录)
+                //转化为JSON类到JSON数据发送
+
+
+
+                var result = "true";
+                //与服务器数据同步成功之后，更新本地记录(处理好的充值数据，生成好的用户马币记录，需要认证的用户记录，设置好的已充值马币记录)
+                if(result.Eql("true"))
+                {
+                    rcBll.UpdateChanges();
+                    bmMBRBll.UpdateChanges();
+                    uiBll.UpdateChanges();
+                    kmBll.UpdateChanges();
+                }
             }
         }
 

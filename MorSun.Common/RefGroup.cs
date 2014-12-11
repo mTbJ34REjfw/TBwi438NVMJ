@@ -97,7 +97,7 @@ namespace MorSun.Common
 
             //卡密有效性
             public const string 卡密有效性_有效 = "97afe305-a2b1-44c4-a6d4-e7df1289e13e";
-            public const string 卡密有效性_失效 = "7e5b5100-723b-430c-9690-92402d2caedd";
+            public const string 卡密有效性_无效 = "7e5b5100-723b-430c-9690-92402d2caedd";
 
             //新闻类别
             public const string 新闻类别_新闻 = "78fba6d7-ade7-46eb-9662-a9f75ea26b69";
@@ -141,10 +141,14 @@ namespace MorSun.Common
             //卡密导入
             public const string 卡密导入_已导入 = "2e3048c1-6307-43ff-9059-eaa7a8eb8fb5";
             public const string 卡密导入_未导入 = "39fea57c-04dc-49ce-ab7d-95be9dfe5070";
+
+            //充值数据发送            
+            public const string 充值数据发送_成功 = "11b07b3f-1b05-4a68-885b-c823a16015b6";
+            public const string 充值数据发送_失败 = "d6269263-d014-496a-8fc4-ad1b50efa512";
             #endregion
 
             //用户表数据同步时间
-            public const string 邦马网_JSON数据间隔 = "||====||";
+            //public const string 邦马网_JSON数据间隔 = "||====||";
         }
     }
 
@@ -228,6 +232,11 @@ namespace MorSun.Common
             /// 卡密类别
             /// </summary>
             public const string 卡密充值 = "13bf9af6-f93d-411d-8548-723c9878d48d";
+
+            /// <summary>
+            /// 充值数据发送
+            /// </summary>
+            public const string 充值数据发送 = "6723e46a-97f7-4551-9c00-65fbafa8af0e";
         }
     }    
 
