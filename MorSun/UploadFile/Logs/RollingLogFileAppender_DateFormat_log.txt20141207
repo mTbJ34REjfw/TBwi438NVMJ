@@ -1,0 +1,88 @@
+2014-12-07 00:23:56,953 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-12-07 00:24:45,822 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启后开启任务调度器
+2014-12-07 00:25:00,657 [9](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-12-07 00:33:05,835 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-12-07 00:33:12,467 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启后开启任务调度器
+2014-12-07 00:33:13,958 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-12-07 00:35:27,304 [23](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 同步问题信息http://www.bungma.com/DivniTxiuen/QAJS?tok=HXlS2txcVujaAEX%2bWOc301VfMh4FSJdc%2bsy1mYjQ8jo2ftu%2bxCYWDgwexOjDG%2bcZ&SyncDT=2014/11/10 0:00:00
+2014-12-07 00:35:39,399 [23](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 有获取到问题数据
+2014-12-07 00:35:44,042 [23](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 同步用户信息http://www.bungma.com/DivniTxiuen/UJS?tok=LlbPpr5d8NEds7f03Qk0THy0KGQs87%2b51B%2f7pAmsVQ7COtzKPmUyCWRGpRdFrnHM&UIds=4087ca79-826b-4507-82e7-479a20d3b53e%2cd2bf99fa-3b69-42e5-8cc3-34aa170d4b74%2c94f5b72d-1fd3-4bc6-a9aa-6d944e5e5582%2ce26ef963-ff8d-4569-b019-7fe16103c934%2cd0520a31-47f8-4a78-910e-6d453197d412
+2014-12-07 00:35:44,427 [23](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 各种原因没有获取到用户数据
+2014-12-07 00:36:01,597 [23](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:17836/bmdataancy/GetQAJS?syncdt=2014-11-10
+异常信息:更新条目时出错。有关详细信息，请参见内部异常。
+2014-12-07 08:20:28,191 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-12-07 08:20:35,026 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启后开启任务调度器
+2014-12-07 08:20:36,494 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-12-07 08:24:23,468 [23](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 同步用户信息http://www.bungma.com/DivniTxiuen/UJS?tok=7nJutuSemA3vGGLOS5DLMY4EJJv%2bBaQRbicVGJnwBxE1%2fRGXSaKeoRIlNXnTuX%2ff&SyncDT=2014/10/4 23:14:12
+2014-12-07 08:24:24,692 [23](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 有获取到用户数据
+2014-12-07 09:53:35,542 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-12-07 09:53:46,563 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启后开启任务调度器
+2014-12-07 09:53:49,948 [10](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-12-07 09:58:35,185 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 同步问题信息http://www.bungma.com/DivniTxiuen/QAJS?tok=Hq2Yf2GgvgDvAaZy5KUPqeFohJi6nLBaGj0DTfLS7nMAsbQ6pwz24havOOIEaliU&SyncDT=2014/11/10 0:00:00
+2014-12-07 09:58:36,670 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 有获取到问题数据
+2014-12-07 10:01:42,018 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-12-07 10:01:45,813 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启后开启任务调度器
+2014-12-07 10:01:46,446 [5](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-12-07 10:03:27,417 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 同步问题信息http://www.bungma.com/DivniTxiuen/QAJS?tok=5svLwgmU3%2fwU27ZtxUZkRQowvrXHiIZbXMIAELGuu2EMhyuvtmOVIjvAg27wA5Sq&SyncDT=2014/11/10 0:00:00
+2014-12-07 10:03:28,322 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 有获取到问题数据
+2014-12-07 10:03:43,562 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 同步用户信息http://www.bungma.com/DivniTxiuen/UJS?tok=5svLwgmU3%2fwU27ZtxUZkRSiYujlp4ftK5czhpvVxWmqqMrEmw391rUuZ%2f4o09j6p&UIds=4087ca79-826b-4507-82e7-479a20d3b53e%2cd2bf99fa-3b69-42e5-8cc3-34aa170d4b74%2c94f5b72d-1fd3-4bc6-a9aa-6d944e5e5582%2ce26ef963-ff8d-4569-b019-7fe16103c934%2cd0520a31-47f8-4a78-910e-6d453197d412
+2014-12-07 10:03:43,742 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 各种原因没有获取到用户数据
+2014-12-07 10:06:06,195 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:17836/bmdataancy/GetQAJS?syncdt=2014-11-10
+异常信息:更新条目时出错。有关详细信息，请参见内部异常。
+2014-12-07 10:06:19,952 [25](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 同步问题信息http://www.bungma.com/DivniTxiuen/QAJS?tok=80xJIB3359Wq6mfOTk%2f634T6TVReKKNnidpXJm0XRMuJ15wkYuft2%2b%2b%2fPZXnagxZ&SyncDT=2014/11/10 0:00:00
+2014-12-07 10:06:20,304 [25](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 有获取到问题数据
+2014-12-07 10:06:25,150 [25](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 同步用户信息http://www.bungma.com/DivniTxiuen/UJS?tok=80xJIB3359Wq6mfOTk%2f63ycdQkvxtB%2fwOQApRrK1kfNxX7oXlsc7l%2fNVC3c9cJ3z&UIds=4087ca79-826b-4507-82e7-479a20d3b53e%2cd2bf99fa-3b69-42e5-8cc3-34aa170d4b74%2c94f5b72d-1fd3-4bc6-a9aa-6d944e5e5582%2ce26ef963-ff8d-4569-b019-7fe16103c934%2cd0520a31-47f8-4a78-910e-6d453197d412
+2014-12-07 10:08:45,849 [25](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 各种原因没有获取到用户数据
+2014-12-07 10:08:50,491 [25](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:17836/bmdataancy/GetQAJS?syncdt=2014-11-10
+异常信息:更新条目时出错。有关详细信息，请参见内部异常。
+2014-12-07 10:25:36,749 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-12-07 10:25:53,833 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启后开启任务调度器
+2014-12-07 10:25:55,916 [7](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-12-07 10:27:51,078 [24](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 同步问题信息http://www.bungma.com/DivniTxiuen/QAJS?tok=C23m5TDe43SgHmv%2f1hgIaMLZypKcXqIwJmLviK6UVjQKOE1hPN2GB92ZzwrxxCi3&SyncDT=2014/11/10 0:00:00
+2014-12-07 10:27:52,329 [24](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 有获取到问题数据
+2014-12-07 10:27:57,180 [24](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 同步用户信息http://www.bungma.com/DivniTxiuen/UJS?tok=C23m5TDe43SgHmv%2f1hgIaDwWDtjbwoLzpFcIAAYxOb95K7a5U0XmsdFp9OpKQRNS&UIds=4087ca79-826b-4507-82e7-479a20d3b53e%2cd2bf99fa-3b69-42e5-8cc3-34aa170d4b74%2c94f5b72d-1fd3-4bc6-a9aa-6d944e5e5582%2ce26ef963-ff8d-4569-b019-7fe16103c934%2cd0520a31-47f8-4a78-910e-6d453197d412
+2014-12-07 10:28:04,137 [24](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 有获取到用户数据
+2014-12-07 12:54:11,336 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-12-07 12:54:26,956 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启后开启任务调度器
+2014-12-07 12:54:31,005 [10](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-12-07 13:06:17,324 [30](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 同步问题信息http://www.bungma.com/DivniTxiuen/QAJS?tok=iic7anQuLnWzyG5oqLprpwDlHvr0hgR0yO14TXahDVXl65PxEQ7%2bxOBRwsVOZScl&SyncDT=2014/11/10 0:00:00
+2014-12-07 13:06:18,749 [30](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 有获取到问题数据
+2014-12-07 13:32:04,019 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-12-07 13:32:08,086 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启后开启任务调度器
+2014-12-07 13:32:08,662 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-12-07 13:33:00,427 [MorSunScheduler_Worker-1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 定时器开始执行问题数据同步
+2014-12-07 13:33:00,444 [MorSunScheduler_Worker-1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 当天用户数据同步开始时间：2014/12/7 2:00:00当天用户数据同步结束时间2014/12/7 4:00:00
+2014-12-07 13:35:11,671 [MorSunScheduler_Worker-1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 同步问题信息http://www.bungma.com/DivniTxiuen/QAJS?tok=ohxUKWhLNlE3iYKaqpGdLdCpj2zq5dKYpnN%2b6GwAp4oQERlkAxMN7Wl6ClJRyeXn
+2014-12-07 13:35:12,219 [MorSunScheduler_Worker-1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 有获取到问题数据
+2014-12-07 17:19:03,536 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-12-07 17:19:21,713 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启后开启任务调度器
+2014-12-07 17:19:23,930 [MorSunScheduler_Worker-1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 定时器开始执行问题数据同步
+2014-12-07 17:19:23,934 [MorSunScheduler_Worker-1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 当天问题数据同步开始时间：2014/12/7 2:00:00当天问题数据同步结束时间2014/12/7 4:00:00
+2014-12-07 17:19:24,397 [MorSunScheduler_Worker-1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 同步问题信息http://www.bungma.com/DivniTxiuen/QAJS?tok=VS264OpZ09ADJMU3d24AaYnLapAwICX1DFJjyfgw1tEeb9NKU2eZ5ut7XmMyGcIG
+2014-12-07 17:19:25,499 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-12-07 17:19:26,047 [MorSunScheduler_Worker-1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 有获取到问题数据
+2014-12-07 17:20:56,960 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:111) ERROR System.Object [(null)] - 
+客户机IP:::1
+错误地址:http://localhost:17836/sysconfig/triggerjob?name=job77&group=group77
+异常信息:Couldn't store trigger 'DEFAULT.MT_5555894268003735182' for 'group77.job77' job: The job (group77.job77) referenced by the trigger does not exist.
+2014-12-07 17:28:40,049 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-12-07 17:28:41,573 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启后开启任务调度器
+2014-12-07 17:28:46,526 [8](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-12-07 22:03:18,494 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2014-12-07 22:03:30,858 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启后开启任务调度器
+2014-12-07 22:03:33,091 [9](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-12-07 22:05:33,406 [9](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 同步问题信息http://www.bungma.com/DivniTxiuen/QAJS?tok=PA9vQQJXNjICGJviaeJ33Dn1EGdGVdLgQME4oS4K2pmHnOs4CmuyISqDATrFPzIH&SyncDT=2014/11/10 0:00:00
+2014-12-07 22:05:36,787 [9](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 有获取到问题数据
+2014-12-07 22:10:24,298 [6](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-12-07 22:10:35,163 [6](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - zsfyou@qq.com登录
+2014-12-07 22:10:37,297 [28](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-12-07 22:12:05,227 [9](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-12-07 22:12:20,256 [25](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2014-12-07 22:12:23,238 [5](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 同步问题信息http://www.bungma.com/DivniTxiuen/QAJS?tok=3Br5bGKs5GiaolHuZrxr%2fP0Zo4%2fV6oL4WSSfeV9JLtII7npXJItkhjZXzMTJ7Sym&SyncDT=2014/11/10 0:00:00
+2014-12-07 22:12:23,572 [5](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 有获取到问题数据

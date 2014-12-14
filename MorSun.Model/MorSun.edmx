@@ -187,6 +187,20 @@
           <Property Name="FlagTrashed" Type="bit" Nullable="false" />
           <Property Name="FlagDeleted" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="bmKaMeRCSend">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SendData" Type="ntext" />
+          <Property Name="SendRef" Type="uniqueidentifier" />
+          <Property Name="Sort" Type="int" />
+          <Property Name="RegUser" Type="uniqueidentifier" />
+          <Property Name="RegTime" Type="datetime" />
+          <Property Name="ModTime" Type="datetime" />
+          <Property Name="FlagTrashed" Type="bit" Nullable="false" />
+          <Property Name="FlagDeleted" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="bmNew">
           <Key>
             <PropertyRef Name="ID" />
@@ -2400,6 +2414,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_bmKaMeRCSend_aspnet_Users">
+          <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="0..1" />
+          <End Role="bmKaMeRCSend" Type="Self.bmKaMeRCSend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="bmKaMeRCSend">
+              <PropertyRef Name="RegUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmKaMeRCSend_wmfReference">
+          <End Role="wmfReference" Type="Self.wmfReference" Multiplicity="0..1" />
+          <End Role="bmKaMeRCSend" Type="Self.bmKaMeRCSend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wmfReference">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmKaMeRCSend">
+              <PropertyRef Name="SendRef" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_bmObjection_aspnet_Users">
           <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="0..1" />
           <End Role="bmObjection" Type="Self.bmObjection" Multiplicity="*" />
@@ -3881,6 +3919,7 @@
           <EntitySet Name="aspnet_UsersInRoles" EntityType="Self.aspnet_UsersInRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="aspnet_WebEvent_Events" EntityType="Self.aspnet_WebEvent_Events" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="bmKaMe" EntityType="Self.bmKaMe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bmKaMeRCSend" EntityType="Self.bmKaMeRCSend" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="bmNew" EntityType="Self.bmNew" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="bmObjection" EntityType="Self.bmObjection" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="bmOnlineQAUser" EntityType="Self.bmOnlineQAUser" Schema="dbo" store:Type="Tables" />
@@ -4166,6 +4205,14 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <AssociationSet Name="FK_bmKaMe_wmfReference2" Association="Self.FK_bmKaMe_wmfReference2">
             <End Role="wmfReference" EntitySet="wmfReference" />
             <End Role="bmKaMe" EntitySet="bmKaMe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmKaMeRCSend_aspnet_Users" Association="Self.FK_bmKaMeRCSend_aspnet_Users">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="bmKaMeRCSend" EntitySet="bmKaMeRCSend" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmKaMeRCSend_wmfReference" Association="Self.FK_bmKaMeRCSend_wmfReference">
+            <End Role="wmfReference" EntitySet="wmfReference" />
+            <End Role="bmKaMeRCSend" EntitySet="bmKaMeRCSend" />
           </AssociationSet>
           <AssociationSet Name="FK_bmObjection_aspnet_Users" Association="Self.FK_bmObjection_aspnet_Users">
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
@@ -4830,6 +4877,7 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <NavigationProperty Name="wmfUserDeptPositions" Relationship="Self.FK_wmfUserDeptPosition_aspnet_Users" FromRole="aspnet_Users" ToRole="wmfUserDeptPosition" />
           <NavigationProperty Name="wmfUserInfo" Relationship="Self.FK_wmfUserInfo_aspnet_Users" FromRole="aspnet_Users" ToRole="wmfUserInfo" />
           <NavigationProperty Name="aspnet_Roles" Relationship="Self.aspnet_UsersInRoles" FromRole="aspnet_Users" ToRole="aspnet_Roles" />
+          <NavigationProperty Name="bmKaMeRCSends" Relationship="MorSun.Model.FK_bmKaMeRCSend_aspnet_Users" FromRole="aspnet_Users" ToRole="bmKaMeRCSend" />
         </EntityType>
         <EntityType Name="aspnet_WebEvent_Events">
           <Key>
@@ -6724,6 +6772,7 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <NavigationProperty Name="wmfUploadFiles" Relationship="Self.FK_wmfUploadFile_wmfReference" FromRole="wmfReference" ToRole="wmfUploadFile" />
           <NavigationProperty Name="wmfUserInfoes" Relationship="Self.FK_wmfUserInfo_wmfReference" FromRole="wmfReference" ToRole="wmfUserInfo" />
           <NavigationProperty Name="wmfUserInfoes1" Relationship="Self.FK_wmfUserInfo_wmfReference1" FromRole="wmfReference" ToRole="wmfUserInfo" />
+          <NavigationProperty Name="bmKaMeRCSends" Relationship="MorSun.Model.FK_bmKaMeRCSend_wmfReference" FromRole="wmfReference" ToRole="bmKaMeRCSend" />
         </EntityType>
         <EntityType Name="wmfRefGroup">
           <Key>
@@ -9339,6 +9388,15 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
             <End Role="bmTakeNow" EntitySet="bmTakeNows" />
             <End Role="bmUserMaBiRecord" EntitySet="bmUserMaBiRecords" />
           </AssociationSet>
+          <EntitySet Name="bmKaMeRCSends" EntityType="MorSun.Model.bmKaMeRCSend" />
+          <AssociationSet Name="FK_bmKaMeRCSend_aspnet_Users" Association="MorSun.Model.FK_bmKaMeRCSend_aspnet_Users">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="bmKaMeRCSend" EntitySet="bmKaMeRCSends" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmKaMeRCSend_wmfReference" Association="MorSun.Model.FK_bmKaMeRCSend_wmfReference">
+            <End Role="wmfReference" EntitySet="wmfReferences" />
+            <End Role="bmKaMeRCSend" EntitySet="bmKaMeRCSends" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_bmUserMaBiRecord_bmRecharge">
           <End Type="MorSun.Model.bmRecharge" Role="bmRecharge" Multiplicity="0..1" />
@@ -9361,6 +9419,46 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
             </Principal>
             <Dependent Role="bmUserMaBiRecord">
               <PropertyRef Name="TkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="bmKaMeRCSend">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="SendData" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SendRef" Type="Guid" />
+          <Property Name="Sort" Type="Int32" />
+          <Property Name="RegUser" Type="Guid" />
+          <Property Name="RegTime" Type="DateTime" Precision="3" />
+          <Property Name="ModTime" Type="DateTime" Precision="3" />
+          <Property Name="FlagTrashed" Type="Boolean" Nullable="false" />
+          <Property Name="FlagDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="aspnet_Users" Relationship="MorSun.Model.FK_bmKaMeRCSend_aspnet_Users" FromRole="bmKaMeRCSend" ToRole="aspnet_Users" />
+          <NavigationProperty Name="wmfReference" Relationship="MorSun.Model.FK_bmKaMeRCSend_wmfReference" FromRole="bmKaMeRCSend" ToRole="wmfReference" />
+        </EntityType>
+        <Association Name="FK_bmKaMeRCSend_aspnet_Users">
+          <End Type="MorSun.Model.aspnet_Users" Role="aspnet_Users" Multiplicity="0..1" />
+          <End Type="MorSun.Model.bmKaMeRCSend" Role="bmKaMeRCSend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="bmKaMeRCSend">
+              <PropertyRef Name="RegUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmKaMeRCSend_wmfReference">
+          <End Type="MorSun.Model.wmfReference" Role="wmfReference" Multiplicity="0..1" />
+          <End Type="MorSun.Model.bmKaMeRCSend" Role="bmKaMeRCSend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wmfReference">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmKaMeRCSend">
+              <PropertyRef Name="SendRef" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -11660,6 +11758,21 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
               <ScalarProperty Name="UserId" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="bmKaMeRCSends">
+            <EntityTypeMapping TypeName="MorSun.Model.bmKaMeRCSend">
+              <MappingFragment StoreEntitySet="bmKaMeRCSend">
+                <ScalarProperty Name="FlagDeleted" ColumnName="FlagDeleted" />
+                <ScalarProperty Name="FlagTrashed" ColumnName="FlagTrashed" />
+                <ScalarProperty Name="ModTime" ColumnName="ModTime" />
+                <ScalarProperty Name="RegTime" ColumnName="RegTime" />
+                <ScalarProperty Name="RegUser" ColumnName="RegUser" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="SendRef" ColumnName="SendRef" />
+                <ScalarProperty Name="SendData" ColumnName="SendData" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

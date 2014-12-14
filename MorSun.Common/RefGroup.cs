@@ -333,6 +333,8 @@ namespace MorSun.Common
             public const string 数据同步_作业邦信息 = "/DivniTxiuen/QAJS";
             //马币充值信息同步
             public const string 数据同步_马币充值信息 = "/DivniTxiuen/RCJS";
+            //确认服务器是否可用
+            public const string 数据同步_服务器是否可用 = "/DivniTxiuen/ServerIsOk";
         }
     }
 

@@ -270,6 +270,9 @@
         <AssociationConnector Association="MorSun.Model.aspnet_UsersInRoles" ManuallyRouted="false" />
         <AssociationConnector Association="MorSun.Model.FK_bmUserMaBiRecord_bmRecharge" />
         <AssociationConnector Association="MorSun.Model.FK_bmUserMaBiRecord_bmTakeNow" />
+        <EntityTypeShape EntityType="MorSun.Model.bmKaMeRCSend" Width="1.5" PointX="15" PointY="65" />
+        <AssociationConnector Association="MorSun.Model.FK_bmKaMeRCSend_aspnet_Users" />
+        <AssociationConnector Association="MorSun.Model.FK_bmKaMeRCSend_wmfReference" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
