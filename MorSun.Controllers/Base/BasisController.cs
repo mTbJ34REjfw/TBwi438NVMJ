@@ -1368,7 +1368,9 @@ namespace MorSun.Controllers
                 //充值BLL
                 var rcBll = new BaseBll<bmRecharge>();
                 //取出未设置充值的卡密数据
-                var _rcList = rcBll.All.Where(p => p.Effective == null && p.Recharge == null && p.UserId != null);
+                var wcz = Guid.Parse(Reference.卡密充值_未充值);
+                var _rcList = rcBll.All.Where(p => p.Effective == null && (p.Recharge == null || p.Recharge == wcz) && p.UserId != null); //系统并发时有可能取到已充值卡密记录
+                var _newRcList = new List<bmRecharge>();
 
                 //用户马币BLL
                 var bmMBRBll = new BaseBll<bmUserMaBiRecord>();
@@ -1378,13 +1380,14 @@ namespace MorSun.Controllers
                 var _rzUserId = new List<Guid>();
                 //卡密BLL
                 var kmBll = new BaseBll<bmKaMe>();
-                if (_rcList.Count() != 0)
+                if (_rcList.Count() > 0)
                 {
                     var rcMb = _rcList.Select(p => p.KaMe);
                 
-                    var wcz = Guid.Parse(Reference.卡密充值_未充值);
+                    
                     //从已充值的卡密信息取出有效卡密
-                    var _kmList = kmBll.All.Where(p => rcMb.Contains(p.KaMe) && (p.Recharge == null || p.Recharge == wcz));
+                    //取卡密时不过滤是否已充值，如果已充值，则不变更充值记录与马币记录//  这貌似不太好处理，先取未充值的卡密来操作吧
+                    var _kmList = kmBll.All.Where(p => rcMb.Contains(p.KaMe)&& (p.Recharge == null || p.Recharge == wcz));
 
                     var ycz = Guid.Parse(Reference.卡密充值_已充值);
                     var yx = Guid.Parse(Reference.卡密有效性_有效);
@@ -1396,60 +1399,73 @@ namespace MorSun.Controllers
                         foreach(var rc in _rcList)
                         {
                             if(yxKaMe.Contains(rc.KaMe))
-                            {//有效卡密
-                                rc.Recharge = ycz;
-                                rc.Effective = yx;
-
+                            {//有效卡密   
                                 //根据卡密类型生成马币记录或认证记录
                                 var ckm = _kmList.FirstOrDefault(p => p.KaMe == rc.KaMe);
-                                if (ckm.KaMeRef == Guid.Parse(Reference.卡密类别_认证66))
-                                {
-                                    _rzUserId.Add(rc.UserId.Value);
-                                }
-                                else
-                                {//根据马币类别，生成用户马币记录并添加到发送表去。保证本地的马币类别不能被修改
-                                    var umbrModel = new bmUserMaBiRecord();
-                                    umbrModel.SourceRef = Guid.Parse(Reference.马币来源_充值);
-                                    umbrModel.MaBiRef = Guid.Parse(Reference.马币类别_马币);
-                                    var mbNum = 10;
-                                    try
+                                ////卡密必须是未充值的状态才进行以下操作
+                                //if(ckm.Recharge != ycz)
+                                //{
+                                    rc.Recharge = ycz;
+                                    rc.Effective = yx;
+                                    _newRcList.Add(rc);
+                                    if (ckm.KaMeRef == Guid.Parse(Reference.卡密类别_认证66))
                                     {
-                                        mbNum = Convert.ToInt32(ckm.wmfReference.ItemInfo);
+                                        _rzUserId.Add(rc.UserId.Value);
                                     }
-                                    catch
-                                    {
-                                        LogHelper.Write("卡密充值类别设置错误导致充值失误", LogHelper.LogMessageType.Info);
+                                    else
+                                    {//根据马币类别，生成用户马币记录并添加到发送表去。保证本地的马币类别不能被修改
+                                        var umbrModel = new bmUserMaBiRecord();
+                                        umbrModel.SourceRef = Guid.Parse(Reference.马币来源_充值);
+                                        umbrModel.MaBiRef = Guid.Parse(Reference.马币类别_马币);
+                                        var mbNum = 10;
+                                        try
+                                        {
+                                            mbNum = Convert.ToInt32(ckm.wmfReference.ItemInfo);
+                                        }
+                                        catch
+                                        {
+                                            LogHelper.Write("卡密充值类别设置错误导致充值失误", LogHelper.LogMessageType.Info);
+                                        }
+                                        if (mbNum > 1000)
+                                            mbNum = 10;
+                                        umbrModel.MaBiNum = mbNum * 1000;//10元=10000马币
+                                        umbrModel.RCId = rc.ID;
+
+                                        umbrModel.IsSettle = false; //充值马币时，都是未结算的，但用户可以使用。后面结算是要将未结算的标识为结算
+                                        umbrModel.RegTime = DateTime.Now;
+                                        umbrModel.ModTime = DateTime.Now;
+                                        umbrModel.FlagTrashed = false;
+                                        umbrModel.FlagDeleted = false;
+
+                                        umbrModel.ID = Guid.NewGuid();
+                                        umbrModel.UserId = rc.UserId;
+                                        umbrModel.RegUser = rc.UserId;
+
+                                        _sdMBR.Add(umbrModel);
+                                        //bmMBRBll.Insert(umbrModel, false);//这边直接设置，数据同步成功之后，再统一更新到数据库
                                     }
-                                    if (mbNum > 1000)
-                                        mbNum = 10;
-                                    umbrModel.MaBiNum = mbNum * 1000;//10元=10000马币
-                                    umbrModel.RCId = rc.ID;
-
-                                    umbrModel.IsSettle = false; //充值马币时，都是未结算的，但用户可以使用。后面结算是要将未结算的标识为结算
-                                    umbrModel.RegTime = DateTime.Now;
-                                    umbrModel.ModTime = DateTime.Now;
-                                    umbrModel.FlagTrashed = false;
-                                    umbrModel.FlagDeleted = false;
-
-                                    umbrModel.ID = Guid.NewGuid();
-                                    umbrModel.UserId = rc.UserId;
-                                    umbrModel.RegUser = rc.UserId;
-
-                                    _sdMBR.Add(umbrModel);
-                                    bmMBRBll.Insert(umbrModel, false);//这边直接设置，数据同步成功之后，再统一更新到数据库
-                                }
+                                //}//ckm==wcz
+                                //else
+                                //{
+                                //    rc.Recharge = wcz;
+                                //    rc.Effective = wx;
+                                //}
                             }
                             else
                             {//无效卡密
                                 rc.Recharge = wcz;
                                 rc.Effective = wx;
+                                _newRcList.Add(rc);
                             }
                         }
                         //卡密设置为充值状态
                         foreach(var km in _kmList)
                         {
-                            km.Recharge = ycz;
-                            km.OperateTime = DateTime.Now;
+                            if(km.Recharge != ycz)
+                            { 
+                                km.Recharge = ycz;
+                                km.OperateTime = DateTime.Now;
+                            }
                         }
                         //设置本地需要认证的用户为认证
                         if(_rzUserId.Count() > 0)
@@ -1475,10 +1491,36 @@ namespace MorSun.Controllers
                     var localSave = false;
                     try
                     {
-                        rcBll.UpdateChanges();
-                        bmMBRBll.UpdateChanges();
-                        uiBll.UpdateChanges();
-                        kmBll.UpdateChanges();
+                        //先对数据进行过滤，避免并发出现多充值的情况 主要是生成的马币不能重复
+                        var rcids = _sdMBR.Select(p => p.RCId);
+                        var alreadyMBR = bmMBRBll.All.Where(p => rcids.Contains(p.RCId)).Select(p => p.RCId);
+                        //过滤掉已经充值过的马币记录
+                        _sdMBR = _sdMBR.Where(p => !alreadyMBR.Contains(p.RCId)).ToList();
+
+                        //充值记录
+                        if (_rcList.Count() > 0)
+                        {
+                            rcBll.UpdateChanges();
+                        }
+                        //生成的马币记录
+                        if(_sdMBR.Count() > 0)
+                        { 
+                            foreach(var m in _sdMBR)
+                            {
+                                bmMBRBll.Insert(m, false);
+                            }
+                            bmMBRBll.UpdateChanges();
+                        }
+                        //用户认证记录
+                        if (_rzUserId.Count() > 0)
+                        {
+                            uiBll.UpdateChanges();
+                        }
+                        //卡密记录
+                        if (_kmList.Count() > 0)
+                        {
+                            kmBll.UpdateChanges();
+                        }
                         localSave = true;
                     }
                     catch (Exception ex)
@@ -1493,13 +1535,13 @@ namespace MorSun.Controllers
                         //生成JSON数据
                         var newRCList = new List<bmRechargeJson>();
                         var newMBList = new List<bmUserMaBiRecordJson>();
-                        if (_rcList.Count() == 0)
-                        {
+                        if (_newRcList.Count() == 0)
+                        {//更新后rcList会等于空，要用另外一个对象存储
                             s += " ";
                         }
                         else
                         {
-                            foreach (var u in _rcList)
+                            foreach (var u in _newRcList)
                             {
                                 var t = new bmRechargeJson
                                 {
@@ -1572,7 +1614,7 @@ namespace MorSun.Controllers
                         result = "";
                         var dts = DateTime.Now.ToString();
                         var tok = SecurityHelper.Encrypt(dts + ";" + CFG.邦马网_对接统一码);
-                        strUrl = CFG.网站域名 + CFG.数据同步_马币充值信息;
+                        strUrl = CFG.网站域名 + CFG.数据同步_卡密充值;
 
                         //未Encode的URL
                         string neAppentUrl = "?tok=" + tok;
@@ -1604,7 +1646,7 @@ namespace MorSun.Controllers
                             result = "";
                             dts = DateTime.Now.ToString();
                             tok = SecurityHelper.Encrypt(dts + ";" + CFG.邦马网_对接统一码);
-                            strUrl = CFG.网站域名 + CFG.数据同步_马币充值信息;
+                            strUrl = CFG.网站域名 + CFG.数据同步_卡密充值;
 
                             //未Encode的URL
                             neAppentUrl = "?tok=" + tok;
