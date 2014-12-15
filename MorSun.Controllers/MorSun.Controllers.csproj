@@ -111,10 +111,10 @@
     <Compile Include="ControllersUserCenter\HomeController.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Quartz\AncyRCJOB7\CheckingJob7.cs" />
-    <Compile Include="Quartz\AncyRCJOB7\CheckingTrigger7.cs" />
     <Compile Include="Quartz\AncyQAJOB6\CheckingJob6.cs" />
     <Compile Include="Quartz\AncyQAJOB6\CheckingTrigger6.cs" />
+    <Compile Include="Quartz\AncyRCJOB7\CheckingJob7.cs" />
+    <Compile Include="Quartz\AncyRCJOB7\CheckingTrigger7.cs" />
     <Compile Include="Quartz\AncyUserJOB5\CheckingJob5.cs" />
     <Compile Include="Quartz\AncyUserJOB5\CheckingTrigger5.cs" />
     <Compile Include="Quartz\MorSunScheduler.cs" />
