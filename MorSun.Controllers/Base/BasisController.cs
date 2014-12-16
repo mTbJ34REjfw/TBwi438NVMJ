@@ -159,7 +159,7 @@ namespace MorSun.Controllers
         /// <param name="tok"></param>
         /// <param name="rz"></param>
         /// <returns></returns>
-        protected static bool IsRZ(string tok, bool rz)
+        protected static bool IsRZ(string tok, bool rz, HttpRequestBase rq)
         {
             try
             {
@@ -170,18 +170,20 @@ namespace MorSun.Controllers
                 DateTime dt = DateTime.Parse(ts.Substring(0, ind));
                 //用定时器执行时会延迟，5秒不够
                 if (dt.AddSeconds(12) < DateTime.Now || !ts.Contains(CFG.邦马网_对接统一码))
-                {//限制45秒内
+                {//限制8秒内
                     rz = false;
+                    LogHelper.Write("访问未认证" + rq.RawUrl, LogHelper.LogMessageType.Info);
                 }
                 else
                 {
                     rz = true;
-                    LogHelper.Write("时间：" + ts.Substring(0, ind), LogHelper.LogMessageType.Info);
+                    LogHelper.Write("时间：" + ts.Substring(0, ind), LogHelper.LogMessageType.Debug);
                 }
             }
             catch
             {
                 rz = false;
+                LogHelper.Write("访问各种原因认证出错" + rq.RawUrl, LogHelper.LogMessageType.Error);
             }
             return rz;
         }
@@ -1405,45 +1407,50 @@ namespace MorSun.Controllers
                                 ////卡密必须是未充值的状态才进行以下操作
                                 //if(ckm.Recharge != ycz)
                                 //{
-                                    rc.Recharge = ycz;
-                                    rc.Effective = yx;
-                                    _newRcList.Add(rc);
-                                    if (ckm.KaMeRef == Guid.Parse(Reference.卡密类别_认证66))
-                                    {
-                                        _rzUserId.Add(rc.UserId.Value);
-                                    }
-                                    else
-                                    {//根据马币类别，生成用户马币记录并添加到发送表去。保证本地的马币类别不能被修改
-                                        var umbrModel = new bmUserMaBiRecord();
-                                        umbrModel.SourceRef = Guid.Parse(Reference.马币来源_充值);
-                                        umbrModel.MaBiRef = Guid.Parse(Reference.马币类别_马币);
-                                        var mbNum = 10;
-                                        try
-                                        {
-                                            mbNum = Convert.ToInt32(ckm.wmfReference.ItemInfo);
-                                        }
-                                        catch
-                                        {
-                                            LogHelper.Write("卡密充值类别设置错误导致充值失误", LogHelper.LogMessageType.Info);
-                                        }
-                                        if (mbNum > 1000)
-                                            mbNum = 10;
-                                        umbrModel.MaBiNum = mbNum * 1000;//10元=10000马币
-                                        umbrModel.RCId = rc.ID;
+                                var mbRef = Guid.Parse(Reference.马币类别_马币);
+                                rc.Recharge = ycz;
+                                rc.Effective = yx;
+                                rc.KaMeRef = mbRef;
 
-                                        umbrModel.IsSettle = false; //充值马币时，都是未结算的，但用户可以使用。后面结算是要将未结算的标识为结算
-                                        umbrModel.RegTime = DateTime.Now;
-                                        umbrModel.ModTime = DateTime.Now;
-                                        umbrModel.FlagTrashed = false;
-                                        umbrModel.FlagDeleted = false;
+                                var mbNum = 10;
+                                try
+                                {
+                                    mbNum = Convert.ToInt32(ckm.wmfReference.ItemInfo);
+                                }
+                                catch
+                                {
+                                    LogHelper.Write("卡密充值类别设置错误导致充值失误", LogHelper.LogMessageType.Info);
+                                }
+                                if (mbNum > 1000)
+                                    mbNum = 10;
 
-                                        umbrModel.ID = Guid.NewGuid();
-                                        umbrModel.UserId = rc.UserId;
-                                        umbrModel.RegUser = rc.UserId;
+                                rc.MaBiNum = mbNum * 1000;
+                                _newRcList.Add(rc);
+                                if (ckm.KaMeRef == Guid.Parse(Reference.卡密类别_认证66))
+                                {
+                                    _rzUserId.Add(rc.UserId.Value);
+                                }
+                                else
+                                {//根据马币类别，生成用户马币记录并添加到发送表去。保证本地的马币类别不能被修改
+                                    var umbrModel = new bmUserMaBiRecord();
+                                    umbrModel.SourceRef = Guid.Parse(Reference.马币来源_充值);
+                                    umbrModel.MaBiRef = mbRef;                                   
+                                    umbrModel.MaBiNum = mbNum * 1000;//10元=10000马币
+                                    umbrModel.RCId = rc.ID;
 
-                                        _sdMBR.Add(umbrModel);
-                                        //bmMBRBll.Insert(umbrModel, false);//这边直接设置，数据同步成功之后，再统一更新到数据库
-                                    }
+                                    umbrModel.IsSettle = false; //充值马币时，都是未结算的，但用户可以使用。后面结算是要将未结算的标识为结算
+                                    umbrModel.RegTime = DateTime.Now;
+                                    umbrModel.ModTime = DateTime.Now;
+                                    umbrModel.FlagTrashed = false;
+                                    umbrModel.FlagDeleted = false;
+
+                                    umbrModel.ID = Guid.NewGuid();
+                                    umbrModel.UserId = rc.UserId;
+                                    umbrModel.RegUser = rc.UserId;
+
+                                    _sdMBR.Add(umbrModel);
+                                    //bmMBRBll.Insert(umbrModel, false);//这边直接设置，数据同步成功之后，再统一更新到数据库
+                                }
                                 //}//ckm==wcz
                                 //else
                                 //{
@@ -1548,6 +1555,8 @@ namespace MorSun.Controllers
                                     ID = u.ID,
                                     Recharge = u.Recharge,
                                     Effective = u.Effective,
+                                    KaMeRef = u.KaMeRef,
+                                    MaBiNum = u.MaBiNum
                                 };
                                 newRCList.Add(t);
                             }
@@ -1665,7 +1674,7 @@ namespace MorSun.Controllers
                             }
                             else
                             {
-                                LogHelper.Write("马币充值信息继续未同步成功：" + nonSuccessRC.SendData, LogHelper.LogMessageType.Info);
+                                LogHelper.Write("马币充值信息继续未同步成功：" + nonSuccessRC.SendData, LogHelper.LogMessageType.Error);
                             }
                         }
                     }
