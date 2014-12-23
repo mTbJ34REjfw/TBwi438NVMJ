@@ -145,6 +145,10 @@ namespace MorSun.Common
             //充值数据发送            
             public const string 充值数据发送_成功 = "11b07b3f-1b05-4a68-885b-c823a16015b6";
             public const string 充值数据发送_失败 = "d6269263-d014-496a-8fc4-ad1b50efa512";
+
+            //答题认证情况
+            public const string 答题认证情况_认证 = "1f521c73-a9af-4ba6-85d4-00a8803dcf72";
+            public const string 答题认证情况_取消认证 = "dba1dbaa-644a-4378-ab5b-c1bb68533327";
             #endregion
 
             //用户表数据同步时间
@@ -237,6 +241,16 @@ namespace MorSun.Common
             /// 充值数据发送
             /// </summary>
             public const string 充值数据发送 = "6723e46a-97f7-4551-9c00-65fbafa8af0e";
+
+            /// <summary>
+            /// 开户银行
+            /// </summary>
+            public const string 开户银行 = "ca097415-a4ed-4fee-8562-b629458fa54f";
+
+            /// <summary>
+            /// 认证情况
+            /// </summary>
+            public const string 答题认证情况 = "04b0d0dc-a2df-448f-80dd-5bebcc61631b";
         }
     }    
 

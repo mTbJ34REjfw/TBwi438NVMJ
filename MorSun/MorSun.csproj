@@ -770,6 +770,10 @@
     <Content Include="Views\BMKaMe\BeachAdd.cshtml" />
     <Content Include="Views\BMKaMe\BeachImport.cshtml" />
     <Content Include="Views\BMKaMe\Index.cshtml" />
+    <Content Include="Views\BMUserPay\Add.cshtml" />
+    <Content Include="Views\BMUserPay\Edit.cshtml" />
+    <Content Include="Views\BMUserPay\Index.cshtml" />
+    <Content Include="Views\BMUserPay\Sort.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

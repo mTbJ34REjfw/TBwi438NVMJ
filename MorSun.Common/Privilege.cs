@@ -191,6 +191,9 @@ namespace MorSun.Common.Privelege
         public const string 取现 = "2bdceded-c43e-4576-b1aa-612502086a41";
 
         //卡密
-        public const string 卡密 = "d51546c6-66a6-42f7-bdb8-2ab5b9bb770a";   
+        public const string 卡密 = "d51546c6-66a6-42f7-bdb8-2ab5b9bb770a";
+
+        //支付
+        public const string 支付 = "dbe2a089-d104-4493-86b9-dc8dedc75997"; 
     }   
 }

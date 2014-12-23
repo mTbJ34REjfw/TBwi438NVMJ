@@ -427,6 +427,25 @@
           <Property Name="FlagTrashed" Type="bit" Nullable="false" />
           <Property Name="FlagDeleted" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="bmUserPay">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="TrueName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ALiPayNum" Type="nvarchar" MaxLength="50" />
+          <Property Name="BankRef" Type="uniqueidentifier" />
+          <Property Name="BankNum" Type="nvarchar" MaxLength="50" />
+          <Property Name="CertificationRef" Type="uniqueidentifier" />
+          <Property Name="Remark" Type="nvarchar(max)" />
+          <Property Name="Sort" Type="int" />
+          <Property Name="RegUser" Type="uniqueidentifier" />
+          <Property Name="RegTime" Type="datetime" />
+          <Property Name="ModTime" Type="datetime" />
+          <Property Name="FlagTrashed" Type="bit" Nullable="false" />
+          <Property Name="FlagDeleted" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="bmUserWeixin">
           <Key>
             <PropertyRef Name="ID" />
@@ -2918,18 +2937,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_bmUserMaBiRecord_bmRecharge">
-          <End Role="bmRecharge" Type="Self.bmRecharge" Multiplicity="0..1" />
-          <End Role="bmUserMaBiRecord" Type="Self.bmUserMaBiRecord" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="bmRecharge">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="bmUserMaBiRecord">
-              <PropertyRef Name="RCId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_bmUserMaBiRecord_bmTakeNow">
           <End Role="bmTakeNow" Type="Self.bmTakeNow" Multiplicity="0..1" />
           <End Role="bmUserMaBiRecord" Type="Self.bmUserMaBiRecord" Multiplicity="*" />
@@ -2999,6 +3006,54 @@
             </Principal>
             <Dependent Role="bmUserMaBiSettleRecord">
               <PropertyRef Name="MaBiRef" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmUserPay_aspnet_Users">
+          <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="0..1" />
+          <End Role="bmUserPay" Type="Self.bmUserPay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="bmUserPay">
+              <PropertyRef Name="RegUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmUserPay_aspnet_Users1">
+          <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="0..1" />
+          <End Role="bmUserPay" Type="Self.bmUserPay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="bmUserPay">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmUserPay_wmfReference">
+          <End Role="wmfReference" Type="Self.wmfReference" Multiplicity="0..1" />
+          <End Role="bmUserPay" Type="Self.bmUserPay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wmfReference">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmUserPay">
+              <PropertyRef Name="BankRef" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmUserPay_wmfReference1">
+          <End Role="wmfReference" Type="Self.wmfReference" Multiplicity="0..1" />
+          <End Role="bmUserPay" Type="Self.bmUserPay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wmfReference">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmUserPay">
+              <PropertyRef Name="CertificationRef" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3932,6 +3987,7 @@
           <EntitySet Name="bmUserMaBi" EntityType="Self.bmUserMaBi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="bmUserMaBiRecord" EntityType="Self.bmUserMaBiRecord" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="bmUserMaBiSettleRecord" EntityType="Self.bmUserMaBiSettleRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bmUserPay" EntityType="Self.bmUserPay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="bmUserWeixin" EntityType="Self.bmUserWeixin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HF_AccreditUser" EntityType="Self.HF_AccreditUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HF_AppLeftMenu" EntityType="Self.HF_AppLeftMenu" Schema="dbo" store:Type="Tables" />
@@ -4370,10 +4426,6 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
             <End Role="bmQA" EntitySet="bmQA" />
             <End Role="bmUserMaBiRecord" EntitySet="bmUserMaBiRecord" />
           </AssociationSet>
-          <AssociationSet Name="FK_bmUserMaBiRecord_bmRecharge" Association="Self.FK_bmUserMaBiRecord_bmRecharge">
-            <End Role="bmRecharge" EntitySet="bmRecharge" />
-            <End Role="bmUserMaBiRecord" EntitySet="bmUserMaBiRecord" />
-          </AssociationSet>
           <AssociationSet Name="FK_bmUserMaBiRecord_bmTakeNow" Association="Self.FK_bmUserMaBiRecord_bmTakeNow">
             <End Role="bmTakeNow" EntitySet="bmTakeNow" />
             <End Role="bmUserMaBiRecord" EntitySet="bmUserMaBiRecord" />
@@ -4397,6 +4449,22 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <AssociationSet Name="FK_bmUserMaBiSettleRecord_wmfReference" Association="Self.FK_bmUserMaBiSettleRecord_wmfReference">
             <End Role="wmfReference" EntitySet="wmfReference" />
             <End Role="bmUserMaBiSettleRecord" EntitySet="bmUserMaBiSettleRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmUserPay_aspnet_Users" Association="Self.FK_bmUserPay_aspnet_Users">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="bmUserPay" EntitySet="bmUserPay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmUserPay_aspnet_Users1" Association="Self.FK_bmUserPay_aspnet_Users1">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="bmUserPay" EntitySet="bmUserPay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmUserPay_wmfReference" Association="Self.FK_bmUserPay_wmfReference">
+            <End Role="wmfReference" EntitySet="wmfReference" />
+            <End Role="bmUserPay" EntitySet="bmUserPay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmUserPay_wmfReference1" Association="Self.FK_bmUserPay_wmfReference1">
+            <End Role="wmfReference" EntitySet="wmfReference" />
+            <End Role="bmUserPay" EntitySet="bmUserPay" />
           </AssociationSet>
           <AssociationSet Name="FK_bmUserWeixin_aspnet_Users" Association="Self.FK_bmUserWeixin_aspnet_Users">
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
@@ -4878,6 +4946,8 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <NavigationProperty Name="wmfUserInfo" Relationship="Self.FK_wmfUserInfo_aspnet_Users" FromRole="aspnet_Users" ToRole="wmfUserInfo" />
           <NavigationProperty Name="aspnet_Roles" Relationship="Self.aspnet_UsersInRoles" FromRole="aspnet_Users" ToRole="aspnet_Roles" />
           <NavigationProperty Name="bmKaMeRCSends" Relationship="MorSun.Model.FK_bmKaMeRCSend_aspnet_Users" FromRole="aspnet_Users" ToRole="bmKaMeRCSend" />
+          <NavigationProperty Name="bmUserPays" Relationship="MorSun.Model.FK_bmUserPay_aspnet_Users" FromRole="aspnet_Users" ToRole="bmUserPay" />
+          <NavigationProperty Name="bmUserPays1" Relationship="MorSun.Model.FK_bmUserPay_aspnet_Users1" FromRole="aspnet_Users" ToRole="bmUserPay" />
         </EntityType>
         <EntityType Name="aspnet_WebEvent_Events">
           <Key>
@@ -6773,6 +6843,8 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <NavigationProperty Name="wmfUserInfoes" Relationship="Self.FK_wmfUserInfo_wmfReference" FromRole="wmfReference" ToRole="wmfUserInfo" />
           <NavigationProperty Name="wmfUserInfoes1" Relationship="Self.FK_wmfUserInfo_wmfReference1" FromRole="wmfReference" ToRole="wmfUserInfo" />
           <NavigationProperty Name="bmKaMeRCSends" Relationship="MorSun.Model.FK_bmKaMeRCSend_wmfReference" FromRole="wmfReference" ToRole="bmKaMeRCSend" />
+          <NavigationProperty Name="bmUserPays" Relationship="MorSun.Model.FK_bmUserPay_wmfReference" FromRole="wmfReference" ToRole="bmUserPay" />
+          <NavigationProperty Name="bmUserPays1" Relationship="MorSun.Model.FK_bmUserPay_wmfReference1" FromRole="wmfReference" ToRole="bmUserPay" />
         </EntityType>
         <EntityType Name="wmfRefGroup">
           <Key>
@@ -9397,6 +9469,23 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
             <End Role="wmfReference" EntitySet="wmfReferences" />
             <End Role="bmKaMeRCSend" EntitySet="bmKaMeRCSends" />
           </AssociationSet>
+          <EntitySet Name="bmUserPays" EntityType="MorSun.Model.bmUserPay" />
+          <AssociationSet Name="FK_bmUserPay_aspnet_Users" Association="MorSun.Model.FK_bmUserPay_aspnet_Users">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="bmUserPay" EntitySet="bmUserPays" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmUserPay_aspnet_Users1" Association="MorSun.Model.FK_bmUserPay_aspnet_Users1">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="bmUserPay" EntitySet="bmUserPays" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmUserPay_wmfReference" Association="MorSun.Model.FK_bmUserPay_wmfReference">
+            <End Role="wmfReference" EntitySet="wmfReferences" />
+            <End Role="bmUserPay" EntitySet="bmUserPays" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmUserPay_wmfReference1" Association="MorSun.Model.FK_bmUserPay_wmfReference1">
+            <End Role="wmfReference" EntitySet="wmfReferences" />
+            <End Role="bmUserPay" EntitySet="bmUserPays" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_bmUserMaBiRecord_bmRecharge">
           <End Type="MorSun.Model.bmRecharge" Role="bmRecharge" Multiplicity="0..1" />
@@ -9459,6 +9548,77 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
             </Principal>
             <Dependent Role="bmKaMeRCSend">
               <PropertyRef Name="SendRef" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="bmUserPay">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="TrueName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ALiPayNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BankRef" Type="Guid" />
+          <Property Name="BankNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sort" Type="Int32" />
+          <Property Name="RegUser" Type="Guid" />
+          <Property Name="RegTime" Type="DateTime" Precision="3" />
+          <Property Name="ModTime" Type="DateTime" Precision="3" />
+          <Property Name="FlagTrashed" Type="Boolean" Nullable="false" />
+          <Property Name="FlagDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="aspnet_Users" Relationship="MorSun.Model.FK_bmUserPay_aspnet_Users" FromRole="bmUserPay" ToRole="aspnet_Users" />
+          <NavigationProperty Name="aspnet_Users1" Relationship="MorSun.Model.FK_bmUserPay_aspnet_Users1" FromRole="bmUserPay" ToRole="aspnet_Users" />
+          <NavigationProperty Name="wmfReference" Relationship="MorSun.Model.FK_bmUserPay_wmfReference" FromRole="bmUserPay" ToRole="wmfReference" />
+          <Property Name="CertificationRef" Type="Guid" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="wmfReference1" Relationship="MorSun.Model.FK_bmUserPay_wmfReference1" FromRole="bmUserPay" ToRole="wmfReference" />
+        </EntityType>
+        <Association Name="FK_bmUserPay_aspnet_Users">
+          <End Type="MorSun.Model.aspnet_Users" Role="aspnet_Users" Multiplicity="0..1" />
+          <End Type="MorSun.Model.bmUserPay" Role="bmUserPay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="bmUserPay">
+              <PropertyRef Name="RegUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmUserPay_aspnet_Users1">
+          <End Type="MorSun.Model.aspnet_Users" Role="aspnet_Users" Multiplicity="0..1" />
+          <End Type="MorSun.Model.bmUserPay" Role="bmUserPay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="bmUserPay">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmUserPay_wmfReference">
+          <End Type="MorSun.Model.wmfReference" Role="wmfReference" Multiplicity="0..1" />
+          <End Type="MorSun.Model.bmUserPay" Role="bmUserPay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wmfReference">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmUserPay">
+              <PropertyRef Name="BankRef" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmUserPay_wmfReference1">
+          <End Type="MorSun.Model.wmfReference" Role="wmfReference" Multiplicity="0..1" />
+          <End Type="MorSun.Model.bmUserPay" Role="bmUserPay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wmfReference">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmUserPay">
+              <PropertyRef Name="CertificationRef" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -11769,6 +11929,26 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
                 <ScalarProperty Name="Sort" ColumnName="Sort" />
                 <ScalarProperty Name="SendRef" ColumnName="SendRef" />
                 <ScalarProperty Name="SendData" ColumnName="SendData" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bmUserPays">
+            <EntityTypeMapping TypeName="MorSun.Model.bmUserPay">
+              <MappingFragment StoreEntitySet="bmUserPay">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="CertificationRef" ColumnName="CertificationRef" />
+                <ScalarProperty Name="FlagDeleted" ColumnName="FlagDeleted" />
+                <ScalarProperty Name="FlagTrashed" ColumnName="FlagTrashed" />
+                <ScalarProperty Name="ModTime" ColumnName="ModTime" />
+                <ScalarProperty Name="RegTime" ColumnName="RegTime" />
+                <ScalarProperty Name="RegUser" ColumnName="RegUser" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="BankNum" ColumnName="BankNum" />
+                <ScalarProperty Name="BankRef" ColumnName="BankRef" />
+                <ScalarProperty Name="ALiPayNum" ColumnName="ALiPayNum" />
+                <ScalarProperty Name="TrueName" ColumnName="TrueName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -59,6 +59,7 @@
     <Compile Include="AttributeExtensions\LocalizedRequiredAttribute.cs" />
     <Compile Include="AttributeExtensions\RequiredIfAttribute.cs" />
     <Compile Include="BM\bmKaMe.cs" />
+    <Compile Include="BM\bmUserPay.cs" />
     <Compile Include="BM\bmQAView.cs" />
     <Compile Include="BM\bmQA.cs" />
     <Compile Include="BM\bmUserMaBi.cs" />
