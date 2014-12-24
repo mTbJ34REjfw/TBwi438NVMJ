@@ -226,10 +226,13 @@
           <Property Name="UserId" Type="uniqueidentifier" />
           <Property Name="WeiXinId" Type="nvarchar" MaxLength="128" />
           <Property Name="SubmitTime" Type="datetime" />
+          <Property Name="ErrorNum" Type="int" />
           <Property Name="ObjectionExplain" Type="nvarchar" MaxLength="4000" />
           <Property Name="HandleUser" Type="uniqueidentifier" />
+          <Property Name="IsSettle" Type="bit" />
           <Property Name="Result" Type="uniqueidentifier" />
           <Property Name="HandleTime" Type="datetime" />
+          <Property Name="ConfirmErrorNum" Type="int" />
           <Property Name="HandleExplain" Type="nvarchar" MaxLength="4000" />
           <Property Name="Sort" Type="int" />
           <Property Name="RegUser" Type="uniqueidentifier" />
@@ -311,6 +314,7 @@
           <Property Name="DistributionTime" Type="datetime" />
           <Property Name="OperateTime" Type="datetime" />
           <Property Name="Result" Type="uniqueidentifier" />
+          <Property Name="IsSettle" Type="bit" />
           <Property Name="Sort" Type="int" />
           <Property Name="RegUser" Type="uniqueidentifier" />
           <Property Name="RegTime" Type="datetime" />
@@ -5031,6 +5035,9 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <NavigationProperty Name="aspnet_Users1" Relationship="Self.FK_bmObjection_aspnet_Users1" FromRole="bmObjection" ToRole="aspnet_Users" />
           <NavigationProperty Name="bmQA" Relationship="Self.FK_bmObjection_bmQA" FromRole="bmObjection" ToRole="bmQA" />
           <NavigationProperty Name="wmfReference" Relationship="Self.FK_bmObjection_wmfReference" FromRole="bmObjection" ToRole="wmfReference" />
+          <Property Name="ErrorNum" Type="Int32" />
+          <Property Name="IsSettle" Type="Boolean" />
+          <Property Name="ConfirmErrorNum" Type="Int32" />
         </EntityType>
         <EntityType Name="bmOnlineQAUser">
           <Key>
@@ -5130,6 +5137,7 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <NavigationProperty Name="aspnet_Users1" Relationship="Self.FK_bmQADistribution_aspnet_Users1" FromRole="bmQADistribution" ToRole="aspnet_Users" />
           <NavigationProperty Name="bmQA" Relationship="Self.FK_bmQADistribution_bmQA" FromRole="bmQADistribution" ToRole="bmQA" />
           <NavigationProperty Name="wmfReference" Relationship="Self.FK_bmQADistribution_wmfReference" FromRole="bmQADistribution" ToRole="wmfReference" />
+          <Property Name="IsSettle" Type="Boolean" />
         </EntityType>
         <EntityType Name="bmRecharge">
           <Key>
@@ -9834,6 +9842,9 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <EntitySetMapping Name="bmObjections">
             <EntityTypeMapping TypeName="MorSun.Model.bmObjection">
               <MappingFragment StoreEntitySet="bmObjection">
+                <ScalarProperty Name="ConfirmErrorNum" ColumnName="ConfirmErrorNum" />
+                <ScalarProperty Name="IsSettle" ColumnName="IsSettle" />
+                <ScalarProperty Name="ErrorNum" ColumnName="ErrorNum" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="QAId" ColumnName="QAId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -9921,6 +9932,7 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <EntitySetMapping Name="bmQADistributions">
             <EntityTypeMapping TypeName="MorSun.Model.bmQADistribution">
               <MappingFragment StoreEntitySet="bmQADistribution">
+                <ScalarProperty Name="IsSettle" ColumnName="IsSettle" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="QAId" ColumnName="QAId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />

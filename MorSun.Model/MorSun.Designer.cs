@@ -9736,6 +9736,78 @@ namespace MorSun.Model
         private global::System.Boolean _FlagDeleted;
         partial void OnFlagDeletedChanging(global::System.Boolean value);
         partial void OnFlagDeletedChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ErrorNum
+        {
+            get
+            {
+                return _ErrorNum;
+            }
+            set
+            {
+                OnErrorNumChanging(value);
+                ReportPropertyChanging("ErrorNum");
+                _ErrorNum = StructuralObject.SetValidValue(value, "ErrorNum");
+                ReportPropertyChanged("ErrorNum");
+                OnErrorNumChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ErrorNum;
+        partial void OnErrorNumChanging(Nullable<global::System.Int32> value);
+        partial void OnErrorNumChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSettle
+        {
+            get
+            {
+                return _IsSettle;
+            }
+            set
+            {
+                OnIsSettleChanging(value);
+                ReportPropertyChanging("IsSettle");
+                _IsSettle = StructuralObject.SetValidValue(value, "IsSettle");
+                ReportPropertyChanged("IsSettle");
+                OnIsSettleChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSettle;
+        partial void OnIsSettleChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSettleChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ConfirmErrorNum
+        {
+            get
+            {
+                return _ConfirmErrorNum;
+            }
+            set
+            {
+                OnConfirmErrorNumChanging(value);
+                ReportPropertyChanging("ConfirmErrorNum");
+                _ConfirmErrorNum = StructuralObject.SetValidValue(value, "ConfirmErrorNum");
+                ReportPropertyChanged("ConfirmErrorNum");
+                OnConfirmErrorNumChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ConfirmErrorNum;
+        partial void OnConfirmErrorNumChanging(Nullable<global::System.Int32> value);
+        partial void OnConfirmErrorNumChanged();
 
         #endregion
 
@@ -12014,6 +12086,30 @@ namespace MorSun.Model
         private global::System.Boolean _FlagDeleted;
         partial void OnFlagDeletedChanging(global::System.Boolean value);
         partial void OnFlagDeletedChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSettle
+        {
+            get
+            {
+                return _IsSettle;
+            }
+            set
+            {
+                OnIsSettleChanging(value);
+                ReportPropertyChanging("IsSettle");
+                _IsSettle = StructuralObject.SetValidValue(value, "IsSettle");
+                ReportPropertyChanged("IsSettle");
+                OnIsSettleChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSettle;
+        partial void OnIsSettleChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSettleChanged();
 
         #endregion
 
