@@ -13,7 +13,8 @@
 <section class="featuredwhite">
     <div class="content-wrapper clear-fix">       
         <div class="alert @("alert-success".getBC("BootStrapCssAlert"))">
-            <button class="btn green submitBtn" type="button" id="submitBtn">@("提交".GX())</button>            
+            <button class="btn green submitBtn" type="button" id="submitBtn">@("提交".GX())</button>   
+            <button class="btn purple" type="button" id="ancyRZUBtn">@("同步".GX())</button>            
             <button class="btn" type="button" onclick="jumptourl('@backurl')">@("返回".GX())</button>
         </div>  
         <div class="portlet box @("red".getBC("BootStrapCssTable"))">
@@ -21,10 +22,19 @@
                 <div class="caption"><i class="icon-cogs"></i>修改支付</div>
             </div>
             <div class="portlet-body">
+            @using (Html.BeginForm("RZUser", "BMUserPay", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "fmFormRCU" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.ID)
+                @Html.HiddenFor(m => m.UserId)
+                @Html.HiddenFor(m => m.TrueName)
+                @Html.HiddenFor(m => m.ALiPayNum)
+            }
             @using (Html.BeginForm("Update", "BMUserPay", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "fmForm" }))
             {
             @Html.AntiForgeryToken()
             @Html.HiddenFor(m => m.ID)
+            @Html.HiddenFor(m => m.UserId)
             <table class="tableadd table-hover">
                 <thead>
                     <tr>
@@ -67,6 +77,7 @@
         @Scripts.Render("~/bundles/jqueryqtip")
         @Scripts.Render("~/bundles/morsuncommon")        
         <script type="text/javascript">  
-            $(ajaxSubmitFormHandle('.submitBtn', '#fmForm', '提交失败，请联系管理员', '#divInfo', false));  
+            $(ajaxSubmitFormHandle('#submitBtn', '#fmForm', '提交失败，请联系管理员', '#divInfo', false));
+            $(ajaxSubmitFormHandle('#ancyRZUBtn', '#fmFormRCU', '提交失败，请联系管理员', '#divInfo', false));
         </script>
     }

@@ -3,8 +3,8 @@
     ViewBag.Title = "添加支付";
     Layout = "~/Views/Shared/_SysLayout.cshtml";    
     string rs = ViewBag.RS;
-    var backurl = ViewBag.ReturnUrl ?? "/MM/Index";    
-
+    var backurl = ViewBag.ReturnUrl ?? "/MM/Index";
+    Model.ID = Guid.NewGuid();
     var refVModel = new ReferenceVModel();
     var NavList = refVModel.GetReferencesByRefGroupId(MorSun.Common.类别组.RefGroup.开户银行).ToList();
     var RAQKList = refVModel.GetReferencesByRefGroupId(MorSun.Common.类别组.RefGroup.答题认证情况).ToList();
@@ -22,9 +22,10 @@
                 <div class="caption"><i class="icon-cogs"></i>添加支付</div>
             </div>
             <div class="portlet-body">
-                @using (Html.BeginForm("Create", "BMUserPay", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "fmForm" }))
+                @using (Html.BeginForm("Create", "BMUserPay", new { ReturnUrl = "/BMUserPay/Edit/" + Model.ID }, FormMethod.Post, new { id = "fmForm" }))
             {
                     @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.ID)
                     @Html.HiddenFor(m => m.UserId)
                     <table class="tableadd table-hover">
                         <thead>

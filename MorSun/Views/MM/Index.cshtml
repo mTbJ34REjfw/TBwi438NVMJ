@@ -48,6 +48,7 @@
                         <tbody>
                             @foreach (var item in Model.List)
                             {
+                                var cl = item.wmfUserInfo == null ? null : item.wmfUserInfo.wmfReference1;
                                 <tr>
                                     <td>
                                         @item.UserName
@@ -56,7 +57,7 @@
                                         @(item.wmfUserInfo == null ? "" : item.wmfUserInfo.NickName)
                                     </td>
                                     <td>
-                                        @(item.wmfUserInfo == null ? "" : refVModel.GetReferenceValue(item.wmfUserInfo.CertificationLevel))
+                                        @(cl == null ? "" : cl.ItemValue)
                                     </td>
                                     
                                     <td>
@@ -65,11 +66,22 @@
                                             if (rs.HP(操作.修改))
                                             {
                                                 <button class="btn blue" type="button" onclick="jumptourl('/MM/CL?userid=@item.UserId&returnUrl=@(Url.Encode(Request.RawUrl))')">@("认证".GX())</button>
-                                            }                                            
+                                                if (cl != null && MorSun.Common.常量集.ConstList.DTCertificationLevel.Contains(cl.ID))
+                                                { 
+                                                    if (item.bmUserPays1.Count() == 0)
+                                                    {
+                                                        <button class="btn red" type="button" onclick="jumptourl('/BMUserPay/Add?userid=@item.UserId&returnUrl=@(Url.Encode(Request.RawUrl))')">@("支付".GX())</button>
+                                                    }
+                                                    else
+                                                    {
+                                                        <button class="btn purple" type="button" onclick="jumptourl('/BMUserPay/Edit?id=@(item.bmUserPays1.FirstOrDefault().ID)&userid=@item.UserId&returnUrl=@(Url.Encode(Request.RawUrl))')">@("支付".GX())</button>
+                                                    }
+                                                }
+                                            }
                                         }
                                         else if (Model.FlagTrashed == "1")
                                         {
-                                           
+
                                         }
 
                                     </td>
