@@ -278,6 +278,8 @@
         <AssociationConnector Association="MorSun.Model.FK_bmUserPay_aspnet_Users1" />
         <AssociationConnector Association="MorSun.Model.FK_bmUserPay_wmfReference" />
         <AssociationConnector Association="MorSun.Model.FK_bmUserPay_wmfReference1" />
+        <AssociationConnector Association="MorSun.Model.FK_bmUserMaBiRecord_bmObjection" />
+        <AssociationConnector Association="MorSun.Model.FK_bmUserMaBiRecord_bmQADistribution" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
