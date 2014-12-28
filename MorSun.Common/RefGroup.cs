@@ -138,6 +138,11 @@ namespace MorSun.Common
             public const string 在线状态_在线 = "da2c77e5-cdf8-413f-a722-f4325a0e2d12";
             public const string 在线状态_退出 = "963cd36d-d1c3-44d0-9499-9a7d37ef3635";
 
+            //异议处理结果
+            public const string 异议处理结果_答错 = "d22154ed-40a9-415d-b1eb-36afbb27bd31";
+            public const string 异议处理结果_答对 = "4079fb81-952d-4903-9576-2cc5c18f81d9";
+            public const string 异议处理结果_无标准答案 = "7f4b016a-c42d-4926-859e-a1774abda418";
+
             //卡密导入
             public const string 卡密导入_已导入 = "2e3048c1-6307-43ff-9059-eaa7a8eb8fb5";
             public const string 卡密导入_未导入 = "39fea57c-04dc-49ce-ab7d-95be9dfe5070";
@@ -148,7 +153,7 @@ namespace MorSun.Common
 
             //答题认证情况
             public const string 答题认证情况_认证 = "1f521c73-a9af-4ba6-85d4-00a8803dcf72";
-            public const string 答题认证情况_取消认证 = "dba1dbaa-644a-4378-ab5b-c1bb68533327";
+            public const string 答题认证情况_取消认证 = "dba1dbaa-644a-4378-ab5b-c1bb68533327";            
             #endregion
 
             //用户表数据同步时间
@@ -275,6 +280,9 @@ namespace MorSun.Common
             public const string 默认推广代码 = "bungma";
             public const string 注册默认角色 = "98dcfbe9-fa44-4832-8a1b-5a82de8d1abf";
             public const string 作业邦认证默认角色 = "776231d4-d89a-4c1f-99c9-9c0977cc76d3";
+
+            public const string 异议处理用户 = "d2bf99fa-3b69-42e5-8cc3-34aa170d4b74";
+
             ////微信
             //public const string 作业邦微信令牌 = "WXZYBung34fdjs38";
             //public const string 看答案指令 = "DA==>";
