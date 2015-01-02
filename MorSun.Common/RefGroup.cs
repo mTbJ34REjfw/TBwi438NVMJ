@@ -378,6 +378,8 @@ namespace MorSun.Common
             public const string 数据同步_认证改角色 = "/DivniTxiuen/AncyCU";
             //判断用户是否能取现
             public const string 数据同步_是否能取现 = "/DivniTxiuen/CanTakeNow";
+            //取现数据与取现马币同步
+            public const string 数据同步_取现马币 = "/DivniTxiuen/YXXTakeNow";
         }
     }
 
