@@ -7,14 +7,26 @@ using HOHO18.Common;
 
 namespace MorSun.Model
 {
-    public class bmTakeNowJson
+    public class bmCanTakeNowJson
     {
         /// <summary>
         /// 
         /// </summary>
         public Guid ID
         { get; set; }
-        
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool LocalCanTake
+        { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool ServerCanTake
+        { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
@@ -86,5 +98,4 @@ namespace MorSun.Model
         public bool FlagDeleted
         { get; set; }
     }
-
 }

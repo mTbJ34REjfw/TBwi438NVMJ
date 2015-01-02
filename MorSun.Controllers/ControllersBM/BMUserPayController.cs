@@ -98,7 +98,7 @@ namespace MorSun.Controllers.SystemController
                 if(result == "true")
                 { 
                     //封装返回的数据
-                    fillOperationResult(Url.Action("Info", "Member"), oper, "修改成功");
+                    fillOperationResult(Url.Action("Index", "MM"), oper, "修改成功");
                     return Json(oper, JsonRequestBehavior.AllowGet);
                 }
                 else

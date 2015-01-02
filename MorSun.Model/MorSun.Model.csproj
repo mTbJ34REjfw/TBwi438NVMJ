@@ -59,13 +59,16 @@
     <Compile Include="AttributeExtensions\LocalizedRequiredAttribute.cs" />
     <Compile Include="AttributeExtensions\RequiredIfAttribute.cs" />
     <Compile Include="BM\bmKaMe.cs" />
-    <Compile Include="BM\bmUserPay.cs" />
-    <Compile Include="BM\bmQAView.cs" />
-    <Compile Include="BM\bmQA.cs" />
-    <Compile Include="BM\bmUserMaBi.cs" />
-    <Compile Include="BM\bmQADistribution.cs" />
-    <Compile Include="BM\bmOnlineQAUser.cs" />
     <Compile Include="BM\bmNew.cs" />
+    <Compile Include="BM\bmOnlineQAUser.cs" />
+    <Compile Include="BM\bmQA.cs" />
+    <Compile Include="BM\bmQADistribution.cs" />
+    <Compile Include="BM\bmQAView.cs" />
+    <Compile Include="BM\bmTakeNow.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BM\bmUserMaBi.cs" />
+    <Compile Include="BM\bmUserPay.cs" />
     <Compile Include="Cache\OlineQAUserCache.cs" />
     <Compile Include="Cache\UserBoundCodeCache.cs" />
     <Compile Include="Cache\UserBoundCache.cs" />
@@ -105,10 +108,14 @@
     <Compile Include="JsonObj\QA\bmObjectionJson.cs" />
     <Compile Include="JsonObj\QA\bmQADistributionJson.cs" />
     <Compile Include="JsonObj\QA\bmQAJson.cs" />
-    <Compile Include="JsonObj\QA\bmTakeNowJson.cs" />
+    <Compile Include="JsonObj\QA\bmTakeNowJson.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="JsonObj\QA\bmUserMaBiRecordJson.cs" />
     <Compile Include="JsonObj\QA\bmUserWeixinJson.cs" />
     <Compile Include="JsonObj\RC\bmRechargeJson.cs" />
+    <Compile Include="JsonObj\TKNow\bmUserMBJson.cs" />
+    <Compile Include="JsonObj\TKNow\bmCanTakeNowJson.cs" />
     <Compile Include="MenuModels\ChildNode.cs" />
     <Compile Include="MorSun.Designer.cs">
       <AutoGen>True</AutoGen>

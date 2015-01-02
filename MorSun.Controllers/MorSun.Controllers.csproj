@@ -82,6 +82,7 @@
     </Compile>
     <Compile Include="ControllersBM\BMDataAncy.cs" />
     <Compile Include="ControllersBM\BMKaMeController.cs" />
+    <Compile Include="ControllersBM\BMTakeNowController.cs" />
     <Compile Include="ControllersBM\BMUserPayController.cs" />
     <Compile Include="ControllersSystem\MMController.cs" />
     <Compile Include="ControllersSystem\SYSConfigController.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="Quartz\MorSunScheduler.cs" />
     <Compile Include="ViewModel\BaseVM\BaseVModel.cs" />
     <Compile Include="ViewModel\BM\BMKaMeVModel.cs" />
+    <Compile Include="ViewModel\BM\BMTakeNowVModel.cs" />
     <Compile Include="ViewModel\BM\BMUserPayVModel.cs" />
     <Compile Include="ViewModel\BM\BMNewVModel.cs" />
     <Compile Include="ViewModel\BM\BMQAVModel.cs" />

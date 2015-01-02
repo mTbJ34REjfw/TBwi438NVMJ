@@ -1,0 +1,108 @@
+﻿@model BMTakeNowVModel
+@{
+    ViewBag.Title = "取现";
+    Layout = "~/Views/Shared/_SysLayout.cshtml";
+    string rs = ViewBag.RS;
+    var backurl = ViewBag.ReturnUrl ?? "/BMTakeNow/Index";
+
+    var refVModel = new ReferenceVModel();
+    var NavList = refVModel.GetReferencesByRefGroupId(MorSun.Common.类别组.RefGroup.卡密有效性);
+    var QXList = new ReferenceVModel().GetReferencesByRefGroupId(MorSun.Common.类别组.RefGroup.取现类别);
+    var zfrz = Guid.Parse(Reference.答题认证情况_认证);
+}
+@Styles.Render("~/Content/themes/base/css")
+@Scripts.Render("~/bundles/jqueryui")
+<section class="featuredwhite">
+    <div class="content-wrapper clear-fix">        
+        <div class="topmenu alert @("alert-success".getBC("BootStrapCssAlert"))">
+            @using (Html.BeginForm("Index", "BMTakeNow", FormMethod.Get))
+            {
+                @Html.TextBoxFor(m => m.sUserName, new { @class = "m-wrap small" })
+                @MvcHtmlString.Create(Html.DropDownList("sEffective", "sEffective", NavList, Model.sEffective.ToString(), "class=\"m-wrap small\"", "ID", "ItemValue", "", "==有效性=="))
+                @MvcHtmlString.Create(Html.DropDownList("sTakeRef", "sTakeRef", QXList, Model.sTakeRef.ToString(), "class=\"m-wrap small\"", "ID", "ItemValue", "", "==取现结果=="))
+                @:申请时间 @Html.TextBox("sRegTimeStar", Model.sRegTimeStar.ToShortDateString(), new { @class = "Wdate", style = "width:100px;", onclick = "WdatePicker({dateFmt:'yyyy/MM/dd'})" })-@Html.TextBox("sRegTimeEnd", Model.sRegTimeEnd.ToShortDateString(), new { @class = "Wdate", style = "width:100px;", onclick = "WdatePicker({dateFmt:'yyyy/MM/dd'})" })
+                @:取现时间 @Html.TextBox("sTakeTimeStar", Model.sTakeTimeStar.ToShortDateString(), new { @class = "Wdate", style = "width:100px;", onclick = "WdatePicker({dateFmt:'yyyy/MM/dd'})" })-@Html.TextBox("sTakeTimeEnd", Model.sTakeTimeEnd.ToShortDateString(), new { @class = "Wdate", style = "width:100px;", onclick = "WdatePicker({dateFmt:'yyyy/MM/dd'})" })
+                <button class="btn yellow" type="submit">@("查询".GX())</button>
+                @Html.HiddenFor(m => m.FlagTrashed)
+            
+                if (Model.FlagTrashed == "0")
+                {
+                    if (rs.HP(操作.添加))
+                    {
+                        <button class="btn green" type="button" onclick="jumptourl('/BMTakeNow/Add?RefId=' + $('#RefId').val() + '&returnUrl=@(Url.Encode(Request.RawUrl))')">@("添加".GX())</button>
+                    } 
+                }                
+            }
+        </div>
+        <div class="portlet box @("red".getBC("BootStrapCssTable"))">
+            <div class="portlet-title">
+                <div class="caption"><i class="icon-cogs"></i>取现</div>               
+            </div>
+            <div class="portlet-body">
+                <table id="MoreSunTreeTable" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>用户名</th>
+                            <th>币值</th>
+                            <th>有效性</th>
+                            <th>取现</th>
+                            <th>申请时间</th>
+                            <th>金额(元)</th>
+                            <th>取现时间</th>
+                            <th>操作</th>                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.List)
+                        {
+                            var up = item.aspnet_Users1.bmUserPays1.FirstOrDefault();
+                            <tr id="TR_@item.ID">
+                                <td>
+                                    <p>
+                                        @(item.aspnet_Users1 == null ? "" : item.aspnet_Users1.UserName)
+                                    </p>                                    
+                                </td>
+                                <td>
+                                    @item.MaBiNum.ToString("f0")
+                                </td>
+                                <td>@(item.wmfReference == null ? "" : item.wmfReference.ItemValue)</td>     
+                                <td>@(item.wmfReference1 == null ? "" : item.wmfReference1.ItemValue)</td> 
+                                <td>@item.RegTime.ToShortDateString()</td>   
+                                <td>@(item.TakeMoney == null ? "" : item.TakeMoney.ToString("f2")) </td>
+                                <td>@(item.TakeTime == null ? "" : item.TakeTime.ToShortDateString())</td>                         
+                                <td>
+                                    @if (Model.FlagTrashed == "0")
+                                    {
+                                        if (rs.HP(操作.修改))
+                                        {
+                                            if (up.wmfReference1 != null && up.wmfReference1.ID == zfrz)
+                                            { 
+                                            <button class="btn blue" type="button" onclick="jumptourl('/BMTakeNow/Edit?id=@item.ID&returnUrl=@(Url.Encode(Request.RawUrl))')">@("修改".GX())</button>
+                                            }
+                                        } 
+                                    }    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>@(up == null ? "" : up.TrueName)    @(up.wmfReference1 == null ? "" : up.wmfReference1.ItemValue)</td>
+                                <td colspan="3">@(up == null ? "" : "支付宝号：" + up.ALiPayNum)</td>
+                                <td>@(up == null ? "" : "银行：" + up.wmfReference == null ? "" : up.wmfReference.ItemValue)</td>
+                                <td colspan="3">@(up == null ? "" : "银行卡号：" + up.BankNum)</td>
+                            </tr>
+                        }                    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>    
+</section>
+    @section Scripts {        
+        @Scripts.Render("~/bundles/jqueryval")        
+        @Scripts.Render("~/bundles/validator")
+        @Styles.Render("~/Content/JQueryQtipCss")
+        @Scripts.Render("~/bundles/jqueryqtip")
+        @Scripts.Render("~/bundles/morsuncommon")  
+        <script src="~/Content/DatePick/WdatePicker.js"></script>      
+        <script type="text/javascript">             
+        </script>
+    }

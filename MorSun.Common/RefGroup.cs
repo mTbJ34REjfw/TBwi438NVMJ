@@ -99,6 +99,10 @@ namespace MorSun.Common
             public const string 卡密有效性_有效 = "97afe305-a2b1-44c4-a6d4-e7df1289e13e";
             public const string 卡密有效性_无效 = "7e5b5100-723b-430c-9690-92402d2caedd";
 
+            //取现情况
+            public const string 取现情况_已取 = "1fdb37e1-09cf-49d7-902b-0a761f1af3c1";
+            public const string 取现情况_未取 = "6fb84b21-12e8-44f4-bdbb-9b6e3eef9b33";
+
             //新闻类别
             public const string 新闻类别_新闻 = "78fba6d7-ade7-46eb-9662-a9f75ea26b69";
             public const string 新闻类别_维基 = "9e72c2d3-0659-46fa-8cfc-3a0f392e7192";
@@ -243,6 +247,16 @@ namespace MorSun.Common
             public const string 卡密充值 = "13bf9af6-f93d-411d-8548-723c9878d48d";
 
             /// <summary>
+            /// 卡密有效性
+            /// </summary>
+            public const string 卡密有效性 = "4fcae68c-826c-4848-acdd-99b1393517ce";
+
+            /// <summary>
+            /// 取现类别
+            /// </summary>
+            public const string 取现类别 = "7093f1cb-cc36-4861-8900-b4994133a1f8";
+
+            /// <summary>
             /// 充值数据发送
             /// </summary>
             public const string 充值数据发送 = "6723e46a-97f7-4551-9c00-65fbafa8af0e";
@@ -362,6 +376,8 @@ namespace MorSun.Common
             public const string 数据同步_卡密充值 = "/DivniTxiuen/AncyRCMB";
             //认证修改角色
             public const string 数据同步_认证改角色 = "/DivniTxiuen/AncyCU";
+            //判断用户是否能取现
+            public const string 数据同步_是否能取现 = "/DivniTxiuen/CanTakeNow";
         }
     }
 
