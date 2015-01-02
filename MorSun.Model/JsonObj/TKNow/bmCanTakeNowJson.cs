@@ -40,12 +40,12 @@ namespace MorSun.Model
         /// <summary>
         /// 
         /// </summary>
-        public Guid Effective
+        public Guid? Effective
         { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public Guid TakeRef
+        public Guid? TakeRef
         { get; set; }
         /// <summary>
         /// 
