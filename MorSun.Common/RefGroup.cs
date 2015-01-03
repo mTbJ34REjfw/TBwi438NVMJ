@@ -39,6 +39,8 @@ namespace MorSun.Common
             public const string 电子邮件类别_账号注册 = "b40ce493-8abf-42de-8182-c94061882788";
             public const string 电子邮件类别_找回密码 = "6d26c158-a9aa-475b-ba0a-c1ff9742f5c1";
             public const string 电子邮件类别_登录失败 = "147f2fd3-0d69-4b95-b6f2-db9de59eec2c";
+            public const string 电子邮件类别_取现通知 = "3d2b1229-c2c1-4d74-9f8a-d5f1a73d4491";
+            public const string 电子邮件类别_异议处理结果通知 = "c35e8b44-2ee4-44a1-a300-42f1b97609b1";
             #endregion
 
             #endregion
@@ -380,6 +382,8 @@ namespace MorSun.Common
             public const string 数据同步_是否能取现 = "/DivniTxiuen/CanTakeNow";
             //取现数据与取现马币同步
             public const string 数据同步_取现马币 = "/DivniTxiuen/YXXTakeNow";
+            //取现同步
+            public const string 数据同步_取现同步 = "/DivniTxiuen/TakeMoney";
         }
     }
 

@@ -105,12 +105,29 @@ namespace MorSun.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 注册发送激活邮件
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ActiveAccountEmail()
         {
             return View();
         }
 
+        /// <summary>
+        /// 忘记密码发送激活邮件
+        /// </summary>
+        /// <returns></returns>
         public ActionResult AccountChangePassword()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 取现发送邮件
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SendTakeNowEmail()
         {
             return View();
         }

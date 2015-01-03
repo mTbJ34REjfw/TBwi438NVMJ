@@ -777,6 +777,7 @@
     <Content Include="Views\BMTakeNow\Add.cshtml" />
     <Content Include="Views\BMTakeNow\Edit.cshtml" />
     <Content Include="Views\BMTakeNow\Index.cshtml" />
+    <Content Include="Views\Home\SendTakeNowEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

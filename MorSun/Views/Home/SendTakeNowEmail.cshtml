@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "激活账号 -" + "ServiceName".GX();
+    ViewBag.Title = "取现通知 -" + "ServiceName".GX();
     Layout = null;
 }
 <!DOCTYPE html>
@@ -14,7 +14,7 @@
     <header>
         <div id="top" class="content-wrapper">
             <div class="float-left">
-                <p class="site-title"><a href="@("ServiceDomain".GHU())" target="_blank"><img src="@("MediaDomain".GX())/images/bungmalogo.gif" width="68" class="float-left" /><span class="logohspan">@("ServiceName".GX())</span></a><span class="logoyspan">@("ServiceDomain".GX())</span></p>
+                <p class="site-title"><a href="@(CFG.网站域名)" target="_blank"><img src="@(CFG.网站域名)/images/bungmalogo.gif" width="68" class="float-left" /><span class="logohspan">@("ServiceName".GX())</span></a><span class="logoyspan">www.bungma.com</span></p>
             </div>
             <div class="float-right">
                 <section id="login">
@@ -27,20 +27,12 @@
         <div class="content-wrapper clear-fix">
             <h3>亲耐的[==NickName==]:</h3>
             
-            <p>请点击下面的链接激活账号完成注册。(请在@(CFG.有效时间)小时内完成)</p>
-            
-            <p>
-                <a href="@("ServiceDomain".GHU())@(CFG.邮件通用入口)/[==UserCode==]" target="_blank">@("ServiceDomain".GHU())@(CFG.邮件通用入口)/[==UserCode==]</a>
-            </p>
-
-            <p>
-                如果该链接无法点击，请直接拷贝以上链接到浏览器地址栏中访问。
-            </p>
+            <p>您申请的取现[==TakeMB==]马币，邦马网已经支付了[==TakeMoney==]元,请您查收。</p>     
             
             <hr />
 
             <p>
-                此信是由<a href="@("ServiceDomain".GHU())" target="_blank">@("ServiceName".GX())</a>系统发出，系统不接收回信，请勿直接回复。
+                此信是由<a href="@(CFG.网站域名)" target="_blank">@("ServiceName".GX())</a>系统发出，系统不接收回信，请勿直接回复。
             </p>
             </div>
         </div>
@@ -159,7 +151,7 @@
         margin-left: 80px;
         float: left;
         font-size: 12px;
-        width: 200px;
+        width:200px;
     }
 
     header .telStringSpan {
