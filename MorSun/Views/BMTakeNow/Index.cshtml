@@ -24,17 +24,18 @@
                 @:取现时间 @Html.TextBox("sTakeTimeStar", Model.sTakeTimeStar.ToShortDateString(), new { @class = "Wdate", style = "width:100px;", onclick = "WdatePicker({dateFmt:'yyyy/MM/dd'})" })-@Html.TextBox("sTakeTimeEnd", Model.sTakeTimeEnd.ToShortDateString(), new { @class = "Wdate", style = "width:100px;", onclick = "WdatePicker({dateFmt:'yyyy/MM/dd'})" })
                 <button class="btn yellow" type="submit">@("查询".GX())</button>
                 @Html.HiddenFor(m => m.FlagTrashed)
-            
+
                 if (Model.FlagTrashed == "0")
                 {
                     if (rs.HP(操作.修改))
-                    {                        
-                        <button id="BtnAncyTK" class="btn portlet" type="button">取现同步</button>
+                    {
+                        <button id="BtnAncyTK" class="btn purple" type="button">取现同步</button>
                     }
                 }
             }
             @using (Html.BeginForm("AncyTakeNow", "BMTakeNow", new { returnUrl = Request.RawUrl }, FormMethod.Post, new { id = "ancyTKForm" }))
             {
+                @Html.AntiForgeryToken()
             }
         </div>
         <div class="portlet box @("red".getBC("BootStrapCssTable"))">
