@@ -1,0 +1,142 @@
+﻿@model BMQAViewVModel
+@{
+    ViewBag.Title = "异议处理";
+    Layout = "~/Views/Shared/_SysLayout.cshtml";    
+    string rs = ViewBag.RS;
+    var backurl = ViewBag.ReturnUrl ?? "/BMObjection/Index";
+ 
+}
+@Styles.Render("~/Content/themes/base/css")
+@Scripts.Render("~/bundles/jqueryui")
+<section class="featuredwhite">
+    <div class="content-wrapper clear-fix">           
+        <div class="topmenu alert @("alert-success".getBC("BootStrapCssAlert"))">
+            @if(Model.A != null && Model.Objecs.Count() == 0)
+            { 
+                <button class="btn red" type="button" onclick="syy()">@("提交异议".GX())</button>
+            }                 
+        </div>
+        <div class="portlet-body">            
+                      
+            <div class="portlet box @("red".getBC("BootStrapCssTable"))">
+                <div class="portlet-title">
+                    <div class="caption"><i class="icon-cogs"></i>问题 &nbsp;&nbsp;&nbsp;&nbsp; @((Model.Q.MBNum == 0 || Model.Q.MBNum == null) && (Model.Q.BBNum == 0 || Model.Q.BBNum == null) ? "免费提问" : ("消耗" + ((Model.Q.MBNum == 0 || Model.Q.MBNum == null) ? "" : (Math.Abs(Model.Q.MBNum).ToString("f0") + "马币")) + ((Model.Q.BBNum == 0 || Model.Q.BBNum == null) ? "" : (Math.Abs(Model.Q.BBNum).ToString("f0") + "邦币")))) &nbsp;&nbsp;&nbsp;&nbsp; 提问时间：@(HOHO18.Common.ChangeDateTime.DateStringFromNow(Model.Q.RegTime == null ? DateTime.Now : Model.Q.RegTime.Value))</div>
+                </div>
+                <div class="textCenter">
+                    <img id="ImgQA" src="@Model.Q.PicUrl" onclick="jumptourl('@Model.Q.PicUrl')" width="99%" />                    
+                </div>
+            </div>
+            @if (Model.A != null)
+            {    
+                <div class="portlet box @("red".getBC("BootStrapCssTable"))">
+                    <div class="portlet-title">
+                        <div class="caption"><i class="icon-cogs"></i>答案</div>
+                    </div>
+
+                    @if (Model.A.QARef == Guid.Parse(Reference.问答类别_不是问题))
+                    {
+                        <div class="textCenter">
+                            <h1>这不是一个问题</h1>
+                        </div>
+                    }
+                    @if (Model.A.QARef == Guid.Parse(Reference.问答类别_答案))
+                        {
+                            if (Model.A.MsgType == Guid.Parse(Reference.微信消息类别_文本))
+                            {
+                                <div class="textCenter">
+                                    <h1>@Model.A.QAContent</h1>
+                                </div>
+                            }
+                            else if (Model.A.MsgType == Guid.Parse(Reference.微信消息类别_图片))
+                            {
+                                <div class="textCenter">
+                                    <img id="ImgDA" src="@Model.A.PicUrl" onclick="jumptourl('@Model.A.PicUrl')" width="99%" />                                    
+                                </div>
+                        }
+                    }
+                </div>   
+            }
+
+            @if(Model.Others.Count() > 0)
+            {                                 
+                foreach(var item in Model.Others)
+                {                                    
+                    <div class="portlet box @("red".getBC("BootStrapCssTable"))">
+                        <div class="portlet-title">
+                            <div class="caption"><i class="icon-cogs"></i>其他</div>
+                        </div>
+                            @if (item.QARef == Guid.Parse(Reference.问答类别_放弃))
+                            {
+                                <div class="textCenter">
+                                    <h1>被答题用户放弃</h1>
+                                </div>
+                            }                                                
+                    </div>                                        
+                }
+            } 
+
+            @if (Model.Objecs.Count() > 0)
+            {                
+                <div class="portlet box @("red".getBC("BootStrapCssTable"))">
+                    <div class="portlet-title">
+                        <div class="caption"><i class="icon-cogs"></i>异议</div>
+                    </div>
+                    @foreach (var item in Model.Objecs)
+                    {
+                        <div class="portlet-body">
+                            <table class="tableadd table-hover">
+                                <thead>
+                                    <tr>
+                                        <td colspan="2">
+                                            <p>用户在 @(HOHO18.Common.ChangeDateTime.DateStringFromNow(item.SubmitTime == null ? DateTime.Now : item.SubmitTime.Value)) 提交异议说错了 <span class="spanRed spanBold">@item.ErrorNum</span> 道题 系统扣取 <span class="spanRed spanBold">@(item.KQBBNum == 0 ? "" : "邦币" + Math.Abs(item.KQBBNum).ToString("f0")) @(item.KQMBNUM == 0 ? "" : "马币" + Math.Abs(item.KQMBNUM).ToString("f0"))</span> 作压金</p>
+                                            <p>@item.ObjectionExplain</p>                                            
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>   
+                                    @if(item.Result != null)
+                                            {
+                                    <tr>
+                                        <td> 
+                                                @if(item.Result == Guid.Parse(Reference.异议处理结果_答错))
+                                                { 
+                                                    <p>马子在 @(HOHO18.Common.ChangeDateTime.DateStringFromNow(item.HandleTime == null ? DateTime.Now : item.HandleTime.Value)) 检查结果说错了 <span class="spanRed spanBold">@item.ConfirmErrorNum</span> 道题 系统归还 <span class="spanRed spanBold">@(item.GHBBNum == 0 ? "" : "邦币" + Math.Abs(item.GHBBNum).ToString("f0")) @(item.GHMBNUM == 0 ? "" : "马币" + Math.Abs(item.GHMBNUM).ToString("f0"))</span></p>
+                                                    <p>@item.HandleExplain</p>
+                                                }
+                                                else
+                                                {
+                                                    <p>马子在 @(HOHO18.Common.ChangeDateTime.DateStringFromNow(item.HandleTime == null ? DateTime.Now : item.HandleTime.Value)) 检查结果说该问题 @item.ItemValue</p>
+                                                    <p>@item.HandleExplain</p>
+                                                }
+                                        </td>
+                                    </tr>  
+                                            }                                  
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                </div>                
+            } 
+        </div>
+    </div>         
+</section>
+    @section Scripts {        
+        @Scripts.Render("~/bundles/jqueryval")        
+        @Scripts.Render("~/bundles/validator")
+        @Styles.Render("~/Content/JQueryQtipCss")
+        @Scripts.Render("~/bundles/jqueryqtip")
+        @Scripts.Render("~/bundles/morsuncommon")        
+        @Scripts.Render("~/bundles/waypoint")
+ 
+        <script type="text/javascript">             
+            $(function () {                
+                //waypoint 
+                $('.topmenu').waypoint(function (event, direction) {
+                    $(this).toggleClass('stickytopmenu', direction === "down");
+                    event.stopPropagation();
+                });
+                $('#zt_pf').html("");
+                $('#zt_pf').css("background-image", "none");
+            });
+        </script>
+    }
