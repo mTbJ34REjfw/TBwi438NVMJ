@@ -986,9 +986,7 @@ namespace MorSun.Controllers
                 {
                     //用户有三张表，要先分开
                     var bmQA = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔)).Trim();
-                    s = s.Substring(s.IndexOf(CFG.邦马网_JSON数据间隔) + CFG.邦马网_JSON数据间隔.Length);
-                    var bmMB = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔)).Trim();
-                    s = s.Substring(s.IndexOf(CFG.邦马网_JSON数据间隔) + CFG.邦马网_JSON数据间隔.Length);
+                    s = s.Substring(s.IndexOf(CFG.邦马网_JSON数据间隔) + CFG.邦马网_JSON数据间隔.Length);                    
                     var qaDIS = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔)).Trim();
                     s = s.Substring(s.IndexOf(CFG.邦马网_JSON数据间隔) + CFG.邦马网_JSON数据间隔.Length);
                     var bmOB = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔)).Trim();
@@ -996,15 +994,18 @@ namespace MorSun.Controllers
                     var bmUW = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔)).Trim();
                     s = s.Substring(s.IndexOf(CFG.邦马网_JSON数据间隔) + CFG.邦马网_JSON数据间隔.Length);
                     var bmTK = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔)).Trim();
+                    s = s.Substring(s.IndexOf(CFG.邦马网_JSON数据间隔) + CFG.邦马网_JSON数据间隔.Length);
+                    var bmMB = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔)).Trim();
+                    s = s.Substring(s.IndexOf(CFG.邦马网_JSON数据间隔) + CFG.邦马网_JSON数据间隔.Length);
 
                     var ubll = new BaseBll<aspnet_Users>();
                     var uids = new List<Guid>();
-                    var bmQAJson = "";
-                    var bmMBJson = "";
+                    var bmQAJson = "";                    
                     var qaDISJson = "";
                     var bmOBJson = "";
                     var bmUWJson = "";
                     var bmTKJson = "";
+                    var bmMBJson = "";
                     //用户需要先同步
                     if (!String.IsNullOrEmpty(bmQA))
                     {//跟UserId没关系，就不同步UserId
@@ -1021,24 +1022,7 @@ namespace MorSun.Controllers
                                 }
                             }
                         }
-                    }
-
-                    if (!String.IsNullOrEmpty(bmMB))
-                    {
-                        bmMBJson = Compression.DecompressString(bmMB);
-                        var _list = JsonConvert.DeserializeObject<List<bmUserMaBiRecordJson>>(bmMBJson);
-                        if (_list.Count() > 0)
-                        {
-                            var uid = _list.Where(p => p.UserId != null).Select(p => p.UserId.Value);
-                            if (uid.Count() > 0)
-                            {
-                                foreach (var u in uid)
-                                {
-                                    uids.Add(u);
-                                }
-                            }
-                        }
-                    }
+                    }                    
 
                     if (!String.IsNullOrEmpty(qaDIS))
                     {
@@ -1108,6 +1092,23 @@ namespace MorSun.Controllers
                         }
                     }
 
+                    if (!String.IsNullOrEmpty(bmMB))
+                    {
+                        bmMBJson = Compression.DecompressString(bmMB);
+                        var _list = JsonConvert.DeserializeObject<List<bmUserMaBiRecordJson>>(bmMBJson);
+                        if (_list.Count() > 0)
+                        {
+                            var uid = _list.Where(p => p.UserId != null).Select(p => p.UserId.Value);
+                            if (uid.Count() > 0)
+                            {
+                                foreach (var u in uid)
+                                {
+                                    uids.Add(u);
+                                }
+                            }
+                        }
+                    }
+
                     //userids 去重复
                     uids = uids.Distinct().ToList();
 
@@ -1139,27 +1140,7 @@ namespace MorSun.Controllers
                                 bll.UpdateChanges();
                             }
                         }
-                        //马币记录
-                        if (!String.IsNullOrEmpty(bmMB))
-                        {
-                            //bmMB = Compression.DecompressString(bmMB);
-                            var _list = JsonConvert.DeserializeObject<List<bmUserMaBiRecord>>(bmMBJson);
-                            if (_list.Count() > 0)
-                            {
-                                var aids = new List<Guid>();
-                                aids = _list.Select(p => p.ID).ToList();
-                                var bll = new BaseBll<bmUserMaBiRecord>();
-                                //过滤掉已经添加的数据                    
-                                var alreadyQIds = bll.All.Where(p => aids.Contains(p.ID)).Select(p => p.ID);
-                                aids = aids.Except(alreadyQIds).ToList();
-                                _list = _list.Where(p => aids.Contains(p.ID)).ToList();
-                                foreach (var l in _list)
-                                {
-                                    bll.Insert(l, false);
-                                }
-                                bll.UpdateChanges();
-                            }
-                        }
+                        
                         //问题分配
                         if (!String.IsNullOrEmpty(qaDIS))
                         {
@@ -1242,6 +1223,28 @@ namespace MorSun.Controllers
                                 aids = aids.Except(alreadyQIds).ToList();
                                 _list = _list.Where(p => aids.Contains(p.ID)).ToList();
 
+                                foreach (var l in _list)
+                                {
+                                    bll.Insert(l, false);
+                                }
+                                bll.UpdateChanges();
+                            }
+                        }
+
+                        //马币记录
+                        if (!String.IsNullOrEmpty(bmMB))
+                        {
+                            //bmMB = Compression.DecompressString(bmMB);
+                            var _list = JsonConvert.DeserializeObject<List<bmUserMaBiRecord>>(bmMBJson);
+                            if (_list.Count() > 0)
+                            {
+                                var aids = new List<Guid>();
+                                aids = _list.Select(p => p.ID).ToList();
+                                var bll = new BaseBll<bmUserMaBiRecord>();
+                                //过滤掉已经添加的数据                    
+                                var alreadyQIds = bll.All.Where(p => aids.Contains(p.ID)).Select(p => p.ID);
+                                aids = aids.Except(alreadyQIds).ToList();
+                                _list = _list.Where(p => aids.Contains(p.ID)).ToList();
                                 foreach (var l in _list)
                                 {
                                     bll.Insert(l, false);

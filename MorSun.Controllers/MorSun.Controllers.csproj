@@ -121,6 +121,7 @@
     <Compile Include="Quartz\AncyUserJOB5\CheckingTrigger5.cs" />
     <Compile Include="Quartz\MorSunScheduler.cs" />
     <Compile Include="ViewModel\BaseVM\BaseVModel.cs" />
+    <Compile Include="ViewModel\BM\BMObjectionVModel.cs" />
     <Compile Include="ViewModel\BM\BMKaMeVModel.cs" />
     <Compile Include="ViewModel\BM\BMTakeNowVModel.cs" />
     <Compile Include="ViewModel\BM\BMUserPayVModel.cs" />

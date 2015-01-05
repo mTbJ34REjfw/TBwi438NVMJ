@@ -60,6 +60,7 @@
     <Compile Include="AttributeExtensions\RequiredIfAttribute.cs" />
     <Compile Include="BM\bmKaMe.cs" />
     <Compile Include="BM\bmNew.cs" />
+    <Compile Include="BM\bmObjection.cs" />
     <Compile Include="BM\bmOnlineQAUser.cs" />
     <Compile Include="BM\bmQA.cs" />
     <Compile Include="BM\bmQADistribution.cs" />
