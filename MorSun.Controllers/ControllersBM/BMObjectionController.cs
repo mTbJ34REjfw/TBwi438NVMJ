@@ -147,12 +147,12 @@ namespace MorSun.Controllers.SystemController
             return Json(oper, JsonRequestBehavior.AllowGet);
         }
 
-        protected override string OnAddCK(bmUserPay t)
+        protected override string OnAddCK(bmObjection t)
         {              
             return "";
         }
 
-        protected override string OnEditCK(bmUserPay t)
+        protected override string OnEditCK(bmObjection t)
         {                       
             return "";
         }        

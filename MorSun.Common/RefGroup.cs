@@ -269,9 +269,14 @@ namespace MorSun.Common
             public const string 开户银行 = "ca097415-a4ed-4fee-8562-b629458fa54f";
 
             /// <summary>
-            /// 认证情况
+            /// 答题用户认证情况
             /// </summary>
             public const string 答题认证情况 = "04b0d0dc-a2df-448f-80dd-5bebcc61631b";
+
+            /// <summary>
+            /// 异议处理结果
+            /// </summary>
+            public const string 异议处理结果 = "03f1030d-ccb9-45af-9dd2-6529ee0158c3";
         }
     }    
 
