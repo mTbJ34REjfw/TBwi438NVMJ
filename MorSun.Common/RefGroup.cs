@@ -23,6 +23,7 @@ namespace MorSun.Common
             public const string 邮箱栏目_收件箱 = "fb7df431-4dc9-4a17-a059-aad276724d3b";
             public const string 邮箱栏目_草稿箱 = "ca615b28-3219-4483-a5e1-4e191c4d8a32";
             #endregion
+
             #region 邮件重要性
             public const string 邮件重要性_一般 = "6b60b379-3515-4d3a-9f7b-1843688d3105";
             public const string 邮件重要性_重要 = "714628ea-a026-4d08-9d36-66068b160e05";

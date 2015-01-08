@@ -61,45 +61,107 @@ namespace MorSun.Controllers.SystemController
 
         }
 
+        [Authorize]
+        [ValidateInput(false)]
+        [ExceptionFilter()]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult RZUser(bmUserPay uPay, string returnUrl)
+        public virtual ActionResult HDOB(HandleObjection t, string returnUrl)
         {
             var oper = new OperationResult(OperationResultType.Error, "提交失败");
+            var model = Bll.GetModel(t.ID);
+            var qaView = new bmQAView();
+            if (model == null)
+                "ErrorNum".AE("未找到该条记录", ModelState);
+            else 
+            { 
+                var bmqaBll = new BaseBll<bmQAView>();
+                qaView = bmqaBll.GetModel(model.QAId);
+                if(qaView == null || qaView.ID == null)
+                    "ErrorNum".AE("未找到该条异议的问题记录", ModelState);
+            }
             if (ModelState.IsValid)
             {
-                var uPaybll = new BaseBll<bmUserPay>();
-                var model = uPaybll.GetModel(uPay.ID);
-                var roleId = CFG.注册默认角色;
-                var ancyrz = "false";
-                if(model.CertificationRef == Guid.Parse(Reference.答题认证情况_认证))
-                { 
-                    roleId = CFG.作业邦认证默认角色;
-                    ancyrz = "true";
-                }
-                //先删除用户的角色，再添加
-                var constr = "";
-                var roleBll = new BaseBll<aspnet_Roles>();                
-                constr += @"DELETE FROM [aspnet_UsersInRoles] WHERE [UserId] = '" + model.UserId + "'";
-                constr += @"Insert Into aspnet_UsersInRoles ([UserId],[RoleId])  VALUES ('" + model.UserId + "','" + roleId + "')";
+                //异议更新处理
+                TryUpdateModel(model);
 
-                var bll = new BaseBll<wmfUserInfo>();
-                var rzUR = Guid.Parse(Reference.认证类别_认证邦主);
-                var nonrzUR = Guid.Parse(Reference.认证类别_未认证);
+                model.ModTime = DateTime.Now;
+                model.HandleUser = Guid.Parse(CFG.异议处理用户);
+                model.HandleTime = DateTime.Now;
 
-                var uinfo = bll.GetModel(uPay.UserId);
+                //马币处理
+                //如果问题回答正确，或问题没有标准答案并且用户回答的也是正确的一种，则判断也是正确。
+                //需要传递的马币Json
+                var umbrListJson = new List<bmUserMaBiRecordJson>();
+                var umbrList = new List<bmUserMaBiRecord>();
 
-                if (uinfo != null)
+                //判断问题的回答情况
+                var qResult = t.Result.ToString();
+                switch(qResult)
                 {
-                    if (model.CertificationRef == Guid.Parse(Reference.答题认证情况_认证))
-                        uinfo.CertificationLevel = rzUR;
-                    else
-                        uinfo.CertificationLevel = nonrzUR;
+                    case Reference.异议处理结果_答错:
+                        //扣取答题用户的邦马币
+                        var qaMB = Math.Abs(qaView.MBNum);
+                        var qaBB = Math.Abs(qaView.BBNum);
+
+                        var mbRef = Guid.Parse(Reference.马币类别_马币);
+                        var bbRef = Guid.Parse(Reference.马币类别_邦币);
+                        var banbRef = Guid.Parse(Reference.马币类别_绑币);
+
+                        var mbly_kq = Guid.Parse(Reference.马币来源_扣取);
+                        var mbly_gh = Guid.Parse(Reference.马币来源_归还);
+                
+                        var umbrBll = new BaseBll<bmUserMaBiRecord>();
+                
+
+                        var umbrModel = new bmUserMaBiRecord();
+                        umbrModel.ID = Guid.NewGuid();
+                        umbrModel.SourceRef = Guid.Parse(Reference.马币来源_取现);
+                        umbrModel.MaBiRef = mbRef;
+                        umbrModel.MaBiNum = 0 - ct.MaBiNum;
+                        umbrModel.TkId = ct.ID;
+                        umbrModel.UserId = ct.UserId;
+
+                        umbrModel.IsSettle = false; //取现马币时，都是未结算的。取现之后，还是未结算。等每天自动结算时再结算
+                        umbrModel.RegTime = DateTime.Now;
+                        umbrModel.ModTime = DateTime.Now;
+                        umbrModel.FlagTrashed = false;
+                        umbrModel.FlagDeleted = false;
+                        umbrModel.RegUser = ct.UserId;
+                        //数据库马币记录添加
+                        umbrList.Add(umbrModel);
+                        //Json马币数据添加
+                        umbrListJson.Add(new bmUserMaBiRecordJson
+                        {
+                            ID = umbrModel.ID,
+                            UserId = umbrModel.UserId,
+                            TkId = umbrModel.TkId,
+                            SourceRef = umbrModel.SourceRef,
+                            MaBiRef = umbrModel.MaBiRef,
+                            MaBiNum = umbrModel.MaBiNum,
+                            IsSettle = umbrModel.IsSettle,
+
+                            RegUser = umbrModel.RegUser,
+                            RegTime = umbrModel.RegTime,
+                            ModTime = umbrModel.ModTime,
+                            FlagTrashed = umbrModel.FlagTrashed,
+                            FlagDeleted = umbrModel.FlagDeleted
+                        });
+
+                        break;
+
+                    case Reference.异议处理结果_答对:
+                        break;
+
+                    case Reference.异议处理结果_无标准答案:
+                        break;
                 }
-                bll.UpdateChanges();
 
-                roleBll.Db.ExecuteStoreCommand(constr);
+                
 
+
+
+                //数据传递处理 
                 var _rzUserId = new List<Guid>();
                 _rzUserId.Add(model.UserId.Value);
                 var s = "";
@@ -131,8 +193,8 @@ namespace MorSun.Controllers.SystemController
                 LogHelper.Write("同步马币充值信息" + strUrl + neAppentUrl, LogHelper.LogMessageType.Info);
                 //有传递UID时用POST方法，参数有可能会超过URL长度
                 result = GetHtmlHelper.PostGetPage(strUrl, neAppentUrl.Substring(1), "");
-                if(result == "true")
-                { 
+                if (result == "true")
+                {
                     //封装返回的数据
                     fillOperationResult(Url.Action("Index", "MM"), oper, "修改成功");
                     return Json(oper, JsonRequestBehavior.AllowGet);
@@ -146,7 +208,7 @@ namespace MorSun.Controllers.SystemController
             oper.AppendData = ModelState.GE();
             return Json(oper, JsonRequestBehavior.AllowGet);
         }
-
+        
         protected override string OnAddCK(bmObjection t)
         {              
             return "";
