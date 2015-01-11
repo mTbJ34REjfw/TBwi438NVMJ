@@ -3,8 +3,8 @@
     ViewBag.Title = "取现";
     Layout = "~/Views/Shared/_UCLayout.cshtml";
     string rs = ViewBag.RS;
-    var backurl = ViewBag.ReturnUrl ?? "/Member/Index";   
-    var refVM = new ReferenceVModel(); 
+    var backurl = ViewBag.ReturnUrl ?? "/Member/Index";
+    var refVM = new ReferenceVModel();    
 }
 @Styles.Render("~/Content/themes/base/css")
 @Scripts.Render("~/bundles/jqueryui")
@@ -28,11 +28,7 @@
                                     <td>@MorSun.Controllers.BasisController.CurrentUserMabi.NMB.ToString("f2")</td>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <th>可提现马币</th>
-                                    <td>@MorSun.Controllers.BasisController.CurrentUserMabi.MB.ToString("f2")</td>
-                                </tr>
+                            <tbody>                                
                                 <tr>
                                     <th>@Html.LabelFor(m => m.MaBiNum)</th>
                                     <td>@Html.TextBoxFor(m => m.MaBiNum, new { @class = "m-wrap large" })</td>
