@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MorSun.Model;
+using System.Web.Mvc;
 
 namespace MorSun.Controllers.ViewModel
 {
@@ -12,8 +13,8 @@ namespace MorSun.Controllers.ViewModel
         {
             get
             {
-                var l = All;
-                
+                var l = All;  
+
                 if (String.IsNullOrEmpty(FlagTrashed))
                     FlagTrashed = "0";
                 if (FlagTrashed == "1")
@@ -34,6 +35,10 @@ namespace MorSun.Controllers.ViewModel
                 {
                     l = l.Where(p => p.Result == sResult);
                 }
+                else
+                {
+                    l = l.Where(p => p.Result == null);
+                }
 
                 if (sStartTime.HasValue)
                 {
@@ -52,14 +57,31 @@ namespace MorSun.Controllers.ViewModel
                 {
                     l = l.Where(p => p.HandleTime <= sEndTime);
                 }
-                
+
+                if (!sIsSettle.HasValue)
+                {
+                    l = l.Where(p => p.IsSettle == null || p.IsSettle == false);
+                }
+                else
+                {
+                    l = l.Where(p => p.IsSettle == sIsSettle.Value);
+                }
                
                 return l.OrderBy(p => p.Sort).ThenBy(p => p.RegTime);
             }
         }
 
-
-        
+        public List<SelectListItem> SettleCollection
+        {
+            get
+            {
+                return new List<SelectListItem>() { 
+                    //new SelectListItem(){Text="==审核状态==",Value=""},
+                    new SelectListItem(){Text="未结算",Value="false"},
+                    new SelectListItem(){Text="已结算",Value="true"}                                   
+                };
+            }
+        }       
         /// <summary>
         /// 被选中的编号
         /// </summary>
@@ -90,5 +112,7 @@ namespace MorSun.Controllers.ViewModel
         public virtual DateTime? hEndTime { get; set; }
 
         public virtual Guid? sResult { get; set; }
+
+        public virtual Boolean? sIsSettle { get; set; }
     }
 }

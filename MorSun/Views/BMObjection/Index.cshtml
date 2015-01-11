@@ -17,6 +17,7 @@
             {
                 @Html.TextBoxFor(m => m.sUserName, new { @class = "m-wrap small" })
                 @MvcHtmlString.Create(Html.DropDownList("sResult", "sResult", NavList, Model.sResult.ToString(), "class=\"m-wrap small\"", "ID", "ItemValue", "", "==处理结果=="))
+                @MvcHtmlString.Create(Html.DropDownList("sIsSettle", "sIsSettle", Model.SettleCollection, Model.sIsSettle.ToString().ToLower(), "class=\"m-wrap small\"", "Value", "Text", "", "==是否结算=="))
                 @:提交时间 @Html.TextBox("sStartTime", Model.sStartTime.ToShortDateString(), new { @class = "Wdate", style = "width:100px;", onclick = "WdatePicker({dateFmt:'yyyy/MM/dd'})" })-@Html.TextBox("sEndTime", Model.sEndTime.ToShortDateString(), new { @class = "Wdate", style = "width:100px;", onclick = "WdatePicker({dateFmt:'yyyy/MM/dd'})" })
                 @:处理时间 @Html.TextBox("hStartTime", Model.hStartTime.ToShortDateString(), new { @class = "Wdate", style = "width:100px;", onclick = "WdatePicker({dateFmt:'yyyy/MM/dd'})" })-@Html.TextBox("hEndTime", Model.hEndTime.ToShortDateString(), new { @class = "Wdate", style = "width:100px;", onclick = "WdatePicker({dateFmt:'yyyy/MM/dd'})" })
                 <button class="btn yellow" type="submit">@("查询".GX())</button>

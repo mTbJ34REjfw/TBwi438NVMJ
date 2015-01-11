@@ -72,13 +72,17 @@ namespace MorSun.Controllers.SystemController
             var model = Bll.GetModel(t.ID);
             var qaView = new bmQAView();
             if (model == null)
-                "ErrorNum".AE("未找到该条记录", ModelState);
+                "ConfirmErrorNum".AE("未找到该条记录", ModelState);
             else 
             { 
                 var bmqaBll = new BaseBll<bmQAView>();
                 qaView = bmqaBll.GetModel(model.QAId);
                 if(qaView == null || qaView.ID == null)
-                    "ErrorNum".AE("未找到该条异议的问题记录", ModelState);
+                    "ConfirmErrorNum".AE("未找到该条异议的问题记录", ModelState);
+            }
+            if(model.IsSettle != null && model.IsSettle.Value)
+            {
+                "ConfirmErrorNum".AE("该异议已经结算，您不能再处理异议", ModelState);
             }
             //提问用户与答题用户取出来
             var bmuwBll = new BaseBll<bmUserWeixin>();
@@ -86,21 +90,21 @@ namespace MorSun.Controllers.SystemController
             var disUser = bmuwBll.All.FirstOrDefault(p => p.WeiXinId == qaView.DisWeiXinId);
             if(qaUser == null)
             {
-                "ErrorNum".AE("提问用户未绑定", ModelState);
+                "ConfirmErrorNum".AE("提问用户未绑定", ModelState);
             }
             else if (qaUser.UserId != model.UserId)
             {
-                "ErrorNum".AE("异议提交人不是提问人", ModelState);
+                "ConfirmErrorNum".AE("异议提交人不是提问人", ModelState);
             }
 
             if(disUser == null)
             {
-                "ErrorNum".AE("问题回答人员不存在", ModelState);
+                "ConfirmErrorNum".AE("问题回答人员不存在", ModelState);
             }
             //确认错题数量大于提交的错题数量
             if(t.ConfirmErrorNum > model.ErrorNum)
             {
-                "ErrorNum".AE("确认错题数量大于提交值", ModelState);
+                "ConfirmErrorNum".AE("确认错题数量大于提交值", ModelState);
             }
 
 
@@ -272,6 +276,15 @@ namespace MorSun.Controllers.SystemController
                 {
                     //封装返回的数据
                     fillOperationResult(Url.Action("Index", "BMObjection"), oper, "处理成功");
+                    Bll.UpdateChanges();
+                    if (umbrList.Count() > 0)
+                    {
+                        foreach(var umb in umbrList)
+                        {
+                            umbrBll.Insert(umb);
+                        }
+                        umbrBll.UpdateChanges();
+                    }
                     return Json(oper, JsonRequestBehavior.AllowGet);
                 }
                 else
