@@ -97,6 +97,11 @@ namespace MorSun.Controllers.SystemController
             {
                 "ErrorNum".AE("问题回答人员不存在", ModelState);
             }
+            //确认错题数量大于提交的错题数量
+            if(t.ConfirmErrorNum > model.ErrorNum)
+            {
+                "ErrorNum".AE("确认错题数量大于提交值", ModelState);
+            }
 
 
             if (ModelState.IsValid)
@@ -165,42 +170,34 @@ namespace MorSun.Controllers.SystemController
                         var ghQAUserBBYJ = ghQAUserAllYJ * bbPer;
                         var ghQAUserMBYJ = ghQAUserAllYJ * mbPer;
 
-                        //生成扣款记录 有绑币捐款与马币扣款
+                        //生成扣款记录 有绑币扣款与马币扣款
+                        if (Math.Abs(kqDISUserBanB) > 0)
+                        { 
+                            AddBMB(model, qaView, disUser, umbrListJson, umbrList, banbRef, mbly_kq, kqDISUserBanB);
+                        }
+                        if (Math.Abs(kqDISUserMb) > 0)
+                        { 
+                            AddBMB(model, qaView, disUser, umbrListJson, umbrList, mbRef, mbly_kq, kqDISUserMb);
+                        }
 
-                        var umbrModel = new bmUserMaBiRecord();
-                        umbrModel.ID = Guid.NewGuid();
-                        umbrModel.SourceRef = mbly_kq;
-                        umbrModel.MaBiRef = banbRef;
-                        umbrModel.MaBiNum = kqDISUserBanB;
-                        umbrModel.QAId = model.QAId;
-                        umbrModel.DisId = qaView.
-                        umbrModel.UserId = disUser.UserId;
-
-                        umbrModel.IsSettle = false; //取现马币时，都是未结算的。取现之后，还是未结算。等每天自动结算时再结算
-                        umbrModel.RegTime = DateTime.Now;
-                        umbrModel.ModTime = DateTime.Now;
-                        umbrModel.FlagTrashed = false;
-                        umbrModel.FlagDeleted = false;
-                        umbrModel.RegUser = Guid.Parse(CFG.异议处理用户);
-                        //数据库马币记录添加
-                        umbrList.Add(umbrModel);
-                        //Json马币数据添加
-                        umbrListJson.Add(new bmUserMaBiRecordJson
+                        //生成提问归还记录 有邦币归还与马币归还
+                        if (Math.Abs(ghQAUserBB) > 0)
+                        { 
+                            AddBMB(model, qaView, qaUser, umbrListJson, umbrList, bbRef, mbly_gh, ghQAUserBB);
+                        }
+                        if (Math.Abs(ghQAUserMB) > 0)
                         {
-                            ID = umbrModel.ID,
-                            UserId = umbrModel.UserId,
-                            TkId = umbrModel.TkId,
-                            SourceRef = umbrModel.SourceRef,
-                            MaBiRef = umbrModel.MaBiRef,
-                            MaBiNum = umbrModel.MaBiNum,
-                            IsSettle = umbrModel.IsSettle,
-
-                            RegUser = umbrModel.RegUser,
-                            RegTime = umbrModel.RegTime,
-                            ModTime = umbrModel.ModTime,
-                            FlagTrashed = umbrModel.FlagTrashed,
-                            FlagDeleted = umbrModel.FlagDeleted
-                        });
+                            AddBMB(model, qaView, qaUser, umbrListJson, umbrList, mbRef, mbly_gh, ghQAUserMB);
+                        }
+                        //生成压金归还记录 有邦币归还与马币归还
+                        if (Math.Abs(ghQAUserBBYJ) > 0)
+                        {
+                            AddBMB(model, qaView, qaUser, umbrListJson, umbrList, bbRef, mbly_gh, ghQAUserBBYJ);
+                        }
+                        if (Math.Abs(ghQAUserMBYJ) > 0)
+                        {
+                            AddBMB(model, qaView, qaUser, umbrListJson, umbrList, mbRef, mbly_gh, ghQAUserMBYJ);
+                        }
 
                         break;
 
@@ -209,33 +206,57 @@ namespace MorSun.Controllers.SystemController
 
                     case Reference.异议处理结果_无标准答案:
                         break;
-                }
-
-                
-
-
+                }   
 
                 //数据传递处理 
-                var _rzUserId = new List<Guid>();
-                _rzUserId.Add(model.UserId.Value);
+                var bmOBJson = new bmObjectionJson{
+                    ID = model.ID,
+                    QAId = model.QAId,
+                    WeiXinId = model.WeiXinId,
+                    SubmitTime = model.SubmitTime,
+                    ErrorNum = model.ErrorNum,
+                    ObjectionExplain = model.ObjectionExplain,
+                    HandleUser = model.HandleUser,
+                    AllQANum = model.AllQANum,
+                    ConfirmErrorNum = model.ConfirmErrorNum,
+                    HandleTime = model.HandleTime,
+                    Result = model.Result,
+                    HandleExplain = model.HandleExplain,
+                    IsSettle = model.IsSettle,
+                    Sort = model.Sort,
+                    RegUser = model.RegUser,
+                    RegTime = model.RegTime,
+                    ModTime = model.ModTime,
+                    FlagTrashed = model.FlagTrashed,
+                    FlagDeleted = model.FlagDeleted                
+                };
+                
                 var s = "";
-                if (_rzUserId.Count() == 0)
+                if (model == null)
                 {
                     s += " ";
                 }
                 else
                 {
-                    s += ToJsonAndCompress(_rzUserId);
+                    s += ToJsonAndCompress(bmOBJson);
                 }
                 s += CFG.邦马网_JSON数据间隔;
-                s += ToJsonAndCompress(ancyrz);
+
+                if (umbrListJson.Count() == 0)
+                {
+                    s += " ";
+                }
+                else
+                {
+                    s += ToJsonAndCompress(umbrListJson);
+                }                
                 s += CFG.邦马网_JSON数据间隔;
 
                 //向邦马网同步马币充值数据
                 var result = "";
                 var dts = DateTime.Now.ToString();
                 var tok = SecurityHelper.Encrypt(dts + ";" + CFG.邦马网_对接统一码);
-                var strUrl = CFG.网站域名 + CFG.数据同步_认证改角色;
+                var strUrl = CFG.网站域名 + CFG.数据同步_异议处理;
 
                 //未Encode的URL
                 string neAppentUrl = "?tok=" + tok;
@@ -244,13 +265,13 @@ namespace MorSun.Controllers.SystemController
                     neAppentUrl += "&AncyData=" + SecurityHelper.Encrypt(s);
                 }
 
-                LogHelper.Write("同步马币充值信息" + strUrl + neAppentUrl, LogHelper.LogMessageType.Info);
+                LogHelper.Write("同步异议处理信息" + strUrl + neAppentUrl, LogHelper.LogMessageType.Info);
                 //有传递UID时用POST方法，参数有可能会超过URL长度
                 result = GetHtmlHelper.PostGetPage(strUrl, neAppentUrl.Substring(1), "");
                 if (result == "true")
                 {
                     //封装返回的数据
-                    fillOperationResult(Url.Action("Index", "MM"), oper, "修改成功");
+                    fillOperationResult(Url.Action("Index", "BMObjection"), oper, "处理成功");
                     return Json(oper, JsonRequestBehavior.AllowGet);
                 }
                 else
@@ -261,6 +282,58 @@ namespace MorSun.Controllers.SystemController
             }
             oper.AppendData = ModelState.GE();
             return Json(oper, JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 生成扣取或归还的邦马币值
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="qaView"></param>
+        /// <param name="disUser"></param>
+        /// <param name="umbrListJson"></param>
+        /// <param name="umbrList"></param>
+        /// <param name="banbRef"></param>
+        /// <param name="mbly_kq"></param>
+        /// <param name="kqDISUserBanB"></param>
+        private static void AddBMB(bmObjection model, bmQAView qaView, bmUserWeixin disUser, List<bmUserMaBiRecordJson> umbrListJson, List<bmUserMaBiRecord> umbrList, Guid banbRef, Guid mbly_kq, decimal kqDISUserBanB)
+        {
+            var umbrModel = new bmUserMaBiRecord();
+            umbrModel.ID = Guid.NewGuid();
+            umbrModel.SourceRef = mbly_kq;
+            umbrModel.MaBiRef = banbRef;
+            umbrModel.MaBiNum = kqDISUserBanB;
+            umbrModel.QAId = model.QAId;
+            umbrModel.DisId = qaView.DisId;
+            umbrModel.OBId = model.ID;
+            umbrModel.UserId = disUser.UserId;
+
+            umbrModel.IsSettle = false; //取现马币时，都是未结算的。取现之后，还是未结算。等每天自动结算时再结算
+            umbrModel.RegTime = DateTime.Now;
+            umbrModel.ModTime = DateTime.Now;
+            umbrModel.FlagTrashed = false;
+            umbrModel.FlagDeleted = false;
+            umbrModel.RegUser = Guid.Parse(CFG.异议处理用户);
+            //数据库马币记录添加
+            umbrList.Add(umbrModel);
+            //Json马币数据添加
+            umbrListJson.Add(new bmUserMaBiRecordJson
+            {
+                ID = umbrModel.ID,
+                SourceRef = umbrModel.SourceRef,
+                MaBiRef = umbrModel.MaBiRef,
+                MaBiNum = umbrModel.MaBiNum,
+                QAId = umbrModel.QAId,
+                DisId = umbrModel.DisId,
+                OBId = umbrModel.OBId,
+                UserId = umbrModel.UserId,
+
+                IsSettle = umbrModel.IsSettle,
+                RegUser = umbrModel.RegUser,
+                RegTime = umbrModel.RegTime,
+                ModTime = umbrModel.ModTime,
+                FlagTrashed = umbrModel.FlagTrashed,
+                FlagDeleted = umbrModel.FlagDeleted
+            });
         }
         
         protected override string OnAddCK(bmObjection t)

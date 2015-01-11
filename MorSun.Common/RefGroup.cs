@@ -396,6 +396,8 @@ namespace MorSun.Common
             public const string 数据同步_取现马币 = "/DivniTxiuen/YXXTakeNow";
             //取现同步
             public const string 数据同步_取现同步 = "/DivniTxiuen/TakeMoney";
+            //异议处理
+            public const string 数据同步_异议处理 = "/DivniTxiuen/HandelOB";
         }
     }
 
