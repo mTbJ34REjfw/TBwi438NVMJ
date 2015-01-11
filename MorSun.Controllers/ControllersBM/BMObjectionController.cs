@@ -80,6 +80,25 @@ namespace MorSun.Controllers.SystemController
                 if(qaView == null || qaView.ID == null)
                     "ErrorNum".AE("未找到该条异议的问题记录", ModelState);
             }
+            //提问用户与答题用户取出来
+            var bmuwBll = new BaseBll<bmUserWeixin>();
+            var qaUser = bmuwBll.All.FirstOrDefault(p => p.WeiXinId == qaView.WeiXinId);
+            var disUser = bmuwBll.All.FirstOrDefault(p => p.WeiXinId == qaView.DisWeiXinId);
+            if(qaUser == null)
+            {
+                "ErrorNum".AE("提问用户未绑定", ModelState);
+            }
+            else if (qaUser.UserId != model.UserId)
+            {
+                "ErrorNum".AE("异议提交人不是提问人", ModelState);
+            }
+
+            if(disUser == null)
+            {
+                "ErrorNum".AE("问题回答人员不存在", ModelState);
+            }
+
+
             if (ModelState.IsValid)
             {
                 //异议更新处理
@@ -94,6 +113,8 @@ namespace MorSun.Controllers.SystemController
                 //需要传递的马币Json
                 var umbrListJson = new List<bmUserMaBiRecordJson>();
                 var umbrList = new List<bmUserMaBiRecord>();
+
+                var umbrBll = new BaseBll<bmUserMaBiRecord>();
 
                 //判断问题的回答情况
                 var qResult = t.Result.ToString();
@@ -110,24 +131,57 @@ namespace MorSun.Controllers.SystemController
 
                         var mbly_kq = Guid.Parse(Reference.马币来源_扣取);
                         var mbly_gh = Guid.Parse(Reference.马币来源_归还);
-                
-                        var umbrBll = new BaseBll<bmUserMaBiRecord>();
-                
+
+                        //平均每道题目消费的邦马币值,去除小数点后的数
+                        var mbEVQ = Math.Floor((Math.Abs(qaView.MBNum) + Math.Abs(qaView.BBNum)) / t.AllQANum); 
+                        //每题要归还的压金值
+                        var ghEVO = Convert.ToDecimal(CFG.提交异议扣取压金值);
+                        //邦马币占比
+                        var bbPer = Math.Abs(qaView.BBNum) / (Math.Abs(qaView.MBNum) + Math.Abs(qaView.BBNum));
+                        var mbPer = Math.Abs(qaView.MBNum) / (Math.Abs(qaView.MBNum) + Math.Abs(qaView.BBNum));
+                                                
+
+                        //答题用户答错一道题要扣的邦马币值
+                        var kqBMB = Convert.ToDecimal(CFG.答错扣取的马币比) * mbEVQ;
+
+                        //总的要扣取答题用户的邦马币值
+                        var kqDISUserAllB = 0 - kqBMB * t.ConfirmErrorNum;
+                        //扣取的绑币值
+                        var kqDISUserBanB = kqDISUserAllB * bbPer;
+                        //扣取的马币值
+                        var kqDISUserMb = kqDISUserAllB * mbPer;
+
+
+                        //总的要归还提问用户的邦马币值
+                        var ghQAUserAllB = mbEVQ * t.ConfirmErrorNum;
+                        //归还的邦币值
+                        var ghQAUserBB = ghQAUserAllB * bbPer;
+                        //归还的马币值
+                        var ghQAUserMB = ghQAUserAllB * mbPer;
+
+                        //总的要归还提问用户的压金值
+                        var ghQAUserAllYJ = ghEVO * t.ConfirmErrorNum;
+                        //归还的压金邦币值
+                        var ghQAUserBBYJ = ghQAUserAllYJ * bbPer;
+                        var ghQAUserMBYJ = ghQAUserAllYJ * mbPer;
+
+                        //生成扣款记录 有绑币捐款与马币扣款
 
                         var umbrModel = new bmUserMaBiRecord();
                         umbrModel.ID = Guid.NewGuid();
-                        umbrModel.SourceRef = Guid.Parse(Reference.马币来源_取现);
-                        umbrModel.MaBiRef = mbRef;
-                        umbrModel.MaBiNum = 0 - ct.MaBiNum;
-                        umbrModel.TkId = ct.ID;
-                        umbrModel.UserId = ct.UserId;
+                        umbrModel.SourceRef = mbly_kq;
+                        umbrModel.MaBiRef = banbRef;
+                        umbrModel.MaBiNum = kqDISUserBanB;
+                        umbrModel.QAId = model.QAId;
+                        umbrModel.DisId = qaView.
+                        umbrModel.UserId = disUser.UserId;
 
                         umbrModel.IsSettle = false; //取现马币时，都是未结算的。取现之后，还是未结算。等每天自动结算时再结算
                         umbrModel.RegTime = DateTime.Now;
                         umbrModel.ModTime = DateTime.Now;
                         umbrModel.FlagTrashed = false;
                         umbrModel.FlagDeleted = false;
-                        umbrModel.RegUser = ct.UserId;
+                        umbrModel.RegUser = Guid.Parse(CFG.异议处理用户);
                         //数据库马币记录添加
                         umbrList.Add(umbrModel);
                         //Json马币数据添加

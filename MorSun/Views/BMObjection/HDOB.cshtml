@@ -96,7 +96,11 @@
                                     <tr>
                                         <th>处理结果</th>
                                         <td>@MvcHtmlString.Create(Html.DropDownList("Result", "Result", NavList, item.Result.ToString(), "class=\"m-wrap small\"", "ID", "ItemValue", "", "==处理结果=="))</td>
-                                    </tr>     
+                                    </tr>  
+                                    <tr>
+                                        <th>问题总数量</th>
+                                        <td><input type="text" id="AllQANum" name="AllQANum" value="@item.AllQANum" /></td>
+                                    </tr>       
                                     <tr>
                                         <th>确认错题数量</th>
                                         <td><input type="text" id="ConfirmErrorNum" name="ConfirmErrorNum" value="@item.ConfirmErrorNum"/></td>

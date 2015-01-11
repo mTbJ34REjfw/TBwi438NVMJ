@@ -272,13 +272,17 @@ namespace MorSun.Model
         [Required(ErrorMessage = "{0}必填")]
         public System.Guid Result { get; set; }
 
+        [Display(Name = "问题总数量")]
+        [Required(ErrorMessage = "{0}必填")]
+        public System.Int32 AllQANum { get; set; }
+
         [Display(Name = "确认错题数量")]
         [Required(ErrorMessage = "{0}必填")]
-        public System.Int32 ErrorNum { get; set; }
+        public System.Int32 ConfirmErrorNum { get; set; }
 
         [Display(Name = "处理说明")]
         [Required(ErrorMessage = "{0}必填")]
-        public System.String ObjectionExplain { get; set; }
+        public System.String HandleExplain { get; set; }
 
         public string ReturnUrl { get; set; }
     }
