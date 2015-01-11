@@ -106,6 +106,10 @@
     <Compile Include="JsonObj\Basic\aspnet_UsersInRolesJson.cs" />
     <Compile Include="JsonObj\Basic\aspnet_UsersJson.cs" />
     <Compile Include="JsonObj\Basic\wmfUserInfoJson.cs" />
+    <Compile Include="JsonObj\FinalAccount\bmUserMaBiJson.cs" />
+    <Compile Include="JsonObj\FinalAccount\bmUserMaBiSettleRecord.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="JsonObj\QA\bmObjectionJson.cs" />
     <Compile Include="JsonObj\QA\bmQADistributionJson.cs" />
     <Compile Include="JsonObj\QA\bmQAJson.cs" />

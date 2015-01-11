@@ -30,6 +30,10 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <th>可提现马币</th>
+                                    <td>@MorSun.Controllers.BasisController.CurrentUserMabi.MB.ToString("f2")</td>
+                                </tr>
+                                <tr>
                                     <th>@Html.LabelFor(m => m.MaBiNum)</th>
                                     <td>@Html.TextBoxFor(m => m.MaBiNum, new { @class = "m-wrap large" })</td>
                                 </tr>
