@@ -1244,6 +1244,8 @@ namespace MorSun.Controllers
                                 //过滤掉已经添加的数据                    
                                 var alreadyQIds = bll.All.Where(p => aids.Contains(p.ID)).Select(p => p.ID);
                                 aids = aids.Except(alreadyQIds).ToList();
+                                //过滤时间超过现在1小时的数据
+
                                 _list = _list.Where(p => aids.Contains(p.ID)).ToList();
                                 foreach (var l in _list)
                                 {

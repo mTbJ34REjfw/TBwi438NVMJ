@@ -1,5 +1,4 @@
-﻿@model UserVModel
-@{
+﻿@{
     ViewBag.Title = "系统配置";
     Layout = "~/Views/Shared/_SysLayout.cshtml";
     string rs = ViewBag.RS;
@@ -17,18 +16,34 @@
         {
             <div class="portlet box @("red".getBC("BootStrapCssTable"))">
                 <div class="portlet-title">
-                    <div class="caption"><i class="icon-cogs"></i>在线答题用户</div>
+                    <div class="caption"><i class="icon-cogs"></i>日常处理</div>
                 </div>
                 <div class="portlet-body">                
                     <table class="tableadd table-hover">
                         <thead>
                             <tr>
-                                <th width="300">在线用户</th>
-                                <td><button class="btn red" type="button" onclick="jumptourl('/SYSConfig/OnlineQAUser')">查看在线答题用户</button></td>
+                                <th width="300">认证</th>
+                                <td><button class="btn green" type="button" onclick="jumptourl('/MM')">用户认证</button></td>
                                 <td></td>
                             </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody>                            
+                            <tr>
+                                <th width="300">取现</th>
+                                <td><button class="btn yellow" type="button" onclick="jumptourl('/BMTakeNow')">取现</button></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th width="300">异议处理</th>
+                                <td><button class="btn red" type="button" onclick="jumptourl('/BMObjection')">异议处理</button></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th width="300">结算</th>
+                                <td><button class="btn purple" type="button" onclick="jumptourl('/SYSConfig/OnlineQAUser')">邦马币结算</button></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
                     </table>                
                 </div>
             </div>
