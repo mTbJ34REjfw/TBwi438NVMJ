@@ -1265,11 +1265,13 @@ namespace MorSun.Controllers
                     //已经回答的问题发送邮件通知提问人员,测试发邮件通知时的效率，每发一封邮件之前都会将邮件内容保存进数据库
                     if(bmQADisList.Count() >0)
                     {
+                        var mrbll = new BaseBll<wmfMailRecord>();
                         foreach(var d in bmQADisList)
                         {
+                            var qaU = d.bmQA.aspnet_Users1;
                             try
                             {
-
+                                JDQAMail(mrbll, qaU.UserName, qaU.wmfUserInfo.NickName, d.QAId.ToSecureString());
                             }
                             catch
                             {
@@ -1285,6 +1287,28 @@ namespace MorSun.Controllers
             }            
         }
 
+        /// <summary>
+        /// 问题解答后通知提问人员
+        /// </summary>
+        /// <param name="mrbll"></param>
+        /// <param name="email"></param>
+        /// <param name="nickName"></param>
+        /// <param name="takeMB"></param>
+        /// <param name="takeMoney"></param>
+        protected void JDQAMail(BaseBll<wmfMailRecord> mrbll, string email, string nickName, string qaId)
+        {
+            LogHelper.Write(email + "发送邮件", LogHelper.LogMessageType.Debug);
+            string fromEmail = CFG.应用邮箱;
+            string fromEmailPassword = CFG.邮箱密码.DP();
+            int emailPort = String.IsNullOrEmpty(CFG.邮箱端口) ? 587 : CFG.邮箱端口.ToAs<int>();
+
+            string body = new WebClient().GetHtml("ServiceDomain".GHU() + "/Home/Q/" + qaId);
+            //创建邮件对象并发送
+            var mail = new SendMail(email, fromEmail, body, "取现通知", fromEmailPassword, "ServiceMailName".GX(), nickName);
+            var mailRecord = new wmfMailRecord().wmfMailRecord2(email, body, "取现通知", "ServiceMailName".GX(), nickName, Guid.Parse(Reference.电子邮件类别_取现通知));
+            mrbll.Insert(mailRecord);
+            mail.Send("smtp.", emailPort, email + "取现通知邮件发送失败！");
+        }
 
         /// <summary>
         /// 用户充值数据同步

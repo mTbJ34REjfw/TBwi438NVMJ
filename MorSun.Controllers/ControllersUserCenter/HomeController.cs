@@ -10,6 +10,7 @@ using MorSun.Common.类别;
 using MorSun.Common.配置;
 using HOHO18.Common.SSO;
 using HOHO18.Common.WEB;
+using MorSun.Controllers.ViewModel;
 
 
 namespace MorSun.Controllers
@@ -234,6 +235,22 @@ namespace MorSun.Controllers
                 return new BaseBll<bmUserWeixin>().All.Where(p => p.WeiXinId == userWeiXinId).FirstOrDefault();
             else
                 return null;
+        }
+
+        public ActionResult Q(Guid? id)
+        {
+            LogHelper.Write(Request.RawUrl, LogHelper.LogMessageType.Debug);
+            var model = new BMQAViewVModel();
+            if (id != null)
+            {
+                model.sParentId = id;
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("I", "H");
+            }
+
         }
     }
 }
