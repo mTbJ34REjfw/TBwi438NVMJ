@@ -130,6 +130,15 @@ namespace MorSun.Controllers.SystemController
                 switch(qResult)
                 {
                     case Reference.异议处理结果_答错:
+
+                        //过滤掉已经添加的数据                    
+                        var alreadyMB = umbrBll.All.Where(p => p.QAId != null && p.DisId != null && p.OBId != null && p.OBId == model.ID);
+                        foreach (var d in alreadyMB)
+                        {
+                            umbrBll.Delete(d, false);
+                        }
+                        umbrBll.UpdateChanges();
+
                         //扣取答题用户的邦马币
                         var qaMB = Math.Abs(qaView.MBNum);
                         var qaBB = Math.Abs(qaView.BBNum);
@@ -169,8 +178,8 @@ namespace MorSun.Controllers.SystemController
                         var obViewBll = new BaseBll<bmOBView>();
                         var obViewModel = obViewBll.All.FirstOrDefault(p => p.ID == model.ID);
 
-                        var obMB = Math.Floor(obViewModel.KQMBNUM);
-                        var obBB = Math.Floor(obViewModel.KQBBNum);
+                        var obMB = Math.Abs(obViewModel.KQMBNUM);
+                        var obBB = Math.Abs(obViewModel.KQBBNum);
 
                         //每题要归还的压金值 做成按扣取的压金总值除以总问题数
                         var ghEVO = Math.Floor((obMB + obBB) / t.AllQANum);
@@ -297,6 +306,27 @@ namespace MorSun.Controllers.SystemController
                         umbrBll.UpdateChanges();
                     }
                     //发送邮件功能
+                    var mrbll = new BaseBll<wmfMailRecord>();
+                    var qaU = model.bmQA.aspnet_Users1;
+                    var disU = new BaseBll<aspnet_Users>().All.FirstOrDefault(p => p.UserId == disUser.UserId);
+                    //提问人员发送邮件
+                    try
+                    {
+                        OBQAMail(mrbll, qaU.UserName, qaU.wmfUserInfo.NickName, model.QAId.ToSecureString(), model.bmQA.AutoGrenteId.ToString());
+                    }
+                    catch
+                    {
+                        LogHelper.Write("异议处理发邮件不成功 异议记录ID：" + model.ID, LogHelper.LogMessageType.Info);
+                    }
+                    //答题人员发送邮件
+                    try
+                    {
+                        OBQAMail(mrbll, disU.UserName, disU.wmfUserInfo.NickName, model.QAId.ToSecureString(), model.bmQA.AutoGrenteId.ToString());
+                    }
+                    catch
+                    {
+                        LogHelper.Write("异议处理发邮件不成功 异议记录ID：" + model.ID, LogHelper.LogMessageType.Info);
+                    }
 
                     return Json(oper, JsonRequestBehavior.AllowGet);
                 }
@@ -361,7 +391,30 @@ namespace MorSun.Controllers.SystemController
                 FlagDeleted = umbrModel.FlagDeleted
             });
         }
-        
+
+        /// <summary>
+        /// 异议处理通知用户
+        /// </summary>
+        /// <param name="mrbll"></param>
+        /// <param name="email"></param>
+        /// <param name="nickName"></param>
+        /// <param name="qaId"></param>
+        /// <param name="qaNum"></param>
+        private void OBQAMail(BaseBll<wmfMailRecord> mrbll, string email, string nickName, string qaId, string qaNum)
+        {
+            LogHelper.Write(email + "发送邮件", LogHelper.LogMessageType.Debug);
+            string fromEmail = CFG.应用邮箱;
+            string fromEmailPassword = CFG.邮箱密码.DP();
+            int emailPort = String.IsNullOrEmpty(CFG.邮箱端口) ? 587 : CFG.邮箱端口.ToAs<int>();
+
+            string body = new WebClient().GetHtml("ServiceDomain".GHU() + "/Home/Q/" + qaId);
+            //创建邮件对象并发送
+            var mail = new SendMail(email, fromEmail, body, "异议处理结果通知 问题编号：" + qaNum, fromEmailPassword, "ServiceMailName".GX(), nickName);
+            var mailRecord = new wmfMailRecord().wmfMailRecord2(email, body, "异议处理结果通知", "ServiceMailName".GX(), nickName, Guid.Parse(Reference.电子邮件类别_异议处理结果通知));
+            mrbll.Insert(mailRecord);
+            mail.Send("smtp.", emailPort, email + "异议处理结果通知邮件发送失败！");
+        }
+
         protected override string OnAddCK(bmObjection t)
         {              
             return "";

@@ -1,0 +1,141 @@
+﻿@model BMQAViewVModel
+@{
+    ViewBag.Title = "异议处理";
+    Layout = "~/Views/Shared/_SysLayout.cshtml";    
+    string rs = ViewBag.RS;
+    var backurl = ViewBag.ReturnUrl ?? "/BMObjection/Index";
+    var refVModel = new ReferenceVModel();
+    var NavList = refVModel.GetReferencesByRefGroupId(MorSun.Common.类别组.RefGroup.异议处理结果);
+}
+@Styles.Render("~/Content/themes/base/css")
+@Scripts.Render("~/bundles/jqueryui")
+<section class="featuredwhite">
+    <div class="content-wrapper clear-fix">   
+        <div class="portlet-body">            
+                      
+            <div class="portlet box @("red".getBC("BootStrapCssTable"))">
+                <div class="portlet-title">
+                    <div class="caption"><i class="icon-cogs"></i>问题 &nbsp;&nbsp;&nbsp;&nbsp; @((Model.Q.MBNum == 0 || Model.Q.MBNum == null) && (Model.Q.BBNum == 0 || Model.Q.BBNum == null) ? "免费提问" : ("消耗" + ((Model.Q.MBNum == 0 || Model.Q.MBNum == null) ? "" : (Math.Abs(Model.Q.MBNum).ToString("f0") + "马币")) + ((Model.Q.BBNum == 0 || Model.Q.BBNum == null) ? "" : (Math.Abs(Model.Q.BBNum).ToString("f0") + "邦币")))) &nbsp;&nbsp;&nbsp;&nbsp; 提问时间：@(HOHO18.Common.ChangeDateTime.DateStringFromNow(Model.Q.RegTime == null ? DateTime.Now : Model.Q.RegTime.Value))</div>
+                </div>
+                <div class="textCenter">
+                    <img id="ImgQA" src="@Model.Q.PicUrl" onclick="jumptourl('@Model.Q.PicUrl')" width="99%" />                    
+                </div>
+            </div>
+            @if (Model.A != null)
+            {    
+                <div class="portlet box @("red".getBC("BootStrapCssTable"))">
+                    <div class="portlet-title">
+                        <div class="caption"><i class="icon-cogs"></i>答案</div>
+                    </div>
+
+                    @if (Model.A.QARef == Guid.Parse(Reference.问答类别_不是问题))
+                    {
+                        <div class="textCenter">
+                            <h1>这不是一个问题</h1>
+                        </div>
+                    }
+                    @if (Model.A.QARef == Guid.Parse(Reference.问答类别_答案))
+                        {
+                            if (Model.A.MsgType == Guid.Parse(Reference.微信消息类别_文本))
+                            {
+                                <div class="textCenter">
+                                    <h1>@Model.A.QAContent</h1>
+                                </div>
+                            }
+                            else if (Model.A.MsgType == Guid.Parse(Reference.微信消息类别_图片))
+                            {
+                                <div class="textCenter">
+                                    <img id="ImgDA" src="@Model.A.PicUrl" onclick="jumptourl('@Model.A.PicUrl')" width="99%" />                                    
+                                </div>
+                        }
+                    }
+                </div>   
+            }
+
+            @if(Model.Others.Count() > 0)
+            {                                 
+                foreach(var item in Model.Others)
+                {                                    
+                    <div class="portlet box @("red".getBC("BootStrapCssTable"))">
+                        <div class="portlet-title">
+                            <div class="caption"><i class="icon-cogs"></i>其他</div>
+                        </div>
+                            @if (item.QARef == Guid.Parse(Reference.问答类别_放弃))
+                            {
+                                <div class="textCenter">
+                                    <h1>被答题用户放弃</h1>
+                                </div>
+                            }                                                
+                    </div>                                        
+                }
+            } 
+
+            @if (Model.Objecs.Count() > 0)
+            {                
+                <div class="portlet box @("red".getBC("BootStrapCssTable"))">
+                    <div class="portlet-title">
+                        <div class="caption"><i class="icon-cogs"></i>异议</div>
+                    </div>
+                    @foreach (var item in Model.Objecs)
+                    { 
+                        <div class="portlet-body">
+                        @using (Html.BeginForm("HDOB", "BMObjection", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "fmForm" }))
+                            {
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@item.ID"/>
+                            <table class="tableadd table-hover">
+                                <thead>
+                                    <tr>
+                                        <td colspan="2">
+                                            <p>用户在 @(HOHO18.Common.ChangeDateTime.DateStringFromNow(item.SubmitTime == null ? DateTime.Now : item.SubmitTime.Value)) 提交异议说错了 <span class="spanRed spanBold">@item.ErrorNum</span> 道题 系统扣取 <span class="spanRed spanBold">@(item.KQBBNum == 0 ? "" : "邦币" + Math.Abs(item.KQBBNum).ToString("f0")) @(item.KQMBNUM == 0 ? "" : "马币" + Math.Abs(item.KQMBNUM).ToString("f0"))</span> 作压金</p>
+                                            <p>@item.ObjectionExplain</p>                                            
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>   
+                                    <tr>
+                                        <th>处理结果</th>
+                                        <td>@MvcHtmlString.Create(Html.DropDownList("Result", "Result", NavList, item.Result.ToString(), "class=\"m-wrap small\"", "ID", "ItemValue", "", "==处理结果=="))</td>
+                                    </tr>  
+                                    <tr>
+                                        <th>问题总数量</th>
+                                        <td><input type="text" id="AllQANum" name="AllQANum" value="@item.AllQANum" /></td>
+                                    </tr>       
+                                    <tr>
+                                        <th>确认错题数量</th>
+                                        <td><input type="text" id="ConfirmErrorNum" name="ConfirmErrorNum" value="@item.ConfirmErrorNum"/></td>
+                                    </tr>      
+                                    <tr>                                        
+                                        <td colspan="2">@Html.HtmlEditor("HandleExplain", item.HandleExplain)</td>
+                                    </tr>   
+                                    <tr>
+                                        <td></td>
+                                        <td>@if (rs.HP(操作.修改))
+                                            {
+                                                <button class="btn green submitBtn" type="button">@("提交".GX())</button>
+                                            } 
+                                            <button class="btn" type="button" onclick="jumptourl('@backurl')">@("返回".GX())</button>
+                                        </td>
+                                    </tr>                          
+                                </tbody>
+                            </table>
+                        }
+                        </div>                        
+                    }
+                </div>                
+            } 
+        </div>
+    </div>         
+</section>
+    @section Scripts {        
+        @Scripts.Render("~/bundles/jqueryval")        
+        @Scripts.Render("~/bundles/validator")
+        @Styles.Render("~/Content/JQueryQtipCss")
+        @Scripts.Render("~/bundles/jqueryqtip")
+        @Scripts.Render("~/bundles/morsuncommon")        
+        @Scripts.Render("~/bundles/waypoint")
+ 
+        <script type="text/javascript">    
+            $(ajaxSubmitFormHandle('.submitBtn', '#fmForm', '提交失败，请联系管理员', '#divInfo', false));            
+        </script>
+    }

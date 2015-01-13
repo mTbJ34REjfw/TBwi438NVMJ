@@ -42,6 +42,7 @@ namespace MorSun.Common
             public const string 电子邮件类别_登录失败 = "147f2fd3-0d69-4b95-b6f2-db9de59eec2c";
             public const string 电子邮件类别_取现通知 = "3d2b1229-c2c1-4d74-9f8a-d5f1a73d4491";
             public const string 电子邮件类别_异议处理结果通知 = "c35e8b44-2ee4-44a1-a300-42f1b97609b1";
+            public const string 电子邮件类别_问题解答通知 = "34cf271d-c2ff-48cb-aead-9fcbd14b76ac";
             #endregion
 
             #endregion

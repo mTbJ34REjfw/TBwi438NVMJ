@@ -1,37 +1,60 @@
 ﻿@model BMQAViewVModel
 @{
-    ViewBag.Title = "查看答案";    
+    ViewBag.Title = "查看答案";
+    Layout = null;
+
     var backurl = ViewBag.ReturnUrl ?? "/H/I";
-     
-    var rUrl = Request.RawUrl ?? "/h/i"; 
+
+    var rUrl = Request.RawUrl ?? "/h/i";
 }
-@Styles.Render("~/Content/themes/base/css")
-@Scripts.Render("~/bundles/jqueryui")
-<section class="featuredwhite">
-    <div class="content-wrapper clear-fix">   
-        <div class="portlet-body">
-            <div class="portlet box @("red".getBC("BootStrapCssTable"))">
-                <div class="portlet-title">
-                    <div class="caption"><i class="icon-cogs"></i>问题 &nbsp;&nbsp;&nbsp;&nbsp; @((Model.Q.MBNum == 0 || Model.Q.MBNum == null) && (Model.Q.BBNum == 0 || Model.Q.BBNum == null) ? "免费提问" : ("消耗" + ((Model.Q.MBNum == 0 || Model.Q.MBNum == null) ? "" : (Math.Abs(Model.Q.MBNum).ToString("f0") + "马币")) + ((Model.Q.BBNum == 0 || Model.Q.BBNum == null) ? "" : (Math.Abs(Model.Q.BBNum).ToString("f0") + "邦币")))) &nbsp;&nbsp;&nbsp;&nbsp; 提问时间：@(HOHO18.Common.ChangeDateTime.DateStringFromNow(Model.Q.RegTime == null ? DateTime.Now : Model.Q.RegTime.Value))</div>
-                </div>
-                <div class="textCenter">
-                    <img id="ImgQA" src="@Model.Q.PicUrl" onclick="jumptourl('@Model.Q.PicUrl')" width="99%" />                    
-                </div>
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - 您身边的问题解决专家 作业 作业神器 拍题神器 作业帮 作业邦  @("ServiceName".GX())</title>
+
+</head>
+<body>
+    <header>
+        <div id="top" class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title"><a href="@(CFG.网站域名)" target="_blank"><img src="@(CFG.网站域名)/images/bungmalogo.gif" width="68" class="float-left" /><span class="logohspan">@("ServiceName".GX())</span></a>@*<span class="logoyspan">www.bungma.com</span>*@</p>
+                @*<p class="spanRed spanBold">www.bungma.com</p>*@
             </div>
-            @if (Model.A != null)
-            {    
+            <div class="float-right">
+                <section id="login">
+                    @*<span class="telStringSpan">Tel.</span> <span class="telSpan">133 137 88387</span>*@
+                </section>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+        <div class="content-wrapper clear-fix">
+            <div class="portlet-body">
                 <div class="portlet box @("red".getBC("BootStrapCssTable"))">
                     <div class="portlet-title">
-                        <div class="caption"><i class="icon-cogs"></i>答案</div>
+                        <div class="caption"><i class="icon-cogs"></i>问题 &nbsp;&nbsp;&nbsp;&nbsp; @((Model.Q.MBNum == 0 || Model.Q.MBNum == null) && (Model.Q.BBNum == 0 || Model.Q.BBNum == null) ? "免费提问" : ("消耗" + ((Model.Q.MBNum == 0 || Model.Q.MBNum == null) ? "" : (Math.Abs(Model.Q.MBNum).ToString("f0") + "马币")) + ((Model.Q.BBNum == 0 || Model.Q.BBNum == null) ? "" : (Math.Abs(Model.Q.BBNum).ToString("f0") + "邦币")))) &nbsp;&nbsp;&nbsp;&nbsp; 提问时间：@(HOHO18.Common.ChangeDateTime.DateStringFromNow(Model.Q.RegTime == null ? DateTime.Now : Model.Q.RegTime.Value))</div>
                     </div>
-
-                    @if (Model.A.QARef == Guid.Parse(Reference.问答类别_不是问题))
-                    {
-                        <div class="textCenter">
-                            <h1>这不是一个问题</h1>
+                    <div class="textCenter">
+                        <img id="ImgQA" src="@Model.Q.PicUrl" onclick="jumptourl('@Model.Q.PicUrl')" width="99%" />
+                    </div>
+                </div>
+                @if (Model.A != null)
+                {
+                    <div class="portlet box @("red".getBC("BootStrapCssTable"))">
+                        <div class="portlet-title">
+                            <div class="caption"><i class="icon-cogs"></i>答案</div>
                         </div>
-                    }
-                    @if (Model.A.QARef == Guid.Parse(Reference.问答类别_答案))
+
+                        @if (Model.A.QARef == Guid.Parse(Reference.问答类别_不是问题))
+                        {
+                            <div class="textCenter">
+                                <h1>这不是一个问题</h1>
+                            </div>
+                        }
+                        @if (Model.A.QARef == Guid.Parse(Reference.问答类别_答案))
                         {
                             if (Model.A.MsgType == Guid.Parse(Reference.微信消息类别_文本))
                             {
@@ -42,90 +65,598 @@
                             else if (Model.A.MsgType == Guid.Parse(Reference.微信消息类别_图片))
                             {
                                 <div class="textCenter">
-                                    <img id="ImgDA" src="@Model.A.PicUrl" onclick="jumptourl('@Model.A.PicUrl')" width="99%" />                                    
+                                    <img id="ImgDA" src="@Model.A.PicUrl" onclick="jumptourl('@Model.A.PicUrl')" width="99%" />
                                 </div>
+                            }
                         }
-                    }
-                </div>   
-            }
+                    </div>
+                }
 
-            @if(Model.Others.Count() > 0)
-            {                                 
-                foreach(var item in Model.Others)
-                {                                    
-                    <div class="portlet box @("red".getBC("BootStrapCssTable"))">
-                        <div class="portlet-title">
-                            <div class="caption"><i class="icon-cogs"></i>其他</div>
-                        </div>
+                @if (Model.Others.Count() > 0)
+                {
+                    foreach (var item in Model.Others)
+                    {
+                        <div class="portlet box @("red".getBC("BootStrapCssTable"))">
+                            <div class="portlet-title">
+                                <div class="caption"><i class="icon-cogs"></i>其他</div>
+                            </div>
                             @if (item.QARef == Guid.Parse(Reference.问答类别_放弃))
                             {
                                 <div class="textCenter">
                                     <h1>被答题用户放弃</h1>
                                 </div>
-                            }                                                
-                    </div>                                        
-                }
-            } 
-
-            @if (Model.Objecs.Count() > 0)
-            {                
-                <div class="portlet box @("red".getBC("BootStrapCssTable"))">
-                    <div class="portlet-title">
-                        <div class="caption"><i class="icon-cogs"></i>异议</div>
-                    </div>
-                    @foreach (var item in Model.Objecs)
-                    {
-                        <div class="portlet-body">
-                            <table class="tableadd table-hover">
-                                <thead>
-                                    <tr>
-                                        <td colspan="2">
-                                            <p>用户在 @(HOHO18.Common.ChangeDateTime.DateStringFromNow(item.SubmitTime == null ? DateTime.Now : item.SubmitTime.Value)) 提交异议说错了 <span class="spanRed spanBold">@item.ErrorNum</span> 道题 系统扣取 <span class="spanRed spanBold">@(item.KQBBNum == 0 ? "" : "邦币" + Math.Abs(item.KQBBNum).ToString("f0")) @(item.KQMBNUM == 0 ? "" : "马币" + Math.Abs(item.KQMBNUM).ToString("f0"))</span> 作压金</p>
-                                            <p>@item.ObjectionExplain</p>                                            
-                                        </td>
-                                    </tr>
-                                </thead>
-                                <tbody>   
-                                    @if(item.Result != null)
-                                            {
-                                    <tr>
-                                        <td> 
-                                                @if(item.Result == Guid.Parse(Reference.异议处理结果_答错))
-                                                { 
-                                                    <p>马子在 @(HOHO18.Common.ChangeDateTime.DateStringFromNow(item.HandleTime == null ? DateTime.Now : item.HandleTime.Value)) 检查结果说 总的提问 <span class="spanRed spanBold">@item.AllQANum</span> 道题 其中错了 <span class="spanRed spanBold">@item.ConfirmErrorNum</span> 道题 系统归还 <span class="spanRed spanBold">@(item.GHBBNum == 0 ? "" : "邦币" + Math.Abs(item.GHBBNum).ToString("f0")) @(item.GHMBNUM == 0 ? "" : "马币" + Math.Abs(item.GHMBNUM).ToString("f0"))</span></p>
-                                                    <p>扣取答题用户 <span class="spanRed spanBold">@(item.KQdtBanBNum == 0 ? "" : "绑币" + Math.Abs(item.KQdtBanBNum).ToString("f0")) @(item.KQdtMBNUM == 0 ? "" : "马币" + Math.Abs(item.KQdtMBNUM).ToString("f0"))</span></p>
-                                                    <p>@Html.Raw(item.HandleExplain)</p>
-                                                }
-                                                else
-                                                {
-                                                    <p>马子在 @(HOHO18.Common.ChangeDateTime.DateStringFromNow(item.HandleTime == null ? DateTime.Now : item.HandleTime.Value)) 检查结果说该问题 @item.ItemValue</p>
-                                                    <p>@Html.Raw(item.HandleExplain)</p>
-                                                }
-                                        </td>
-                                    </tr>  
-                                            }                                  
-                                </tbody>
-                            </table>
+                            }
                         </div>
                     }
-                </div>                
-            } 
-        </div>
-    </div>         
-</section>
-    @section Scripts {        
-        @Scripts.Render("~/bundles/jqueryval")        
-        @Scripts.Render("~/bundles/validator")
-        @Styles.Render("~/Content/JQueryQtipCss")
-        @Scripts.Render("~/bundles/jqueryqtip")
-        @Scripts.Render("~/bundles/morsuncommon")        
-        @Scripts.Render("~/bundles/waypoint")
- 
+                }
 
-        <script type="text/javascript">             
-            $(function () {   
-                $('#zt_pf').html("");
-                $('#zt_pf').css("background-image", "none");
-            });
-        </script>
+                @if (Model.Objecs.Count() > 0)
+                {
+                    <div class="portlet box @("red".getBC("BootStrapCssTable"))">
+                        <div class="portlet-title">
+                            <div class="caption"><i class="icon-cogs"></i>异议</div>
+                        </div>
+                        @foreach (var item in Model.Objecs)
+                        {
+                            <div class="portlet-body">
+                                <table class="tableadd table-hover">
+                                    <thead>
+                                        <tr>
+                                            <td colspan="2">
+                                                <p>用户在 @(HOHO18.Common.ChangeDateTime.DateStringFromNow(item.SubmitTime == null ? DateTime.Now : item.SubmitTime.Value)) 提交异议说错了 <span class="spanRed spanBold">@item.ErrorNum</span> 道题 系统扣取 <span class="spanRed spanBold">@(item.KQBBNum == 0 ? "" : "邦币" + Math.Abs(item.KQBBNum).ToString("f0")) @(item.KQMBNUM == 0 ? "" : "马币" + Math.Abs(item.KQMBNUM).ToString("f0"))</span> 作压金</p>
+                                                <p>@item.ObjectionExplain</p>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (item.Result != null)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @if (item.Result == Guid.Parse(Reference.异议处理结果_答错))
+                                                    {
+                                                        <p>马子在 @(HOHO18.Common.ChangeDateTime.DateStringFromNow(item.HandleTime == null ? DateTime.Now : item.HandleTime.Value)) 检查结果说 总的提问 <span class="spanRed spanBold">@item.AllQANum</span> 道题 其中错了 <span class="spanRed spanBold">@item.ConfirmErrorNum</span> 道题 系统归还 <span class="spanRed spanBold">@(item.GHBBNum == 0 ? "" : "邦币" + Math.Abs(item.GHBBNum).ToString("f0")) @(item.GHMBNUM == 0 ? "" : "马币" + Math.Abs(item.GHMBNUM).ToString("f0"))</span></p>
+                                                        <p>扣取答题用户 <span class="spanRed spanBold">@(item.KQdtBanBNum == 0 ? "" : "绑币" + Math.Abs(item.KQdtBanBNum).ToString("f0")) @(item.KQdtMBNUM == 0 ? "" : "马币" + Math.Abs(item.KQdtMBNUM).ToString("f0"))</span></p>
+                                                        <p>@Html.Raw(item.HandleExplain)</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p>马子在 @(HOHO18.Common.ChangeDateTime.DateStringFromNow(item.HandleTime == null ? DateTime.Now : item.HandleTime.Value)) 检查结果说该问题 @item.ItemValue</p>
+                                                        <p>@Html.Raw(item.HandleExplain)</p>
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                }
+                <div class="portlet box @("red".getBC("BootStrapCssTable"))">
+                    <div class="portlet-title">
+                        <div class="caption"><i class="icon-cogs"></i>系统发送邮件</div>
+                    </div>
+                    <div class="textCenter">
+                        此信是由<a href="@(CFG.网站域名)" target="_blank">@("ServiceName".GX())</a>系统发出，系统不接收回信，请勿直接回复。
+                    </div>
+                </div>                
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
+<style>
+    html {
+        background-color: #fff;
+        margin: 0;
+        padding: 0;
     }
+
+    body {
+        background-color: #fff;
+        border-top: solid 10px #000;
+        color: #222;
+        font-size: 1em;
+        font-family: 微软雅黑,宋体,Tahoma,Geneva,sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    a {
+        color: #bd0124;
+        outline: none;
+        padding-left: 3px;
+        padding-right: 3px;
+        text-decoration: none;
+    }
+
+        a:link, a:visited,
+        a:active, a:hover {
+            color: #bd0124;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    img {
+        border: none;
+    }
+
+    header, footer, hgroup,
+    nav, section {
+        display: block;
+    }
+
+    mark {
+        background-color: #a6dbed;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .float-left {
+        float: left;
+    }
+
+    .float-right {
+        float: right;
+    }
+
+    .clear-fix:after {
+        content: ".";
+        clear: both;
+        display: block;
+        height: 0;
+        visibility: hidden;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.75em;
+    }
+
+    h3 {
+        font-size: 1.2em;
+    }
+
+    .content-wrapper {
+        margin: 0 auto;
+        max-width: 960px;
+    }
+
+    #body {
+        background-color: #fff;
+        clear: both;
+        padding-top: 35px;
+        /*padding-bottom: 35px;*/
+    }
+    /*header*/
+    header .content-wrapper {
+        padding-top: 10px;
+        height: 58px;
+    }
+
+    .site-title {
+        color: #333;
+        font-family: 微软雅黑,宋体,Tahoma,Geneva,sans-serif;
+        font-size: 2.3em;
+        margin: 0;
+        width: 200px;
+    }
+
+        .site-title a, .site-title a:hover, .site-title a:active {
+            background: none;
+            color: #333;
+            outline: none;
+            text-decoration: none;
+        }
+
+    header .logohspan {
+        margin-left: 10px;
+        float: left;
+    }
+
+    header .logoyspan {
+        margin-top: -30px;
+        margin-left: 80px;
+        float: left;
+        font-size: 12px;
+        width: 200px;
+    }
+
+    header .telStringSpan {
+        color: #E72F2F;
+        font-family: 微软雅黑,宋体,Tahoma,Geneva,sans-serif;
+        font-size: 1.0em;
+        margin: 0;
+        margin-left: 50px;
+    }
+
+    header .telSpan {
+        color: #99312E;
+        font-family: 微软雅黑,宋体,Tahoma,Geneva,sans-serif;
+        font-size: 2.0em;
+        margin: 0;
+    }
+
+
+
+    .featured {
+        background-color: #bd0124;
+    }
+
+        .featured .content-wrapper {
+            background-color: #bd0124;
+            color: #1a1011;
+            padding: 20px 40px 30px 40px;
+            height: 400px;
+        }
+
+
+    /* portlet buttons */
+
+    .portlet-title:after, .portlet-title:before {
+        content: "";
+        display: table;
+        line-height: 0;
+    }
+
+    .portlet-title:after {
+        clear: both;
+    }
+
+    .portlet-title:after, .portlet-title:before {
+        content: "";
+        display: table;
+        line-height: 0;
+    }
+
+    .portlet {
+        margin-top: 10px;
+    }
+
+        .portlet.solid {
+            padding: 10px;
+        }
+
+            .portlet.solid .portlet-title .tools {
+                border: 0 none;
+                margin-top: 2px;
+            }
+
+            .portlet.solid .portlet-title {
+                border: 0 none;
+                margin-bottom: 5px;
+            }
+
+            .portlet.solid.bordered .portlet-title {
+                margin-bottom: 15px;
+            }
+
+            .portlet.solid.red .portlet-title, .portlet.solid.red .portlet-title i, .portlet.solid.red .portlet-body, .portlet.solid.green .portlet-title, .portlet.solid.green .portlet-title i, .portlet.solid.green .portlet-body, .portlet.solid.yellow .portlet-title, .portlet.solid.yellow .portlet-title i, .portlet.solid.yellow .portlet-body, .portlet.solid.grey .portlet-title, .portlet.solid.grey .portlet-title i, .portlet.solid.grey .portlet-body, .portlet.solid.purple .portlet-title, .portlet.solid.purple .portlet-title i, .portlet.solid.purple .portlet-body, .portlet.solid.blue .portlet-title, .portlet.solid.blue .portlet-title i, .portlet.solid.blue .portlet-body {
+                border: 0 none;
+                color: #fff;
+            }
+
+        .portlet.bordered {
+            border-left: 2px solid #ddd;
+        }
+
+        .portlet.box {
+            padding: 0 !important;
+        }
+
+            .portlet.box .portlet-title {
+                border-bottom: 1px solid #eee;
+                color: #fff !important;
+                padding: 8px 10px 2px;
+            }
+
+                .portlet.box .portlet-title > .actions > .btn > i {
+                    color: #fff !important;
+                }
+
+    .portlet-title .caption {
+        display: inline-block;
+        float: left;
+        font-size: 18px;
+        font-weight: 400;
+        margin: 0 0 7px;
+        padding: 0;
+    }
+
+    .portlet-title .tools, .portlet-title .actions {
+        display: inline-block;
+        float: right;
+        margin: 6px 0 0;
+        padding: 0;
+    }
+
+
+    .portlet.box .portlet-title .tools {
+        margin-top: 3px;
+    }
+
+    .collapse {
+        height: 0;
+        overflow: hidden;
+        position: relative;
+        transition: height 0.35s ease 0s;
+    }
+
+    .portlet-title .tools > a {
+        display: inline-block;
+        height: 16px;
+        margin-left: 5px;
+    }
+
+        .portlet-title .tools > a.collapse {
+            background-image: url("../Images/portlet-collapse-icon.png");
+            width: 8px;
+        }
+
+        .portlet-title .tools > a.config {
+            background-image: url("../Images/portlet-config-icon.png");
+            background-repeat: no-repeat;
+            width: 12px;
+        }
+
+        .portlet-title .tools > a.reload {
+            background-image: url("../Images/portlet-reload-icon.png");
+            width: 7px;
+        }
+
+        .portlet-title .tools > a.remove {
+            background-image: url("../Images/portlet-remove-icon.png");
+            background-repeat: no-repeat;
+            width: 11px;
+        }
+
+        .portlet-title .tools > a:hover {
+            opacity: 0.6;
+            text-decoration: none;
+            transition: all 0.1s ease-in-out 0s;
+        }
+
+    .portlet.box .portlet-title .tools > a.remove, .portlet.solid .portlet-title .tools > a.remove {
+        background-image: url("../images/portlet-remove-icon-white.png");
+    }
+
+    .portlet.box .portlet-title .tools > a.config, .portlet.solid .portlet-title .tools > a.config {
+        background-image: url("../images/portlet-config-icon-white.png");
+    }
+
+    .portlet.box .portlet-title .tools > a.reload, .portlet.solid .portlet-title .tools > a.reload {
+        background-image: url("../images/portlet-reload-icon-white.png");
+    }
+
+    .portlet.box .portlet-title .tools > a.expand, .portlet.solid .portlet-title .tools > a.expand {
+        background-image: url("../images/portlet-expand-icon-white.png");
+    }
+
+    .portlet.box .portlet-title .tools > a.collapse, .portlet.solid .portlet-title .tools > a.collapse {
+        background-image: url("../images/portlet-collapse-icon-white.png");
+    }
+
+
+
+    .portlet.box .portlet-body {
+        background-color: #fff;
+        padding: 10px;
+    }
+
+    .portlet.box .portlet-title {
+        margin-bottom: 0;
+    }
+
+    .portlet.box.blue .portlet-title {
+        background-color: #4b8df8;
+    }
+
+    .portlet.box.blue {
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+        border-color: -moz-use-text-color #b4cef8 #b4cef8;
+        border-image: none;
+        border-right: 1px solid #b4cef8;
+        border-style: none solid solid;
+        border-width: 0 1px 1px;
+    }
+
+    .portlet.box.red .portlet-title {
+        background-color: #e02222;
+    }
+
+    .portlet.box.red {
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+        border-color: -moz-use-text-color #ef8476 #ef8476;
+        border-image: none;
+        border-right: 1px solid #ef8476;
+        border-style: none solid solid;
+        border-width: 0 1px 1px;
+    }
+
+    .portlet.box.yellow .portlet-title {
+        background-color: #ffb848;
+    }
+
+    .portlet.box.yellow {
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+        border-color: -moz-use-text-color #fccb7e #fccb7e;
+        border-image: none;
+        border-right: 1px solid #fccb7e;
+        border-style: none solid solid;
+        border-width: 0 1px 1px;
+    }
+
+    .portlet.box.green .portlet-title {
+        background-color: #35aa47;
+    }
+
+    .portlet.box.green {
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+        border-color: -moz-use-text-color #77e588 #77e588;
+        border-image: none;
+        border-right: 1px solid #77e588;
+        border-style: none solid solid;
+        border-width: 0 1px 1px;
+    }
+
+    .portlet.box.purple .portlet-title {
+        background-color: #852b99;
+    }
+
+    .portlet.box.purple {
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+        border-color: -moz-use-text-color #af5cc1 #af5cc1;
+        border-image: none;
+        border-right: 1px solid #af5cc1;
+        border-style: none solid solid;
+        border-width: 0 1px 1px;
+    }
+
+    .portlet.box.grey .portlet-title {
+        background-color: #555555;
+    }
+
+    .portlet.box.grey {
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+        border-color: -moz-use-text-color #9d9c9c #9d9c9c;
+        border-image: none;
+        border-right: 1px solid #9d9c9c;
+        border-style: none solid solid;
+        border-width: 0 1px 1px;
+    }
+
+    .portlet.box.light-grey .portlet-title {
+        background-color: #aaa;
+    }
+
+    .portlet.box.light-grey {
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+        border-color: -moz-use-text-color #eee #eee;
+        border-image: none;
+        border-right: 1px solid #eee;
+        border-style: none solid solid;
+        border-width: 0 1px 1px;
+    }
+
+
+    .portlet.box .portlet-body {
+        background-color: #fff;
+        padding: 10px;
+    }
+
+    .portlet.box .portlet-title {
+        margin-bottom: 0px;
+    }
+
+    .portlet.box.blue .portlet-title {
+        background-color: #4b8df8;
+    }
+
+    .portlet.box.blue {
+        border: 1px solid #b4cef8;
+        border-top: 0;
+    }
+
+    .portlet.box.red .portlet-title {
+        background-color: #e02222;
+    }
+
+    .portlet.box.red {
+        border: 1px solid #ef8476;
+        border-top: 0;
+    }
+
+    .portlet.box.yellow .portlet-title {
+        background-color: #ffb848;
+    }
+
+    .portlet.box.yellow {
+        border: 1px solid #fccb7e;
+        border-top: 0;
+    }
+
+    .portlet.box.green .portlet-title {
+        background-color: #35aa47;
+    }
+
+    .portlet.box.green {
+        border: 1px solid #77e588;
+        border-top: 0;
+    }
+
+    .portlet.box.purple .portlet-title {
+        background-color: #852b99;
+    }
+
+    .portlet.box.purple {
+        border: 1px solid #af5cc1;
+        border-top: 0;
+    }
+
+    .portlet.box.grey .portlet-title {
+        background-color: #555555;
+    }
+
+    .portlet.box.grey {
+        border: 1px solid #9d9c9c;
+        border-top: 0;
+    }
+
+    .portlet.box.light-grey .portlet-title {
+        background-color: #aaa;
+    }
+
+    .portlet.box.light-grey {
+        border: 1px solid #eee;
+        border-top: 0;
+    }
+
+
+    .textCenter {
+        text-align: center;
+    }
+
+    .spanLeft {
+        float: left;
+    }
+
+    .spanRight {
+        float: right;
+    }
+
+    .spanRed {
+        color: red;
+    }
+
+    .spanBold {
+        font-weight: bold;
+    } 
+</style>
