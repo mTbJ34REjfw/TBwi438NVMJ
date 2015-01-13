@@ -1703,8 +1703,326 @@ namespace MorSun.Controllers
                         }
                     }
                 }
-            }
-        }//if 服务器可用
+            }//if 服务器可用
+        }
+
+        /// <summary>
+        /// ，默认结算5天前的答题记录，结算前要确认5天前的答题是否还有未处理的异议
+        /// </summary>
+        public void FinalAccount()
+        {
+            var result = "";
+            string strUrl = CFG.网站域名 + CFG.数据同步_服务器是否可用;
+            //LogHelper.Write("同步充值信息" + strUrl + appendUrl, LogHelper.LogMessageType.Info);
+            result = GetHtmlHelper.GetPage(strUrl, "");
+            if (result == "true")
+            {
+                //取出5天前所有未结算的问题分配并解答的记录
+                var qaDisEndTime = 0 - Convert.ToDecimal(CFG.用户答题结算时间);
+                var disBll = new BaseBll<bmQADistribution>();
+                var fiveAgo = DateTime.Now.AddDays(Convert.ToDouble(qaDisEndTime));
+                var fiveAgoQADisWJS = disBll.All.Where(p => p.OperateTime <= fiveAgo && (p.IsSettle == null || p.IsSettle == false));
+                //第一步需要先同步到服务器的有 umbrListJson，qaDisJson, obJson; 本地要保存的列表fiveAgoQADisWJS(修改)，nonSettleOB(修改)，umbrList(添加)
+                if (fiveAgoQADisWJS.Count() > 0)
+                {
+                    //检测这些记录是还存在未解决的异议
+                    var qaIds = fiveAgoQADisWJS.Select(p => p.QAId);
+                    var obBll = new BaseBll<bmObjection>();
+                    var nonOperateOB = obBll.All.Where(p => qaIds.Contains(p.QAId) && p.Result == null);
+                    if (nonOperateOB.Count() > 0)
+                    {
+                        LogHelper.Write("自动结算时发现还有未处理的异议记录", LogHelper.LogMessageType.Info);
+                    }
+                    else
+                    {
+                        //取出所有未结算的异议记录 同步成功之后，修改为已结算并保存到数据库 //异议处理生成的邦马币与同步不在这里处理
+                        var nonSettleOB = obBll.All.Where(p => qaIds.Contains(p.QAId) && p.Result != null && (p.IsSettle == null || p.IsSettle == false));
+
+                        //答题分配记录，生成邦马币值
+                        var mbRef = Guid.Parse(Reference.马币类别_马币);
+                        var bbRef = Guid.Parse(Reference.马币类别_邦币);
+                        var banbRef = Guid.Parse(Reference.马币类别_绑币);
+                        //邦马币来源
+                        var mbly_zq = Guid.Parse(Reference.马币来源_赚取);
+
+                        var qaViewBll = new BaseBll<bmQAView>();
+                        var qaViewWJS = qaViewBll.All.Where(p => qaIds.Contains(p.ID));
+                        var disWeiXins = qaViewWJS.Select(p => p.DisWeiXinId).Distinct();
+                        //取出所有题目的答题用户ID
+                        var uwBll = new BaseBll<bmUserWeixin>();
+                        var userWeixins = uwBll.All.Where(p => disWeiXins.Contains(p.WeiXinId));
+
+                        var zqBMB = Convert.ToDecimal(CFG.答题赚取的马币比);
+                        //需要同步到服务器的邦马币与本地要更新的邦马币
+                        var umbrListJson = new List<bmUserMaBiRecordJson>();
+                        var umbrList = new List<bmUserMaBiRecord>();
+                        //根据每一道题目生成答题用户的马币与绑币记录
+                        foreach (var q in qaViewWJS)
+                        {
+                            //问题消费的邦马币值                            
+                            var qaBB = Math.Abs(q.BBNum);
+                            var qaMB = Math.Abs(q.MBNum);
+
+                            //邦马币占比
+                            var bbPer = qaBB / (qaMB + qaBB);
+                            var mbPer = qaMB / (qaMB + qaBB);
+
+                            //回馈到答题用户去的绑币与马币值
+                            var disBanB = qaBB * zqBMB * bbPer;
+                            var disMB = qaMB * zqBMB * mbPer;
+                            //哪个用户赚取的
+                            var disUser = userWeixins.FirstOrDefault(p => p.WeiXinId == q.DisWeiXinId);
+                            var disUserId = Guid.Parse(CFG.异议处理用户);
+                            if (disUser != null && disUser.UserId != null)
+                            {
+                                disUserId = disUser.UserId.Value;
+                            }
+                            //生成绑币与马币记录
+                            AddBMB(banbRef, mbly_zq, umbrListJson, umbrList, q, disBanB, disUserId);
+                            AddBMB(mbRef, mbly_zq, umbrListJson, umbrList, q, disMB, disUserId);
+                        }
+                        //将分配记录标识为已结算 需要同步到服务器标识为结算的问题分配记录
+                        var qaDisJson = new List<bmQADistributionJson>();
+                        foreach (var d in fiveAgoQADisWJS)
+                        {
+                            d.IsSettle = true;
+                            qaDisJson.Add(new bmQADistributionJson
+                            {
+                                ID = d.ID,
+                                QAId = d.QAId,
+                                UserId = d.UserId,
+                                WeiXinId = d.WeiXinId,
+                                DistributionTime = d.DistributionTime,
+                                OperateTime = d.OperateTime,
+                                Result = d.Result,
+                                IsSettle = d.IsSettle,
+                                Sort = d.Sort,
+                                RegUser = d.RegUser,
+                                RegTime = d.RegTime,
+                                ModTime = d.ModTime,
+                                FlagTrashed = d.FlagTrashed,
+                                FlagDeleted = d.FlagDeleted
+                            });
+                        }
+                        //将异议记录标识为已结算     
+                        var obJson = new List<bmObjectionJson>();
+                        foreach(var o in nonSettleOB)
+                        {
+                            o.IsSettle = true;
+                            obJson.Add(new bmObjectionJson {
+                                ID = o.ID,
+                                QAId = o.QAId,
+                                UserId = o.UserId,
+                                WeiXinId = o.WeiXinId,
+                                SubmitTime = o.SubmitTime,
+                                ErrorNum = o.ErrorNum,
+                                ObjectionExplain = o.ObjectionExplain,
+                                HandleUser = o.HandleUser,
+                                Result = o.Result,
+                                HandleTime = o.HandleTime,
+                                AllQANum = o.AllQANum,
+                                ConfirmErrorNum = o.ConfirmErrorNum,
+                                HandleExplain = o.HandleExplain,
+                                IsSettle = o.IsSettle,
+                                Sort = o.Sort,
+                                RegUser = o.RegUser,
+                                RegTime = o.RegTime,
+                                ModTime = o.ModTime,
+                                FlagTrashed = o.FlagTrashed,
+                                FlagDeleted = o.FlagDeleted
+                            });
+                        }
+                        
+                        //第一次同步到服务器， 同步数据要处理：结算的分配记录，结算的异议处理，生成的用户邦马币记录(未结算)
+                        var s = "";
+                        if (qaDisJson.Count() == 0)
+                        {
+                            s += " ";
+                        }
+                        else
+                        {
+                            s += ToJsonAndCompress(qaDisJson);
+                        }
+                        s += CFG.邦马网_JSON数据间隔;
+
+                        if (obJson.Count() == 0)
+                        {
+                            s += " ";
+                        }
+                        else
+                        {
+                            s += ToJsonAndCompress(obJson);
+                        }
+                        s += CFG.邦马网_JSON数据间隔;
+
+                        if (umbrListJson.Count() == 0)
+                        {
+                            s += " ";
+                        }
+                        else
+                        {
+                            s += ToJsonAndCompress(umbrListJson);
+                        }
+                        s += CFG.邦马网_JSON数据间隔;
+
+                        //向邦马网同步马币充值数据
+                        result = "";
+                        var dts = DateTime.Now.ToString();
+                        var tok = SecurityHelper.Encrypt(dts + ";" + CFG.邦马网_对接统一码);
+                        strUrl = CFG.网站域名 + CFG.数据同步_答题结算;
+
+                        //未Encode的URL
+                        string neAppentUrl = "?tok=" + tok;
+                        if (!string.IsNullOrEmpty(s))
+                        {
+                            neAppentUrl += "&AncyData=" + SecurityHelper.Encrypt(s);
+                        }
+
+                        LogHelper.Write("同步异议处理信息" + strUrl + neAppentUrl, LogHelper.LogMessageType.Info);
+                        //有传递UID时用POST方法，参数有可能会超过URL长度
+                        result = GetHtmlHelper.PostGetPage(strUrl, neAppentUrl.Substring(1), "");
+                        if (result == "true")
+                        {
+                            disBll.UpdateChanges();
+                            obBll.UpdateChanges();
+                            var umbrBll = new BaseBll<bmUserMaBiRecord>();
+                            foreach(var m in umbrList)
+                            {
+                                umbrBll.Insert(m, false);
+                            }
+                            umbrBll.UpdateChanges();
+
+                            //第二次同步开始，同步用户币记录，用户币结算记录，用户币记录结算有 bmUserMBList，
+                            //取出所有未结算的邦马币记录
+                            var nonSettleBMBList = umbrBll.All.Where(p => p.IsSettle == null || p.IsSettle == false);
+                            if(nonSettleBMBList.Count() >0)
+                            {
+                                //取出当前所有用户的邦马币值
+                                var bmNewUserMBList = new BaseBll<bmNewUserMB>().All;
+                                //所有的用户邦马币值生成用户马币记录
+                                var bmUserMBList = new List<bmUserMaBi>();
+                                var bmUserMaBiSettleRecordList = new List<bmUserMaBiSettleRecord>();
+                                //结算时间 
+                                var settleTime = DateTime.Now.Date; 
+                                foreach(var numb in bmNewUserMBList)
+                                {
+                                    //添加邦马币记录
+                                    AddUserMB(mbRef, numb.NMB, bmUserMBList, settleTime, numb);
+                                    AddUserMB(bbRef, numb.NBB, bmUserMBList, settleTime, numb);
+                                    AddUserMB(banbRef, numb.NBANB, bmUserMBList, settleTime, numb);
+
+                                    //添加邦马币结算记录
+                                    AddUserMBSettle(mbRef, numb.NMB, bmUserMaBiSettleRecordList, settleTime, numb);
+                                    AddUserMBSettle(bbRef, numb.NBB, bmUserMaBiSettleRecordList, settleTime, numb);
+                                    AddUserMBSettle(banbRef, numb.NBANB, bmUserMaBiSettleRecordList, settleTime, numb);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            LogHelper.Write("同步问题结算信息时未返回正确结果" + strUrl + neAppentUrl, LogHelper.LogMessageType.Info);
+                        }
+                    }//else nonOperateOB.Count() > 0
+                }//if (fiveAgoQADisWJS.Count() > 0)
+            }//if 服务器可用
+        }
+
+        /// <summary>
+        /// 结算用户的邦马币
+        /// </summary>
+        /// <param name="mbRef"></param>
+        /// <param name="mbNum"></param>
+        /// <param name="bmUserMBList"></param>
+        /// <param name="settleTime"></param>
+        /// <param name="numb"></param>
+        private static void AddUserMB(Guid mbRef, decimal? mbNum, List<bmUserMaBi> bmUserMBList, DateTime settleTime, bmNewUserMB numb)
+        {
+            if (mbNum == null)
+                mbNum = 0;
+            bmUserMBList.Add(new bmUserMaBi
+            {
+                ID = Guid.NewGuid(),
+                UserId = numb.UserId,
+                MaBiRef = mbRef,
+                MaBiNum = mbNum,
+                SettleTime = settleTime,
+                Sort = null,
+                RegUser = Guid.Parse(CFG.异议处理用户),
+                RegTime = settleTime,
+                ModTime = settleTime,
+                FlagTrashed = false,
+                FlagDeleted = false
+            });
+        }
+
+        private static void AddUserMBSettle(Guid mbRef, decimal? mbNum, List<bmUserMaBiSettleRecord> bmUserMaBiSettleRecordList, DateTime settleTime, bmNewUserMB numb)
+        {
+            if (mbNum == null)
+                mbNum = 0;
+            bmUserMaBiSettleRecordList.Add(new bmUserMaBiSettleRecord
+            {
+                ID = Guid.NewGuid(),
+                UserId = numb.UserId,
+                MaBiRef = mbRef,
+                MaBiNum = mbNum,
+                SettleTime = settleTime,
+                Sort = null,
+                RegUser = Guid.Parse(CFG.异议处理用户),
+                RegTime = settleTime,
+                ModTime = settleTime,
+                FlagTrashed = false,
+                FlagDeleted = false
+            });
+        }
+
+        /// <summary>
+        /// 结算时调用的添加邦马币方法 
+        /// </summary>
+        /// <param name="mbRef"></param>
+        /// <param name="mbly_zq"></param>
+        /// <param name="umbrListJson"></param>
+        /// <param name="umbrList"></param>
+        /// <param name="q"></param>
+        /// <param name="disBanB"></param>
+        /// <param name="disUserId"></param>
+        private static void AddBMB(Guid mbRef, Guid mbly_zq, List<bmUserMaBiRecordJson> umbrListJson, List<bmUserMaBiRecord> umbrList, bmQAView q, decimal disBanB, Guid disUserId)
+        {
+            var umbrModel = new bmUserMaBiRecord();
+            umbrModel.ID = Guid.NewGuid();
+            umbrModel.SourceRef = mbly_zq;
+            umbrModel.MaBiRef = mbRef;
+            umbrModel.MaBiNum = disBanB;
+            umbrModel.QAId = q.ID;
+            umbrModel.DisId = q.DisId;
+            umbrModel.UserId = disUserId;
+
+            umbrModel.IsSettle = false; //取现马币时，都是未结算的。取现之后，还是未结算。等每天自动结算时再结算
+            umbrModel.RegTime = DateTime.Now;
+            umbrModel.ModTime = DateTime.Now;
+            umbrModel.FlagTrashed = false;
+            umbrModel.FlagDeleted = false;
+            umbrModel.RegUser = Guid.Parse(CFG.异议处理用户);
+            //数据库马币记录添加
+            umbrList.Add(umbrModel);
+            //Json马币数据添加
+            umbrListJson.Add(new bmUserMaBiRecordJson
+            {
+                ID = umbrModel.ID,
+                SourceRef = umbrModel.SourceRef,
+                MaBiRef = umbrModel.MaBiRef,
+                MaBiNum = umbrModel.MaBiNum,
+                QAId = umbrModel.QAId,
+                DisId = umbrModel.DisId,
+                UserId = umbrModel.UserId,
+
+                IsSettle = umbrModel.IsSettle,
+                RegUser = umbrModel.RegUser,
+                RegTime = umbrModel.RegTime,
+                ModTime = umbrModel.ModTime,
+                FlagTrashed = umbrModel.FlagTrashed,
+                FlagDeleted = umbrModel.FlagDeleted
+            });
+        }
         #endregion        
     }
 }

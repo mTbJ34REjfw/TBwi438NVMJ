@@ -319,6 +319,8 @@ namespace MorSun.Common
             public const string 答题赚取的马币比 = "0.4"; 
             //答错扣取的马币比
             public const string 答错扣取的马币比 = "0.8";
+            //用户答题后的几天内结算
+            public const string 用户答题结算时间 = "5"; //取出配置天数前 的回答问题记录，来结算。
 
             ////默认微信账号
             //public const string 默认收费问题微信号 = "ocpytjv3sfsfsfsfsfsfsf-sfweixin-fjeiw-vneiwq";//"ocpytjv3hZIxb-GgNB0Q9-l3yWaI";//11
@@ -398,6 +400,10 @@ namespace MorSun.Common
             public const string 数据同步_取现同步 = "/DivniTxiuen/TakeMoney";
             //异议处理
             public const string 数据同步_异议处理 = "/DivniTxiuen/HandelOB";
+            //答题结算
+            public const string 数据同步_答题结算 = "/DivniTxiuen/QASettle";
+            //邦马币结算
+            public const string 数据同步_邦马币结算 = "/DivniTxiuen/MBSettle";
         }
     }
 

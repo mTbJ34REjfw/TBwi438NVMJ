@@ -142,12 +142,10 @@ namespace MorSun.Controllers.SystemController
                         var mbly_gh = Guid.Parse(Reference.马币来源_归还);
 
                         //平均每道题目消费的邦马币值,去除小数点后的数
-                        var mbEVQ = Math.Floor((Math.Abs(qaView.MBNum) + Math.Abs(qaView.BBNum)) / t.AllQANum); 
-                        //每题要归还的压金值
-                        var ghEVO = Convert.ToDecimal(CFG.提交异议扣取压金值);
-                        //邦马币占比
-                        var bbPer = Math.Abs(qaView.BBNum) / (Math.Abs(qaView.MBNum) + Math.Abs(qaView.BBNum));
-                        var mbPer = Math.Abs(qaView.MBNum) / (Math.Abs(qaView.MBNum) + Math.Abs(qaView.BBNum));
+                        var mbEVQ = Math.Floor((qaMB + qaBB) / t.AllQANum);                         
+                        //提问消费邦马币占比
+                        var bbPer = qaBB / (qaMB + qaBB);
+                        var mbPer = qaMB / (qaMB + qaBB);
                                                 
 
                         //答题用户答错一道题要扣的邦马币值
@@ -168,11 +166,24 @@ namespace MorSun.Controllers.SystemController
                         //归还的马币值
                         var ghQAUserMB = ghQAUserAllB * mbPer;
 
+                        var obViewBll = new BaseBll<bmOBView>();
+                        var obViewModel = obViewBll.All.FirstOrDefault(p => p.ID == model.ID);
+
+                        var obMB = Math.Floor(obViewModel.KQMBNUM);
+                        var obBB = Math.Floor(obViewModel.KQBBNum);
+
+                        //每题要归还的压金值 做成按扣取的压金总值除以总问题数
+                        var ghEVO = Math.Floor((obMB + obBB) / t.AllQANum);
+
+                        //邦马币平均值
+                        var obbbPer = obBB / (obMB + obBB);
+                        var obmbPer = obMB / (obMB + obBB);
                         //总的要归还提问用户的压金值
                         var ghQAUserAllYJ = ghEVO * t.ConfirmErrorNum;
-                        //归还的压金邦币值
-                        var ghQAUserBBYJ = ghQAUserAllYJ * bbPer;
-                        var ghQAUserMBYJ = ghQAUserAllYJ * mbPer;
+                        
+                        //归还的压金邦币值//要先求出压金的比率
+                        var ghQAUserBBYJ = ghQAUserAllYJ * obbbPer;
+                        var ghQAUserMBYJ = ghQAUserAllYJ * obmbPer;
 
                         //生成扣款记录 有绑币扣款与马币扣款
                         if (Math.Abs(kqDISUserBanB) > 0)
@@ -308,12 +319,12 @@ namespace MorSun.Controllers.SystemController
         /// <param name="banbRef"></param>
         /// <param name="mbly_kq"></param>
         /// <param name="kqDISUserBanB"></param>
-        private static void AddBMB(bmObjection model, bmQAView qaView, bmUserWeixin disUser, List<bmUserMaBiRecordJson> umbrListJson, List<bmUserMaBiRecord> umbrList, Guid banbRef, Guid mbly_kq, decimal kqDISUserBanB)
+        private static void AddBMB(bmObjection model, bmQAView qaView, bmUserWeixin disUser, List<bmUserMaBiRecordJson> umbrListJson, List<bmUserMaBiRecord> umbrList, Guid mbRef, Guid mbly_kq, decimal kqDISUserBanB)
         {
             var umbrModel = new bmUserMaBiRecord();
             umbrModel.ID = Guid.NewGuid();
             umbrModel.SourceRef = mbly_kq;
-            umbrModel.MaBiRef = banbRef;
+            umbrModel.MaBiRef = mbRef;
             umbrModel.MaBiNum = kqDISUserBanB;
             umbrModel.QAId = model.QAId;
             umbrModel.DisId = qaView.DisId;
