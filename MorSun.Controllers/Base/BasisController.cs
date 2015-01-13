@@ -1266,11 +1266,14 @@ namespace MorSun.Controllers
                     if(bmQADisList.Count() >0)
                     {
                         var mrbll = new BaseBll<wmfMailRecord>();
+                        var qaWeiXinIds = bmQADisList.Select(p => p.WeiXinId);
+                        var uwbll = new BaseBll<bmUserWeixin>();
+                        var userWeiXins = uwbll.All.Where(p => qaWeiXinIds.Contains(p.WeiXinId));
                         foreach(var d in bmQADisList)
-                        {
-                            var qaU = d.bmQA.aspnet_Users1;
+                        {                            
                             try
                             {
+                                var qaU = userWeiXins.FirstOrDefault(p => p.WeiXinId == d.bmQA.WeiXinId).aspnet_Users1;
                                 JDQAMail(mrbll, qaU.UserName, qaU.wmfUserInfo.NickName, d.QAId.ToSecureString(),d.bmQA.AutoGrenteId.ToString());
                             }
                             catch
