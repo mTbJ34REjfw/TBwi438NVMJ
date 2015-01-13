@@ -296,6 +296,8 @@ namespace MorSun.Controllers.SystemController
                         }
                         umbrBll.UpdateChanges();
                     }
+                    //发送邮件功能
+
                     return Json(oper, JsonRequestBehavior.AllowGet);
                 }
                 else

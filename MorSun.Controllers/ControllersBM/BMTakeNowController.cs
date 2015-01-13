@@ -437,7 +437,7 @@ namespace MorSun.Controllers.SystemController
             var mail = new SendMail(email, fromEmail, body, "取现通知", fromEmailPassword, "ServiceMailName".GX(), nickName);
             var mailRecord = new wmfMailRecord().wmfMailRecord2(email, body, "取现通知", "ServiceMailName".GX(), nickName, Guid.Parse(Reference.电子邮件类别_取现通知));
             mrbll.Insert(mailRecord);
-            mail.Send("smtp.", emailPort, email + "激活账号邮件发送失败！");
+            mail.Send("smtp.", emailPort, email + "取现通知邮件发送失败！");
         }
 
         protected override string OnAddCK(bmTakeNow t)

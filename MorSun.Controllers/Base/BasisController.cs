@@ -1116,6 +1116,8 @@ namespace MorSun.Controllers
                     if (uids.Count() > 0)
                         UIDAncyUser(ubll, uids);
 
+                    //同步过来的答题记录
+                    var bmQADisList = new List<bmQADistribution>();
                     //问题记录
                     try
                     {
@@ -1161,6 +1163,7 @@ namespace MorSun.Controllers
                                     bll.Insert(l, false);
                                 }
                                 bll.UpdateChanges();
+                                bmQADisList = _list.ToList();
                             }
                         }
                         //异议分配
@@ -1258,6 +1261,21 @@ namespace MorSun.Controllers
                     catch
                     {
                         LogHelper.Write("用户数据获取异常导致同步问题时一些数据同步不成功", LogHelper.LogMessageType.Info);
+                    }
+                    //已经回答的问题发送邮件通知提问人员,测试发邮件通知时的效率，每发一封邮件之前都会将邮件内容保存进数据库
+                    if(bmQADisList.Count() >0)
+                    {
+                        foreach(var d in bmQADisList)
+                        {
+                            try
+                            {
+
+                            }
+                            catch
+                            {
+                                LogHelper.Write("问题解答发邮件不成功 解答记录ID：" + d.ID, LogHelper.LogMessageType.Info);
+                            }
+                        }
                     }
                 }                
                 else
