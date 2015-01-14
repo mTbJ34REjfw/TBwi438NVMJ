@@ -307,8 +307,9 @@ namespace MorSun.Controllers.SystemController
                     }
                     //发送邮件功能
                     var mrbll = new BaseBll<wmfMailRecord>();
-                    var qaU = model.bmQA.aspnet_Users1;
-                    var disU = new BaseBll<aspnet_Users>().All.FirstOrDefault(p => p.UserId == disUser.UserId);
+                    var userBll = new BaseBll<aspnet_Users>();
+                    var qaU = userBll.All.FirstOrDefault(p => p.UserId == qaUser.UserId);
+                    var disU = userBll.All.FirstOrDefault(p => p.UserId == disUser.UserId);
                     //提问人员发送邮件
                     try
                     {

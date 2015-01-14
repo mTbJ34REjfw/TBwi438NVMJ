@@ -1117,7 +1117,7 @@ namespace MorSun.Controllers
                         UIDAncyUser(ubll, uids);
 
                     //同步过来的答题记录
-                    var bmQADisList = new List<bmQADistribution>();
+                    var bmQADisList = new List<Guid>();
                     //问题记录
                     try
                     {
@@ -1161,9 +1161,10 @@ namespace MorSun.Controllers
                                 foreach (var l in _list)
                                 {
                                     bll.Insert(l, false);
+                                    bmQADisList.Add(l.ID);
                                 }
                                 bll.UpdateChanges();
-                                bmQADisList = _list.ToList();
+                                
                             }
                         }
                         //异议分配
@@ -1266,15 +1267,17 @@ namespace MorSun.Controllers
                     if(bmQADisList.Count() >0)
                     {
                         var mrbll = new BaseBll<wmfMailRecord>();
-                        var qaWeiXinIds = bmQADisList.Select(p => p.WeiXinId);
+                        var qabll = new BaseBll<bmQA>();
+                        var qaList = qabll.All.Where(p => p.bmQADistributions.Count(q => bmQADisList.Contains(q.ID)) > 0);
+                        var qaWeiXinIds = qaList.Select(p => p.WeiXinId);
                         var uwbll = new BaseBll<bmUserWeixin>();
                         var userWeiXins = uwbll.All.Where(p => qaWeiXinIds.Contains(p.WeiXinId));
-                        foreach(var d in bmQADisList)
+                        foreach (var d in qaList)
                         {                            
                             try
                             {
-                                var qaU = userWeiXins.FirstOrDefault(p => p.WeiXinId == d.bmQA.WeiXinId).aspnet_Users1;
-                                JDQAMail(mrbll, qaU.UserName, qaU.wmfUserInfo.NickName, d.QAId.ToSecureString(),d.bmQA.AutoGrenteId.ToString());
+                                var qaU = userWeiXins.FirstOrDefault(p => p.WeiXinId == d.WeiXinId).aspnet_Users1;
+                                JDQAMail(mrbll, qaU.UserName, qaU.wmfUserInfo.NickName, d.ID.ToString(),d.AutoGrenteId.ToString());
                             }
                             catch
                             {
