@@ -1116,8 +1116,11 @@ namespace MorSun.Controllers
                     if (uids.Count() > 0)
                         UIDAncyUser(ubll, uids);
 
+                    var qabll = new BaseBll<bmQA>();
+                    var qadisbll = new BaseBll<bmQADistribution>();
+                    var uwbll = new BaseBll<bmUserWeixin>();
                     //同步过来的答题记录
-                    var bmQADisList = new List<Guid>();
+                    var bmQAIDList = new List<Guid>();
                     //问题记录
                     try
                     {
@@ -1129,17 +1132,17 @@ namespace MorSun.Controllers
                             {
                                 var aids = new List<Guid>();
                                 aids = _list.Select(p => p.ID).ToList();
-                                var bll = new BaseBll<bmQA>();
+                                
                                 //过滤掉已经添加的数据
-                                var alreadyQIds = bll.All.Where(p => aids.Contains(p.ID)).Select(p => p.ID);
+                                var alreadyQIds = qabll.All.Where(p => aids.Contains(p.ID)).Select(p => p.ID);
                                 aids = aids.Except(alreadyQIds).ToList();
                                 _list = _list.Where(p => aids.Contains(p.ID)).ToList();
 
                                 foreach (var l in _list)
                                 {
-                                    bll.Insert(l, false);
+                                    qabll.Insert(l, false);
                                 }
-                                bll.UpdateChanges();
+                                qabll.UpdateChanges();
                             }
                         }
                         
@@ -1152,18 +1155,19 @@ namespace MorSun.Controllers
                             {
                                 var aids = new List<Guid>();
                                 aids = _list.Select(p => p.ID).ToList();
-                                var bll = new BaseBll<bmQADistribution>();
+                                
                                 //过滤掉已经添加的数据  
-                                var alreadyQIds = bll.All.Where(p => aids.Contains(p.ID)).Select(p => p.ID);
+                                var alreadyQIds = qadisbll.All.Where(p => aids.Contains(p.ID)).Select(p => p.ID);
                                 aids = aids.Except(alreadyQIds).ToList();
                                 _list = _list.Where(p => aids.Contains(p.ID)).ToList();
 
                                 foreach (var l in _list)
                                 {
-                                    bll.Insert(l, false);
-                                    bmQADisList.Add(l.ID);
+                                    qadisbll.Insert(l, false);
+                                    if(l.QAId != null)
+                                        bmQAIDList.Add(l.QAId.Value);
                                 }
-                                bll.UpdateChanges();
+                                qadisbll.UpdateChanges();
                                 
                             }
                         }
@@ -1198,17 +1202,17 @@ namespace MorSun.Controllers
                             {
                                 var aids = new List<Guid>();
                                 aids = _list.Select(p => p.ID).ToList();
-                                var bll = new BaseBll<bmUserWeixin>();
+                                
                                 //过滤掉已经添加的数据  
-                                var alreadyQIds = bll.All.Where(p => aids.Contains(p.ID)).Select(p => p.ID);
+                                var alreadyQIds = uwbll.All.Where(p => aids.Contains(p.ID)).Select(p => p.ID);
                                 aids = aids.Except(alreadyQIds).ToList();
                                 _list = _list.Where(p => aids.Contains(p.ID)).ToList();
 
                                 foreach (var l in _list)
                                 {
-                                    bll.Insert(l, false);
+                                    uwbll.Insert(l, false);
                                 }
-                                bll.UpdateChanges();
+                                uwbll.UpdateChanges();
                             }
                         }
                         
@@ -1264,26 +1268,26 @@ namespace MorSun.Controllers
                         LogHelper.Write("用户数据获取异常导致同步问题时一些数据同步不成功", LogHelper.LogMessageType.Info);
                     }
                     //已经回答的问题发送邮件通知提问人员,测试发邮件通知时的效率，每发一封邮件之前都会将邮件内容保存进数据库
-                    if(bmQADisList.Count() >0)
+                    if(bmQAIDList.Count() >0)
                     {
-                        var mrbll = new BaseBll<wmfMailRecord>();
-                        var qabll = new BaseBll<bmQA>();
-                        var qaList = qabll.All.Where(p => p.bmQADistributions.Count(q => bmQADisList.Contains(q.ID)) > 0);
-                        var qaWeiXinIds = qaList.Select(p => p.WeiXinId);
-                        var uwbll = new BaseBll<bmUserWeixin>();
+                        bmQAIDList = bmQAIDList.Distinct().ToList();
+                        var mrbll = new BaseBll<wmfMailRecord>();                    
+                        var qaList = qabll.All.Where(p => bmQAIDList.Contains(p.ID));
+                        var qaWeiXinIds = qaList.Select(p => p.WeiXinId);                        
                         var userWeiXins = uwbll.All.Where(p => qaWeiXinIds.Contains(p.WeiXinId));
                         foreach (var d in qaList)
                         {                            
                             try
                             {
-                                var qaU = userWeiXins.FirstOrDefault(p => p.WeiXinId == d.WeiXinId).aspnet_Users1;
+                                var qaU = userWeiXins.FirstOrDefault(p => p.WeiXinId == d.WeiXinId).aspnet_Users1;                                
                                 JDQAMail(mrbll, qaU.UserName, qaU.wmfUserInfo.NickName, d.ID.ToString());
                             }
-                            catch
+                            catch (Exception ex)
                             {
-                                LogHelper.Write("问题解答发邮件不成功 解答记录ID：" + d.ID, LogHelper.LogMessageType.Info);
+                                LogHelper.Write("问题解答发邮件不成功 解答记录ID：" + d.ID + " 错误信息" + ex.Message, LogHelper.LogMessageType.Info);
                             }
                         }
+                        //mrbll.UpdateChanges();//这边保存发送邮件会出错，就不保存了
                     }
                 }                
                 else
@@ -1311,8 +1315,8 @@ namespace MorSun.Controllers
             string body = new WebClient().GetHtml("ServiceDomain".GHU() + "/Home/Q/" + qaId);
             //创建邮件对象并发送
             var mail = new SendMail(email, fromEmail, body, "您提的问题已被解答", fromEmailPassword, "ServiceMailName".GX(), nickName);
-            var mailRecord = new wmfMailRecord().wmfMailRecord2(email, body, "问题解答通知", "ServiceMailName".GX(), nickName, Guid.Parse(Reference.电子邮件类别_问题解答通知));
-            mrbll.Insert(mailRecord);
+            //var mailRecord = new wmfMailRecord().wmfMailRecord2(email, body, "问题解答通知", "ServiceMailName".GX(), nickName, Guid.Parse(Reference.电子邮件类别_问题解答通知));
+            //mrbll.Insert(mailRecord,false);
             mail.Send("smtp.", emailPort, email + "问题解答通知邮件发送失败！");
         }
 

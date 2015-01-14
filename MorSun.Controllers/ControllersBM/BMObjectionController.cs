@@ -313,7 +313,7 @@ namespace MorSun.Controllers.SystemController
                     //提问人员发送邮件
                     try
                     {
-                        OBQAMail(mrbll, qaU.UserName, qaU.wmfUserInfo.NickName, model.QAId.ToSecureString()));
+                        OBQAMail(mrbll, qaU.UserName, qaU.wmfUserInfo.NickName, model.QAId.ToSecureString());
                     }
                     catch
                     {
