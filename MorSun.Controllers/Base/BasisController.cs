@@ -1277,7 +1277,7 @@ namespace MorSun.Controllers
                             try
                             {
                                 var qaU = userWeiXins.FirstOrDefault(p => p.WeiXinId == d.WeiXinId).aspnet_Users1;
-                                JDQAMail(mrbll, qaU.UserName, qaU.wmfUserInfo.NickName, d.ID.ToString(),d.AutoGrenteId.ToString());
+                                JDQAMail(mrbll, qaU.UserName, qaU.wmfUserInfo.NickName, d.ID.ToString());
                             }
                             catch
                             {
@@ -1301,7 +1301,7 @@ namespace MorSun.Controllers
         /// <param name="nickName"></param>
         /// <param name="takeMB"></param>
         /// <param name="takeMoney"></param>
-        private void JDQAMail(BaseBll<wmfMailRecord> mrbll, string email, string nickName, string qaId, string qaNum)
+        private void JDQAMail(BaseBll<wmfMailRecord> mrbll, string email, string nickName, string qaId)
         {
             LogHelper.Write(email + "发送邮件", LogHelper.LogMessageType.Debug);
             string fromEmail = CFG.应用邮箱;
@@ -1310,7 +1310,7 @@ namespace MorSun.Controllers
 
             string body = new WebClient().GetHtml("ServiceDomain".GHU() + "/Home/Q/" + qaId);
             //创建邮件对象并发送
-            var mail = new SendMail(email, fromEmail, body, "您提的问题已被解答 问题编号：" + qaNum, fromEmailPassword, "ServiceMailName".GX(), nickName);
+            var mail = new SendMail(email, fromEmail, body, "您提的问题已被解答", fromEmailPassword, "ServiceMailName".GX(), nickName);
             var mailRecord = new wmfMailRecord().wmfMailRecord2(email, body, "问题解答通知", "ServiceMailName".GX(), nickName, Guid.Parse(Reference.电子邮件类别_问题解答通知));
             mrbll.Insert(mailRecord);
             mail.Send("smtp.", emailPort, email + "问题解答通知邮件发送失败！");
