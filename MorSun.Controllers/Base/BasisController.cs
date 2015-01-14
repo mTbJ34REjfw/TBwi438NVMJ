@@ -1279,8 +1279,8 @@ namespace MorSun.Controllers
                         {                            
                             try
                             {
-                                var qaU = userWeiXins.FirstOrDefault(p => p.WeiXinId == d.WeiXinId).aspnet_Users1;                                
-                                JDQAMail(mrbll, qaU.UserName, qaU.wmfUserInfo.NickName, d.ID.ToString());
+                                var qaU = userWeiXins.FirstOrDefault(p => p.WeiXinId == d.WeiXinId).aspnet_Users1;                                 
+                                JDQAMail(mrbll, qaU.UserName, qaU.wmfUserInfo.NickName, d.ID.ToString());                                
                             }
                             catch (Exception ex)
                             {
@@ -1305,14 +1305,16 @@ namespace MorSun.Controllers
         /// <param name="nickName"></param>
         /// <param name="takeMB"></param>
         /// <param name="takeMoney"></param>
-        private void JDQAMail(BaseBll<wmfMailRecord> mrbll, string email, string nickName, string qaId)
+        public static void JDQAMail(BaseBll<wmfMailRecord> mrbll, string email, string nickName, string qaId)
         {
             LogHelper.Write(email + "发送邮件", LogHelper.LogMessageType.Debug);
             string fromEmail = CFG.应用邮箱;
             string fromEmailPassword = CFG.邮箱密码.DP();
             int emailPort = String.IsNullOrEmpty(CFG.邮箱端口) ? 587 : CFG.邮箱端口.ToAs<int>();
 
-            string body = new WebClient().GetHtml("ServiceDomain".GHU() + "/Home/Q/" + qaId);
+            //"ServiceDomain".GHU() 在定时器里不能调用
+
+            string body = new WebClient().GetHtml(CFG.本机访问地址 + "/Home/Q/" + qaId);
             //创建邮件对象并发送
             var mail = new SendMail(email, fromEmail, body, "您提的问题已被解答", fromEmailPassword, "ServiceMailName".GX(), nickName);
             //var mailRecord = new wmfMailRecord().wmfMailRecord2(email, body, "问题解答通知", "ServiceMailName".GX(), nickName, Guid.Parse(Reference.电子邮件类别_问题解答通知));
@@ -1917,7 +1919,7 @@ namespace MorSun.Controllers
                         }
                         s += CFG.邦马网_JSON数据间隔;
 
-                        //向邦马网同步马币充值数据
+                        //向邦马网同步马币、答题与异议分配等数据
                         result = "";
                         var dts = DateTime.Now.ToString();
                         var tok = SecurityHelper.Encrypt(dts + ";" + CFG.邦马网_对接统一码);

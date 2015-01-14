@@ -299,6 +299,7 @@ namespace MorSun.Common
 
             //网站域名  不是通过域名访问网站的情况，不能
             public const string 网站域名 = "http://www.bungma.com";
+            public const string 本机访问地址 = "http://localhost";
 
             public const string 默认推广代码 = "bungma";
             public const string 注册默认角色 = "98dcfbe9-fa44-4832-8a1b-5a82de8d1abf";
