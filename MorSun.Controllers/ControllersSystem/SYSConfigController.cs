@@ -51,6 +51,9 @@ namespace MorSun.Controllers.SystemController
             //充值数据同步
             CheckingTrigger7 t7 = new CheckingTrigger7();
             t7.Run();
+            //邦马币结算
+            CheckingTrigger8 t8 = new CheckingTrigger8();
+            t8.Run();
             return "true";
         }
 
