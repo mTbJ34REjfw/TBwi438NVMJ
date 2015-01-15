@@ -1300,7 +1300,7 @@ namespace MorSun.Controllers
                         {
                             try
                             {
-                                var disU = userWeiXins.FirstOrDefault(p => p.WeiXinId == d.WeiXinId).aspnet_Users1;
+                                var disU = disWeiXins.FirstOrDefault(p => p.WeiXinId == d.WeiXinId).aspnet_Users1;
                                 JDQAMail(mrbll, disU.UserName, disU.wmfUserInfo.NickName, d.bmQA.ID.ToString(), "您已解答了一个问题，编号为：" + d.bmQA.AutoGrenteId);  
                             }
                             catch (Exception ex)
@@ -1335,7 +1335,7 @@ namespace MorSun.Controllers
 
             //"ServiceDomain".GHU() 在定时器里不能调用
 
-            string body = new WebClient().GetHtml(CFG.本机访问地址 + "/Home/Q/" + qaId);
+            string body = new WebClient().GetHtml(CFG.本机访问地址 + "/Home/Q/" + qaId); //现在变成只能限制在本地服务器里才可以发送邮件了
             //创建邮件对象并发送
             var mail = new SendMail(email, fromEmail, body, mailTitle, fromEmailPassword, "ServiceMailName".GX(), nickName);
             //var mailRecord = new wmfMailRecord().wmfMailRecord2(email, body, "问题解答通知", "ServiceMailName".GX(), nickName, Guid.Parse(Reference.电子邮件类别_问题解答通知));
