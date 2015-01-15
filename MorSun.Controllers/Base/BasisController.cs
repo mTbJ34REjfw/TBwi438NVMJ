@@ -1289,7 +1289,9 @@ namespace MorSun.Controllers
                             try
                             {
                                 var qaU = userWeiXins.FirstOrDefault(p => p.WeiXinId == d.WeiXinId).aspnet_Users1;
-                                JDQAMail(mrbll, qaU.UserName, qaU.wmfUserInfo.NickName, d.ID.ToString(), "您提的问题编号为：" + d.AutoGrenteId + " 已被解答");                                
+                                var tt = "您提交的问题已解答";
+                                tt += d.AutoGrenteId.ToString();                               
+                                JDQAMail(mrbll, qaU.UserName, qaU.wmfUserInfo.NickName, d.ID.ToString(), tt);                                
                             }
                             catch (Exception ex)
                             {
@@ -1300,8 +1302,10 @@ namespace MorSun.Controllers
                         {
                             try
                             {
+                                var tt = "您已解答了问题";
+                                tt += d.bmQA.AutoGrenteId.ToString();                                
                                 var disU = disWeiXins.FirstOrDefault(p => p.WeiXinId == d.WeiXinId).aspnet_Users1;
-                                JDQAMail(mrbll, disU.UserName, disU.wmfUserInfo.NickName, d.bmQA.ID.ToString(), "您已解答了一个问题，编号为：" + d.bmQA.AutoGrenteId);  
+                                JDQAMail(mrbll, disU.UserName, disU.wmfUserInfo.NickName, d.bmQA.ID.ToString(), tt);  
                             }
                             catch (Exception ex)
                             {
