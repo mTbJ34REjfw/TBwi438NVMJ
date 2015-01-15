@@ -287,7 +287,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="AutoGrenteId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AutoGrenteId" Type="bigint" Nullable="false" />
           <Property Name="ParentId" Type="uniqueidentifier" />
           <Property Name="UserId" Type="uniqueidentifier" />
           <Property Name="WeiXinId" Type="nvarchar" MaxLength="128" />
@@ -2287,6 +2287,7 @@
           <Property Name="BBNum" Type="decimal" Precision="38" Scale="6" Nullable="false" />
           <Property Name="BanBNum" Type="decimal" Precision="38" Scale="6" Nullable="false" />
           <Property Name="DisId" Type="uniqueidentifier" />
+          <Property Name="IsSettle" Type="bit" />
         </EntityType>
         <!--生成过程中发现错误:
 警告 6002: 表/视图“BMData.dbo.wmfRolePrivilegesView”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
@@ -2982,7 +2983,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_bmUserMaBiRecord_bmObjection">
-          <End Role="bmObjection" Type="Self.bmObjection" Multiplicity="0..1" />
+          <End Role="bmObjection" Type="Self.bmObjection" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="bmUserMaBiRecord" Type="Self.bmUserMaBiRecord" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="bmObjection">
@@ -4303,7 +4306,8 @@ FROM [dbo].[bmOBView] AS [bmOBView]</DefiningQuery>
 [bmQAView].[MBNum] AS [MBNum], 
 [bmQAView].[BBNum] AS [BBNum], 
 [bmQAView].[BanBNum] AS [BanBNum], 
-[bmQAView].[DisId] AS [DisId]
+[bmQAView].[DisId] AS [DisId], 
+[bmQAView].[IsSettle] AS [IsSettle]
 FROM [dbo].[bmQAView] AS [bmQAView]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="wmfRolePrivilegesView" EntityType="Self.wmfRolePrivilegesView" store:Type="Views" store:Schema="dbo">
@@ -5040,8 +5044,6 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <NavigationProperty Name="bmOnlineQAUsers1" Relationship="Self.FK_bmOnlineQAUser_aspnet_Users1" FromRole="aspnet_Users" ToRole="bmOnlineQAUser" />
           <NavigationProperty Name="bmOnlineQAUserRecords" Relationship="Self.FK_bmOnlineQAUserRecord_aspnet_Users" FromRole="aspnet_Users" ToRole="bmOnlineQAUserRecord" />
           <NavigationProperty Name="bmOnlineQAUserRecords1" Relationship="Self.FK_bmOnlineQAUserRecord_aspnet_Users1" FromRole="aspnet_Users" ToRole="bmOnlineQAUserRecord" />
-          <NavigationProperty Name="bmQAs" Relationship="Self.FK_bmQA_aspnet_Users" FromRole="aspnet_Users" ToRole="bmQA" />
-          <NavigationProperty Name="bmQAs1" Relationship="Self.FK_bmQA_aspnet_Users1" FromRole="aspnet_Users" ToRole="bmQA" />
           <NavigationProperty Name="bmQADistributions" Relationship="Self.FK_bmQADistribution_aspnet_Users" FromRole="aspnet_Users" ToRole="bmQADistribution" />
           <NavigationProperty Name="bmQADistributions1" Relationship="Self.FK_bmQADistribution_aspnet_Users1" FromRole="aspnet_Users" ToRole="bmQADistribution" />
           <NavigationProperty Name="bmRecharges" Relationship="Self.FK_bmRecharge_aspnet_Users" FromRole="aspnet_Users" ToRole="bmRecharge" />
@@ -5073,6 +5075,8 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <NavigationProperty Name="bmKaMeRCSends" Relationship="MorSun.Model.FK_bmKaMeRCSend_aspnet_Users" FromRole="aspnet_Users" ToRole="bmKaMeRCSend" />
           <NavigationProperty Name="bmUserPays" Relationship="MorSun.Model.FK_bmUserPay_aspnet_Users" FromRole="aspnet_Users" ToRole="bmUserPay" />
           <NavigationProperty Name="bmUserPays1" Relationship="MorSun.Model.FK_bmUserPay_aspnet_Users1" FromRole="aspnet_Users" ToRole="bmUserPay" />
+          <NavigationProperty Name="bmQAs" Relationship="MorSun.Model.FK_bmQA_aspnet_Users" FromRole="aspnet_Users" ToRole="bmQA" />
+          <NavigationProperty Name="bmQAs1" Relationship="MorSun.Model.FK_bmQA_aspnet_Users1" FromRole="aspnet_Users" ToRole="bmQA" />
         </EntityType>
         <EntityType Name="aspnet_WebEvent_Events">
           <Key>
@@ -5154,13 +5158,13 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <Property Name="FlagDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="aspnet_Users" Relationship="Self.FK_bmObjection_aspnet_Users" FromRole="bmObjection" ToRole="aspnet_Users" />
           <NavigationProperty Name="aspnet_Users1" Relationship="Self.FK_bmObjection_aspnet_Users1" FromRole="bmObjection" ToRole="aspnet_Users" />
-          <NavigationProperty Name="bmQA" Relationship="Self.FK_bmObjection_bmQA" FromRole="bmObjection" ToRole="bmQA" />
           <NavigationProperty Name="wmfReference" Relationship="Self.FK_bmObjection_wmfReference" FromRole="bmObjection" ToRole="wmfReference" />
           <Property Name="ErrorNum" Type="Int32" />
           <Property Name="IsSettle" Type="Boolean" />
           <Property Name="ConfirmErrorNum" Type="Int32" />
           <NavigationProperty Name="bmUserMaBiRecords" Relationship="MorSun.Model.FK_bmUserMaBiRecord_bmObjection" FromRole="bmObjection" ToRole="bmUserMaBiRecord" />
           <Property Name="AllQANum" Type="Int32" />
+          <NavigationProperty Name="bmQA" Relationship="MorSun.Model.FK_bmObjection_bmQA" FromRole="bmObjection" ToRole="bmQA" />
         </EntityType>
         <EntityType Name="bmOnlineQAUser">
           <Key>
@@ -5210,35 +5214,6 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <NavigationProperty Name="wmfReference" Relationship="Self.FK_bmOnlineQAUserRecord_wmfReference" FromRole="bmOnlineQAUserRecord" ToRole="wmfReference" />
           <NavigationProperty Name="wmfReference1" Relationship="Self.FK_bmOnlineQAUserRecord_wmfReference1" FromRole="bmOnlineQAUserRecord" ToRole="wmfReference" />
         </EntityType>
-        <EntityType Name="bmQA">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="AutoGrenteId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ParentId" Type="Guid" />
-          <Property Name="UserId" Type="Guid" />
-          <Property Name="WeiXinId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="QARef" Type="Guid" />
-          <Property Name="QAContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MsgId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="MsgType" Type="Guid" />
-          <Property Name="MediaId" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
-          <Property Name="PicUrl" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
-          <Property Name="Sort" Type="Int32" />
-          <Property Name="RegUser" Type="Guid" />
-          <Property Name="RegTime" Type="DateTime" Precision="3" />
-          <Property Name="ModTime" Type="DateTime" Precision="3" />
-          <Property Name="FlagTrashed" Type="Boolean" Nullable="false" />
-          <Property Name="FlagDeleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="aspnet_Users" Relationship="Self.FK_bmQA_aspnet_Users" FromRole="bmQA" ToRole="aspnet_Users" />
-          <NavigationProperty Name="aspnet_Users1" Relationship="Self.FK_bmQA_aspnet_Users1" FromRole="bmQA" ToRole="aspnet_Users" />
-          <NavigationProperty Name="bmObjections" Relationship="Self.FK_bmObjection_bmQA" FromRole="bmQA" ToRole="bmObjection" />
-          <NavigationProperty Name="wmfReference" Relationship="Self.FK_bmQA_wmfReference" FromRole="bmQA" ToRole="wmfReference" />
-          <NavigationProperty Name="wmfReference1" Relationship="Self.FK_bmQA_wmfReference2" FromRole="bmQA" ToRole="wmfReference" />
-          <NavigationProperty Name="bmQADistributions" Relationship="Self.FK_bmQADistribution_bmQA" FromRole="bmQA" ToRole="bmQADistribution" />
-          <NavigationProperty Name="bmUserMaBiRecords" Relationship="Self.FK_bmUserMaBiRecord_bmQA" FromRole="bmQA" ToRole="bmUserMaBiRecord" />
-        </EntityType>
         <EntityType Name="bmQADistribution">
           <Key>
             <PropertyRef Name="ID" />
@@ -5258,10 +5233,10 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <Property Name="FlagDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="aspnet_Users" Relationship="Self.FK_bmQADistribution_aspnet_Users" FromRole="bmQADistribution" ToRole="aspnet_Users" />
           <NavigationProperty Name="aspnet_Users1" Relationship="Self.FK_bmQADistribution_aspnet_Users1" FromRole="bmQADistribution" ToRole="aspnet_Users" />
-          <NavigationProperty Name="bmQA" Relationship="Self.FK_bmQADistribution_bmQA" FromRole="bmQADistribution" ToRole="bmQA" />
           <NavigationProperty Name="wmfReference" Relationship="Self.FK_bmQADistribution_wmfReference" FromRole="bmQADistribution" ToRole="wmfReference" />
           <Property Name="IsSettle" Type="Boolean" />
           <NavigationProperty Name="bmUserMaBiRecords" Relationship="MorSun.Model.FK_bmUserMaBiRecord_bmQADistribution" FromRole="bmQADistribution" ToRole="bmUserMaBiRecord" />
+          <NavigationProperty Name="bmQA" Relationship="MorSun.Model.FK_bmQADistribution_bmQA" FromRole="bmQADistribution" ToRole="bmQA" />
         </EntityType>
         <EntityType Name="bmRecharge">
           <Key>
@@ -5374,7 +5349,6 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <Property Name="FlagDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="aspnet_Users" Relationship="Self.FK_bmUserMaBiRecord_aspnet_Users" FromRole="bmUserMaBiRecord" ToRole="aspnet_Users" />
           <NavigationProperty Name="aspnet_Users1" Relationship="Self.FK_bmUserMaBiRecord_aspnet_Users1" FromRole="bmUserMaBiRecord" ToRole="aspnet_Users" />
-          <NavigationProperty Name="bmQA" Relationship="Self.FK_bmUserMaBiRecord_bmQA" FromRole="bmUserMaBiRecord" ToRole="bmQA" />
           <NavigationProperty Name="wmfReference" Relationship="Self.FK_bmUserMaBiRecord_wmfReference" FromRole="bmUserMaBiRecord" ToRole="wmfReference" />
           <NavigationProperty Name="wmfReference1" Relationship="Self.FK_bmUserMaBiRecord_wmfReference1" FromRole="bmUserMaBiRecord" ToRole="wmfReference" />
           <Property Name="RCId" Type="Guid" />
@@ -5385,6 +5359,7 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <Property Name="OBId" Type="Guid" />
           <NavigationProperty Name="bmObjection" Relationship="MorSun.Model.FK_bmUserMaBiRecord_bmObjection" FromRole="bmUserMaBiRecord" ToRole="bmObjection" />
           <NavigationProperty Name="bmQADistribution" Relationship="MorSun.Model.FK_bmUserMaBiRecord_bmQADistribution" FromRole="bmUserMaBiRecord" ToRole="bmQADistribution" />
+          <NavigationProperty Name="bmQA" Relationship="MorSun.Model.FK_bmUserMaBiRecord_bmQA" FromRole="bmUserMaBiRecord" ToRole="bmQA" />
         </EntityType>
         <EntityType Name="bmUserMaBiSettleRecord">
           <Key>
@@ -6946,8 +6921,6 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <NavigationProperty Name="bmOnlineQAUsers1" Relationship="Self.FK_bmOnlineQAUser_wmfReference1" FromRole="wmfReference" ToRole="bmOnlineQAUser" />
           <NavigationProperty Name="bmOnlineQAUserRecords" Relationship="Self.FK_bmOnlineQAUserRecord_wmfReference" FromRole="wmfReference" ToRole="bmOnlineQAUserRecord" />
           <NavigationProperty Name="bmOnlineQAUserRecords1" Relationship="Self.FK_bmOnlineQAUserRecord_wmfReference1" FromRole="wmfReference" ToRole="bmOnlineQAUserRecord" />
-          <NavigationProperty Name="bmQAs" Relationship="Self.FK_bmQA_wmfReference" FromRole="wmfReference" ToRole="bmQA" />
-          <NavigationProperty Name="bmQAs1" Relationship="Self.FK_bmQA_wmfReference2" FromRole="wmfReference" ToRole="bmQA" />
           <NavigationProperty Name="bmQADistributions" Relationship="Self.FK_bmQADistribution_wmfReference" FromRole="wmfReference" ToRole="bmQADistribution" />
           <NavigationProperty Name="bmRecharges" Relationship="Self.FK_bmRecharge_wmfReference" FromRole="wmfReference" ToRole="bmRecharge" />
           <NavigationProperty Name="bmRecharges1" Relationship="Self.FK_bmRecharge_wmfReference1" FromRole="wmfReference" ToRole="bmRecharge" />
@@ -6982,6 +6955,8 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <NavigationProperty Name="bmKaMeRCSends" Relationship="MorSun.Model.FK_bmKaMeRCSend_wmfReference" FromRole="wmfReference" ToRole="bmKaMeRCSend" />
           <NavigationProperty Name="bmUserPays" Relationship="MorSun.Model.FK_bmUserPay_wmfReference" FromRole="wmfReference" ToRole="bmUserPay" />
           <NavigationProperty Name="bmUserPays1" Relationship="MorSun.Model.FK_bmUserPay_wmfReference1" FromRole="wmfReference" ToRole="bmUserPay" />
+          <NavigationProperty Name="bmQAs" Relationship="MorSun.Model.FK_bmQA_wmfReference" FromRole="wmfReference" ToRole="bmQA" />
+          <NavigationProperty Name="bmQAs1" Relationship="MorSun.Model.FK_bmQA_wmfReference2" FromRole="wmfReference" ToRole="bmQA" />
         </EntityType>
         <EntityType Name="wmfRefGroup">
           <Key>
@@ -7322,6 +7297,7 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <Property Name="BBNum" Type="Decimal" Precision="38" Scale="6" Nullable="false" />
           <Property Name="BanBNum" Type="Decimal" Precision="38" Scale="6" Nullable="false" />
           <Property Name="DisId" Type="Guid" />
+          <Property Name="IsSettle" Type="Boolean" />
         </EntityType>
         <EntityType Name="wmfRolePrivilegesView">
           <Key>
@@ -7566,30 +7542,6 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
               <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="bmOnlineQAUserRecord">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_bmQA_aspnet_Users">
-          <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="0..1" />
-          <End Role="bmQA" Type="Self.bmQA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="aspnet_Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="bmQA">
-              <PropertyRef Name="RegUser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_bmQA_aspnet_Users1">
-          <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="0..1" />
-          <End Role="bmQA" Type="Self.bmQA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="aspnet_Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="bmQA">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
@@ -7978,18 +7930,6 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_bmObjection_bmQA">
-          <End Role="bmQA" Type="Self.bmQA" Multiplicity="0..1" />
-          <End Role="bmObjection" Type="Self.bmObjection" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="bmQA">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="bmObjection">
-              <PropertyRef Name="QAId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_bmObjection_wmfReference">
           <End Role="wmfReference" Type="Self.wmfReference" Multiplicity="0..1" />
           <End Role="bmObjection" Type="Self.bmObjection" Multiplicity="*" />
@@ -8047,58 +7987,6 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
             </Principal>
             <Dependent Role="bmOnlineQAUserRecord">
               <PropertyRef Name="CertificationLevel" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_bmQA_wmfReference">
-          <End Role="wmfReference" Type="Self.wmfReference" Multiplicity="0..1" />
-          <End Role="bmQA" Type="Self.bmQA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="wmfReference">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="bmQA">
-              <PropertyRef Name="QARef" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_bmQA_wmfReference2">
-          <End Role="wmfReference" Type="Self.wmfReference" Multiplicity="0..1" />
-          <End Role="bmQA" Type="Self.bmQA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="wmfReference">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="bmQA">
-              <PropertyRef Name="MsgType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_bmQADistribution_bmQA">
-          <End Role="bmQA" Type="Self.bmQA" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="bmQADistribution" Type="Self.bmQADistribution" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="bmQA">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="bmQADistribution">
-              <PropertyRef Name="QAId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_bmUserMaBiRecord_bmQA">
-          <End Role="bmQA" Type="Self.bmQA" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="bmUserMaBiRecord" Type="Self.bmUserMaBiRecord" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="bmQA">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="bmUserMaBiRecord">
-              <PropertyRef Name="QAId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -8960,7 +8848,6 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <EntitySet Name="bmObjections" EntityType="Self.bmObjection" />
           <EntitySet Name="bmOnlineQAUsers" EntityType="Self.bmOnlineQAUser" />
           <EntitySet Name="bmOnlineQAUserRecords" EntityType="Self.bmOnlineQAUserRecord" />
-          <EntitySet Name="bmQAs" EntityType="Self.bmQA" />
           <EntitySet Name="bmQADistributions" EntityType="Self.bmQADistribution" />
           <EntitySet Name="bmRecharges" EntityType="Self.bmRecharge" />
           <EntitySet Name="bmSellKaMes" EntityType="Self.bmSellKaMe" />
@@ -9154,14 +9041,6 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
             <End Role="bmOnlineQAUserRecord" EntitySet="bmOnlineQAUserRecords" />
           </AssociationSet>
-          <AssociationSet Name="FK_bmQA_aspnet_Users" Association="Self.FK_bmQA_aspnet_Users">
-            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
-            <End Role="bmQA" EntitySet="bmQAs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_bmQA_aspnet_Users1" Association="Self.FK_bmQA_aspnet_Users1">
-            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
-            <End Role="bmQA" EntitySet="bmQAs" />
-          </AssociationSet>
           <AssociationSet Name="FK_bmQADistribution_aspnet_Users" Association="Self.FK_bmQADistribution_aspnet_Users">
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
             <End Role="bmQADistribution" EntitySet="bmQADistributions" />
@@ -9282,10 +9161,6 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
             <End Role="wmfReference" EntitySet="wmfReferences" />
             <End Role="bmKaMe" EntitySet="bmKaMes" />
           </AssociationSet>
-          <AssociationSet Name="FK_bmObjection_bmQA" Association="Self.FK_bmObjection_bmQA">
-            <End Role="bmQA" EntitySet="bmQAs" />
-            <End Role="bmObjection" EntitySet="bmObjections" />
-          </AssociationSet>
           <AssociationSet Name="FK_bmObjection_wmfReference" Association="Self.FK_bmObjection_wmfReference">
             <End Role="wmfReference" EntitySet="wmfReferences" />
             <End Role="bmObjection" EntitySet="bmObjections" />
@@ -9305,22 +9180,6 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <AssociationSet Name="FK_bmOnlineQAUserRecord_wmfReference1" Association="Self.FK_bmOnlineQAUserRecord_wmfReference1">
             <End Role="wmfReference" EntitySet="wmfReferences" />
             <End Role="bmOnlineQAUserRecord" EntitySet="bmOnlineQAUserRecords" />
-          </AssociationSet>
-          <AssociationSet Name="FK_bmQA_wmfReference" Association="Self.FK_bmQA_wmfReference">
-            <End Role="wmfReference" EntitySet="wmfReferences" />
-            <End Role="bmQA" EntitySet="bmQAs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_bmQA_wmfReference2" Association="Self.FK_bmQA_wmfReference2">
-            <End Role="wmfReference" EntitySet="wmfReferences" />
-            <End Role="bmQA" EntitySet="bmQAs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_bmQADistribution_bmQA" Association="Self.FK_bmQADistribution_bmQA">
-            <End Role="bmQA" EntitySet="bmQAs" />
-            <End Role="bmQADistribution" EntitySet="bmQADistributions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_bmUserMaBiRecord_bmQA" Association="Self.FK_bmUserMaBiRecord_bmQA">
-            <End Role="bmQA" EntitySet="bmQAs" />
-            <End Role="bmUserMaBiRecord" EntitySet="bmUserMaBiRecords" />
           </AssociationSet>
           <AssociationSet Name="FK_bmQADistribution_wmfReference" Association="Self.FK_bmQADistribution_wmfReference">
             <End Role="wmfReference" EntitySet="wmfReferences" />
@@ -9633,6 +9492,35 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
             <End Role="bmUserMaBiRecord" EntitySet="bmUserMaBiRecords" />
           </AssociationSet>
           <EntitySet Name="bmOBViews" EntityType="MorSun.Model.bmOBView" />
+          <EntitySet Name="bmQAs" EntityType="MorSun.Model.bmQA" />
+          <AssociationSet Name="FK_bmQA_aspnet_Users" Association="MorSun.Model.FK_bmQA_aspnet_Users">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="bmQA" EntitySet="bmQAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmQA_aspnet_Users1" Association="MorSun.Model.FK_bmQA_aspnet_Users1">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="bmQA" EntitySet="bmQAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmObjection_bmQA" Association="MorSun.Model.FK_bmObjection_bmQA">
+            <End Role="bmQA" EntitySet="bmQAs" />
+            <End Role="bmObjection" EntitySet="bmObjections" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmQA_wmfReference" Association="MorSun.Model.FK_bmQA_wmfReference">
+            <End Role="wmfReference" EntitySet="wmfReferences" />
+            <End Role="bmQA" EntitySet="bmQAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmQA_wmfReference2" Association="MorSun.Model.FK_bmQA_wmfReference2">
+            <End Role="wmfReference" EntitySet="wmfReferences" />
+            <End Role="bmQA" EntitySet="bmQAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmQADistribution_bmQA" Association="MorSun.Model.FK_bmQADistribution_bmQA">
+            <End Role="bmQA" EntitySet="bmQAs" />
+            <End Role="bmQADistribution" EntitySet="bmQADistributions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmUserMaBiRecord_bmQA" Association="MorSun.Model.FK_bmUserMaBiRecord_bmQA">
+            <End Role="bmQA" EntitySet="bmQAs" />
+            <End Role="bmUserMaBiRecord" EntitySet="bmUserMaBiRecords" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_bmUserMaBiRecord_bmRecharge">
           <End Type="MorSun.Model.bmRecharge" Role="bmRecharge" Multiplicity="0..1" />
@@ -9840,6 +9728,123 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <Property Name="KQdtMBNUM" Type="Decimal" Nullable="false" Precision="38" Scale="6" />
           <Property Name="AllQANum" Type="Int32" />
         </EntityType>
+        <EntityType Name="bmQA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="AutoGrenteId" Type="Int64" Nullable="false" />
+          <Property Name="ParentId" Type="Guid" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="WeiXinId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="QARef" Type="Guid" />
+          <Property Name="QAContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MsgId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="MsgType" Type="Guid" />
+          <Property Name="MediaId" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="PicUrl" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="Sort" Type="Int32" />
+          <Property Name="RegUser" Type="Guid" />
+          <Property Name="RegTime" Type="DateTime" Precision="3" />
+          <Property Name="ModTime" Type="DateTime" Precision="3" />
+          <Property Name="FlagTrashed" Type="Boolean" Nullable="false" />
+          <Property Name="FlagDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="aspnet_Users" Relationship="MorSun.Model.FK_bmQA_aspnet_Users" FromRole="bmQA" ToRole="aspnet_Users" />
+          <NavigationProperty Name="aspnet_Users1" Relationship="MorSun.Model.FK_bmQA_aspnet_Users1" FromRole="bmQA" ToRole="aspnet_Users" />
+          <NavigationProperty Name="bmObjections" Relationship="MorSun.Model.FK_bmObjection_bmQA" FromRole="bmQA" ToRole="bmObjection" />
+          <NavigationProperty Name="wmfReference" Relationship="MorSun.Model.FK_bmQA_wmfReference" FromRole="bmQA" ToRole="wmfReference" />
+          <NavigationProperty Name="wmfReference1" Relationship="MorSun.Model.FK_bmQA_wmfReference2" FromRole="bmQA" ToRole="wmfReference" />
+          <NavigationProperty Name="bmQADistributions" Relationship="MorSun.Model.FK_bmQADistribution_bmQA" FromRole="bmQA" ToRole="bmQADistribution" />
+          <NavigationProperty Name="bmUserMaBiRecords" Relationship="MorSun.Model.FK_bmUserMaBiRecord_bmQA" FromRole="bmQA" ToRole="bmUserMaBiRecord" />
+        </EntityType>
+        <Association Name="FK_bmQA_aspnet_Users">
+          <End Type="MorSun.Model.aspnet_Users" Role="aspnet_Users" Multiplicity="0..1" />
+          <End Type="MorSun.Model.bmQA" Role="bmQA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="bmQA">
+              <PropertyRef Name="RegUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmQA_aspnet_Users1">
+          <End Type="MorSun.Model.aspnet_Users" Role="aspnet_Users" Multiplicity="0..1" />
+          <End Type="MorSun.Model.bmQA" Role="bmQA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="bmQA">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmObjection_bmQA">
+          <End Type="MorSun.Model.bmQA" Role="bmQA" Multiplicity="0..1" />
+          <End Type="MorSun.Model.bmObjection" Role="bmObjection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bmQA">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmObjection">
+              <PropertyRef Name="QAId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmQA_wmfReference">
+          <End Type="MorSun.Model.wmfReference" Role="wmfReference" Multiplicity="0..1" />
+          <End Type="MorSun.Model.bmQA" Role="bmQA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wmfReference">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmQA">
+              <PropertyRef Name="QARef" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmQA_wmfReference2">
+          <End Type="MorSun.Model.wmfReference" Role="wmfReference" Multiplicity="0..1" />
+          <End Type="MorSun.Model.bmQA" Role="bmQA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wmfReference">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmQA">
+              <PropertyRef Name="MsgType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmQADistribution_bmQA">
+          <End Type="MorSun.Model.bmQA" Role="bmQA" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MorSun.Model.bmQADistribution" Role="bmQADistribution" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bmQA">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmQADistribution">
+              <PropertyRef Name="QAId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmUserMaBiRecord_bmQA">
+          <End Type="MorSun.Model.bmQA" Role="bmQA" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MorSun.Model.bmUserMaBiRecord" Role="bmUserMaBiRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bmQA">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmUserMaBiRecord">
+              <PropertyRef Name="QAId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -10108,29 +10113,6 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
                 <ScalarProperty Name="ActiveTime" ColumnName="ActiveTime" />
                 <ScalarProperty Name="ActiveNum" ColumnName="ActiveNum" />
                 <ScalarProperty Name="CertificationLevel" ColumnName="CertificationLevel" />
-                <ScalarProperty Name="Sort" ColumnName="Sort" />
-                <ScalarProperty Name="RegUser" ColumnName="RegUser" />
-                <ScalarProperty Name="RegTime" ColumnName="RegTime" />
-                <ScalarProperty Name="ModTime" ColumnName="ModTime" />
-                <ScalarProperty Name="FlagTrashed" ColumnName="FlagTrashed" />
-                <ScalarProperty Name="FlagDeleted" ColumnName="FlagDeleted" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="bmQAs">
-            <EntityTypeMapping TypeName="MorSun.Model.bmQA">
-              <MappingFragment StoreEntitySet="bmQA">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="AutoGrenteId" ColumnName="AutoGrenteId" />
-                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="WeiXinId" ColumnName="WeiXinId" />
-                <ScalarProperty Name="QARef" ColumnName="QARef" />
-                <ScalarProperty Name="QAContent" ColumnName="QAContent" />
-                <ScalarProperty Name="MsgId" ColumnName="MsgId" />
-                <ScalarProperty Name="MsgType" ColumnName="MsgType" />
-                <ScalarProperty Name="MediaId" ColumnName="MediaId" />
-                <ScalarProperty Name="PicUrl" ColumnName="PicUrl" />
                 <ScalarProperty Name="Sort" ColumnName="Sort" />
                 <ScalarProperty Name="RegUser" ColumnName="RegUser" />
                 <ScalarProperty Name="RegTime" ColumnName="RegTime" />
@@ -12092,6 +12074,7 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <EntitySetMapping Name="bmQAViews">
             <EntityTypeMapping TypeName="MorSun.Model.bmQAView">
               <MappingFragment StoreEntitySet="bmQAView">
+                <ScalarProperty Name="IsSettle" ColumnName="IsSettle" />
                 <ScalarProperty Name="DisId" ColumnName="DisId" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="AutoGrenteId" ColumnName="AutoGrenteId" />
@@ -12212,6 +12195,29 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
                 <ScalarProperty Name="WeiXinId" ColumnName="WeiXinId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="QAId" ColumnName="QAId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bmQAs">
+            <EntityTypeMapping TypeName="MorSun.Model.bmQA">
+              <MappingFragment StoreEntitySet="bmQA">
+                <ScalarProperty Name="FlagDeleted" ColumnName="FlagDeleted" />
+                <ScalarProperty Name="FlagTrashed" ColumnName="FlagTrashed" />
+                <ScalarProperty Name="ModTime" ColumnName="ModTime" />
+                <ScalarProperty Name="RegTime" ColumnName="RegTime" />
+                <ScalarProperty Name="RegUser" ColumnName="RegUser" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="PicUrl" ColumnName="PicUrl" />
+                <ScalarProperty Name="MediaId" ColumnName="MediaId" />
+                <ScalarProperty Name="MsgType" ColumnName="MsgType" />
+                <ScalarProperty Name="MsgId" ColumnName="MsgId" />
+                <ScalarProperty Name="QAContent" ColumnName="QAContent" />
+                <ScalarProperty Name="QARef" ColumnName="QARef" />
+                <ScalarProperty Name="WeiXinId" ColumnName="WeiXinId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="AutoGrenteId" ColumnName="AutoGrenteId" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

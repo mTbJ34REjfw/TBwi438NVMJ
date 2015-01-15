@@ -22,7 +22,6 @@
         <EntityTypeShape EntityType="MorSun.Model.bmObjection" Width="1.5" PointX="6" PointY="72.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MorSun.Model.bmOnlineQAUser" Width="1.5" PointX="3" PointY="66.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MorSun.Model.bmOnlineQAUserRecord" Width="1.5" PointX="3" PointY="78.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MorSun.Model.bmQA" Width="1.5" PointX="9" PointY="72" IsExpanded="true" />
         <EntityTypeShape EntityType="MorSun.Model.bmQADistribution" Width="1.5" PointX="17.25" PointY="72.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MorSun.Model.bmRecharge" Width="1.5" PointX="6" PointY="66.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MorSun.Model.bmSellKaMe" Width="1.5" PointX="6" PointY="78.625" IsExpanded="true" />
@@ -159,8 +158,6 @@
         <AssociationConnector Association="MorSun.Model.FK_bmOnlineQAUser_aspnet_Users1" ManuallyRouted="false" />
         <AssociationConnector Association="MorSun.Model.FK_bmOnlineQAUserRecord_aspnet_Users" ManuallyRouted="false" />
         <AssociationConnector Association="MorSun.Model.FK_bmOnlineQAUserRecord_aspnet_Users1" ManuallyRouted="false" />
-        <AssociationConnector Association="MorSun.Model.FK_bmQA_aspnet_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="MorSun.Model.FK_bmQA_aspnet_Users1" ManuallyRouted="false" />
         <AssociationConnector Association="MorSun.Model.FK_bmQADistribution_aspnet_Users" ManuallyRouted="false" />
         <AssociationConnector Association="MorSun.Model.FK_bmQADistribution_aspnet_Users1" ManuallyRouted="false" />
         <AssociationConnector Association="MorSun.Model.FK_bmRecharge_aspnet_Users" ManuallyRouted="false" />
@@ -191,16 +188,11 @@
         <AssociationConnector Association="MorSun.Model.FK_bmKaMe_wmfReference" ManuallyRouted="false" />
         <AssociationConnector Association="MorSun.Model.FK_bmKaMe_wmfReference1" ManuallyRouted="false" />
         <AssociationConnector Association="MorSun.Model.FK_bmKaMe_wmfReference2" ManuallyRouted="false" />
-        <AssociationConnector Association="MorSun.Model.FK_bmObjection_bmQA" ManuallyRouted="false" />
         <AssociationConnector Association="MorSun.Model.FK_bmObjection_wmfReference" ManuallyRouted="false" />
         <AssociationConnector Association="MorSun.Model.FK_bmOnlineQAUser_wmfReference" ManuallyRouted="false" />
         <AssociationConnector Association="MorSun.Model.FK_bmOnlineQAUser_wmfReference1" ManuallyRouted="false" />
         <AssociationConnector Association="MorSun.Model.FK_bmOnlineQAUserRecord_wmfReference" ManuallyRouted="false" />
         <AssociationConnector Association="MorSun.Model.FK_bmOnlineQAUserRecord_wmfReference1" ManuallyRouted="false" />
-        <AssociationConnector Association="MorSun.Model.FK_bmQA_wmfReference" ManuallyRouted="false" />
-        <AssociationConnector Association="MorSun.Model.FK_bmQA_wmfReference2" ManuallyRouted="false" />
-        <AssociationConnector Association="MorSun.Model.FK_bmQADistribution_bmQA" ManuallyRouted="false" />
-        <AssociationConnector Association="MorSun.Model.FK_bmUserMaBiRecord_bmQA" ManuallyRouted="false" />
         <AssociationConnector Association="MorSun.Model.FK_bmQADistribution_wmfReference" ManuallyRouted="false" />
         <AssociationConnector Association="MorSun.Model.FK_bmRecharge_wmfReference" ManuallyRouted="false" />
         <AssociationConnector Association="MorSun.Model.FK_bmRecharge_wmfReference1" ManuallyRouted="false" />
@@ -281,6 +273,14 @@
         <AssociationConnector Association="MorSun.Model.FK_bmUserMaBiRecord_bmObjection" />
         <AssociationConnector Association="MorSun.Model.FK_bmUserMaBiRecord_bmQADistribution" />
         <EntityTypeShape EntityType="MorSun.Model.bmOBView" Width="1.5" PointX="0.75" PointY="26.75" />
+        <EntityTypeShape EntityType="MorSun.Model.bmQA" Width="1.5" PointX="21" PointY="61" />
+        <AssociationConnector Association="MorSun.Model.FK_bmQA_aspnet_Users" />
+        <AssociationConnector Association="MorSun.Model.FK_bmQA_aspnet_Users1" />
+        <AssociationConnector Association="MorSun.Model.FK_bmObjection_bmQA" />
+        <AssociationConnector Association="MorSun.Model.FK_bmQA_wmfReference" />
+        <AssociationConnector Association="MorSun.Model.FK_bmQA_wmfReference2" />
+        <AssociationConnector Association="MorSun.Model.FK_bmQADistribution_bmQA" />
+        <AssociationConnector Association="MorSun.Model.FK_bmUserMaBiRecord_bmQA" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

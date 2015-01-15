@@ -1121,6 +1121,8 @@ namespace MorSun.Controllers
                     var uwbll = new BaseBll<bmUserWeixin>();
                     //同步过来的答题记录
                     var bmQAIDList = new List<Guid>();
+                    //同步过来的异议处理记录
+                    var bmQADisList = new List<Guid>();
                     //问题记录
                     try
                     {
@@ -1166,6 +1168,7 @@ namespace MorSun.Controllers
                                     qadisbll.Insert(l, false);
                                     if(l.QAId != null)
                                         bmQAIDList.Add(l.QAId.Value);
+                                    bmQADisList.Add(l.ID);
                                 }
                                 qadisbll.UpdateChanges();
                                 
@@ -1273,14 +1276,32 @@ namespace MorSun.Controllers
                         bmQAIDList = bmQAIDList.Distinct().ToList();
                         var mrbll = new BaseBll<wmfMailRecord>();                    
                         var qaList = qabll.All.Where(p => bmQAIDList.Contains(p.ID));
-                        var qaWeiXinIds = qaList.Select(p => p.WeiXinId);                        
+                        var qaWeiXinIds = qaList.Select(p => p.WeiXinId);             
+                        //提问用户
                         var userWeiXins = uwbll.All.Where(p => qaWeiXinIds.Contains(p.WeiXinId));
+
+                        var disList = qadisbll.All.Where(p => bmQADisList.Contains(p.ID));
+                        var qaDisWeiXinIds = disList.Select(p => p.WeiXinId);
+                        var disWeiXins = uwbll.All.Where(p => qaDisWeiXinIds.Contains(p.WeiXinId));
+
                         foreach (var d in qaList)
                         {                            
                             try
                             {
-                                var qaU = userWeiXins.FirstOrDefault(p => p.WeiXinId == d.WeiXinId).aspnet_Users1;                                 
-                                JDQAMail(mrbll, qaU.UserName, qaU.wmfUserInfo.NickName, d.ID.ToString());                                
+                                var qaU = userWeiXins.FirstOrDefault(p => p.WeiXinId == d.WeiXinId).aspnet_Users1;
+                                JDQAMail(mrbll, qaU.UserName, qaU.wmfUserInfo.NickName, d.ID.ToString(), "您提的问题编号为：" + d.AutoGrenteId + " 已被解答");                                
+                            }
+                            catch (Exception ex)
+                            {
+                                LogHelper.Write("问题解答发邮件不成功 解答记录ID：" + d.ID + " 错误信息" + ex.Message, LogHelper.LogMessageType.Info);
+                            }
+                        }
+                        foreach(var d in disList)
+                        {
+                            try
+                            {
+                                var disU = userWeiXins.FirstOrDefault(p => p.WeiXinId == d.WeiXinId).aspnet_Users1;
+                                JDQAMail(mrbll, disU.UserName, disU.wmfUserInfo.NickName, d.bmQA.ID.ToString(), "您已解答了一个问题，编号为：" + d.bmQA.AutoGrenteId);  
                             }
                             catch (Exception ex)
                             {
@@ -1305,7 +1326,7 @@ namespace MorSun.Controllers
         /// <param name="nickName"></param>
         /// <param name="takeMB"></param>
         /// <param name="takeMoney"></param>
-        public static void JDQAMail(BaseBll<wmfMailRecord> mrbll, string email, string nickName, string qaId)
+        public static void JDQAMail(BaseBll<wmfMailRecord> mrbll, string email, string nickName, string qaId, string mailTitle)
         {
             LogHelper.Write(email + "发送邮件", LogHelper.LogMessageType.Debug);
             string fromEmail = CFG.应用邮箱;
@@ -1316,7 +1337,7 @@ namespace MorSun.Controllers
 
             string body = new WebClient().GetHtml(CFG.本机访问地址 + "/Home/Q/" + qaId);
             //创建邮件对象并发送
-            var mail = new SendMail(email, fromEmail, body, "您提的问题已被解答", fromEmailPassword, "ServiceMailName".GX(), nickName);
+            var mail = new SendMail(email, fromEmail, body, mailTitle, fromEmailPassword, "ServiceMailName".GX(), nickName);
             //var mailRecord = new wmfMailRecord().wmfMailRecord2(email, body, "问题解答通知", "ServiceMailName".GX(), nickName, Guid.Parse(Reference.电子邮件类别_问题解答通知));
             //mrbll.Insert(mailRecord,false);
             mail.Send("smtp.", emailPort, email + "问题解答通知邮件发送失败！");

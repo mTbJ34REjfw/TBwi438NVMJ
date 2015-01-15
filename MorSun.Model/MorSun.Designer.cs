@@ -38,8 +38,6 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmOnlineQAUser_aspnet_Users1", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.aspnet_Users), "bmOnlineQAUser", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmOnlineQAUser), true)]
 [assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmOnlineQAUserRecord_aspnet_Users", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.aspnet_Users), "bmOnlineQAUserRecord", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmOnlineQAUserRecord), true)]
 [assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmOnlineQAUserRecord_aspnet_Users1", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.aspnet_Users), "bmOnlineQAUserRecord", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmOnlineQAUserRecord), true)]
-[assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmQA_aspnet_Users", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.aspnet_Users), "bmQA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmQA), true)]
-[assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmQA_aspnet_Users1", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.aspnet_Users), "bmQA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmQA), true)]
 [assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmQADistribution_aspnet_Users", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.aspnet_Users), "bmQADistribution", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmQADistribution), true)]
 [assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmQADistribution_aspnet_Users1", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.aspnet_Users), "bmQADistribution", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmQADistribution), true)]
 [assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmRecharge_aspnet_Users", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.aspnet_Users), "bmRecharge", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmRecharge), true)]
@@ -70,16 +68,11 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmKaMe_wmfReference", "wmfReference", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.wmfReference), "bmKaMe", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmKaMe), true)]
 [assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmKaMe_wmfReference1", "wmfReference", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.wmfReference), "bmKaMe", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmKaMe), true)]
 [assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmKaMe_wmfReference2", "wmfReference", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.wmfReference), "bmKaMe", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmKaMe), true)]
-[assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmObjection_bmQA", "bmQA", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.bmQA), "bmObjection", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmObjection), true)]
 [assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmObjection_wmfReference", "wmfReference", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.wmfReference), "bmObjection", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmObjection), true)]
 [assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmOnlineQAUser_wmfReference", "wmfReference", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.wmfReference), "bmOnlineQAUser", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmOnlineQAUser), true)]
 [assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmOnlineQAUser_wmfReference1", "wmfReference", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.wmfReference), "bmOnlineQAUser", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmOnlineQAUser), true)]
 [assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmOnlineQAUserRecord_wmfReference", "wmfReference", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.wmfReference), "bmOnlineQAUserRecord", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmOnlineQAUserRecord), true)]
 [assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmOnlineQAUserRecord_wmfReference1", "wmfReference", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.wmfReference), "bmOnlineQAUserRecord", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmOnlineQAUserRecord), true)]
-[assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmQA_wmfReference", "wmfReference", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.wmfReference), "bmQA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmQA), true)]
-[assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmQA_wmfReference2", "wmfReference", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.wmfReference), "bmQA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmQA), true)]
-[assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmQADistribution_bmQA", "bmQA", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.bmQA), "bmQADistribution", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmQADistribution), true)]
-[assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmUserMaBiRecord_bmQA", "bmQA", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.bmQA), "bmUserMaBiRecord", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmUserMaBiRecord), true)]
 [assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmQADistribution_wmfReference", "wmfReference", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.wmfReference), "bmQADistribution", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmQADistribution), true)]
 [assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmRecharge_wmfReference", "wmfReference", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.wmfReference), "bmRecharge", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmRecharge), true)]
 [assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmRecharge_wmfReference1", "wmfReference", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.wmfReference), "bmRecharge", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmRecharge), true)]
@@ -157,6 +150,13 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmUserPay_wmfReference1", "wmfReference", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.wmfReference), "bmUserPay", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmUserPay), true)]
 [assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmUserMaBiRecord_bmObjection", "bmObjection", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.bmObjection), "bmUserMaBiRecord", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmUserMaBiRecord), true)]
 [assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmUserMaBiRecord_bmQADistribution", "bmQADistribution", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.bmQADistribution), "bmUserMaBiRecord", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmUserMaBiRecord), true)]
+[assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmQA_aspnet_Users", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.aspnet_Users), "bmQA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmQA), true)]
+[assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmQA_aspnet_Users1", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.aspnet_Users), "bmQA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmQA), true)]
+[assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmObjection_bmQA", "bmQA", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.bmQA), "bmObjection", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmObjection), true)]
+[assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmQA_wmfReference", "wmfReference", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.wmfReference), "bmQA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmQA), true)]
+[assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmQA_wmfReference2", "wmfReference", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.wmfReference), "bmQA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmQA), true)]
+[assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmQADistribution_bmQA", "bmQA", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.bmQA), "bmQADistribution", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmQADistribution), true)]
+[assembly: EdmRelationshipAttribute("MorSun.Model", "FK_bmUserMaBiRecord_bmQA", "bmQA", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MorSun.Model.bmQA), "bmUserMaBiRecord", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MorSun.Model.bmUserMaBiRecord), true)]
 
 #endregion
 
@@ -479,22 +479,6 @@ namespace MorSun.Model
             }
         }
         private ObjectSet<bmOnlineQAUserRecord> _bmOnlineQAUserRecords;
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
-        public ObjectSet<bmQA> bmQAs
-        {
-            get
-            {
-                if ((_bmQAs == null))
-                {
-                    _bmQAs = base.CreateObjectSet<bmQA>("bmQAs");
-                }
-                return _bmQAs;
-            }
-        }
-        private ObjectSet<bmQA> _bmQAs;
     
         /// <summary>
         /// 没有元数据文档可用。
@@ -2415,6 +2399,22 @@ namespace MorSun.Model
             }
         }
         private ObjectSet<bmOBView> _bmOBViews;
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        public ObjectSet<bmQA> bmQAs
+        {
+            get
+            {
+                if ((_bmQAs == null))
+                {
+                    _bmQAs = base.CreateObjectSet<bmQA>("bmQAs");
+                }
+                return _bmQAs;
+            }
+        }
+        private ObjectSet<bmQA> _bmQAs;
 
         #endregion
 
@@ -2554,14 +2554,6 @@ namespace MorSun.Model
         public void AddTobmOnlineQAUserRecords(bmOnlineQAUserRecord bmOnlineQAUserRecord)
         {
             base.AddObject("bmOnlineQAUserRecords", bmOnlineQAUserRecord);
-        }
-    
-        /// <summary>
-        /// 用于向 bmQAs EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
-        /// </summary>
-        public void AddTobmQAs(bmQA bmQA)
-        {
-            base.AddObject("bmQAs", bmQA);
         }
     
         /// <summary>
@@ -3522,6 +3514,14 @@ namespace MorSun.Model
         public void AddTobmOBViews(bmOBView bmOBView)
         {
             base.AddObject("bmOBViews", bmOBView);
+        }
+    
+        /// <summary>
+        /// 用于向 bmQAs EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
+        /// </summary>
+        public void AddTobmQAs(bmQA bmQA)
+        {
+            base.AddObject("bmQAs", bmQA);
         }
 
         #endregion
@@ -6745,50 +6745,6 @@ namespace MorSun.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MorSun.Model", "FK_bmQA_aspnet_Users", "bmQA")]
-        public EntityCollection<bmQA> bmQAs
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<bmQA>("MorSun.Model.FK_bmQA_aspnet_Users", "bmQA");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<bmQA>("MorSun.Model.FK_bmQA_aspnet_Users", "bmQA", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MorSun.Model", "FK_bmQA_aspnet_Users1", "bmQA")]
-        public EntityCollection<bmQA> bmQAs1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<bmQA>("MorSun.Model.FK_bmQA_aspnet_Users1", "bmQA");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<bmQA>("MorSun.Model.FK_bmQA_aspnet_Users1", "bmQA", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MorSun.Model", "FK_bmQADistribution_aspnet_Users", "bmQADistribution")]
         public EntityCollection<bmQADistribution> bmQADistributions
         {
@@ -7493,6 +7449,50 @@ namespace MorSun.Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<bmUserPay>("MorSun.Model.FK_bmUserPay_aspnet_Users1", "bmUserPay", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MorSun.Model", "FK_bmQA_aspnet_Users", "bmQA")]
+        public EntityCollection<bmQA> bmQAs
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<bmQA>("MorSun.Model.FK_bmQA_aspnet_Users", "bmQA");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<bmQA>("MorSun.Model.FK_bmQA_aspnet_Users", "bmQA", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MorSun.Model", "FK_bmQA_aspnet_Users1", "bmQA")]
+        public EntityCollection<bmQA> bmQAs1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<bmQA>("MorSun.Model.FK_bmQA_aspnet_Users1", "bmQA");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<bmQA>("MorSun.Model.FK_bmQA_aspnet_Users1", "bmQA", value);
                 }
             }
         }
@@ -9945,44 +9945,6 @@ namespace MorSun.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MorSun.Model", "FK_bmObjection_bmQA", "bmQA")]
-        public bmQA bmQA
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<bmQA>("MorSun.Model.FK_bmObjection_bmQA", "bmQA").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<bmQA>("MorSun.Model.FK_bmObjection_bmQA", "bmQA").Value = value;
-            }
-        }
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<bmQA> bmQAReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<bmQA>("MorSun.Model.FK_bmObjection_bmQA", "bmQA");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<bmQA>("MorSun.Model.FK_bmObjection_bmQA", "bmQA", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MorSun.Model", "FK_bmObjection_wmfReference", "wmfReference")]
         public wmfReference wmfReference
         {
@@ -10033,6 +9995,44 @@ namespace MorSun.Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<bmUserMaBiRecord>("MorSun.Model.FK_bmUserMaBiRecord_bmObjection", "bmUserMaBiRecord", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MorSun.Model", "FK_bmObjection_bmQA", "bmQA")]
+        public bmQA bmQA
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<bmQA>("MorSun.Model.FK_bmObjection_bmQA", "bmQA").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<bmQA>("MorSun.Model.FK_bmObjection_bmQA", "bmQA").Value = value;
+            }
+        }
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<bmQA> bmQAReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<bmQA>("MorSun.Model.FK_bmObjection_bmQA", "bmQA");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<bmQA>("MorSun.Model.FK_bmObjection_bmQA", "bmQA", value);
                 }
             }
         }
@@ -13081,44 +13081,6 @@ namespace MorSun.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MorSun.Model", "FK_bmQADistribution_bmQA", "bmQA")]
-        public bmQA bmQA
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<bmQA>("MorSun.Model.FK_bmQADistribution_bmQA", "bmQA").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<bmQA>("MorSun.Model.FK_bmQADistribution_bmQA", "bmQA").Value = value;
-            }
-        }
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<bmQA> bmQAReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<bmQA>("MorSun.Model.FK_bmQADistribution_bmQA", "bmQA");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<bmQA>("MorSun.Model.FK_bmQADistribution_bmQA", "bmQA", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MorSun.Model", "FK_bmQADistribution_wmfReference", "wmfReference")]
         public wmfReference wmfReference
         {
@@ -13169,6 +13131,44 @@ namespace MorSun.Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<bmUserMaBiRecord>("MorSun.Model.FK_bmUserMaBiRecord_bmQADistribution", "bmUserMaBiRecord", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MorSun.Model", "FK_bmQADistribution_bmQA", "bmQA")]
+        public bmQA bmQA
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<bmQA>("MorSun.Model.FK_bmQADistribution_bmQA", "bmQA").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<bmQA>("MorSun.Model.FK_bmQADistribution_bmQA", "bmQA").Value = value;
+            }
+        }
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<bmQA> bmQAReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<bmQA>("MorSun.Model.FK_bmQADistribution_bmQA", "bmQA");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<bmQA>("MorSun.Model.FK_bmQADistribution_bmQA", "bmQA", value);
                 }
             }
         }
@@ -13882,6 +13882,30 @@ namespace MorSun.Model
         private Nullable<global::System.Guid> _DisId;
         partial void OnDisIdChanging(Nullable<global::System.Guid> value);
         partial void OnDisIdChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsSettle
+        {
+            get
+            {
+                return _IsSettle;
+            }
+            set
+            {
+                OnIsSettleChanging(value);
+                ReportPropertyChanging("IsSettle");
+                _IsSettle = StructuralObject.SetValidValue(value, "IsSettle");
+                ReportPropertyChanged("IsSettle");
+                OnIsSettleChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsSettle;
+        partial void OnIsSettleChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsSettleChanged();
 
         #endregion
 
@@ -16521,44 +16545,6 @@ namespace MorSun.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MorSun.Model", "FK_bmUserMaBiRecord_bmQA", "bmQA")]
-        public bmQA bmQA
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<bmQA>("MorSun.Model.FK_bmUserMaBiRecord_bmQA", "bmQA").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<bmQA>("MorSun.Model.FK_bmUserMaBiRecord_bmQA", "bmQA").Value = value;
-            }
-        }
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<bmQA> bmQAReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<bmQA>("MorSun.Model.FK_bmUserMaBiRecord_bmQA", "bmQA");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<bmQA>("MorSun.Model.FK_bmUserMaBiRecord_bmQA", "bmQA", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MorSun.Model", "FK_bmUserMaBiRecord_wmfReference", "wmfReference")]
         public wmfReference wmfReference
         {
@@ -16777,6 +16763,44 @@ namespace MorSun.Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<bmQADistribution>("MorSun.Model.FK_bmUserMaBiRecord_bmQADistribution", "bmQADistribution", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MorSun.Model", "FK_bmUserMaBiRecord_bmQA", "bmQA")]
+        public bmQA bmQA
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<bmQA>("MorSun.Model.FK_bmUserMaBiRecord_bmQA", "bmQA").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<bmQA>("MorSun.Model.FK_bmUserMaBiRecord_bmQA", "bmQA").Value = value;
+            }
+        }
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<bmQA> bmQAReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<bmQA>("MorSun.Model.FK_bmUserMaBiRecord_bmQA", "bmQA");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<bmQA>("MorSun.Model.FK_bmUserMaBiRecord_bmQA", "bmQA", value);
                 }
             }
         }
@@ -48337,50 +48361,6 @@ namespace MorSun.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MorSun.Model", "FK_bmQA_wmfReference", "bmQA")]
-        public EntityCollection<bmQA> bmQAs
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<bmQA>("MorSun.Model.FK_bmQA_wmfReference", "bmQA");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<bmQA>("MorSun.Model.FK_bmQA_wmfReference", "bmQA", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MorSun.Model", "FK_bmQA_wmfReference2", "bmQA")]
-        public EntityCollection<bmQA> bmQAs1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<bmQA>("MorSun.Model.FK_bmQA_wmfReference2", "bmQA");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<bmQA>("MorSun.Model.FK_bmQA_wmfReference2", "bmQA", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MorSun.Model", "FK_bmQADistribution_wmfReference", "bmQADistribution")]
         public EntityCollection<bmQADistribution> bmQADistributions
         {
@@ -49135,6 +49115,50 @@ namespace MorSun.Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<bmUserPay>("MorSun.Model.FK_bmUserPay_wmfReference1", "bmUserPay", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MorSun.Model", "FK_bmQA_wmfReference", "bmQA")]
+        public EntityCollection<bmQA> bmQAs
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<bmQA>("MorSun.Model.FK_bmQA_wmfReference", "bmQA");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<bmQA>("MorSun.Model.FK_bmQA_wmfReference", "bmQA", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MorSun.Model", "FK_bmQA_wmfReference2", "bmQA")]
+        public EntityCollection<bmQA> bmQAs1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<bmQA>("MorSun.Model.FK_bmQA_wmfReference2", "bmQA");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<bmQA>("MorSun.Model.FK_bmQA_wmfReference2", "bmQA", value);
                 }
             }
         }
