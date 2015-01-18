@@ -1843,8 +1843,13 @@ namespace MorSun.Controllers
                             var qaMB = Math.Abs(q.MBNum);
 
                             //邦马币占比
-                            var bbPer = qaBB / (qaMB + qaBB);
-                            var mbPer = qaMB / (qaMB + qaBB);
+                            decimal bbPer = 0;// qaBB / (qaMB + qaBB);
+                            decimal mbPer = 0;// qaMB / (qaMB + qaBB);
+                            if(qaMB + qaBB != 0)
+                            {
+                                bbPer = qaBB / (qaMB + qaBB);
+                                mbPer = qaMB / (qaMB + qaBB);
+                            }
 
                             //回馈到答题用户去的绑币与马币值
                             var disBanB = qaBB * zqBMB * bbPer;
@@ -2041,7 +2046,7 @@ namespace MorSun.Controllers
 
                                 //邦马币结算与服务器同步
                                 s = "";
-                                if (qaDisJson.Count() == 0)
+                                if (bmUserMBListJson.Count() == 0)
                                 {
                                     s += " ";
                                 }
@@ -2051,7 +2056,7 @@ namespace MorSun.Controllers
                                 }
                                 s += CFG.邦马网_JSON数据间隔;
 
-                                if (obJson.Count() == 0)
+                                if (bmUserMaBiSettleRecordListJson.Count() == 0)
                                 {
                                     s += " ";
                                 }
@@ -2061,7 +2066,7 @@ namespace MorSun.Controllers
                                 }
                                 s += CFG.邦马网_JSON数据间隔;
 
-                                if (umbrListJson.Count() == 0)
+                                if (nonSettleBMBListJson.Count() == 0)
                                 {
                                     s += " ";
                                 }
