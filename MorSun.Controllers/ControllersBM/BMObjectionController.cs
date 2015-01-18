@@ -153,8 +153,14 @@ namespace MorSun.Controllers.SystemController
                         //平均每道题目消费的邦马币值,去除小数点后的数
                         var mbEVQ = Math.Floor((qaMB + qaBB) / t.AllQANum);                         
                         //提问消费邦马币占比
-                        var bbPer = qaBB / (qaMB + qaBB);
-                        var mbPer = qaMB / (qaMB + qaBB);
+                        decimal bbPer = 0;
+                        decimal mbPer = 0;
+
+                        if ((qaMB + qaBB) != 0)
+                        { 
+                            bbPer = qaBB / (qaMB + qaBB);
+                            mbPer = qaMB / (qaMB + qaBB);
+                        }
                                                 
 
                         //答题用户答错一道题要扣的邦马币值
@@ -184,9 +190,15 @@ namespace MorSun.Controllers.SystemController
                         //每题要归还的压金值 做成按扣取的压金总值除以总问题数
                         var ghEVO = Math.Floor((obMB + obBB) / t.AllQANum);
 
-                        //邦马币平均值
-                        var obbbPer = obBB / (obMB + obBB);
-                        var obmbPer = obMB / (obMB + obBB);
+                        //要归还的压金，邦马币占比
+
+                        decimal obbbPer = 0;
+                        decimal obmbPer = 0;
+                        if((obMB + obBB) != 0)
+                        { 
+                            obbbPer = obBB / (obMB + obBB);
+                            obmbPer = obMB / (obMB + obBB);
+                        }
                         //总的要归还提问用户的压金值
                         var ghQAUserAllYJ = ghEVO * t.ConfirmErrorNum;
                         

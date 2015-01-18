@@ -1679,7 +1679,7 @@ namespace MorSun.Controllers
                                 {
                                     ID = u.ID,
                                     UserId = u.UserId,
-                                    QAId = u.QAId,
+                                    RCId = u.RCId, //小BUG调整
                                     SourceRef = u.SourceRef,
                                     MaBiRef = u.MaBiRef,
                                     MaBiNum = u.MaBiNum,
@@ -1806,6 +1806,21 @@ namespace MorSun.Controllers
                 {
                     //检测这些记录是还存在未解决的异议
                     var qaIds = fiveAgoQADisWJS.Select(p => p.QAId);
+                    //下面的删除邦马币记录需要用到
+                    var disids = fiveAgoQADisWJS.Select(p => p.ID);
+                    var umbrBll = new BaseBll<bmUserMaBiRecord>();
+                    //添加邦马币记录前，要先删除掉本次问题记录与异议记录生成的邦马币                               
+                    var bmQAdisMB = umbrBll.All.Where(p => p.QAId != null && p.DisId != null && p.OBId == null && qaIds.Contains(p.QAId.Value) && disids.Contains(p.DisId.Value));//这句很重要，要测试
+                    //如果存在，先删除，可以不管后面的操作。
+                    if (bmQAdisMB.Count() > 0)
+                    {
+                        foreach (var m in bmQAdisMB)
+                        {
+                            umbrBll.Delete(m, false);
+                        }
+                        umbrBll.UpdateChanges();
+                    }
+
                     var obBll = new BaseBll<bmObjection>();
                     var nonOperateOB = obBll.All.Where(p => qaIds.Contains(p.QAId) && p.Result == null);
                     if (nonOperateOB.Count() > 0)
@@ -1965,18 +1980,21 @@ namespace MorSun.Controllers
                         LogHelper.Write("同步异议答题结算信息" + strUrl + neAppentUrl, LogHelper.LogMessageType.Info);
                         //有传递UID时用POST方法，参数有可能会超过URL长度
                         result = GetHtmlHelper.PostGetPage(strUrl, neAppentUrl.Substring(1), "");
+                        //第一次传递邦马币记录结算完成
                         if (result == "true")
                         {
                             disBll.UpdateChanges();
                             obBll.UpdateChanges();
-                            var umbrBll = new BaseBll<bmUserMaBiRecord>();                            
-                            var bmUMBBll = new BaseBll<bmUserMaBi>();
-                            var bmUMBSBll = new BaseBll<bmUserMaBiSettleRecord>();
+                            
                             foreach(var m in umbrList)
                             {
                                 umbrBll.Insert(m, false);
                             }
                             umbrBll.UpdateChanges();
+
+                            //一更新，上面的所有变量变成空  
+                            var bmUMBBll = new BaseBll<bmUserMaBi>();
+                            var bmUMBSBll = new BaseBll<bmUserMaBiSettleRecord>();
 
                             //第二次同步开始，同步用户币记录，用户币结算记录，用户币记录结算有 bmUserMBList，
                             //取出所有未结算的邦马币记录
@@ -1991,8 +2009,11 @@ namespace MorSun.Controllers
 
                                 var bmUserMBListJson = new List<bmUserMaBiJson>();
                                 var bmUserMaBiSettleRecordListJson = new List<bmUserMaBiSettleRecordJson>();
+
+                                //用户的邦马币记录Json
+                                var nonSettleBMBListJson = new List<bmUserMaBiRecordJson>();
                                 //结算时间 
-                                var settleTime = DateTime.Now.Date; 
+                                var settleTime = DateTime.Now;
                                 foreach(var numb in bmNewUserMBList)
                                 {
                                     //添加邦马币记录
@@ -2014,9 +2035,7 @@ namespace MorSun.Controllers
                                     AddUserMBSettleJson(mbRef, numb.NMB, bmUserMaBiSettleRecordListJson, settleTime, numb);
                                     AddUserMBSettleJson(bbRef, numb.NBB, bmUserMaBiSettleRecordListJson, settleTime, numb);
                                     AddUserMBSettleJson(banbRef, numb.NBANB, bmUserMaBiSettleRecordListJson, settleTime, numb);
-                                }
-                                //用户的邦马币记录Json
-                                var nonSettleBMBListJson = new List<bmUserMaBiRecordJson>();
+                                }                                
 
                                 //将未结算的邦马币标识为结算
                                 foreach(var um in nonSettleBMBList)
