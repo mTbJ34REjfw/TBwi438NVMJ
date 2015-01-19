@@ -828,7 +828,7 @@ namespace MorSun.Controllers
         public void AncyUser(DateTime? SyncDT, string neURLuids)
         {
             var result = "";
-            var dts = DateTime.Now.ToString();//dt.ToShortDateString() + " " + dt.ToShortTimeString();            
+            var dts = DateTime.Now.ToString();          
             var tok = SecurityHelper.Encrypt(dts + ";" + CFG.邦马网_对接统一码);
             string strUrl = CFG.网站域名 + CFG.数据同步_用户信息;
             string appendUrl = "?tok=" + HttpUtility.UrlEncode(tok);
@@ -963,7 +963,7 @@ namespace MorSun.Controllers
         public void AncyQA(DateTime? SyncDT)
         {
             var result = "";
-            var dts = DateTime.Now.ToString();//dt.ToShortDateString() + " " + dt.ToShortTimeString();            
+            var dts = DateTime.Now.ToString();          
             var tok = SecurityHelper.Encrypt(dts + ";" + CFG.邦马网_对接统一码);
             string strUrl = CFG.网站域名 + CFG.数据同步_作业邦信息;
             string appendUrl = "?tok=" + HttpUtility.UrlEncode(tok);
@@ -1354,7 +1354,7 @@ namespace MorSun.Controllers
         public void AncyRC()
         {
             var result = "";
-            var dts = DateTime.Now.ToString();//dt.ToShortDateString() + " " + dt.ToShortTimeString();            
+            var dts = DateTime.Now.ToString();          
             var tok = SecurityHelper.Encrypt(dts + ";" + CFG.邦马网_对接统一码);
             string strUrl = CFG.网站域名 + CFG.数据同步_马币充值信息;
             string appendUrl = "?tok=" + HttpUtility.UrlEncode(tok);            
@@ -1985,8 +1985,8 @@ namespace MorSun.Controllers
                         {
                             disBll.UpdateChanges();
                             obBll.UpdateChanges();
-                            
-                            foreach(var m in umbrList)
+
+                            foreach (var m in umbrList)
                             {
                                 umbrBll.Insert(m, false);
                             }
@@ -1999,191 +1999,257 @@ namespace MorSun.Controllers
                             //第二次同步开始，同步用户币记录，用户币结算记录，用户币记录结算有 bmUserMBList，
                             //取出所有未结算的邦马币记录
                             var nonSettleBMBList = umbrBll.All.Where(p => p.IsSettle == null || p.IsSettle == false);
-                            if(nonSettleBMBList.Count() >0)
+                            if (nonSettleBMBList.Count() > 0)
                             {
                                 //取出当前所有用户的邦马币值
-                                var bmNewUserMBList = new BaseBll<bmNewUserMB>().All;
-                                //所有的用户邦马币值生成用户马币记录
-                                var bmUserMBList = new List<bmUserMaBi>();
-                                var bmUserMaBiSettleRecordList = new List<bmUserMaBiSettleRecord>();
-
-                                var bmUserMBListJson = new List<bmUserMaBiJson>();
-                                var bmUserMaBiSettleRecordListJson = new List<bmUserMaBiSettleRecordJson>();
-
-                                //用户的邦马币记录Json
-                                var nonSettleBMBListJson = new List<bmUserMaBiRecordJson>();
-                                //结算时间 
-                                var settleTime = DateTime.Now;
-                                foreach(var numb in bmNewUserMBList)
-                                {
-                                    //添加邦马币记录
-                                    AddUserMB(mbRef, numb.NMB, bmUserMBList, settleTime, numb);
-                                    AddUserMB(bbRef, numb.NBB, bmUserMBList, settleTime, numb);
-                                    AddUserMB(banbRef, numb.NBANB, bmUserMBList, settleTime, numb);
-
-                                    //添加邦马币结算记录
-                                    AddUserMBSettle(mbRef, numb.NMB, bmUserMaBiSettleRecordList, settleTime, numb);
-                                    AddUserMBSettle(bbRef, numb.NBB, bmUserMaBiSettleRecordList, settleTime, numb);
-                                    AddUserMBSettle(banbRef, numb.NBANB, bmUserMaBiSettleRecordList, settleTime, numb);
-
-                                    //添加邦马币Json记录
-                                    AddUserMBJson(mbRef, numb.NMB, bmUserMBListJson, settleTime, numb);
-                                    AddUserMBJson(bbRef, numb.NBB, bmUserMBListJson, settleTime, numb);
-                                    AddUserMBJson(banbRef, numb.NBANB, bmUserMBListJson, settleTime, numb);
-
-                                    //添加邦马币结算Json记录
-                                    AddUserMBSettleJson(mbRef, numb.NMB, bmUserMaBiSettleRecordListJson, settleTime, numb);
-                                    AddUserMBSettleJson(bbRef, numb.NBB, bmUserMaBiSettleRecordListJson, settleTime, numb);
-                                    AddUserMBSettleJson(banbRef, numb.NBANB, bmUserMaBiSettleRecordListJson, settleTime, numb);
-                                }                                
-
-                                //将未结算的邦马币标识为结算
-                                foreach(var um in nonSettleBMBList)
-                                {
-                                    um.IsSettle = true;
-                                    nonSettleBMBListJson.Add(new bmUserMaBiRecordJson
-                                    {
-                                        ID = um.ID,
-                                        UserId = um.UserId,
-                                        QAId = um.QAId,
-                                        DisId = um.DisId,
-                                        OBId = um.OBId,
-                                        RCId = um.RCId,
-                                        TkId = um.TkId,
-                                        SourceRef = um.SourceRef,
-                                        MaBiRef = um.MaBiRef,
-                                        MaBiNum = um.MaBiNum,
-                                        IsSettle = um.IsSettle,
-                                        Sort = um.Sort,
-                                        RegUser = um.RegUser,
-                                        RegTime = um.RegTime,
-                                        ModTime = um.ModTime,
-                                        FlagTrashed = um.FlagTrashed,
-                                        FlagDeleted = um.FlagDeleted
-                                    });
-                                }    
-
-                                //邦马币结算与服务器同步
-                                s = "";
-                                if (bmUserMBListJson.Count() == 0)
-                                {
-                                    s += " ";
-                                }
-                                else
-                                {
-                                    s += ToJsonAndCompress(bmUserMBListJson);
-                                }
-                                s += CFG.邦马网_JSON数据间隔;
-
-                                if (bmUserMaBiSettleRecordListJson.Count() == 0)
-                                {
-                                    s += " ";
-                                }
-                                else
-                                {
-                                    s += ToJsonAndCompress(bmUserMaBiSettleRecordListJson);
-                                }
-                                s += CFG.邦马网_JSON数据间隔;
-
-                                if (nonSettleBMBListJson.Count() == 0)
-                                {
-                                    s += " ";
-                                }
-                                else
-                                {
-                                    s += ToJsonAndCompress(nonSettleBMBListJson);
-                                }
-                                s += CFG.邦马网_JSON数据间隔;
-
-                                //向邦马网同步马币、答题与异议分配等数据
+                                //去邦马网获取需要结算的用户ID
+                                var userIdsList = new List<Guid>();
                                 result = "";
                                 dts = DateTime.Now.ToString();
-                                tok = SecurityHelper.Encrypt(dts + ";" + CFG.邦马网_对接统一码);
-                                strUrl = CFG.网站域名 + CFG.数据同步_邦马币结算;
+                                strUrl = CFG.网站域名 + CFG.数据同步_邦马网所有用户ID集;
+                                var appendUrl = "?tok=" + HttpUtility.UrlEncode(tok);
 
-                                //未Encode的URL
-                                neAppentUrl = "?tok=" + tok;
-                                if (!string.IsNullOrEmpty(s))
+                                LogHelper.Write("同步问题信息" + strUrl + appendUrl, LogHelper.LogMessageType.Info);
+                                result = GetHtmlHelper.GetPage(strUrl + appendUrl, "");
+                                if (!String.IsNullOrEmpty(result))
                                 {
-                                    neAppentUrl += "&AncyData=" + SecurityHelper.Encrypt(s);
-                                }
-
-                                LogHelper.Write("同步用户邦马币信息" + strUrl + neAppentUrl, LogHelper.LogMessageType.Info);
-                                //有传递UID时用POST方法，参数有可能会超过URL长度
-                                result = GetHtmlHelper.PostGetPage(strUrl, neAppentUrl.Substring(1), "");
-                                if(result == "true")
-                                {
-                                    //var bmUserMBList = new List<bmUserMaBi>();
-                                    //var bmUserMaBiSettleRecordList = new List<bmUserMaBiSettleRecord>();
-                                    //用户邦马币
-
-                                    if (bmUserMBList.Count() > 0)
+                                    LogHelper.Write("有获取到用户数据", LogHelper.LogMessageType.Info);
+                                    s = "";
+                                    try { s = DecodeJson(result); }
+                                    catch
                                     {
-                                        //删除现有的用户邦马币
-                                        var curUMB = bmUMBBll.All;
-                                        if (curUMB.Count() > 0)
-                                        {
-                                            foreach (var u in curUMB)
-                                            {
-                                                bmUMBBll.Delete(u, false);
-                                            }
-                                            bmUMBBll.UpdateChanges();
-                                        }
+                                        s = "";
+                                        LogHelper.Write("解密异常", LogHelper.LogMessageType.Info);
+                                    }
+                                    if (!String.IsNullOrEmpty(s))
+                                    {
+                                        //用户ID集
+                                        var userIds = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔)).Trim();
+                                        s = s.Substring(s.IndexOf(CFG.邦马网_JSON数据间隔) + CFG.邦马网_JSON数据间隔.Length);
 
-                                        foreach (var u in bmUserMBList)
-                                        {
-                                            bmUMBBll.Insert(u, false);
+                                        if (!String.IsNullOrEmpty(userIds))
+                                        {//跟UserId没关系，就不同步UserId
+                                            userIds = Compression.DecompressString(userIds);
+                                            userIdsList = JsonConvert.DeserializeObject<List<Guid>>(userIds);
                                         }
+                                    }
+                                }
+                                //去邦马网获取需要结算的用户ID结束
+                                if (userIdsList.Count() > 0)
+                                {
+                                    var bmNewUserMBList = new BaseBll<bmNewUserMB>().All.Where(p => userIdsList.Contains(p.UserId));
+                                    //所有的用户邦马币值生成用户马币记录
+                                    var bmUserMBList = new List<bmUserMaBi>();
+                                    var bmUserMaBiSettleRecordList = new List<bmUserMaBiSettleRecord>();
 
+                                    //结算时间 
+                                    var settleTime = DateTime.Now;
+                                    foreach (var numb in bmNewUserMBList)
+                                    {
+                                        //添加邦马币记录
+                                        AddUserMB(mbRef, numb.NMB, bmUserMBList, settleTime, numb);
+                                        AddUserMB(bbRef, numb.NBB, bmUserMBList, settleTime, numb);
+                                        AddUserMB(banbRef, numb.NBANB, bmUserMBList, settleTime, numb);
+
+                                        //添加邦马币结算记录
+                                        AddUserMBSettle(mbRef, numb.NMB, bmUserMaBiSettleRecordList, settleTime, numb);
+                                        AddUserMBSettle(bbRef, numb.NBB, bmUserMaBiSettleRecordList, settleTime, numb);
+                                        AddUserMBSettle(banbRef, numb.NBANB, bmUserMaBiSettleRecordList, settleTime, numb);
+                                    }
+
+                                    //将未结算的邦马币标识为结算
+                                    foreach (var um in nonSettleBMBList)
+                                    {
+                                        um.IsSettle = true;
+                                    }
+
+                                    //生成传递的JSON列表
+                                    var bmUserMBListJson = new List<bmUserMaBiJson>();
+                                    var bmUserMaBiSettleRecordListJson = new List<bmUserMaBiSettleRecordJson>();
+                                    //用户的邦马币记录Json
+                                    var nonSettleBMBListJson = new List<bmUserMaBiRecordJson>();
+                                    //用户的邦马币记录
+                                    foreach (var umb in bmUserMBList)
+                                    {
+                                        bmUserMBListJson.Add(new bmUserMaBiJson
+                                        {
+                                            ID = umb.ID,
+                                            UserId = umb.UserId,
+                                            MaBiRef = umb.MaBiRef,
+                                            MaBiNum = umb.MaBiNum,
+                                            SettleTime = umb.SettleTime,
+                                            Sort = umb.Sort,
+                                            RegUser = umb.RegUser,
+                                            RegTime = umb.RegTime,
+                                            ModTime = umb.ModTime,
+                                            FlagTrashed = umb.FlagTrashed,
+                                            FlagDeleted = umb.FlagDeleted
+                                        });
+                                    }
+                                    //用户的邦马币结算记录
+                                    foreach (var umbs in bmUserMaBiSettleRecordList)
+                                    {
+                                        bmUserMaBiSettleRecordListJson.Add(new bmUserMaBiSettleRecordJson
+                                        {
+                                            ID = umbs.ID,
+                                            UserId = umbs.UserId,
+                                            MaBiRef = umbs.MaBiRef,
+                                            MaBiNum = umbs.MaBiNum,
+                                            SettleTime = umbs.SettleTime,
+                                            Sort = umbs.Sort,
+                                            RegUser = umbs.RegUser,
+                                            RegTime = umbs.RegTime,
+                                            ModTime = umbs.ModTime,
+                                            FlagTrashed = umbs.FlagTrashed,
+                                            FlagDeleted = umbs.FlagDeleted
+                                        });
+                                    }
+                                    //邦马币结算记录JSON
+                                    foreach (var um in nonSettleBMBList)
+                                    {
+                                        nonSettleBMBListJson.Add(new bmUserMaBiRecordJson
+                                        {
+                                            ID = um.ID,
+                                            UserId = um.UserId,
+                                            QAId = um.QAId,
+                                            DisId = um.DisId,
+                                            OBId = um.OBId,
+                                            RCId = um.RCId,
+                                            TkId = um.TkId,
+                                            SourceRef = um.SourceRef,
+                                            MaBiRef = um.MaBiRef,
+                                            MaBiNum = um.MaBiNum,
+                                            IsSettle = um.IsSettle,
+                                            Sort = um.Sort,
+                                            RegUser = um.RegUser,
+                                            RegTime = um.RegTime,
+                                            ModTime = um.ModTime,
+                                            FlagTrashed = um.FlagTrashed,
+                                            FlagDeleted = um.FlagDeleted
+                                        });
+                                    }
+
+                                    //邦马币结算与服务器同步
+                                    s = "";
+                                    if (bmUserMBListJson.Count() == 0)
+                                    {
+                                        s += " ";
                                     }
                                     else
                                     {
-                                        LogHelper.Write("未生成用户邦马币结算记录", LogHelper.LogMessageType.Info);                                        
+                                        s += ToJsonAndCompress(bmUserMBListJson);
                                     }
-                                    
+                                    s += CFG.邦马网_JSON数据间隔;
 
-                                    //用户邦马币结算记录
-                                    if (bmUserMaBiSettleRecordList.Count() > 0)
+                                    if (bmUserMaBiSettleRecordListJson.Count() == 0)
                                     {
-                                        //删除当天有同步过来的用户邦马币结算记录
-                                        var curUMB = bmUMBBll.All;
-                                        var dt = bmUserMaBiSettleRecordList.FirstOrDefault().SettleTime;
-                                        if (dt == null)
-                                            dt = DateTime.Now.Date;
-                                        var startdt = dt.Value.Date;
-                                        var enddt = startdt.AddDays(1).AddSeconds(-1);
-                                        var alreadyMBSList = bmUMBSBll.All.Where(p => p.SettleTime >= startdt && p.SettleTime <= enddt);
-                                        if (alreadyMBSList.Count() > 0)
-                                        {
-                                            foreach (var m in alreadyMBSList)
-                                            {
-                                                bmUMBSBll.Delete(m, false);
-                                            }
-                                            bmUMBSBll.UpdateChanges();
-                                        }
-
-                                        foreach (var u in bmUserMaBiSettleRecordList)
-                                        {
-                                            bmUMBSBll.Insert(u, false);
-                                        }
-
+                                        s += " ";
                                     }
                                     else
                                     {
-                                        LogHelper.Write("未生成用户邦马币结算记录", LogHelper.LogMessageType.Info);
-                                            
+                                        s += ToJsonAndCompress(bmUserMaBiSettleRecordListJson);
                                     }
-                                    //统一保存进数据库
-                                    bmUMBBll.UpdateChanges();
-                                    bmUMBSBll.UpdateChanges();
-                                    umbrBll.UpdateChanges();
-                                }
-                                else
-                                {
-                                    LogHelper.Write("同步邦马币结算信息时未返回正确结果" + strUrl + neAppentUrl, LogHelper.LogMessageType.Info);
-                                }
-                            }
-                        }
+                                    s += CFG.邦马网_JSON数据间隔;
+
+                                    if (nonSettleBMBListJson.Count() == 0)
+                                    {
+                                        s += " ";
+                                    }
+                                    else
+                                    {
+                                        s += ToJsonAndCompress(nonSettleBMBListJson);
+                                    }
+                                    s += CFG.邦马网_JSON数据间隔;
+
+                                    //向邦马网同步马币、答题与异议分配等数据
+                                    result = "";
+                                    dts = DateTime.Now.ToString();
+                                    strUrl = CFG.网站域名 + CFG.数据同步_邦马币结算;
+
+                                    //未Encode的URL
+                                    neAppentUrl = "?tok=" + tok;
+                                    if (!string.IsNullOrEmpty(s))
+                                    {
+                                        neAppentUrl += "&AncyData=" + SecurityHelper.Encrypt(s);
+                                    }
+
+                                    LogHelper.Write("同步用户邦马币信息" + strUrl + neAppentUrl, LogHelper.LogMessageType.Info);
+                                    //有传递UID时用POST方法，参数有可能会超过URL长度
+                                    result = GetHtmlHelper.PostGetPage(strUrl, neAppentUrl.Substring(1), "");
+                                    if (result == "true")
+                                    {
+                                        //var bmUserMBList = new List<bmUserMaBi>();
+                                        //var bmUserMaBiSettleRecordList = new List<bmUserMaBiSettleRecord>();
+                                        //用户邦马币
+
+                                        if (bmUserMBList.Count() > 0)
+                                        {
+                                            //删除现有的用户邦马币
+                                            var curUMB = bmUMBBll.All;
+                                            if (curUMB.Count() > 0)
+                                            {
+                                                foreach (var u in curUMB)
+                                                {
+                                                    bmUMBBll.Delete(u, false);
+                                                }
+                                                bmUMBBll.UpdateChanges();
+                                            }
+
+                                            foreach (var u in bmUserMBList)
+                                            {
+                                                bmUMBBll.Insert(u, false);
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            LogHelper.Write("未生成用户邦马币结算记录", LogHelper.LogMessageType.Info);
+                                        }
+
+
+                                        //用户邦马币结算记录
+                                        if (bmUserMaBiSettleRecordList.Count() > 0)
+                                        {
+                                            //删除当天有同步过来的用户邦马币结算记录
+                                            var curUMB = bmUMBBll.All;
+                                            var dt = bmUserMaBiSettleRecordList.FirstOrDefault().SettleTime;
+                                            if (dt == null)
+                                                dt = DateTime.Now.Date;
+                                            var startdt = dt.Value.Date;
+                                            var enddt = startdt.AddDays(1).AddSeconds(-1);
+                                            var alreadyMBSList = bmUMBSBll.All.Where(p => p.SettleTime >= startdt && p.SettleTime <= enddt);
+                                            if (alreadyMBSList.Count() > 0)
+                                            {
+                                                foreach (var m in alreadyMBSList)
+                                                {
+                                                    bmUMBSBll.Delete(m, false);
+                                                }
+                                                bmUMBSBll.UpdateChanges();
+                                            }
+
+                                            foreach (var u in bmUserMaBiSettleRecordList)
+                                            {
+                                                bmUMBSBll.Insert(u, false);
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            LogHelper.Write("未生成用户邦马币结算记录", LogHelper.LogMessageType.Info);
+
+                                        }
+                                        //统一保存进数据库
+                                        bmUMBBll.UpdateChanges();
+                                        bmUMBSBll.UpdateChanges();
+                                        umbrBll.UpdateChanges();
+                                    }//第二次马币结算同步
+                                    else
+                                    {
+                                        LogHelper.Write("同步邦马币结算信息时未返回正确结果" + strUrl + neAppentUrl, LogHelper.LogMessageType.Info);
+                                    }
+                                }//userIdsList.Count() > 0
+                            }//nonSettleBMBList.Count() > 0
+                        }//第一次传递邦马币记录结算完成
                         else
                         {
                             LogHelper.Write("同步问题结算信息时未返回正确结果" + strUrl + neAppentUrl, LogHelper.LogMessageType.Info);
@@ -2221,33 +2287,33 @@ namespace MorSun.Controllers
             });
         }
 
-        /// <summary>
-        /// 用户马币Json 记录添加
-        /// </summary>
-        /// <param name="mbRef"></param>
-        /// <param name="mbNum"></param>
-        /// <param name="bmUserMBList"></param>
-        /// <param name="settleTime"></param>
-        /// <param name="numb"></param>
-        private static void AddUserMBJson(Guid mbRef, decimal? mbNum, List<bmUserMaBiJson> bmUserMBList, DateTime settleTime, bmNewUserMB numb)
-        {
-            if (mbNum == null)
-                mbNum = 0;
-            bmUserMBList.Add(new bmUserMaBiJson
-            {
-                ID = Guid.NewGuid(),
-                UserId = numb.UserId,
-                MaBiRef = mbRef,
-                MaBiNum = mbNum,
-                SettleTime = settleTime,
-                Sort = null,
-                RegUser = Guid.Parse(CFG.异议处理用户),
-                RegTime = settleTime,
-                ModTime = settleTime,
-                FlagTrashed = false,
-                FlagDeleted = false
-            });
-        }
+        ///// <summary>
+        ///// 用户马币Json 记录添加
+        ///// </summary>
+        ///// <param name="mbRef"></param>
+        ///// <param name="mbNum"></param>
+        ///// <param name="bmUserMBList"></param>
+        ///// <param name="settleTime"></param>
+        ///// <param name="numb"></param>
+        //private static void AddUserMBJson(Guid mbRef, decimal? mbNum, List<bmUserMaBiJson> bmUserMBList, DateTime settleTime, bmNewUserMB numb)
+        //{
+        //    if (mbNum == null)
+        //        mbNum = 0;
+        //    bmUserMBList.Add(new bmUserMaBiJson
+        //    {
+        //        ID = Guid.NewGuid(),
+        //        UserId = numb.UserId,
+        //        MaBiRef = mbRef,
+        //        MaBiNum = mbNum,
+        //        SettleTime = settleTime,
+        //        Sort = null,
+        //        RegUser = Guid.Parse(CFG.异议处理用户),
+        //        RegTime = settleTime,
+        //        ModTime = settleTime,
+        //        FlagTrashed = false,
+        //        FlagDeleted = false
+        //    });
+        //}
         /// <summary>
         /// 用户邦马币结算记录
         /// </summary>
@@ -2275,33 +2341,33 @@ namespace MorSun.Controllers
                 FlagDeleted = false
             });
         }
-        /// <summary>
-        /// 用户邦马币结算记录的Json
-        /// </summary>
-        /// <param name="mbRef"></param>
-        /// <param name="mbNum"></param>
-        /// <param name="bmUserMaBiSettleRecordList"></param>
-        /// <param name="settleTime"></param>
-        /// <param name="numb"></param>
-        private static void AddUserMBSettleJson(Guid mbRef, decimal? mbNum, List<bmUserMaBiSettleRecordJson> bmUserMaBiSettleRecordList, DateTime settleTime, bmNewUserMB numb)
-        {
-            if (mbNum == null)
-                mbNum = 0;
-            bmUserMaBiSettleRecordList.Add(new bmUserMaBiSettleRecordJson
-            {
-                ID = Guid.NewGuid(),
-                UserId = numb.UserId,
-                MaBiRef = mbRef,
-                MaBiNum = mbNum,
-                SettleTime = settleTime,
-                Sort = null,
-                RegUser = Guid.Parse(CFG.异议处理用户),
-                RegTime = settleTime,
-                ModTime = settleTime,
-                FlagTrashed = false,
-                FlagDeleted = false
-            });
-        }
+        ///// <summary>
+        ///// 用户邦马币结算记录的Json
+        ///// </summary>
+        ///// <param name="mbRef"></param>
+        ///// <param name="mbNum"></param>
+        ///// <param name="bmUserMaBiSettleRecordList"></param>
+        ///// <param name="settleTime"></param>
+        ///// <param name="numb"></param>
+        //private static void AddUserMBSettleJson(Guid mbRef, decimal? mbNum, List<bmUserMaBiSettleRecordJson> bmUserMaBiSettleRecordList, DateTime settleTime, bmNewUserMB numb)
+        //{
+        //    if (mbNum == null)
+        //        mbNum = 0;
+        //    bmUserMaBiSettleRecordList.Add(new bmUserMaBiSettleRecordJson
+        //    {
+        //        ID = Guid.NewGuid(),
+        //        UserId = numb.UserId,
+        //        MaBiRef = mbRef,
+        //        MaBiNum = mbNum,
+        //        SettleTime = settleTime,
+        //        Sort = null,
+        //        RegUser = Guid.Parse(CFG.异议处理用户),
+        //        RegTime = settleTime,
+        //        ModTime = settleTime,
+        //        FlagTrashed = false,
+        //        FlagDeleted = false
+        //    });
+        //}
 
         /// <summary>
         /// 结算时调用的添加邦马币方法 

@@ -406,6 +406,8 @@ namespace MorSun.Common
             public const string 数据同步_答题结算 = "/DivniTxiuen/QASettle";
             //邦马币结算
             public const string 数据同步_邦马币结算 = "/DivniTxiuen/MBSettle";
+            //邦马网所有用户ID集
+            public const string 数据同步_邦马网所有用户ID集 = "/DivniTxiuen/GetAllUserIds";
         }
     }
 
