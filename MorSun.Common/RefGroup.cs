@@ -408,6 +408,11 @@ namespace MorSun.Common
             public const string 数据同步_邦马币结算 = "/DivniTxiuen/MBSettle";
             //邦马网所有用户ID集
             public const string 数据同步_邦马网所有用户ID集 = "/DivniTxiuen/GetAllUserIds";
+
+            //获取未结算邦马币
+            public const string 数据同步_获取未结算邦马币 = "/DivniTxiuen/GetNonSettleMB";
+            //删除未验证邦马币
+            public const string 数据同步_操作未验证邦马币 = "/DivniTxiuen/OperateNonVeryfiMB";
         }
     }
 

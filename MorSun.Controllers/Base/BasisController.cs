@@ -1802,6 +1802,7 @@ namespace MorSun.Controllers
                 var fiveAgo = DateTime.Now.AddDays(Convert.ToDouble(qaDisEndTime));
                 var fiveAgoQADisWJS = disBll.All.Where(p => p.OperateTime <= fiveAgo && (p.IsSettle == null || p.IsSettle == false));
                 //第一步需要先同步到服务器的有 umbrListJson，qaDisJson, obJson; 本地要保存的列表fiveAgoQADisWJS(修改)，nonSettleOB(修改)，umbrList(添加)
+                //如果没有人回答问题，就不会结算了。这也是一个问题。
                 if (fiveAgoQADisWJS.Count() > 0)
                 {
                     //检测这些记录是还存在未解决的异议
@@ -2417,6 +2418,172 @@ namespace MorSun.Controllers
                 FlagDeleted = umbrModel.FlagDeleted
             });
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SuperviseBMB()
+        {
+            var result = "";
+            string strUrl = CFG.网站域名 + CFG.数据同步_服务器是否可用;            
+            result = GetHtmlHelper.GetPage(strUrl, "");
+            if (result == "true")
+            {
+                result = "";
+                var dts = DateTime.Now.ToString();
+                var tok = SecurityHelper.Encrypt(dts + ";" + CFG.邦马网_对接统一码);
+                strUrl = CFG.网站域名 + CFG.数据同步_获取未结算邦马币;
+                string appendUrl = "?tok=" + HttpUtility.UrlEncode(tok);                
+                result = GetHtmlHelper.GetPage(strUrl + appendUrl, "");
+
+                if (!String.IsNullOrEmpty(result))
+                {
+                    LogHelper.Write("有获取到未结算的邦马币记录", LogHelper.LogMessageType.Info);
+                    var s = "";
+                    try { s = DecodeJson(result); }
+                    catch
+                    {
+                        s = "";
+                        LogHelper.Write("解密异常", LogHelper.LogMessageType.Info);
+                    }
+                    if (!String.IsNullOrEmpty(s))
+                    {                        
+                        var bmMB = s.Substring(0, s.IndexOf(CFG.邦马网_JSON数据间隔)).Trim();
+                        s = s.Substring(s.IndexOf(CFG.邦马网_JSON数据间隔) + CFG.邦马网_JSON数据间隔.Length);                       
+
+                        try
+                        {
+                            if (!String.IsNullOrEmpty(bmMB))
+                            {                           
+                                //取到未结算的邦马币记录
+                                //因为还要传递到服务器去，并且要删除的邦马币本地要保存到另外一张表，以及还要从删除表中获取需要删除的邦马币记录，所以直接用删除的邦马币来接收
+                                var _list = JsonConvert.DeserializeObject<List<bmNonVerifyUserMaBiRecord>>(bmMB);
+                                if (_list.Count() > 0)
+                                {
+                                    var bmrBll = new BaseBll<bmUserMaBiRecord>();
+                                    //这边要检测邦马币是否已结算或是否未验证的。
+                                    var aids = new List<Guid>();
+                                    aids = _list.Select(p => p.ID).ToList();
+
+                                    //已存在的ID集
+                                    var alreadyBMB = bmrBll.All.Where(p => aids.Contains(p.ID));
+                                    var alreadyIds = alreadyBMB.Select(p => p.ID);
+                                    //不存在的ID集
+                                    var nonExitIds = aids.Except(alreadyIds).ToList();
+
+                                    //已经结算的邦马币记录
+                                    var settleBMBList = new List<bmUserMaBiRecordJson>();
+                                    var delBMBIds = new List<Guid>();
+
+                                    //取出已结算的ID
+                                    var settleBMB = alreadyBMB.Where(p => p.IsSettle == true);
+                                    if(settleBMB.Count() > 0)
+                                    {
+                                        foreach(var u in settleBMB)
+                                        {   
+                                            var t = new bmUserMaBiRecordJson
+                                            {
+                                                ID = u.ID,
+                                                UserId = u.UserId,
+                                                QAId = u.QAId,
+                                                DisId = u.DisId,
+                                                OBId = u.OBId,
+                                                RCId = u.RCId,
+                                                TkId = u.TkId,
+                                                SourceRef = u.SourceRef,
+                                                MaBiRef = u.MaBiRef,
+                                                MaBiNum = u.MaBiNum,
+                                                IsSettle = u.IsSettle,
+                                                Sort = u.Sort,
+                                                RegUser = u.RegUser,
+                                                RegTime = u.RegTime,
+                                                ModTime = u.ModTime,
+                                                FlagTrashed = u.FlagTrashed,
+                                                FlagDeleted = u.FlagDeleted
+                                            };
+                                            settleBMBList.Add(t);
+                                        }
+                                    }
+
+                                    //需要删除的邦马币记录
+                                    var delBMBList = _list.Where(p => nonExitIds.Contains(p.ID)).ToList();
+
+                                    //本地先保存需要删除的邦马币记录,然后再将所有的需要删除的数据一并发送到服务器去删除
+                                    var bmNonVBll = new BaseBll<bmNonVerifyUserMaBiRecord>();
+                                    var delAids = new List<Guid>();
+                                    delAids = delBMBList.Select(p => p.ID).ToList();
+
+                                    //过滤掉已经添加的数据
+                                    var alreadyDelIds = bmNonVBll.All.Where(p => delAids.Contains(p.ID)).Select(p => p.ID);
+                                    delAids = delAids.Except(alreadyDelIds).ToList();
+                                    delBMBList = delBMBList.Where(p => delAids.Contains(p.ID)).ToList();
+
+                                    foreach(var d in delBMBList)
+                                    {
+                                        bmNonVBll.Insert(d, false);
+                                    }
+                                    bmNonVBll.UpdateChanges();
+
+                                    //取出所有已删除的邦马币记录，统一发送到服务器去删除。不管以前有没有删除过，再发送一次，只要传送ID集
+                                    delBMBIds = bmNonVBll.All.Select(p => p.ID).ToList();
+
+                                    //将要操作的邦马币记录发送到服务器处理
+
+                                    s = "";
+                                    if (settleBMBList.Count() == 0)
+                                    {
+                                        s += " ";
+                                    }
+                                    else
+                                    {
+                                        s += ToJsonAndCompress(settleBMBList);
+                                    }
+                                    s += CFG.邦马网_JSON数据间隔;
+
+                                    if (delBMBIds.Count() == 0)
+                                    {
+                                        s += " ";
+                                    }
+                                    else
+                                    {
+                                        s += ToJsonAndCompress(delBMBIds);
+                                    }
+                                    s += CFG.邦马网_JSON数据间隔;                                    
+
+                                    //向邦马网同步马币、答题与异议分配等数据
+                                    result = "";
+                                    dts = DateTime.Now.ToString();
+                                    strUrl = CFG.网站域名 + CFG.数据同步_操作未验证邦马币;
+
+                                    //未Encode的URL
+                                    var neAppentUrl = "?tok=" + tok;
+                                    if (!string.IsNullOrEmpty(s))
+                                    {
+                                        neAppentUrl += "&AncyData=" + SecurityHelper.Encrypt(s);
+                                    }
+
+                                    LogHelper.Write("监督用户邦马币信息" + strUrl + neAppentUrl, LogHelper.LogMessageType.Info);
+                                    //有传递UID时用POST方法，参数有可能会超过URL长度
+                                    result = GetHtmlHelper.PostGetPage(strUrl, neAppentUrl.Substring(1), "");
+                                    if(result != "true")
+                                    {
+                                        LogHelper.Write("与服务器同步失败" + result, LogHelper.LogMessageType.Info);
+                                    }
+                                    
+                                }
+                            }
+                        }catch (Exception ex)
+                        {
+                            LogHelper.Write("未结算的邦马币数据获取异常" + ex.Message, LogHelper.LogMessageType.Info);
+                        }
+                        
+
+                    }
+                }
+
+            }
+        }
+
         #endregion        
     }
 }

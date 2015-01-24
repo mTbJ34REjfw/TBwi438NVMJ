@@ -217,6 +217,28 @@
           <Property Name="FlagTrashed" Type="bit" Nullable="false" />
           <Property Name="FlagDeleted" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="bmNonVerifyUserMaBiRecord">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="QAId" Type="uniqueidentifier" />
+          <Property Name="DisId" Type="uniqueidentifier" />
+          <Property Name="OBId" Type="uniqueidentifier" />
+          <Property Name="RCId" Type="uniqueidentifier" />
+          <Property Name="TkId" Type="uniqueidentifier" />
+          <Property Name="SourceRef" Type="uniqueidentifier" />
+          <Property Name="MaBiRef" Type="uniqueidentifier" />
+          <Property Name="MaBiNum" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="IsSettle" Type="bit" />
+          <Property Name="Sort" Type="int" />
+          <Property Name="RegUser" Type="uniqueidentifier" />
+          <Property Name="RegTime" Type="datetime" />
+          <Property Name="ModTime" Type="datetime" />
+          <Property Name="FlagTrashed" Type="bit" Nullable="false" />
+          <Property Name="FlagDeleted" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="bmObjection">
           <Key>
             <PropertyRef Name="ID" />
@@ -2516,6 +2538,120 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_bmNonVerifyUserMaBiRecord_aspnet_Users">
+          <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bmNonVerifyUserMaBiRecord" Type="Self.bmNonVerifyUserMaBiRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="bmNonVerifyUserMaBiRecord">
+              <PropertyRef Name="RegUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmNonVerifyUserMaBiRecord_aspnet_Users1">
+          <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="0..1" />
+          <End Role="bmNonVerifyUserMaBiRecord" Type="Self.bmNonVerifyUserMaBiRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="bmNonVerifyUserMaBiRecord">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmNonVerifyUserMaBiRecord_bmObjection">
+          <End Role="bmObjection" Type="Self.bmObjection" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bmNonVerifyUserMaBiRecord" Type="Self.bmNonVerifyUserMaBiRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bmObjection">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmNonVerifyUserMaBiRecord">
+              <PropertyRef Name="OBId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmNonVerifyUserMaBiRecord_bmQA">
+          <End Role="bmQA" Type="Self.bmQA" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bmNonVerifyUserMaBiRecord" Type="Self.bmNonVerifyUserMaBiRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bmQA">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmNonVerifyUserMaBiRecord">
+              <PropertyRef Name="QAId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmNonVerifyUserMaBiRecord_bmQADistribution">
+          <End Role="bmQADistribution" Type="Self.bmQADistribution" Multiplicity="0..1" />
+          <End Role="bmNonVerifyUserMaBiRecord" Type="Self.bmNonVerifyUserMaBiRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bmQADistribution">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmNonVerifyUserMaBiRecord">
+              <PropertyRef Name="DisId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmNonVerifyUserMaBiRecord_bmRecharge">
+          <End Role="bmRecharge" Type="Self.bmRecharge" Multiplicity="0..1" />
+          <End Role="bmNonVerifyUserMaBiRecord" Type="Self.bmNonVerifyUserMaBiRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bmRecharge">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmNonVerifyUserMaBiRecord">
+              <PropertyRef Name="RCId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmNonVerifyUserMaBiRecord_bmTakeNow">
+          <End Role="bmTakeNow" Type="Self.bmTakeNow" Multiplicity="0..1" />
+          <End Role="bmNonVerifyUserMaBiRecord" Type="Self.bmNonVerifyUserMaBiRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bmTakeNow">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmNonVerifyUserMaBiRecord">
+              <PropertyRef Name="TkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmNonVerifyUserMaBiRecord_wmfReference">
+          <End Role="wmfReference" Type="Self.wmfReference" Multiplicity="0..1" />
+          <End Role="bmNonVerifyUserMaBiRecord" Type="Self.bmNonVerifyUserMaBiRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wmfReference">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmNonVerifyUserMaBiRecord">
+              <PropertyRef Name="SourceRef" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmNonVerifyUserMaBiRecord_wmfReference1">
+          <End Role="wmfReference" Type="Self.wmfReference" Multiplicity="0..1" />
+          <End Role="bmNonVerifyUserMaBiRecord" Type="Self.bmNonVerifyUserMaBiRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wmfReference">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmNonVerifyUserMaBiRecord">
+              <PropertyRef Name="MaBiRef" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_bmObjection_aspnet_Users">
           <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="0..1" />
           <End Role="bmObjection" Type="Self.bmObjection" Multiplicity="*" />
@@ -4061,6 +4197,7 @@
           <EntitySet Name="bmKaMe" EntityType="Self.bmKaMe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="bmKaMeRCSend" EntityType="Self.bmKaMeRCSend" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="bmNew" EntityType="Self.bmNew" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bmNonVerifyUserMaBiRecord" EntityType="Self.bmNonVerifyUserMaBiRecord" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="bmObjection" EntityType="Self.bmObjection" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="bmOnlineQAUser" EntityType="Self.bmOnlineQAUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="bmOnlineQAUserRecord" EntityType="Self.bmOnlineQAUserRecord" Schema="dbo" store:Type="Tables" />
@@ -4390,6 +4527,42 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <AssociationSet Name="FK_bmKaMeRCSend_wmfReference" Association="Self.FK_bmKaMeRCSend_wmfReference">
             <End Role="wmfReference" EntitySet="wmfReference" />
             <End Role="bmKaMeRCSend" EntitySet="bmKaMeRCSend" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmNonVerifyUserMaBiRecord_aspnet_Users" Association="Self.FK_bmNonVerifyUserMaBiRecord_aspnet_Users">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="bmNonVerifyUserMaBiRecord" EntitySet="bmNonVerifyUserMaBiRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmNonVerifyUserMaBiRecord_aspnet_Users1" Association="Self.FK_bmNonVerifyUserMaBiRecord_aspnet_Users1">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="bmNonVerifyUserMaBiRecord" EntitySet="bmNonVerifyUserMaBiRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmNonVerifyUserMaBiRecord_bmObjection" Association="Self.FK_bmNonVerifyUserMaBiRecord_bmObjection">
+            <End Role="bmObjection" EntitySet="bmObjection" />
+            <End Role="bmNonVerifyUserMaBiRecord" EntitySet="bmNonVerifyUserMaBiRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmNonVerifyUserMaBiRecord_bmQA" Association="Self.FK_bmNonVerifyUserMaBiRecord_bmQA">
+            <End Role="bmQA" EntitySet="bmQA" />
+            <End Role="bmNonVerifyUserMaBiRecord" EntitySet="bmNonVerifyUserMaBiRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmNonVerifyUserMaBiRecord_bmQADistribution" Association="Self.FK_bmNonVerifyUserMaBiRecord_bmQADistribution">
+            <End Role="bmQADistribution" EntitySet="bmQADistribution" />
+            <End Role="bmNonVerifyUserMaBiRecord" EntitySet="bmNonVerifyUserMaBiRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmNonVerifyUserMaBiRecord_bmRecharge" Association="Self.FK_bmNonVerifyUserMaBiRecord_bmRecharge">
+            <End Role="bmRecharge" EntitySet="bmRecharge" />
+            <End Role="bmNonVerifyUserMaBiRecord" EntitySet="bmNonVerifyUserMaBiRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmNonVerifyUserMaBiRecord_bmTakeNow" Association="Self.FK_bmNonVerifyUserMaBiRecord_bmTakeNow">
+            <End Role="bmTakeNow" EntitySet="bmTakeNow" />
+            <End Role="bmNonVerifyUserMaBiRecord" EntitySet="bmNonVerifyUserMaBiRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmNonVerifyUserMaBiRecord_wmfReference" Association="Self.FK_bmNonVerifyUserMaBiRecord_wmfReference">
+            <End Role="wmfReference" EntitySet="wmfReference" />
+            <End Role="bmNonVerifyUserMaBiRecord" EntitySet="bmNonVerifyUserMaBiRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmNonVerifyUserMaBiRecord_wmfReference1" Association="Self.FK_bmNonVerifyUserMaBiRecord_wmfReference1">
+            <End Role="wmfReference" EntitySet="wmfReference" />
+            <End Role="bmNonVerifyUserMaBiRecord" EntitySet="bmNonVerifyUserMaBiRecord" />
           </AssociationSet>
           <AssociationSet Name="FK_bmObjection_aspnet_Users" Association="Self.FK_bmObjection_aspnet_Users">
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
@@ -5077,6 +5250,8 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <NavigationProperty Name="bmUserPays1" Relationship="MorSun.Model.FK_bmUserPay_aspnet_Users1" FromRole="aspnet_Users" ToRole="bmUserPay" />
           <NavigationProperty Name="bmQAs" Relationship="MorSun.Model.FK_bmQA_aspnet_Users" FromRole="aspnet_Users" ToRole="bmQA" />
           <NavigationProperty Name="bmQAs1" Relationship="MorSun.Model.FK_bmQA_aspnet_Users1" FromRole="aspnet_Users" ToRole="bmQA" />
+          <NavigationProperty Name="bmNonVerifyUserMaBiRecords" Relationship="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_aspnet_Users" FromRole="aspnet_Users" ToRole="bmNonVerifyUserMaBiRecord" />
+          <NavigationProperty Name="bmNonVerifyUserMaBiRecords1" Relationship="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_aspnet_Users1" FromRole="aspnet_Users" ToRole="bmNonVerifyUserMaBiRecord" />
         </EntityType>
         <EntityType Name="aspnet_WebEvent_Events">
           <Key>
@@ -5165,6 +5340,7 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <NavigationProperty Name="bmUserMaBiRecords" Relationship="MorSun.Model.FK_bmUserMaBiRecord_bmObjection" FromRole="bmObjection" ToRole="bmUserMaBiRecord" />
           <Property Name="AllQANum" Type="Int32" />
           <NavigationProperty Name="bmQA" Relationship="MorSun.Model.FK_bmObjection_bmQA" FromRole="bmObjection" ToRole="bmQA" />
+          <NavigationProperty Name="bmNonVerifyUserMaBiRecords" Relationship="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_bmObjection" FromRole="bmObjection" ToRole="bmNonVerifyUserMaBiRecord" />
         </EntityType>
         <EntityType Name="bmOnlineQAUser">
           <Key>
@@ -5237,6 +5413,7 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <Property Name="IsSettle" Type="Boolean" />
           <NavigationProperty Name="bmUserMaBiRecords" Relationship="MorSun.Model.FK_bmUserMaBiRecord_bmQADistribution" FromRole="bmQADistribution" ToRole="bmUserMaBiRecord" />
           <NavigationProperty Name="bmQA" Relationship="MorSun.Model.FK_bmQADistribution_bmQA" FromRole="bmQADistribution" ToRole="bmQA" />
+          <NavigationProperty Name="bmNonVerifyUserMaBiRecords" Relationship="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_bmQADistribution" FromRole="bmQADistribution" ToRole="bmNonVerifyUserMaBiRecord" />
         </EntityType>
         <EntityType Name="bmRecharge">
           <Key>
@@ -5263,6 +5440,7 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <NavigationProperty Name="wmfReference2" Relationship="Self.FK_bmRecharge_wmfReference2" FromRole="bmRecharge" ToRole="wmfReference" />
           <NavigationProperty Name="wmfReference3" Relationship="Self.FK_bmRecharge_wmfReference3" FromRole="bmRecharge" ToRole="wmfReference" />
           <NavigationProperty Name="bmUserMaBiRecords" Relationship="MorSun.Model.FK_bmUserMaBiRecord_bmRecharge" FromRole="bmRecharge" ToRole="bmUserMaBiRecord" />
+          <NavigationProperty Name="bmNonVerifyUserMaBiRecords" Relationship="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_bmRecharge" FromRole="bmRecharge" ToRole="bmNonVerifyUserMaBiRecord" />
         </EntityType>
         <EntityType Name="bmSellKaMe">
           <Key>
@@ -5310,6 +5488,7 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <NavigationProperty Name="wmfReference1" Relationship="Self.FK_bmTakeNow_wmfReference1" FromRole="bmTakeNow" ToRole="wmfReference" />
           <NavigationProperty Name="bmUserMaBiRecords" Relationship="MorSun.Model.FK_bmUserMaBiRecord_bmTakeNow" FromRole="bmTakeNow" ToRole="bmUserMaBiRecord" />
           <Property Name="TakeMoney" Type="Decimal" Precision="18" Scale="6" />
+          <NavigationProperty Name="bmNonVerifyUserMaBiRecords" Relationship="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_bmTakeNow" FromRole="bmTakeNow" ToRole="bmNonVerifyUserMaBiRecord" />
         </EntityType>
         <EntityType Name="bmUserMaBi">
           <Key>
@@ -6957,6 +7136,8 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <NavigationProperty Name="bmUserPays1" Relationship="MorSun.Model.FK_bmUserPay_wmfReference1" FromRole="wmfReference" ToRole="bmUserPay" />
           <NavigationProperty Name="bmQAs" Relationship="MorSun.Model.FK_bmQA_wmfReference" FromRole="wmfReference" ToRole="bmQA" />
           <NavigationProperty Name="bmQAs1" Relationship="MorSun.Model.FK_bmQA_wmfReference2" FromRole="wmfReference" ToRole="bmQA" />
+          <NavigationProperty Name="bmNonVerifyUserMaBiRecords" Relationship="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_wmfReference" FromRole="wmfReference" ToRole="bmNonVerifyUserMaBiRecord" />
+          <NavigationProperty Name="bmNonVerifyUserMaBiRecords1" Relationship="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_wmfReference1" FromRole="wmfReference" ToRole="bmNonVerifyUserMaBiRecord" />
         </EntityType>
         <EntityType Name="wmfRefGroup">
           <Key>
@@ -9521,6 +9702,43 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
             <End Role="bmQA" EntitySet="bmQAs" />
             <End Role="bmUserMaBiRecord" EntitySet="bmUserMaBiRecords" />
           </AssociationSet>
+          <EntitySet Name="bmNonVerifyUserMaBiRecords" EntityType="MorSun.Model.bmNonVerifyUserMaBiRecord" />
+          <AssociationSet Name="FK_bmNonVerifyUserMaBiRecord_aspnet_Users" Association="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_aspnet_Users">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="bmNonVerifyUserMaBiRecord" EntitySet="bmNonVerifyUserMaBiRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmNonVerifyUserMaBiRecord_aspnet_Users1" Association="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_aspnet_Users1">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="bmNonVerifyUserMaBiRecord" EntitySet="bmNonVerifyUserMaBiRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmNonVerifyUserMaBiRecord_bmObjection" Association="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_bmObjection">
+            <End Role="bmObjection" EntitySet="bmObjections" />
+            <End Role="bmNonVerifyUserMaBiRecord" EntitySet="bmNonVerifyUserMaBiRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmNonVerifyUserMaBiRecord_bmQA" Association="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_bmQA">
+            <End Role="bmQA" EntitySet="bmQAs" />
+            <End Role="bmNonVerifyUserMaBiRecord" EntitySet="bmNonVerifyUserMaBiRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmNonVerifyUserMaBiRecord_bmQADistribution" Association="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_bmQADistribution">
+            <End Role="bmQADistribution" EntitySet="bmQADistributions" />
+            <End Role="bmNonVerifyUserMaBiRecord" EntitySet="bmNonVerifyUserMaBiRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmNonVerifyUserMaBiRecord_bmRecharge" Association="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_bmRecharge">
+            <End Role="bmRecharge" EntitySet="bmRecharges" />
+            <End Role="bmNonVerifyUserMaBiRecord" EntitySet="bmNonVerifyUserMaBiRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmNonVerifyUserMaBiRecord_bmTakeNow" Association="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_bmTakeNow">
+            <End Role="bmTakeNow" EntitySet="bmTakeNows" />
+            <End Role="bmNonVerifyUserMaBiRecord" EntitySet="bmNonVerifyUserMaBiRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmNonVerifyUserMaBiRecord_wmfReference" Association="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_wmfReference">
+            <End Role="wmfReference" EntitySet="wmfReferences" />
+            <End Role="bmNonVerifyUserMaBiRecord" EntitySet="bmNonVerifyUserMaBiRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmNonVerifyUserMaBiRecord_wmfReference1" Association="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_wmfReference1">
+            <End Role="wmfReference" EntitySet="wmfReferences" />
+            <End Role="bmNonVerifyUserMaBiRecord" EntitySet="bmNonVerifyUserMaBiRecords" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_bmUserMaBiRecord_bmRecharge">
           <End Type="MorSun.Model.bmRecharge" Role="bmRecharge" Multiplicity="0..1" />
@@ -9756,6 +9974,7 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <NavigationProperty Name="wmfReference1" Relationship="MorSun.Model.FK_bmQA_wmfReference2" FromRole="bmQA" ToRole="wmfReference" />
           <NavigationProperty Name="bmQADistributions" Relationship="MorSun.Model.FK_bmQADistribution_bmQA" FromRole="bmQA" ToRole="bmQADistribution" />
           <NavigationProperty Name="bmUserMaBiRecords" Relationship="MorSun.Model.FK_bmUserMaBiRecord_bmQA" FromRole="bmQA" ToRole="bmUserMaBiRecord" />
+          <NavigationProperty Name="bmNonVerifyUserMaBiRecords" Relationship="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_bmQA" FromRole="bmQA" ToRole="bmNonVerifyUserMaBiRecord" />
         </EntityType>
         <Association Name="FK_bmQA_aspnet_Users">
           <End Type="MorSun.Model.aspnet_Users" Role="aspnet_Users" Multiplicity="0..1" />
@@ -9842,6 +10061,151 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
             </Principal>
             <Dependent Role="bmUserMaBiRecord">
               <PropertyRef Name="QAId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="bmNonVerifyUserMaBiRecord">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="QAId" Type="Guid" />
+          <Property Name="DisId" Type="Guid" />
+          <Property Name="OBId" Type="Guid" />
+          <Property Name="RCId" Type="Guid" />
+          <Property Name="TkId" Type="Guid" />
+          <Property Name="SourceRef" Type="Guid" />
+          <Property Name="MaBiRef" Type="Guid" />
+          <Property Name="MaBiNum" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="IsSettle" Type="Boolean" />
+          <Property Name="Sort" Type="Int32" />
+          <Property Name="RegUser" Type="Guid" />
+          <Property Name="RegTime" Type="DateTime" Precision="3" />
+          <Property Name="ModTime" Type="DateTime" Precision="3" />
+          <Property Name="FlagTrashed" Type="Boolean" Nullable="false" />
+          <Property Name="FlagDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="aspnet_Users" Relationship="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_aspnet_Users" FromRole="bmNonVerifyUserMaBiRecord" ToRole="aspnet_Users" />
+          <NavigationProperty Name="aspnet_Users1" Relationship="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_aspnet_Users1" FromRole="bmNonVerifyUserMaBiRecord" ToRole="aspnet_Users" />
+          <NavigationProperty Name="bmObjection" Relationship="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_bmObjection" FromRole="bmNonVerifyUserMaBiRecord" ToRole="bmObjection" />
+          <NavigationProperty Name="bmQA" Relationship="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_bmQA" FromRole="bmNonVerifyUserMaBiRecord" ToRole="bmQA" />
+          <NavigationProperty Name="bmQADistribution" Relationship="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_bmQADistribution" FromRole="bmNonVerifyUserMaBiRecord" ToRole="bmQADistribution" />
+          <NavigationProperty Name="bmRecharge" Relationship="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_bmRecharge" FromRole="bmNonVerifyUserMaBiRecord" ToRole="bmRecharge" />
+          <NavigationProperty Name="bmTakeNow" Relationship="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_bmTakeNow" FromRole="bmNonVerifyUserMaBiRecord" ToRole="bmTakeNow" />
+          <NavigationProperty Name="wmfReference" Relationship="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_wmfReference" FromRole="bmNonVerifyUserMaBiRecord" ToRole="wmfReference" />
+          <NavigationProperty Name="wmfReference1" Relationship="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_wmfReference1" FromRole="bmNonVerifyUserMaBiRecord" ToRole="wmfReference" />
+        </EntityType>
+        <Association Name="FK_bmNonVerifyUserMaBiRecord_aspnet_Users">
+          <End Type="MorSun.Model.aspnet_Users" Role="aspnet_Users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MorSun.Model.bmNonVerifyUserMaBiRecord" Role="bmNonVerifyUserMaBiRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="bmNonVerifyUserMaBiRecord">
+              <PropertyRef Name="RegUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmNonVerifyUserMaBiRecord_aspnet_Users1">
+          <End Type="MorSun.Model.aspnet_Users" Role="aspnet_Users" Multiplicity="0..1" />
+          <End Type="MorSun.Model.bmNonVerifyUserMaBiRecord" Role="bmNonVerifyUserMaBiRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="bmNonVerifyUserMaBiRecord">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmNonVerifyUserMaBiRecord_bmObjection">
+          <End Type="MorSun.Model.bmObjection" Role="bmObjection" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MorSun.Model.bmNonVerifyUserMaBiRecord" Role="bmNonVerifyUserMaBiRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bmObjection">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmNonVerifyUserMaBiRecord">
+              <PropertyRef Name="OBId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmNonVerifyUserMaBiRecord_bmQA">
+          <End Type="MorSun.Model.bmQA" Role="bmQA" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MorSun.Model.bmNonVerifyUserMaBiRecord" Role="bmNonVerifyUserMaBiRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bmQA">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmNonVerifyUserMaBiRecord">
+              <PropertyRef Name="QAId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmNonVerifyUserMaBiRecord_bmQADistribution">
+          <End Type="MorSun.Model.bmQADistribution" Role="bmQADistribution" Multiplicity="0..1" />
+          <End Type="MorSun.Model.bmNonVerifyUserMaBiRecord" Role="bmNonVerifyUserMaBiRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bmQADistribution">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmNonVerifyUserMaBiRecord">
+              <PropertyRef Name="DisId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmNonVerifyUserMaBiRecord_bmRecharge">
+          <End Type="MorSun.Model.bmRecharge" Role="bmRecharge" Multiplicity="0..1" />
+          <End Type="MorSun.Model.bmNonVerifyUserMaBiRecord" Role="bmNonVerifyUserMaBiRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bmRecharge">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmNonVerifyUserMaBiRecord">
+              <PropertyRef Name="RCId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmNonVerifyUserMaBiRecord_bmTakeNow">
+          <End Type="MorSun.Model.bmTakeNow" Role="bmTakeNow" Multiplicity="0..1" />
+          <End Type="MorSun.Model.bmNonVerifyUserMaBiRecord" Role="bmNonVerifyUserMaBiRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bmTakeNow">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmNonVerifyUserMaBiRecord">
+              <PropertyRef Name="TkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmNonVerifyUserMaBiRecord_wmfReference">
+          <End Type="MorSun.Model.wmfReference" Role="wmfReference" Multiplicity="0..1" />
+          <End Type="MorSun.Model.bmNonVerifyUserMaBiRecord" Role="bmNonVerifyUserMaBiRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wmfReference">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmNonVerifyUserMaBiRecord">
+              <PropertyRef Name="SourceRef" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmNonVerifyUserMaBiRecord_wmfReference1">
+          <End Type="MorSun.Model.wmfReference" Role="wmfReference" Multiplicity="0..1" />
+          <End Type="MorSun.Model.bmNonVerifyUserMaBiRecord" Role="bmNonVerifyUserMaBiRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wmfReference">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmNonVerifyUserMaBiRecord">
+              <PropertyRef Name="MaBiRef" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -12218,6 +12582,29 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="ParentId" ColumnName="ParentId" />
                 <ScalarProperty Name="AutoGrenteId" ColumnName="AutoGrenteId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bmNonVerifyUserMaBiRecords">
+            <EntityTypeMapping TypeName="MorSun.Model.bmNonVerifyUserMaBiRecord">
+              <MappingFragment StoreEntitySet="bmNonVerifyUserMaBiRecord">
+                <ScalarProperty Name="FlagDeleted" ColumnName="FlagDeleted" />
+                <ScalarProperty Name="FlagTrashed" ColumnName="FlagTrashed" />
+                <ScalarProperty Name="ModTime" ColumnName="ModTime" />
+                <ScalarProperty Name="RegTime" ColumnName="RegTime" />
+                <ScalarProperty Name="RegUser" ColumnName="RegUser" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="IsSettle" ColumnName="IsSettle" />
+                <ScalarProperty Name="MaBiNum" ColumnName="MaBiNum" />
+                <ScalarProperty Name="MaBiRef" ColumnName="MaBiRef" />
+                <ScalarProperty Name="SourceRef" ColumnName="SourceRef" />
+                <ScalarProperty Name="TkId" ColumnName="TkId" />
+                <ScalarProperty Name="RCId" ColumnName="RCId" />
+                <ScalarProperty Name="OBId" ColumnName="OBId" />
+                <ScalarProperty Name="DisId" ColumnName="DisId" />
+                <ScalarProperty Name="QAId" ColumnName="QAId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

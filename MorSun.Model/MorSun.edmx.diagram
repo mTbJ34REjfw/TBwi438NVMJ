@@ -281,6 +281,16 @@
         <AssociationConnector Association="MorSun.Model.FK_bmQA_wmfReference2" />
         <AssociationConnector Association="MorSun.Model.FK_bmQADistribution_bmQA" />
         <AssociationConnector Association="MorSun.Model.FK_bmUserMaBiRecord_bmQA" />
+        <EntityTypeShape EntityType="MorSun.Model.bmNonVerifyUserMaBiRecord" Width="1.5" PointX="25.25" PointY="69" />
+        <AssociationConnector Association="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_aspnet_Users" />
+        <AssociationConnector Association="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_aspnet_Users1" />
+        <AssociationConnector Association="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_bmObjection" />
+        <AssociationConnector Association="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_bmQA" />
+        <AssociationConnector Association="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_bmQADistribution" />
+        <AssociationConnector Association="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_bmRecharge" />
+        <AssociationConnector Association="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_bmTakeNow" />
+        <AssociationConnector Association="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_wmfReference" />
+        <AssociationConnector Association="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_wmfReference1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
