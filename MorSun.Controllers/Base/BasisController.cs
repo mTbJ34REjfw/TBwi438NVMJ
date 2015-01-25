@@ -2457,6 +2457,7 @@ namespace MorSun.Controllers
                             {                           
                                 //取到未结算的邦马币记录
                                 //因为还要传递到服务器去，并且要删除的邦马币本地要保存到另外一张表，以及还要从删除表中获取需要删除的邦马币记录，所以直接用删除的邦马币来接收
+                                bmMB = Compression.DecompressString(bmMB);
                                 var _list = JsonConvert.DeserializeObject<List<bmNonVerifyUserMaBiRecord>>(bmMB);
                                 if (_list.Count() > 0)
                                 {
