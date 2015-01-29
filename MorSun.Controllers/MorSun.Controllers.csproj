@@ -118,10 +118,12 @@
     <Compile Include="Quartz\AncyQAJOB6\CheckingTrigger6.cs" />
     <Compile Include="Quartz\AncyRCJOB7\CheckingJob7.cs" />
     <Compile Include="Quartz\AncyRCJOB7\CheckingTrigger7.cs" />
-    <Compile Include="Quartz\FinalAccountJOB8\CheckingJob8.cs" />
-    <Compile Include="Quartz\FinalAccountJOB8\CheckingTrigger8.cs" />
     <Compile Include="Quartz\AncyUserJOB5\CheckingJob5.cs" />
     <Compile Include="Quartz\AncyUserJOB5\CheckingTrigger5.cs" />
+    <Compile Include="Quartz\FinalAccountJOB8\CheckingJob8.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Quartz\FinalAccountJOB8\CheckingTrigger8.cs" />
     <Compile Include="Quartz\MorSunScheduler.cs" />
     <Compile Include="ViewModel\BaseVM\BaseVModel.cs" />
     <Compile Include="ViewModel\BM\BMObjectionVModel.cs" />
