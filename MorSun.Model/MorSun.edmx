@@ -319,6 +319,7 @@
           <Property Name="MsgType" Type="uniqueidentifier" />
           <Property Name="MediaId" Type="nvarchar" MaxLength="512" />
           <Property Name="PicUrl" Type="nvarchar" MaxLength="512" />
+          <Property Name="WeiXinAPP" Type="uniqueidentifier" />
           <Property Name="Sort" Type="int" />
           <Property Name="RegUser" Type="uniqueidentifier" />
           <Property Name="RegTime" Type="datetime" />
@@ -2832,7 +2833,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_bmQA_wmfReference2">
+        <Association Name="FK_bmQA_wmfReference1">
           <End Role="wmfReference" Type="Self.wmfReference" Multiplicity="0..1" />
           <End Role="bmQA" Type="Self.bmQA" Multiplicity="*" />
           <ReferentialConstraint>
@@ -2841,6 +2842,18 @@
             </Principal>
             <Dependent Role="bmQA">
               <PropertyRef Name="MsgType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmQA_wmfReference2">
+          <End Role="wmfReference" Type="Self.wmfReference" Multiplicity="0..1" />
+          <End Role="bmQA" Type="Self.bmQA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wmfReference">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmQA">
+              <PropertyRef Name="WeiXinAPP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4621,6 +4634,10 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
             <End Role="bmQA" EntitySet="bmQA" />
           </AssociationSet>
           <AssociationSet Name="FK_bmQA_wmfReference" Association="Self.FK_bmQA_wmfReference">
+            <End Role="wmfReference" EntitySet="wmfReference" />
+            <End Role="bmQA" EntitySet="bmQA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bmQA_wmfReference1" Association="Self.FK_bmQA_wmfReference1">
             <End Role="wmfReference" EntitySet="wmfReference" />
             <End Role="bmQA" EntitySet="bmQA" />
           </AssociationSet>
@@ -7138,6 +7155,7 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <NavigationProperty Name="bmQAs1" Relationship="MorSun.Model.FK_bmQA_wmfReference2" FromRole="wmfReference" ToRole="bmQA" />
           <NavigationProperty Name="bmNonVerifyUserMaBiRecords" Relationship="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_wmfReference" FromRole="wmfReference" ToRole="bmNonVerifyUserMaBiRecord" />
           <NavigationProperty Name="bmNonVerifyUserMaBiRecords1" Relationship="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_wmfReference1" FromRole="wmfReference" ToRole="bmNonVerifyUserMaBiRecord" />
+          <NavigationProperty Name="bmQAs2" Relationship="MorSun.Model.FK_bmQA_wmfReference21" FromRole="wmfReference" ToRole="bmQA" />
         </EntityType>
         <EntityType Name="wmfRefGroup">
           <Key>
@@ -9739,6 +9757,10 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
             <End Role="wmfReference" EntitySet="wmfReferences" />
             <End Role="bmNonVerifyUserMaBiRecord" EntitySet="bmNonVerifyUserMaBiRecords" />
           </AssociationSet>
+          <AssociationSet Name="FK_bmQA_wmfReference21" Association="MorSun.Model.FK_bmQA_wmfReference21">
+            <End Role="wmfReference" EntitySet="wmfReferences" />
+            <End Role="bmQA" EntitySet="bmQAs" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_bmUserMaBiRecord_bmRecharge">
           <End Type="MorSun.Model.bmRecharge" Role="bmRecharge" Multiplicity="0..1" />
@@ -9975,6 +9997,8 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <NavigationProperty Name="bmQADistributions" Relationship="MorSun.Model.FK_bmQADistribution_bmQA" FromRole="bmQA" ToRole="bmQADistribution" />
           <NavigationProperty Name="bmUserMaBiRecords" Relationship="MorSun.Model.FK_bmUserMaBiRecord_bmQA" FromRole="bmQA" ToRole="bmUserMaBiRecord" />
           <NavigationProperty Name="bmNonVerifyUserMaBiRecords" Relationship="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_bmQA" FromRole="bmQA" ToRole="bmNonVerifyUserMaBiRecord" />
+          <Property Name="WeiXinAPP" Type="Guid" />
+          <NavigationProperty Name="wmfReference2" Relationship="MorSun.Model.FK_bmQA_wmfReference21" FromRole="bmQA" ToRole="wmfReference" />
         </EntityType>
         <Association Name="FK_bmQA_aspnet_Users">
           <End Type="MorSun.Model.aspnet_Users" Role="aspnet_Users" Multiplicity="0..1" />
@@ -10206,6 +10230,18 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
             </Principal>
             <Dependent Role="bmNonVerifyUserMaBiRecord">
               <PropertyRef Name="MaBiRef" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bmQA_wmfReference21">
+          <End Type="MorSun.Model.wmfReference" Role="wmfReference" Multiplicity="0..1" />
+          <End Type="MorSun.Model.bmQA" Role="bmQA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wmfReference">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="bmQA">
+              <PropertyRef Name="WeiXinAPP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -12566,6 +12602,7 @@ FROM [dbo].[wmfRolePrivilegesView] AS [wmfRolePrivilegesView]</DefiningQuery>
           <EntitySetMapping Name="bmQAs">
             <EntityTypeMapping TypeName="MorSun.Model.bmQA">
               <MappingFragment StoreEntitySet="bmQA">
+                <ScalarProperty Name="WeiXinAPP" ColumnName="WeiXinAPP" />
                 <ScalarProperty Name="FlagDeleted" ColumnName="FlagDeleted" />
                 <ScalarProperty Name="FlagTrashed" ColumnName="FlagTrashed" />
                 <ScalarProperty Name="ModTime" ColumnName="ModTime" />

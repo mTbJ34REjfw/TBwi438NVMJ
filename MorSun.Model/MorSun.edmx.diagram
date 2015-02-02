@@ -291,6 +291,7 @@
         <AssociationConnector Association="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_bmTakeNow" />
         <AssociationConnector Association="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_wmfReference" />
         <AssociationConnector Association="MorSun.Model.FK_bmNonVerifyUserMaBiRecord_wmfReference1" />
+        <AssociationConnector Association="MorSun.Model.FK_bmQA_wmfReference21" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
