@@ -382,42 +382,42 @@ namespace MorSun.Common
             public const string 卡密退款_该卡密已退款 = "该卡密已退款";
 
             //邦马网对接统一码
-            public const string 邦马网_对接统一码 = "F1W%I^v2&n^eJiw3";
+            public const string 邦马网_对接统一码 = "F1W%I^v2&n^eJiw3F*J$V*N29E3I%W@vn#d1a@ie^4k!0";
             public const string 邦马网_字符串分隔符 = ",";
             public const string 卡密退款_卡密退款操作成功 = "卡密退款操作成功";
 
             public const string 邦马网_JSON数据间隔 = "||====||";
             //用户信息同步
-            public const string 数据同步_用户信息 = "/DivniTxiuen/UJS";
+            public const string 数据同步_用户信息 = "/VUe4jE4WeNQvf2njw4Iiq33nv6n2djka/UJS";
             //作业邦信息同步
-            public const string 数据同步_作业邦信息 = "/DivniTxiuen/QAJS";
+            public const string 数据同步_作业邦信息 = "/VUe4jE4WeNQvf2njw4Iiq33nv6n2djka/QAJS";
             //马币充值信息同步
-            public const string 数据同步_马币充值信息 = "/DivniTxiuen/RCJS";
+            public const string 数据同步_马币充值信息 = "/VUe4jE4WeNQvf2njw4Iiq33nv6n2djka/RCJS";
             //确认服务器是否可用
-            public const string 数据同步_服务器是否可用 = "/DivniTxiuen/ServerIsOk";
+            public const string 数据同步_服务器是否可用 = "/VUe4jE4WeNQvf2njw4Iiq33nv6n2djka/ServerIsOk";
             //卡密充值
-            public const string 数据同步_卡密充值 = "/DivniTxiuen/AncyRCMB";
+            public const string 数据同步_卡密充值 = "/VUe4jE4WeNQvf2njw4Iiq33nv6n2djka/AncyRCMB";
             //认证修改角色
-            public const string 数据同步_认证改角色 = "/DivniTxiuen/AncyCU";
+            public const string 数据同步_认证改角色 = "/VUe4jE4WeNQvf2njw4Iiq33nv6n2djka/AncyCU";
             //判断用户是否能取现
-            public const string 数据同步_是否能取现 = "/DivniTxiuen/CanTakeNow";
+            public const string 数据同步_是否能取现 = "/VUe4jE4WeNQvf2njw4Iiq33nv6n2djka/CanTakeNow";
             //取现数据与取现马币同步
-            public const string 数据同步_取现马币 = "/DivniTxiuen/YXXTakeNow";
+            public const string 数据同步_取现马币 = "/VUe4jE4WeNQvf2njw4Iiq33nv6n2djka/YXXTakeNow";
             //取现同步
-            public const string 数据同步_取现同步 = "/DivniTxiuen/TakeMoney";
+            public const string 数据同步_取现同步 = "/VUe4jE4WeNQvf2njw4Iiq33nv6n2djka/TakeMoney";
             //异议处理
-            public const string 数据同步_异议处理 = "/DivniTxiuen/HandelOB";
+            public const string 数据同步_异议处理 = "/VUe4jE4WeNQvf2njw4Iiq33nv6n2djka/HandelOB";
             //答题结算
-            public const string 数据同步_答题结算 = "/DivniTxiuen/QASettle";
+            public const string 数据同步_答题结算 = "/VUe4jE4WeNQvf2njw4Iiq33nv6n2djka/QASettle";
             //邦马币结算
-            public const string 数据同步_邦马币结算 = "/DivniTxiuen/MBSettle";
+            public const string 数据同步_邦马币结算 = "/VUe4jE4WeNQvf2njw4Iiq33nv6n2djka/MBSettle";
             //邦马网所有用户ID集
-            public const string 数据同步_邦马网所有用户ID集 = "/DivniTxiuen/GetAllUserIds";
+            public const string 数据同步_邦马网所有用户ID集 = "/VUe4jE4WeNQvf2njw4Iiq33nv6n2djka/GetAllUserIds";
 
             //获取未结算邦马币
-            public const string 数据同步_获取未结算邦马币 = "/DivniTxiuen/GetNonSettleMB";
+            public const string 数据同步_获取未结算邦马币 = "/VUe4jE4WeNQvf2njw4Iiq33nv6n2djka/GetNonSettleMB";
             //删除未验证邦马币
-            public const string 数据同步_操作未验证邦马币 = "/DivniTxiuen/OperateNonVeryfiMB";
+            public const string 数据同步_操作未验证邦马币 = "/VUe4jE4WeNQvf2njw4Iiq33nv6n2djka/OperateNonVeryfiMB";
         }
     }
 
