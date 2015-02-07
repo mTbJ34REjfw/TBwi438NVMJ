@@ -126,7 +126,8 @@ namespace MorSun.Common
             public const string 微信消息类别_声音 = "b71f4cde-c13a-4dbe-a4ef-2ef99f51b426";
             public const string 微信消息类别_链接 = "b57b534e-2363-488c-a008-d02aa95b4f3d";
             public const string 微信消息类别_视频 = "7330de99-74b7-42d3-9f92-04dcd98b25af";
-            
+            public const string 微信消息类别_位置 = "b4976da7-d0af-4859-b106-cf3c2a22c081";
+
             //分配答题操作
             public const string 分配答题操作_待解答 = "dc2ac6b6-2937-4b04-aab8-07591614b1b3";
             public const string 分配答题操作_已解答 = "339efab2-f36c-4e7e-bc50-787730bf7959";
