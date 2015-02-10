@@ -48,7 +48,7 @@ namespace MorSun.Controllers.ViewModel
             get
             {
                 var refAId = Guid.Parse(Reference.问答类别_答案);
-                var l = base.All.Where(p => p.ParentId == sParentId && p.QARef != refAId);
+                var l = base.All.Where(p => p.ParentId == sId && p.QARef != refAId);
                 return l.OrderBy(p => p.RegTime);
             }
         }
@@ -61,7 +61,7 @@ namespace MorSun.Controllers.ViewModel
             get
             {
                 var refAId = Guid.Parse(Reference.问答类别_答案);
-                return base.All.FirstOrDefault(p => p.ParentId == sParentId && p.QARef == refAId);
+                return base.All.FirstOrDefault(p => p.ParentId == sId && p.QARef == refAId);
             }
         }
 
@@ -72,7 +72,7 @@ namespace MorSun.Controllers.ViewModel
         {
             get
             {
-                return base.All.FirstOrDefault(p => p.ID == sParentId);
+                return base.All.FirstOrDefault(p => p.ID == sId);
             }
         }
 
@@ -93,8 +93,8 @@ namespace MorSun.Controllers.ViewModel
                 }
                 if(sIsSort != null && sIsSort.Value == true)
                 {
-                    if (sParentId != null)
-                        l = l.Where(p => p.ParentId == sParentId);
+                    if (sId != null)
+                        l = l.Where(p => p.ParentId == sId);
                     else
                         l = l.Where(p => p.ParentId == null);
                 }
@@ -118,7 +118,7 @@ namespace MorSun.Controllers.ViewModel
 
        
 
-        public Guid? sParentId { get; set; }
+        public Guid? sId { get; set; }
 
         public bool? sIsSort { get; set; }
     }

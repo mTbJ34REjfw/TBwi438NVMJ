@@ -43,7 +43,7 @@ namespace MorSun.Controllers.SystemController
                 {
                     ViewBag.RS = ResourceId;
                     ViewBag.ReturnUrl = returnUrl;
-                    model.sParentId = id;
+                    model.sId = id;
                     return View(model);
                 }
                 else

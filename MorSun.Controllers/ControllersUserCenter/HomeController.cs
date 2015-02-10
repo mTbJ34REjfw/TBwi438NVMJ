@@ -243,7 +243,7 @@ namespace MorSun.Controllers
             var model = new BMQAViewVModel();
             if (id != null)
             {
-                model.sParentId = id;
+                model.sId = id;
                 return View(model);
             }
             else
