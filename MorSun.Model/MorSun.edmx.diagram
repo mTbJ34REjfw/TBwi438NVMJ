@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3d3f325e235c472b831887a7d376522e" Name="Diagram1">
+      <Diagram DiagramId="3d3f325e235c472b831887a7d376522e" Name="Diagram1" ZoomLevel="54">
         <EntityTypeShape EntityType="MorSun.Model.Aduit" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MorSun.Model.AskForLeave" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MorSun.Model.aspnet_Applications" Width="1.5" PointX="7.5" PointY="56.5" IsExpanded="true" />
@@ -137,7 +137,6 @@
         <EntityTypeShape EntityType="MorSun.Model.QRTZ_BLOB_TRIGGERS" Width="1.5" PointX="25.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MorSun.Model.wmfLog" Width="1.5" PointX="25.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MorSun.Model.bmNewUserMB" Width="1.5" PointX="25.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MorSun.Model.bmQAView" Width="1.5" PointX="16.75" PointY="25.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MorSun.Model.wmfRolePrivilegesView" Width="1.5" PointX="25.75" PointY="17.75" IsExpanded="true" />
         <AssociationConnector Association="MorSun.Model.FK__aspnet_Me__Appli__145C0A3F" ManuallyRouted="false" />
         <AssociationConnector Association="MorSun.Model.FK__aspnet_Pa__Appli__45F365D3" ManuallyRouted="false" />
@@ -294,6 +293,7 @@
         <AssociationConnector Association="MorSun.Model.FK_bmQA_wmfReference21" />
         <AssociationConnector Association="MorSun.Model.FK_bmOnlineQAUser_wmfReference2" />
         <AssociationConnector Association="MorSun.Model.FK_bmOnlineQAUserRecord_wmfReference2" />
+        <EntityTypeShape EntityType="MorSun.Model.bmQAView" Width="1.5" PointX="3.375" PointY="26.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

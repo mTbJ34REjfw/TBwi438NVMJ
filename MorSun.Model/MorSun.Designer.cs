@@ -2335,22 +2335,6 @@ namespace MorSun.Model
         /// <summary>
         /// 没有元数据文档可用。
         /// </summary>
-        public ObjectSet<bmQAView> bmQAViews
-        {
-            get
-            {
-                if ((_bmQAViews == null))
-                {
-                    _bmQAViews = base.CreateObjectSet<bmQAView>("bmQAViews");
-                }
-                return _bmQAViews;
-            }
-        }
-        private ObjectSet<bmQAView> _bmQAViews;
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
         public ObjectSet<wmfRolePrivilegesView> wmfRolePrivilegesViews
         {
             get
@@ -2443,6 +2427,22 @@ namespace MorSun.Model
             }
         }
         private ObjectSet<bmNonVerifyUserMaBiRecord> _bmNonVerifyUserMaBiRecords;
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        public ObjectSet<bmQAView> bmQAViews
+        {
+            get
+            {
+                if ((_bmQAViews == null))
+                {
+                    _bmQAViews = base.CreateObjectSet<bmQAView>("bmQAViews");
+                }
+                return _bmQAViews;
+            }
+        }
+        private ObjectSet<bmQAView> _bmQAViews;
 
         #endregion
 
@@ -3505,14 +3505,6 @@ namespace MorSun.Model
         }
     
         /// <summary>
-        /// 用于向 bmQAViews EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
-        /// </summary>
-        public void AddTobmQAViews(bmQAView bmQAView)
-        {
-            base.AddObject("bmQAViews", bmQAView);
-        }
-    
-        /// <summary>
         /// 用于向 wmfRolePrivilegesViews EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
         /// </summary>
         public void AddTowmfRolePrivilegesViews(wmfRolePrivilegesView wmfRolePrivilegesView)
@@ -3558,6 +3550,14 @@ namespace MorSun.Model
         public void AddTobmNonVerifyUserMaBiRecords(bmNonVerifyUserMaBiRecord bmNonVerifyUserMaBiRecord)
         {
             base.AddObject("bmNonVerifyUserMaBiRecords", bmNonVerifyUserMaBiRecord);
+        }
+    
+        /// <summary>
+        /// 用于向 bmQAViews EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
+        /// </summary>
+        public void AddTobmQAViews(bmQAView bmQAView)
+        {
+            base.AddObject("bmQAViews", bmQAView);
         }
 
         #endregion
@@ -15130,30 +15130,6 @@ namespace MorSun.Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsSettle
-        {
-            get
-            {
-                return _IsSettle;
-            }
-            set
-            {
-                OnIsSettleChanging(value);
-                ReportPropertyChanging("IsSettle");
-                _IsSettle = StructuralObject.SetValidValue(value, "IsSettle");
-                ReportPropertyChanged("IsSettle");
-                OnIsSettleChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _IsSettle;
-        partial void OnIsSettleChanging(Nullable<global::System.Boolean> value);
-        partial void OnIsSettleChanged();
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.Guid> WeiXinAPP
         {
             get
@@ -15292,6 +15268,30 @@ namespace MorSun.Model
         private global::System.String _Label;
         partial void OnLabelChanging(global::System.String value);
         partial void OnLabelChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String WeiXinAPPName
+        {
+            get
+            {
+                return _WeiXinAPPName;
+            }
+            set
+            {
+                OnWeiXinAPPNameChanging(value);
+                ReportPropertyChanging("WeiXinAPPName");
+                _WeiXinAPPName = StructuralObject.SetValidValue(value, true, "WeiXinAPPName");
+                ReportPropertyChanged("WeiXinAPPName");
+                OnWeiXinAPPNameChanged();
+            }
+        }
+        private global::System.String _WeiXinAPPName;
+        partial void OnWeiXinAPPNameChanging(global::System.String value);
+        partial void OnWeiXinAPPNameChanged();
 
         #endregion
 
