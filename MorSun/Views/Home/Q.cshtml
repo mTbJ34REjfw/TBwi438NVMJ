@@ -40,7 +40,9 @@
                     <div class="textCenter">
                         @if (Model.Q.MsgType == Guid.Parse(Reference.微信消息类别_文本))
                         {
-                            <h1>@Model.Q.QAContent</h1>
+                            <div class="textLeft">
+                                <h1>@Model.Q.QAContent</h1>
+                            </div>
                         }
                         else if (Model.Q.MsgType == Guid.Parse(Reference.微信消息类别_图片))
                         {
@@ -61,7 +63,7 @@
 
                         @if (Model.A.QARef == Guid.Parse(Reference.问答类别_不是问题))
                         {
-                            <div class="textCenter">
+                            <div class="textRight">
                                 <h1>这不是一个问题</h1>
                             </div>
                         }
@@ -69,8 +71,10 @@
                         {
                             <div class="textCenter">
                             @if (Model.A.MsgType == Guid.Parse(Reference.微信消息类别_文本))
-                            {                                
-                                <h1>@Model.A.QAContent</h1>                                
+                            {            
+                                <div class="textRight">                    
+                                    <h1>@Model.A.QAContent</h1>   
+                                </div>                             
                             }
                             else if (Model.A.MsgType == Guid.Parse(Reference.微信消息类别_图片))
                             {                            
@@ -671,7 +675,17 @@
     .textCenter {
         text-align: center;
     }
+    .textLeft {
+        text-align: left;
+        text-indent: each-line;
+        margin-left: 20px;
+    }
 
+    .textRight {
+        text-align: right;
+        text-indent: each-line;
+        margin-right: 20px;
+    }
     .spanLeft {
         float: left;
     }
