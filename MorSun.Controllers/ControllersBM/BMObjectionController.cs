@@ -161,10 +161,16 @@ namespace MorSun.Controllers.SystemController
                             bbPer = qaBB / (qaMB + qaBB);
                             mbPer = qaMB / (qaMB + qaBB);
                         }
-                                                
+                        //多应用扩展
+                        var dqmbb = Convert.ToDecimal(CFG.答错扣取的马币比);
+                        var kqBMBB = dqmbb;
+                        try { kqBMBB = Convert.ToDecimal(qaView.KQBMB); }
+                        catch{}
+                        if (kqBMBB > dqmbb)
+                            kqBMBB = dqmbb;
 
                         //答题用户答错一道题要扣的邦马币值
-                        var kqBMB = Convert.ToDecimal(CFG.答错扣取的马币比) * mbEVQ;
+                        var kqBMB = kqBMBB * mbEVQ;
 
                         //总的要扣取答题用户的邦马币值
                         var kqDISUserAllB = 0 - kqBMB * t.ConfirmErrorNum;

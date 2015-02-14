@@ -1854,6 +1854,21 @@ namespace MorSun.Controllers
                         //根据每一道题目生成答题用户的马币与绑币记录
                         foreach (var q in qaViewWJS)
                         {
+                            //当前问题赚取的马币比    多应用扩展
+                            var czqBMB = zqBMB;
+                            try
+                            {
+                                czqBMB = Convert.ToDecimal(q.ZQBMB);
+                            }
+                            catch
+                            {
+
+                            }
+
+                            if (czqBMB > Convert.ToDecimal(CFG.答题赚取马币最大比))
+                            {
+                                czqBMB = zqBMB;
+                            }
                             //问题消费的邦马币值                            
                             var qaBB = Math.Abs(q.BBNum);
                             var qaMB = Math.Abs(q.MBNum);
@@ -1866,10 +1881,10 @@ namespace MorSun.Controllers
                                 bbPer = qaBB / (qaMB + qaBB);
                                 mbPer = qaMB / (qaMB + qaBB);
                             }
-
+                            
                             //回馈到答题用户去的绑币与马币值
-                            var disBanB = qaBB * zqBMB * bbPer;
-                            var disMB = qaMB * zqBMB * mbPer;
+                            var disBanB = qaBB * czqBMB * bbPer;
+                            var disMB = qaMB * czqBMB * mbPer;
                             //哪个用户赚取的
                             var disUser = userWeixins.FirstOrDefault(p => p.WeiXinId == q.DisWeiXinId);
                             var disUserId = Guid.Parse(CFG.异议处理用户);

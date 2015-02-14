@@ -327,6 +327,8 @@ namespace MorSun.Common
             public const string 答题赚取的马币比 = "0.4"; 
             //答错扣取的马币比
             public const string 答错扣取的马币比 = "0.8";
+            //答题赚取马币最大比
+            public const string 答题赚取马币最大比 = "0.8";
             //用户答题后的几天内结算
             public const string 用户答题结算时间 = "5"; //取出配置天数前 的回答问题记录，来结算。
 
