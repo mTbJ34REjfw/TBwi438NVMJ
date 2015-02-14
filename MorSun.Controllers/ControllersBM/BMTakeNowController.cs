@@ -379,7 +379,14 @@ namespace MorSun.Controllers.SystemController
 
                 var s = "";
                 var result = "";
-                var tnModel = new bmTakeNowJson { ID=model.ID,TakeRef = model.TakeRef,TakeTime = model.TakeTime,BMExplain = model.BMExplain};
+                var tnModel = new bmTakeNowJson 
+                { 
+                    ID=model.ID,
+                    TakeRef = model.TakeRef, 
+                    TakeMoney = model.TakeMoney, 
+                    TakeTime = model.TakeTime,
+                    BMExplain = model.BMExplain
+                };
                 s += ToJsonAndCompress(tnModel);
                 s += CFG.邦马网_JSON数据间隔;
 

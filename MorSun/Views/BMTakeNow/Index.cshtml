@@ -84,23 +84,26 @@
                                 <td>@(item.TakeTime == null ? "" : item.TakeTime.ToShortDateString())</td>                         
                                 <td>
                                     @if (Model.FlagTrashed == "0")
-{
-    if (rs.HP(操作.修改))
-    {
-        if (up.wmfReference1 != null && up.wmfReference1.ID == zfrz && item.Effective == yx && item.TakeRef == wqx && item.TakeMoney != null && item.TakeMoney > 0)
-        {
-            <button class="btn blue" type="button" onclick="ajaxHandle('/BMTakeNow/TakeMoney', { id: '@item.ID',returnUrl:'@Request.RawUrl' },'操作失败','#divInfo',true)">@("取现".GX())</button>
-        }
-    }
-}    
+                                    {
+                                        if (rs.HP(操作.修改))
+                                        {
+                                            if (up != null && up.wmfReference1 != null && up.wmfReference1.ID == zfrz && item.Effective == yx && item.TakeRef == wqx && item.TakeMoney != null && item.TakeMoney > 0)
+                                            {
+                                                <button class="btn blue" type="button" onclick="ajaxHandle('/BMTakeNow/TakeMoney', { id: '@item.ID',returnUrl:'@Request.RawUrl' },'操作失败','#divInfo',true)">@("取现".GX())</button>
+                                            }
+                                        }
+                                    }    
                                 </td>
                             </tr>
-                            <tr>
-                                <td>@(up == null ? "" : up.TrueName)    @(up.wmfReference1 == null ? "" : up.wmfReference1.ItemValue)</td>
-                                <td colspan="3">@(up == null ? "" : "支付宝号：" + up.ALiPayNum)</td>
-                                <td>@(up == null ? "" : "银行：" + up.wmfReference == null ? "" : up.wmfReference.ItemValue)</td>
-                                <td colspan="3">@(up == null ? "" : "银行卡号：" + up.BankNum)</td>
-                            </tr>
+                            if(up != null)
+                            { 
+                                <tr>
+                                    <td>@(up == null ? "" : up.TrueName)    @(up.wmfReference1 == null ? "" : up.wmfReference1.ItemValue)</td>
+                                    <td colspan="3">@(up == null ? "" : "支付宝号：" + up.ALiPayNum)</td>
+                                    <td>@(up == null ? "" : "银行：" + up.wmfReference == null ? "" : up.wmfReference.ItemValue)</td>
+                                    <td colspan="3">@(up == null ? "" : "银行卡号：" + up.BankNum)</td>
+                                </tr>
+                            }
                         }                    
                     </tbody>
                 </table>
