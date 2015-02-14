@@ -63,7 +63,7 @@
 
                         @if (Model.A.QARef == Guid.Parse(Reference.问答类别_不是问题))
                         {
-                            <div class="textRight">
+                            <div class="textLeft">
                                 <h1>这不是一个问题</h1>
                             </div>
                         }
@@ -71,13 +71,13 @@
                         {
                             <div class="textCenter">
                             @if (Model.A.MsgType == Guid.Parse(Reference.微信消息类别_文本))
-                            {            
-                                <div class="textRight">                    
-                                    <h1>@Model.A.QAContent</h1>   
-                                </div>                             
+                            {
+                                <div class="textLeft">
+                                    <h1>@Model.A.QAContent</h1>
+                                </div>
                             }
                             else if (Model.A.MsgType == Guid.Parse(Reference.微信消息类别_图片))
-                            {                            
+                            {
                                 <img id="ImgDA" src="@Model.A.PicUrl" onclick="jumptourl('@Model.A.PicUrl')" width="99%" />
                             }
                             else if (Model.A.MsgType == Guid.Parse(Reference.微信消息类别_声音))
