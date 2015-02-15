@@ -51,6 +51,9 @@
                         else if (Model.Q.MsgType == Guid.Parse(Reference.微信消息类别_声音))
                         {
                             <img id="ImgQA" src="@(CFG.网站域名)/images/zyb/voice.png"/>
+                            <p>
+                                向“@Model.Q.WeiXinAPPName” 发送 ck @Model.Q.AutoGrenteId 可听到这条语音
+                            </p>  
                         }  
                     </div>
                 </div>
@@ -82,7 +85,10 @@
                             }
                             else if (Model.A.MsgType == Guid.Parse(Reference.微信消息类别_声音))
                             {
-                                <img id="ImgQA" src="@(CFG.网站域名)/images/zyb/voice.png"/>
+                                <img id="ImgDA" src="@(CFG.网站域名)/images/zyb/voice.png"/>
+                                <p>
+                                    向“@Model.A.WeiXinAPPName” 发送 ck @Model.A.AutoGrenteId 可听到这条语音
+                                </p> 
                             }   
                             </div>
                         }
