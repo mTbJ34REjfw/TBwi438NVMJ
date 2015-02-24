@@ -1,22 +1,4 @@
-2015-01-25 10:21:11,752 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
-2015-01-25 10:21:21,534 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启后开启任务调度器
-2015-01-25 10:21:23,568 [6](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
-2015-01-25 10:22:58,345 [23](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
-2015-01-25 10:24:10,481 [23](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 有获取到未结算的邦马币记录
-2015-01-25 10:24:10,667 [23](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 未结算的邦马币数据获取异常Unexpected character encountered while parsing value: H. Path '', line 0, position 0.
-2015-01-25 10:25:27,750 [31](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 有获取到未结算的邦马币记录
-2015-01-25 10:26:15,730 [31](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 未结算的邦马币数据获取异常Unexpected character encountered while parsing value: H. Path '', line 0, position 0.
-2015-01-25 10:29:11,764 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
-2015-01-25 10:29:14,475 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启后开启任务调度器
-2015-01-25 10:29:14,969 [6](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
-2015-01-25 10:29:39,727 [22](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 有获取到未结算的邦马币记录
-2015-01-25 10:31:02,134 [22](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 监督用户邦马币信息http://www.bungma.com/DivniTxiuen/OperateNonVeryfiMB?tok=Nxw6WvupXycgcn9Gn4feL7RLfGrLvBpZDfR9WEL5b1MhPj83NDoSouOJivHnjpRZ&AncyData=/5r91xDadIu79Q+sK/E8hy6QoLza6OFrDfHB+tY7s8wYLd8CajIyiIU7a9BKjTL9Fvl2nRy+ww70ZVM2ZYuCoYC3yV5B2fTyVVVSW+GRBf2/bQIwqGDy+47+qkd1/wCTnqwC3SCZECXrvPEEWuyKgA==
-2015-01-25 10:31:02,357 [22](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 与服务器同步失败
-2015-01-25 10:40:24,884 [40](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
-2015-01-25 10:40:47,611 [38](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 有获取到未结算的邦马币记录
-2015-01-25 10:40:48,542 [38](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 监督用户邦马币信息http://www.bungma.com/DivniTxiuen/OperateNonVeryfiMB?tok=6yreLzPtkJhm8ZST9duIhhvCIRysKz46cISejabhMsNFehzMM5F6RTadPa9+Tu2q&AncyData=/5r91xDadIu79Q+sK/E8hy6QoLza6OFrDfHB+tY7s8wYLd8CajIyiIU7a9BKjTL9Fvl2nRy+ww70ZVM2ZYuCoYC3yV5B2fTyVVVSW+GRBf2/bQIwqGDy+47+qkd1/wCTnqwC3SCZECXrvPEEWuyKgA==
-2015-01-25 10:42:42,017 [43](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 有获取到未结算的邦马币记录
-2015-01-25 10:43:13,780 [43](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 监督用户邦马币信息http://www.bungma.com/DivniTxiuen/OperateNonVeryfiMB?tok=lturhWczhgqTegcFiIpPCMykBie1i1KITETw2/JCekIUaiWYyO4m50ByxtkPlc4a&AncyData=/5r91xDadIu79Q+sK/E8hy6QoLza6OFrDfHB+tY7s8wYLd8CajIyiIU7a9BKjTL9Fvl2nRy+ww70ZVM2ZYuCoYC3yV5B2fTyVVVSW+GRBf2/bQIwqGDy+47+qkd1/wCTnqwC3SCZECXrvPEEWuyKgA==
-2015-01-25 10:43:22,274 [43](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 与服务器同步失败
-2015-01-25 10:45:02,117 [49](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 有获取到未结算的邦马币记录
-2015-01-25 10:45:04,157 [49](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 监督用户邦马币信息http://www.bungma.com/DivniTxiuen/OperateNonVeryfiMB?tok=mGiAIrOvRG2OILX+7RTjSXHJsxcBbWKvmBIw/PNI7TuGUtY+TpEMKSUclyUON2Fn&AncyData=/5r91xDadIu79Q+sK/E8hy6QoLza6OFrDfHB+tY7s8wYLd8CajIyiIU7a9BKjTL9Fvl2nRy+ww70ZVM2ZYuCoYC3yV5B2fTyVVVSW+GRBf2/bQIwqGDy+47+qkd1/wCTnqwC3SCZECXrvPEEWuyKgA==
+2015-02-24 14:32:46,700 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启
+2015-02-24 14:33:04,720 [1](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:105) INFO  System.Object [(null)] - 应用开启后开启任务调度器
+2015-02-24 14:33:08,084 [9](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
+2015-02-24 14:35:15,836 [9](d:\NET\晨曦项目\20140621\App\BMTJ\TBwi438NVMJ\HOHO18.Common\WEB\LogHelper.cs:102) DEBUG System.Object [(null)] - 跳转URL
