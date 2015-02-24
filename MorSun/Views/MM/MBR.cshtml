@@ -1,0 +1,74 @@
+﻿@model UserMBRVModel
+@{
+    ViewBag.Title = "用户币记录";
+    Layout = "~/Views/Shared/_SysLayout.cshtml";
+    string rs = ViewBag.RS;
+    var backurl = ViewBag.ReturnUrl ?? "/MM/Index";
+
+    var refVModel = new ReferenceVModel();
+    var lyList = refVModel.GetReferencesByRefGroupId(MorSun.Common.类别组.RefGroup.邦马币来源).ToList();
+}
+@Styles.Render("~/Content/themes/base/css")
+@Scripts.Render("~/bundles/jqueryui")
+<section class="featuredwhite">
+    <div class="content-wrapper clear-fix">
+        <div class="topmenu alert @("alert-success".getBC("BootStrapCssAlert"))">
+        @using (Html.BeginForm("MBR", "MM", FormMethod.Get))
+        {
+            @Html.HiddenFor(p => p.sUserId)            
+            @MvcHtmlString.Create(Html.DropDownList("sSource", "sSource", lyList, Model.sSource.ToString(), "class=\"m-wrap small\"", "ID", "ItemValue", "", "==来源=="))          
+            <button class="btn yellow" type="submit">@("查询".GX())</button>  
+        }
+        </div>
+            <div class="portlet box @("red".getBC("BootStrapCssTable"))">
+                <div class="portlet-title">
+                    <div class="caption"><i class="icon-cogs"></i>邦马币记录</div>
+                </div>
+                <div class="portlet-body">
+                    <table id="MoreSunTable" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>用户名</th>
+                                <th>币种</th>
+                                <th>币值</th>
+                                <th>来源</th>   
+                                <th>时间</th>                             
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.List)
+                            {                                
+                                <tr>
+                                    <td>
+                                        @item.aspnet_Users1.UserName
+                                    </td>
+                                    <td>
+                                        @(item.wmfReference1 == null ? "" : item.wmfReference1.ItemValue)
+                                    </td>
+                                    <td>
+                                        @item.MaBiNum
+                                    </td>
+                                    <td>
+                                        @(item.wmfReference == null ? "" : item.wmfReference.ItemValue)
+                                    </td>    
+                                    <td>
+                                        @item.RegTime
+                                    </td>                                
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>    
+</section>
+    @section Scripts {        
+        @Scripts.Render("~/bundles/jqueryval")        
+        @Scripts.Render("~/bundles/validator")
+        @Styles.Render("~/Content/JQueryQtipCss")
+        @Scripts.Render("~/bundles/jqueryqtip")
+        @Scripts.Render("~/bundles/morsuncommon")
+        
+        <script type="text/javascript"> 
+        </script>
+    }

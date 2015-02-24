@@ -88,5 +88,29 @@ namespace MorSun.Controllers.SystemController
                 //return Content(XmlHelper.GetKeyNameValidation("项目提示", "无权限操作"));
             }
         }
+
+        /// <summary>
+        /// 查看用户币记录
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
+        public ActionResult MBR(UserMBRVModel model, string returnUrl)
+        {
+            if (ResourceId.HP(操作.查看))
+            {
+                ViewBag.RS = ResourceId;
+                ViewBag.ReturnUrl = returnUrl;                
+                return View(model);
+            }
+            else
+            {
+                "".AE("无权限", ModelState);
+                var oper = new OperationResult(OperationResultType.Error, "无权限");
+                oper.AppendData = ModelState.GE();
+                return Json(oper, JsonRequestBehavior.AllowGet);
+                //return Content(XmlHelper.GetKeyNameValidation("项目提示", "无权限操作"));
+            }
+        }
     }
 }

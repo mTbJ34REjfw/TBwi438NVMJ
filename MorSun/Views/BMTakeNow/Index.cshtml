@@ -71,8 +71,8 @@
                             <tr id="TR_@item.ID">
                                 <td>
                                     <p>
-                                        @(item.aspnet_Users1 == null ? "" : item.aspnet_Users1.UserName)
-                                    </p>                                    
+                                        <a href="/MM/MBR?sUserId=@item.aspnet_Users1.UserId" target="_blank">@(item.aspnet_Users1 == null ? "" : item.aspnet_Users1.UserName)</a>
+</p>                                    
                                 </td>
                                 <td>
                                     @item.MaBiNum.ToString("f0")

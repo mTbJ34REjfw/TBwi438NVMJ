@@ -54,7 +54,7 @@
                                         @item.UserName
                                     </td>
                                     <td>
-                                        @(item.wmfUserInfo == null ? "" : item.wmfUserInfo.NickName)
+                                        <a href="/MM/MBR?sUserId=@item.UserId" target="_blank">@(item.wmfUserInfo == null ? "" : item.wmfUserInfo.NickName)</a>
                                     </td>
                                     <td>
                                         @(cl == null ? "" : cl.ItemValue)

@@ -285,6 +285,11 @@ namespace MorSun.Common
             /// 异议处理结果
             /// </summary>
             public const string 异议处理结果 = "03f1030d-ccb9-45af-9dd2-6529ee0158c3";
+
+            /// <summary>
+            /// 邦马币来源
+            /// </summary>
+            public const string 邦马币来源 = "fc9a9ea7-459a-452e-aa96-66c17d02fde7";
         }
     }    
 

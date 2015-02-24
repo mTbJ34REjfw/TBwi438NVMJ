@@ -17,7 +17,7 @@ namespace MorSun.Controllers.Quartz
 
             ICronTrigger trigger = (ICronTrigger)TriggerBuilder.Create()
                                                       .WithIdentity("trigger77", "group77")
-                                                      .WithCronSchedule("0/20/40 * * * * ?")//.WithCronSchedule("20 30 9,14,22 * * ?")
+                                                      .WithCronSchedule("0/20 * * * * ?")//.WithCronSchedule("20 30 9,14,22 * * ?")
                                                       .Build();
 
             DateTimeOffset ft = MorSunScheduler.Instance.SchedulerJob(job, trigger);            
