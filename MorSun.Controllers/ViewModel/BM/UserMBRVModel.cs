@@ -28,6 +28,14 @@ namespace MorSun.Controllers.ViewModel
             }
         }
 
+        public bmNewUserMB UserBMB
+        {
+            get
+            {
+                return new BaseVModel<bmNewUserMB>().All.FirstOrDefault(p => p.UserId == sUserId);
+            }
+        }
+
 
         /// <summary>
         /// 用户名

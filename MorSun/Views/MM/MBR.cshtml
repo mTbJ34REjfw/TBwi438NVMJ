@@ -13,54 +13,62 @@
 <section class="featuredwhite">
     <div class="content-wrapper clear-fix">
         <div class="topmenu alert @("alert-success".getBC("BootStrapCssAlert"))">
-        @using (Html.BeginForm("MBR", "MM", FormMethod.Get))
-        {
-            @Html.HiddenFor(p => p.sUserId)            
-            @MvcHtmlString.Create(Html.DropDownList("sSource", "sSource", lyList, Model.sSource.ToString(), "class=\"m-wrap small\"", "ID", "ItemValue", "", "==来源=="))          
-            <button class="btn yellow" type="submit">@("查询".GX())</button>  
-        }
+            @using (Html.BeginForm("MBR", "MM", FormMethod.Get))
+            {
+                @Html.HiddenFor(p => p.sUserId)
+                @MvcHtmlString.Create(Html.DropDownList("sSource", "sSource", lyList, Model.sSource.ToString(), "class=\"m-wrap small\"", "ID", "ItemValue", "", "==来源=="))
+                <button class="btn yellow" type="submit">@("查询".GX())</button>
+            }
         </div>
-            <div class="portlet box @("red".getBC("BootStrapCssTable"))">
-                <div class="portlet-title">
-                    <div class="caption"><i class="icon-cogs"></i>邦马币记录</div>
-                </div>
-                <div class="portlet-body">
-                    <table id="MoreSunTable" class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>用户名</th>
-                                <th>币种</th>
-                                <th>币值</th>
-                                <th>来源</th>   
-                                <th>时间</th>                             
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.List)
-                            {                                
+        <div class="portlet box @("red".getBC("BootStrapCssTable"))">
+            <div class="portlet-title">
+                <div class="caption"><i class="icon-cogs"></i>邦马币</div>
+            </div>
+            <div class="portlet-body">
+                马币：@Model.UserBMB.NMB.ToString("f2")       邦币：@Model.UserBMB.NBB.ToString("f2")       绑币：@Model.UserBMB.NBANB.ToString("f2")
+            </div>
+        </div>
+                <div class="portlet box @("red".getBC("BootStrapCssTable"))">
+                    <div class="portlet-title">
+                        <div class="caption"><i class="icon-cogs"></i>邦马币记录</div>
+                    </div>
+                    <div class="portlet-body">
+                        <table id="MoreSunTable" class="table table-hover">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        @item.aspnet_Users1.UserName
-                                    </td>
-                                    <td>
-                                        @(item.wmfReference1 == null ? "" : item.wmfReference1.ItemValue)
-                                    </td>
-                                    <td>
-                                        @item.MaBiNum
-                                    </td>
-                                    <td>
-                                        @(item.wmfReference == null ? "" : item.wmfReference.ItemValue)
-                                    </td>    
-                                    <td>
-                                        @item.RegTime
-                                    </td>                                
+                                    <th>用户名</th>
+                                    <th>币种</th>
+                                    <th>币值</th>
+                                    <th>来源</th>
+                                    <th>时间</th>
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.List)
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.aspnet_Users1.UserName
+                                        </td>
+                                        <td>
+                                            @(item.wmfReference1 == null ? "" : item.wmfReference1.ItemValue)
+                                        </td>
+                                        <td>
+                                            @item.MaBiNum
+                                        </td>
+                                        <td>
+                                            @(item.wmfReference == null ? "" : item.wmfReference.ItemValue)
+                                        </td>
+                                        <td>
+                                            @item.RegTime
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>    
 </section>
     @section Scripts {        
         @Scripts.Render("~/bundles/jqueryval")        

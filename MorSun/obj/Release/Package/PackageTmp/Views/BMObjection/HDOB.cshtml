@@ -15,7 +15,7 @@
                       
             <div class="portlet box @("red".getBC("BootStrapCssTable"))">
                 <div class="portlet-title">
-                    <div class="caption"><i class="icon-cogs"></i>问题 &nbsp;&nbsp;&nbsp;&nbsp; @((Model.Q.MBNum == 0 || Model.Q.MBNum == null) && (Model.Q.BBNum == 0 || Model.Q.BBNum == null) ? "免费提问" : ("消耗" + ((Model.Q.MBNum == 0 || Model.Q.MBNum == null) ? "" : (Math.Abs(Model.Q.MBNum).ToString("f0") + "马币")) + ((Model.Q.BBNum == 0 || Model.Q.BBNum == null) ? "" : (Math.Abs(Model.Q.BBNum).ToString("f0") + "邦币")))) &nbsp;&nbsp;&nbsp;&nbsp; 提问时间：@(HOHO18.Common.ChangeDateTime.DateStringFromNow(Model.Q.RegTime == null ? DateTime.Now : Model.Q.RegTime.Value))</div>
+                    <div class="caption"><i class="icon-cogs"></i>问题 &nbsp;&nbsp;&nbsp;&nbsp; @((Model.Q.MBNum == 0 || Model.Q.MBNum == null) && (Model.Q.BBNum == 0 || Model.Q.BBNum == null) ? "免费提问" : ("消耗" + ((Model.Q.MBNum == 0 || Model.Q.MBNum == null) ? "" : (Math.Abs(Model.Q.MBNum).ToString("f0") + "马币")) + ((Model.Q.BBNum == 0 || Model.Q.BBNum == null) ? "" : (Math.Abs(Model.Q.BBNum).ToString("f0") + "邦币")))) &nbsp;&nbsp;&nbsp;&nbsp; 提问时间：@(HOHO18.Common.ChangeDateTime.DateStringFromNow(Model.Q.RegTime == null ? DateTime.Now : Model.Q.RegTime.Value)) &nbsp;&nbsp;&nbsp;&nbsp;<a href="@(CFG.网站域名)/qa/q/@Model.Q.ID" target="_blank">进入官网查看</a></div>
                 </div>
                 <div class="textCenter">                      
                     @if (Model.Q.MsgType == Guid.Parse(Reference.微信消息类别_文本))
