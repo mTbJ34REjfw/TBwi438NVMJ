@@ -41,6 +41,8 @@ namespace MorSun.Controllers.ViewModel
 
                 if (CLevel.HasValue)
                     l = l.Where(p => p.wmfUserInfo.CertificationLevel == CLevel);
+                if (WXApp.HasValue)
+                    l = l.Where(p => p.bmUserWeixins1.Count(q => q.wmfReference.ID == WXApp) > 0);
 
                 return l;
             }
@@ -103,5 +105,9 @@ namespace MorSun.Controllers.ViewModel
         /// 认证级别
         /// </summary>
         public Guid? CLevel { get; set; }
+        /// <summary>
+        /// 微信应用
+        /// </summary>
+        public Guid? WXApp { get; set; }
     }
 }

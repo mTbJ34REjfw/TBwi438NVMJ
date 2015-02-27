@@ -242,6 +242,11 @@ namespace MorSun.Common
             public const string 用户认证类别 = "3f348b47-1f4f-4328-b042-e4c3db3f30e2";
 
             /// <summary>
+            /// 微信应用
+            /// </summary>
+            public const string 微信应用 = "8a13f5f7-54eb-48bb-b1b1-1cce331d62f9";
+
+            /// <summary>
             /// 卡密导入
             /// </summary>
             public const string 卡密导入 = "a7dbfca1-af2b-4358-b0e4-3f2fa7ce8daf";

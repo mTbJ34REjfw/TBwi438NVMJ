@@ -7,6 +7,8 @@
 
     var refVModel = new ReferenceVModel();    
     var clList = refVModel.GetReferencesByRefGroupId(MorSun.Common.类别组.RefGroup.用户认证类别).ToList();
+    var refVModel2 = new ReferenceVModel();
+    var wxList = refVModel.GetReferencesByRefGroupId(MorSun.Common.类别组.RefGroup.微信应用).ToList();
     var i = 0;
 }
 @Styles.Render("~/Content/themes/base/css")
@@ -17,7 +19,8 @@
         @using (Html.BeginForm("Index", "MM", FormMethod.Get))
         {
             @Html.TextBoxFor(p => p.UserName)  
-            @MvcHtmlString.Create(Html.DropDownList("CLevel", "CLevel", clList, Model.CLevel.ToString(), "class=\"m-wrap small\"", "ID", "ItemValue", "", "==认证级别=="))          
+            @MvcHtmlString.Create(Html.DropDownList("CLevel", "CLevel", clList, Model.CLevel.ToString(), "class=\"m-wrap small\"", "ID", "ItemValue", "", "==认证级别=="))        
+            @MvcHtmlString.Create(Html.DropDownList("WXApp", "WXApp", wxList, Model.WXApp.ToString(), "class=\"m-wrap small\"", "ID", "ItemValue", "", "==微信应用=="))       
             <button class="btn yellow" type="submit">@("查询".GX())</button>    
             if (Model.FlagTrashed == "0")
             {                
@@ -44,6 +47,7 @@
                                 <th>用户名</th>
                                 <th>呢称</th>
                                 <th>认证</th>
+                                <th>绑定</th>
                                 <th>操作</th>
                             </tr>
                         </thead>
@@ -65,7 +69,9 @@
                                     <td>
                                         @(cl == null ? "" : cl.ItemValue)
                                     </td>
-                                    
+                                    <td>
+                                        @(item.bmUserWeixins1.Select(p => p.wmfReference.ItemValue).Join(","))
+                                    </td>
                                     <td>
                                         @if (Model.FlagTrashed == "0")
                                         {
