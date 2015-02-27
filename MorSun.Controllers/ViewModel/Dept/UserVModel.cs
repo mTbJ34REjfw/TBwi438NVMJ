@@ -46,6 +46,36 @@ namespace MorSun.Controllers.ViewModel
             }
         }
 
+        public virtual IQueryable<wmfUserInfo> Roots
+        {
+            get
+            {
+                var l = new BaseVModel<wmfUserInfo>().All;
+
+                if (sParentId.HasValue)
+                { 
+                    l = l.Where(dep => dep.InviteUser == sParentId); 
+                }
+                else
+                {
+                    l = l.Where(dep => dep.InviteUser == Guid.Empty || dep.InviteUser == null); 
+                }
+
+                //if (FlagTrashed == "1")
+                //{
+                //    l = l.Where(p => p.FlagTrashed == true);
+                //}
+
+                //if (FlagTrashed == "0")
+                //{
+                //    l = l.Where(p => p.FlagTrashed == false);
+                //}
+
+                return l;
+            }
+        }
+
+        public Guid? sParentId { get; set; }
 
         /// <summary>
         /// 用户名

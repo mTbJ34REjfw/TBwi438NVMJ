@@ -17,6 +17,7 @@
             {
                 @Html.HiddenFor(p => p.sUserId)
                 @MvcHtmlString.Create(Html.DropDownList("sSource", "sSource", lyList, Model.sSource.ToString(), "class=\"m-wrap small\"", "ID", "ItemValue", "", "==来源=="))
+                @:时间 @Html.TextBox("sStartTime", Model.sStartTime.ToShortDateString(), new { @class = "Wdate", style = "width:100px;", onclick = "WdatePicker({dateFmt:'yyyy/MM/dd'})" })-@Html.TextBox("sEndTime", Model.sEndTime.ToShortDateString(), new { @class = "Wdate", style = "width:100px;", onclick = "WdatePicker({dateFmt:'yyyy/MM/dd'})" })
                 <button class="btn yellow" type="submit">@("查询".GX())</button>
             }
         </div>
@@ -76,7 +77,7 @@
         @Styles.Render("~/Content/JQueryQtipCss")
         @Scripts.Render("~/bundles/jqueryqtip")
         @Scripts.Render("~/bundles/morsuncommon")
-        
+        <script src="~/Content/DatePick/WdatePicker.js"></script>      
         <script type="text/javascript"> 
         </script>
     }

@@ -785,6 +785,7 @@
     <Content Include="Views\BMObjection\Index.cshtml" />
     <Content Include="Views\BMObjection\HDOB.cshtml" />
     <Content Include="Views\Home\Q.cshtml" />
+    <Content Include="Views\MM\TreeUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

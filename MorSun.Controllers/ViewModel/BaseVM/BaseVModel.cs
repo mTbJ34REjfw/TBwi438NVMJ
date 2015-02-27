@@ -176,7 +176,7 @@ namespace MorSun.Controllers.ViewModel
         /// </summary>
         /// <param name="items"></param>
         /// <param name="action"></param>
-        public virtual void Each<Tree>(IQueryable<Tree> items, Action<Tree> action)
+        public virtual void Each<Tree>(IQueryable<Tree> items, Action<Tree> action, string parentPN = "ParentId")
             where Tree : class
         {
             BaseBll<Tree> bll = new BaseBll<Tree>();
@@ -196,7 +196,7 @@ namespace MorSun.Controllers.ViewModel
 
                 var treeExpr = Expression.Parameter(typeof(Tree));
 
-                var parentProp=typeof(Tree).GetProperty("ParentId");
+                var parentProp = typeof(Tree).GetProperty(parentPN);
 
                 Expression<Func<Tree, bool>> test = Expression.Lambda(
                     Expression.Equal(
@@ -212,7 +212,7 @@ namespace MorSun.Controllers.ViewModel
                 Expression<Func<Tree, bool>> expression2 = Expression.Lambda<Func<Tree, bool>>(filter, new ParameterExpression[] { paramFlagTrashed });
                 var subs = bll.All.Where(test);
                 subs = subs.Where(expression2);
-                Each(subs, action);
+                Each(subs, action, parentPN);
             }
 
         }

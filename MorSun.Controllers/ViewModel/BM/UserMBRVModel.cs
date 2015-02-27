@@ -24,6 +24,10 @@ namespace MorSun.Controllers.ViewModel
                     l = l.Where(p => p.UserId == sUserId);
                 if (sSource.HasValue && sSource != Guid.Empty)
                     l = l.Where(p => p.SourceRef == sSource);
+                if (sStartTime.HasValue)
+                    l = l.Where(p => p.RegTime >= sStartTime);
+                if (sEndTime.HasValue)
+                    l = l.Where(p => p.RegTime <= sEndTime);
                 return l.OrderBy(p => p.RegTime);
             }
         }
@@ -45,6 +49,10 @@ namespace MorSun.Controllers.ViewModel
         public Guid? sUserId { get; set; }
 
         public Guid? sSource { get; set; }
+
+        public DateTime? sStartTime { get; set; }
+
+        public DateTime? sEndTime { get; set; }
 
         /// <summary>
         /// 被选中的编号

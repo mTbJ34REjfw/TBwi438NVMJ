@@ -7,6 +7,7 @@
 
     var refVModel = new ReferenceVModel();    
     var clList = refVModel.GetReferencesByRefGroupId(MorSun.Common.类别组.RefGroup.用户认证类别).ToList();
+    var i = 0;
 }
 @Styles.Render("~/Content/themes/base/css")
 @Scripts.Render("~/bundles/jqueryui")
@@ -39,6 +40,7 @@
                     <table id="MoreSunTable" class="table table-hover">
                         <thead>
                             <tr>
+                                <th>序号</th>
                                 <th>用户名</th>
                                 <th>呢称</th>
                                 <th>认证</th>
@@ -48,8 +50,12 @@
                         <tbody>
                             @foreach (var item in Model.List)
                             {
+                                i++;
                                 var cl = item.wmfUserInfo == null ? null : item.wmfUserInfo.wmfReference1;
                                 <tr>
+                                    <td>
+                                        @i
+                                    </td>
                                     <td>
                                         @item.UserName
                                     </td>
