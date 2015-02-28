@@ -5,30 +5,28 @@
     string rs = ViewBag.RS;
     var backurl = ViewBag.ReturnUrl ?? "/MM/Index";
 
-    var refVModel = new ReferenceVModel();    
-    var clList = refVModel.GetReferencesByRefGroupId(MorSun.Common.类别组.RefGroup.用户认证类别).ToList();    
+    var refVModel = new ReferenceVModel();
+    var wxList = refVModel.GetReferencesByRefGroupId(MorSun.Common.类别组.RefGroup.微信应用).ToList();
+
+    var xfRef = Guid.Parse(Reference.马币来源_消费);
+    var mbRef = Guid.Parse(Reference.马币类别_马币);
+    var bbRef = Guid.Parse(Reference.马币类别_邦币);
+    var sumQA = 0;
+    decimal sumMB = 0;
+    decimal sumBB = 0;
+    var sumuser = 0;
 }
 @Styles.Render("~/Content/themes/base/css")
 @Scripts.Render("~/bundles/jqueryui")
 <section class="featuredwhite">
     <div class="content-wrapper clear-fix">
         <div class="topmenu alert @("alert-success".getBC("BootStrapCssAlert"))">
-        @using (Html.BeginForm("Index", "MM", FormMethod.Get))
-        {
-            @Html.HiddenFor(p => p.sParentId)            
-            @MvcHtmlString.Create(Html.DropDownList("CLevel", "CLevel", clList, Model.CLevel.ToString(), "class=\"m-wrap small\"", "ID", "ItemValue", "", "==认证级别=="))          
-            <button class="btn yellow" type="submit">@("查询".GX())</button>    
-            if (Model.FlagTrashed == "0")
-            {                
-                if (rs.HP(操作.回收站))
-                {
-                    <button class="btn" type="button" onclick="jumptourl('/Reference/Index?FlagTrashed=1')">@("回收站".GX())</button>
-                }
-            }
-            else if (Model.FlagTrashed == "1")
-            {
-                <button class="btn" type="button" onclick="jumptourl('@backurl')">@("返回".GX())</button>
-            }          
+        @using (Html.BeginForm("TreeUser", "MM", FormMethod.Get))
+        {            
+            @Html.HiddenFor(p => p.sParentId)   
+            @MvcHtmlString.Create(Html.DropDownList("WXApp", "WXApp", wxList, Model.WXApp.ToString(), "class=\"m-wrap small\"", "ID", "ItemValue", "", "==微信应用=="))           
+            @:时间 @Html.TextBox("sStartTime", Model.sStartTime.ToShortDateString(), new { @class = "Wdate", style = "width:100px;", onclick = "WdatePicker({dateFmt:'yyyy/MM/dd'})" })-@Html.TextBox("sEndTime", Model.sEndTime.ToShortDateString(), new { @class = "Wdate", style = "width:100px;", onclick = "WdatePicker({dateFmt:'yyyy/MM/dd'})" })      
+            <button class="btn yellow" type="submit">@("查询".GX())</button> 
         }
         </div>     
         <div class="portlet box @("red".getBC("BootStrapCssTable"))">
@@ -47,6 +45,9 @@
                         <tr>
                             <th>用户名</th>
                             <th>昵称</th>
+                            <th>提问数量</th>
+                            <th>马币消耗</th>
+                            <th>邦币消耗</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,11 +63,60 @@
                                         <td>
                                             @item.NickName
                                         </td>
+                                        <td>
+                                            @{
+                                                sumuser++;
+                                                var weixinIds = item.aspnet_Users.bmUserWeixins1.Select(p => p.WeiXinId).ToList();
+                                                var userQA = new BaseBll<bmQA>().All.Where(p => weixinIds.Contains(p.WeiXinId));                                               
+                                                if (Model.sStartTime.HasValue)
+                                                { 
+                                                    userQA = userQA.Where(p => p.RegTime >= Model.sStartTime);
+                                                }
+                                                if(Model.sEndTime.HasValue)
+                                                {
+                                                    var searchT = Model.sEndTime.Value.Date.AddDays(1).AddSeconds(-1);
+                                                    userQA = userQA.Where(p => p.RegTime <= searchT);
+                                                }
+                                                if (Model.WXApp.HasValue)
+                                                {
+                                                    userQA = userQA.Where(p => p.WeiXinAPP == Model.WXApp);
+                                                }
+                                                sumQA += userQA.Count();                                              
+                                            }
+                                            @userQA.Count()
+                                        </td>
+                                        <td>
+                                            @{  
+                                                var qaids = userQA.Select(p => p.ID).ToList(); 
+                                                var qaMBS = new BaseBll<bmUserMaBiRecord>().All.Where(p => p.QAId != null && qaids.Contains(p.QAId.Value) && p.SourceRef == xfRef);
+                                                var thisMBNum = qaMBS.Where(p => p.MaBiRef == mbRef).Sum(p => p.MaBiNum);
+                                                if (thisMBNum != null)
+                                                { 
+                                                    sumMB += thisMBNum.Value;
+                                                }
+                                                var thisBBNum = qaMBS.Where(p => p.MaBiRef == bbRef).Sum(p => p.MaBiNum);
+                                                if(thisBBNum != null)
+                                                {
+                                                    sumBB += thisBBNum.Value;
+                                                }
+                                                }
+                                            @thisMBNum.ToString("f2")
+                                        </td>
+                                        <td>
+                                            @thisBBNum.ToString("f2")
+                                        </td>
                                     </tr>;
                                     Write(fun(u));
                                 };
                             Model.Each(Model.Roots, action, "InviteUser");
                         }
+                        <tr>
+                            <td>合计</td>
+                            <td>@sumuser 人</td>
+                            <td>@sumQA</td>
+                            <td>@sumMB.ToString("f2")</td>
+                            <td>@sumBB.ToString("f2")</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -81,7 +131,7 @@
         @Scripts.Render("~/bundles/morsuncommon")
         @Styles.Render("~/Content/treetableCss")
         @Scripts.Render("~/bundles/treetable")
-  
+        <script src="~/Content/DatePick/WdatePicker.js"></script>     
         <script type="text/javascript"> 
             morsunTreeTable('#MoreSunTreeTable', "expanded", true);
         </script>

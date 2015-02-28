@@ -44,7 +44,7 @@ namespace MorSun.Controllers.ViewModel
                 if (WXApp.HasValue)
                     l = l.Where(p => p.bmUserWeixins1.Count(q => q.wmfReference.ID == WXApp) > 0);
 
-                return l;
+                return l.OrderBy(p => p.wmfUserInfo.RegTime);
             }
         }
 
@@ -109,5 +109,15 @@ namespace MorSun.Controllers.ViewModel
         /// 微信应用
         /// </summary>
         public Guid? WXApp { get; set; }
+
+        /// <summary>
+        /// 开始时间
+        /// </summary>
+        public DateTime? sStartTime { get; set; }
+
+        /// <summary>
+        /// 结束时间
+        /// </summary>
+        public DateTime? sEndTime { get; set; }
     }
 }

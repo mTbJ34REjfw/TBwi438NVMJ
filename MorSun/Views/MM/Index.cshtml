@@ -6,8 +6,7 @@
     var backurl = ViewBag.ReturnUrl ?? "/MM/Index";
 
     var refVModel = new ReferenceVModel();    
-    var clList = refVModel.GetReferencesByRefGroupId(MorSun.Common.类别组.RefGroup.用户认证类别).ToList();
-    var refVModel2 = new ReferenceVModel();
+    var clList = refVModel.GetReferencesByRefGroupId(MorSun.Common.类别组.RefGroup.用户认证类别).ToList();    
     var wxList = refVModel.GetReferencesByRefGroupId(MorSun.Common.类别组.RefGroup.微信应用).ToList();
     var i = 0;
 }
@@ -56,12 +55,12 @@
                             {
                                 i++;
                                 var cl = item.wmfUserInfo == null ? null : item.wmfUserInfo.wmfReference1;
-                                <tr>
+                                <tr title="注册时间：@item.wmfUserInfo.RegTime">
                                     <td>
                                         @i
                                     </td>
                                     <td>
-                                        @item.UserName
+                                        <a href="/MM/TreeUser?sParentId=@item.UserId" target="_blank">@item.UserName</a>
                                     </td>
                                     <td>
                                         <a href="/MM/MBR?sUserId=@item.UserId" target="_blank">@(item.wmfUserInfo == null ? "" : item.wmfUserInfo.NickName)</a>

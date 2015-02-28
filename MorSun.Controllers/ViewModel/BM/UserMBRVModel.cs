@@ -27,7 +27,10 @@ namespace MorSun.Controllers.ViewModel
                 if (sStartTime.HasValue)
                     l = l.Where(p => p.RegTime >= sStartTime);
                 if (sEndTime.HasValue)
-                    l = l.Where(p => p.RegTime <= sEndTime);
+                { 
+                    var searchT = sEndTime.Value.Date.AddDays(1).AddSeconds(-1);
+                    l = l.Where(p => p.RegTime <= searchT);
+                }
                 return l.OrderBy(p => p.RegTime);
             }
         }
