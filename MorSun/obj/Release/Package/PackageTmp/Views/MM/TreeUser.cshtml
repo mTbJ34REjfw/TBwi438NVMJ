@@ -9,11 +9,35 @@
     var wxList = refVModel.GetReferencesByRefGroupId(MorSun.Common.类别组.RefGroup.微信应用).ToList();
 
     var xfRef = Guid.Parse(Reference.马币来源_消费);
+    var kqRef = Guid.Parse(Reference.马币来源_扣取);
+    var ghRef = Guid.Parse(Reference.马币来源_归还);
+    
     var mbRef = Guid.Parse(Reference.马币类别_马币);
     var bbRef = Guid.Parse(Reference.马币类别_邦币);
+    
+    var errobRef = Guid.Parse(Reference.异议处理结果_答错);
+    //提问数量
     var sumQA = 0;
-    decimal sumMB = 0;
-    decimal sumBB = 0;
+    //异议数量
+    var sumOB = 0;
+    //答错数量
+    var sumErrOB = 0;
+    
+    //消费马币
+    decimal sumXFMB = 0;    
+    //扣取马币
+    decimal sumKQMB = 0;
+    //归还马币
+    decimal sumGHMB = 0;
+    
+    //消费邦币
+    decimal sumXFBB = 0;
+    //扣取邦币
+    decimal sumKQBB = 0;
+    //归还邦币
+    decimal sumGHBB = 0;
+    
+    
     var sumuser = 0;
 }
 @Styles.Render("~/Content/themes/base/css")
@@ -46,6 +70,7 @@
                             <th>用户名</th>
                             <th>昵称</th>
                             <th>提问数量</th>
+                            <th>异议数量</th>
                             <th>马币消耗</th>
                             <th>邦币消耗</th>
                         </tr>
@@ -63,49 +88,106 @@
                                         <td>
                                             @item.NickName
                                         </td>
-                                        <td>
-                                            @{
-                                                sumuser++;
-                                                var weixinIds = item.aspnet_Users.bmUserWeixins1.Select(p => p.WeiXinId).ToList();
-                                                var userQA = new BaseBll<bmQA>().All.Where(p => weixinIds.Contains(p.WeiXinId));                                               
-                                                if (Model.sStartTime.HasValue)
-                                                { 
-                                                    userQA = userQA.Where(p => p.RegTime >= Model.sStartTime);
-                                                }
-                                                if(Model.sEndTime.HasValue)
-                                                {
-                                                    var searchT = Model.sEndTime.Value.Date.AddDays(1).AddSeconds(-1);
-                                                    userQA = userQA.Where(p => p.RegTime <= searchT);
-                                                }
-                                                if (Model.WXApp.HasValue)
-                                                {
-                                                    userQA = userQA.Where(p => p.WeiXinAPP == Model.WXApp);
-                                                }
-                                                sumQA += userQA.Count();                                              
+                                        @{
+                                            sumuser++;
+                                            var searchT = DateTime.Now;
+                                            //提问数量
+                                            var weixinIds = item.aspnet_Users.bmUserWeixins1.Select(p => p.WeiXinId).ToList();
+                                            var userQA = new BaseBll<bmQA>().All.Where(p => weixinIds.Contains(p.WeiXinId));
+                                            if (Model.sStartTime.HasValue)
+                                            {
+                                                userQA = userQA.Where(p => p.RegTime >= Model.sStartTime);
                                             }
-                                            @userQA.Count()
+                                            if (Model.sEndTime.HasValue)
+                                            {
+                                                searchT = Model.sEndTime.Value.Date.AddDays(1).AddSeconds(-1);
+                                                userQA = userQA.Where(p => p.RegTime <= searchT);
+                                            }
+                                            if (Model.WXApp.HasValue)
+                                            {
+                                                userQA = userQA.Where(p => p.WeiXinAPP == Model.WXApp);
+                                            }
+                                            sumQA += userQA.Count();
+                                            var qaStringIds = userQA.Select(p => p.ID).Join(",");
+                                            
+                                            //提交异议数量
+                                            var userOB = item.aspnet_Users.bmObjections1.Skip(0);
+                                            if (Model.sStartTime.HasValue)
+                                            {
+                                                userOB = userOB.Where(p => p.RegTime >= Model.sStartTime);
+                                            }
+                                            if (Model.sEndTime.HasValue)
+                                            {
+                                                userOB = userOB.Where(p => p.RegTime <= searchT);
+                                            }
+                                            if (Model.WXApp.HasValue)
+                                            {
+                                                userOB = userOB.Where(p => p.bmQA.WeiXinAPP == Model.WXApp);
+                                            }
+                                            var errUserOB = userOB.Where(p => p.Result == errobRef);
+                                            sumOB += userOB.Count();
+                                            sumErrOB += errUserOB.Count();
+                                            var obStringIds = userOB.Select(p => p.ID).Join(",");
+
+                                            var qaids = userQA.Select(p => p.ID).ToList();
+                                            var qaMBS = new BaseBll<bmUserMaBiRecord>().All.Where(p => p.QAId != null && qaids.Contains(p.QAId.Value));
+                                            //消费马币
+                                            var thisMBNum = qaMBS.Where(p => p.MaBiRef == mbRef && p.SourceRef == xfRef).Sum(p => p.MaBiNum);
+                                            //扣取马币
+                                            var thisKQMBNum = qaMBS.Where(p => p.MaBiRef == mbRef && p.SourceRef == kqRef && p.QAId != null && p.OBId != null && p.DisId == null).Sum(p => p.MaBiNum);
+                                            //归还马币
+                                            var thisGHMBNum = qaMBS.Where(p => p.MaBiRef == mbRef && p.SourceRef == ghRef && p.QAId != null && p.OBId != null && p.DisId != null).Sum(p => p.MaBiNum);
+                                            if (thisMBNum != null)
+                                            {
+                                                sumXFMB += thisMBNum.Value;
+                                            }
+
+                                            if (thisKQMBNum != null)
+                                            {
+                                                sumKQMB += thisKQMBNum.Value;
+                                            }
+
+                                            if (thisGHMBNum != null)
+                                            {
+                                                sumGHMB += thisGHMBNum.Value;
+                                            }
+
+                                            //消费邦币
+                                            var thisBBNum = qaMBS.Where(p => p.MaBiRef == bbRef && p.SourceRef == xfRef).Sum(p => p.MaBiNum);
+                                            //扣取邦币
+                                            var thisKQBBNum = qaMBS.Where(p => p.MaBiRef == bbRef && p.SourceRef == kqRef && p.QAId != null && p.OBId != null && p.DisId == null).Sum(p => p.MaBiNum);
+                                            //归还邦币
+                                            var thisGHBBNum = qaMBS.Where(p => p.MaBiRef == bbRef && p.SourceRef == ghRef && p.QAId != null && p.OBId != null && p.DisId != null).Sum(p => p.MaBiNum);
+
+                                            if (thisBBNum != null)
+                                            {
+                                                sumXFBB += thisBBNum.Value;
+                                            }
+
+                                            if (thisKQBBNum != null)
+                                            {
+                                                sumKQBB += thisKQBBNum.Value;
+                                            }
+
+                                            if (thisGHBBNum != null)
+                                            {
+                                                sumGHBB += thisGHBBNum.Value;
+                                            }
+                                        }
+                                        <td>                                            
+                                            <a href="javascript:void(0);" onclick="seeQA('@qaStringIds')">@userQA.Count()</a></td>
+                                        <td title="答错数量：@errUserOB.Count()">
+                                            <a href="javascript:void(0);" onclick="seeOB('@obStringIds')">@userOB.Count()</a>
                                         </td>
-                                        <td>
-                                            @{  
-                                                var qaids = userQA.Select(p => p.ID).ToList(); 
-                                                var qaMBS = new BaseBll<bmUserMaBiRecord>().All.Where(p => p.QAId != null && qaids.Contains(p.QAId.Value) && p.SourceRef == xfRef);
-                                                var thisMBNum = qaMBS.Where(p => p.MaBiRef == mbRef).Sum(p => p.MaBiNum);
-                                                if (thisMBNum != null)
-                                                { 
-                                                    sumMB += thisMBNum.Value;
-                                                }
-                                                var thisBBNum = qaMBS.Where(p => p.MaBiRef == bbRef).Sum(p => p.MaBiNum);
-                                                if(thisBBNum != null)
-                                                {
-                                                    sumBB += thisBBNum.Value;
-                                                }
-                                                }
-                                            @thisMBNum.ToString("f2")
+                                        <td title="消费：@thisMBNum.ToString("f2")  异议扣取: @thisKQMBNum.ToString("f2")  异议归还: @thisGHMBNum.ToString("f2")">
+                                            @{var thisvalue = thisMBNum + thisKQMBNum + thisGHMBNum;}
+                                            @thisvalue.ToString("f2")
                                         </td>
-                                        <td>
-                                            @thisBBNum.ToString("f2")
+                                        <td title="消费：@thisBBNum.ToString("f2")  异议扣取: @thisKQBBNum.ToString("f2")  异议归还: @thisGHBBNum.ToString("f2")">
+                                            @{thisvalue = thisBBNum + thisKQBBNum + thisGHBBNum; }
+                                            @thisvalue.ToString("f2")
                                         </td>
-                                    </tr>;
+                                    </tr>;   
                                     Write(fun(u));
                                 };
                             Model.Each(Model.Roots, action, "InviteUser");
@@ -114,13 +196,33 @@
                             <td>合计</td>
                             <td>@sumuser 人</td>
                             <td>@sumQA</td>
-                            <td>@sumMB.ToString("f2")</td>
-                            <td>@sumBB.ToString("f2")</td>
+                            <td title="答错数量：@sumErrOB">@sumOB</td>
+                            <td title="消费：@sumXFMB.ToString("f2")  异议扣取: @sumKQMB.ToString("f2")  异议归还: @sumGHMB.ToString("f2")">
+                                @{var thissumvalue = sumXFMB + sumKQMB + sumGHMB;}
+                                @thissumvalue.ToString("f2")
+                            </td>
+                            <td title="消费：@sumXFBB.ToString("f2")  异议扣取: @sumKQBB.ToString("f2")  异议归还: @sumGHBB.ToString("f2")">
+                                @{thissumvalue = sumXFBB + sumKQBB + sumGHBB;}
+                                @thissumvalue.ToString("f2")
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+        @using (Html.BeginForm("QAS", "QA", new { }, FormMethod.Post, new { id = "qasForm" }))
+        {
+             @Html.AntiForgeryToken()
+            <input id="hiddenQaIds" name="qaIds" type="hidden" value="" />
+            <button class="btn green" type="submit" id="qasubmitBtn" style="display:none">@("提交".GX())</button>
+        }
+
+        @using (Html.BeginForm("OBS", "BMObjection", new { }, FormMethod.Post, new { id = "obsForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <input id="hiddenObIds" name="obIds" type="hidden" value="" />
+            <button class="btn green" type="submit" id="obsubmitBtn" style="display:none">@("提交".GX())</button>
+        }
         </div>    
 </section>
     @section Scripts {        
@@ -134,5 +236,20 @@
         <script src="~/Content/DatePick/WdatePicker.js"></script>     
         <script type="text/javascript"> 
             morsunTreeTable('#MoreSunTreeTable', "expanded", true);
+
+           
+            //查看问题记录
+            function seeQA(qaids)
+            {
+                $('#hiddenQaIds').val(qaids);
+                $('#qasubmitBtn').click();
+            }
+
+            //查看异议记录
+            function seeOB(obids)
+            {
+                $('#hiddenObIds').val(obids);
+                $('#obsubmitBtn').click();
+            }
         </script>
     }
