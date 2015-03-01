@@ -1,0 +1,94 @@
+﻿@model BMObjectionVModel
+@{
+    ViewBag.Title = "异议处理";
+    Layout = "~/Views/Shared/_SysLayout.cshtml";
+    string rs = ViewBag.RS;
+    var backurl = ViewBag.ReturnUrl ?? "/BMObjection/Index";
+
+    var refVModel = new ReferenceVModel();
+    var NavList = refVModel.GetReferencesByRefGroupId(MorSun.Common.类别组.RefGroup.异议处理结果);
+    
+    var xfRef = Guid.Parse(Reference.马币来源_消费);
+    var kqRef = Guid.Parse(Reference.马币来源_扣取);
+    var ghRef = Guid.Parse(Reference.马币来源_归还);
+    
+    var mbRef = Guid.Parse(Reference.马币类别_马币);
+    var bbRef = Guid.Parse(Reference.马币类别_邦币);
+}
+@Styles.Render("~/Content/themes/base/css")
+@Scripts.Render("~/bundles/jqueryui")
+<section class="featuredwhite">
+    <div class="content-wrapper clear-fix">  
+        <div class="portlet box @("red".getBC("BootStrapCssTable"))">
+            <div class="portlet-title">
+                <div class="caption"><i class="icon-cogs"></i>异议处理</div>               
+            </div>
+            <div class="portlet-body">
+                <table id="MoreSunTreeTable" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>用户名</th>                            
+                            <th>错题数量</th>                            
+                            <th>处理结果</th>
+                            <th>确认错题数量</th> 
+                            <th>消费</th>  
+                            <th>扣取</th>    
+                            <th>归还</th>                                         
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.SearchList)
+                        {
+                            <tr id="TR_@item.ID">
+                                <td>
+                                    @(item.aspnet_Users1 == null ? "" : item.aspnet_Users1.UserName)
+                                </td>                                  
+                                <td title="@item.SubmitTime">
+                                    @item.ErrorNum
+                                </td>                                   
+                                <td title="@item.HandleTime">
+                                    @(item.wmfReference == null ? "" : item.wmfReference.ItemValue)
+                                </td>  
+                                <td>
+                                    @item.ConfirmErrorNum
+                                </td>                              
+                                <td>
+                                    <p>
+                                        马币：@item.bmQA.bmUserMaBiRecords.Where(p => p.SourceRef == xfRef && p.MaBiRef == mbRef).Sum(p => p.MaBiNum).ToString("f2")
+                                    </p>
+                                    <p>
+                                        邦币：@item.bmQA.bmUserMaBiRecords.Where(p => p.SourceRef == xfRef && p.MaBiRef == bbRef).Sum(p => p.MaBiNum).ToString("f2")
+                                    </p>
+                                </td>
+                                <td>
+                                <p>
+                                    马币：@item.bmQA.bmUserMaBiRecords.Where(p => p.SourceRef == kqRef && p.MaBiRef == mbRef && p.QAId != null && p.OBId != null && p.DisId == null).Sum(p => p.MaBiNum).ToString("f2")
+                                </p>
+                                <p>
+                                    邦币：@item.bmQA.bmUserMaBiRecords.Where(p => p.SourceRef == kqRef && p.MaBiRef == bbRef && p.QAId != null && p.OBId != null && p.DisId == null).Sum(p => p.MaBiNum).ToString("f2")
+                                </p></td>
+                                <td>
+                                <p>
+                                    马币：@item.bmQA.bmUserMaBiRecords.Where(p => p.SourceRef == ghRef && p.MaBiRef == mbRef && p.QAId != null && p.OBId != null && p.DisId != null).Sum(p => p.MaBiNum).ToString("f2")
+                                </p>
+                                <p>
+                                    邦币：@item.bmQA.bmUserMaBiRecords.Where(p => p.SourceRef == ghRef && p.MaBiRef == bbRef && p.QAId != null && p.OBId != null && p.DisId != null).Sum(p => p.MaBiNum).ToString("f2")
+                                </p></td>
+                            </tr>
+                        }                    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>    
+</section>
+    @section Scripts {        
+        @Scripts.Render("~/bundles/jqueryval")        
+        @Scripts.Render("~/bundles/validator")
+        @Styles.Render("~/Content/JQueryQtipCss")
+        @Scripts.Render("~/bundles/jqueryqtip")
+        @Scripts.Render("~/bundles/morsuncommon")  
+        <script src="~/Content/DatePick/WdatePicker.js"></script>        
+        <script type="text/javascript">             
+        </script>
+    }

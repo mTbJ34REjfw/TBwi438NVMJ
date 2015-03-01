@@ -442,6 +442,16 @@ namespace MorSun.Controllers.SystemController
         protected override string OnEditCK(bmObjection t)
         {                       
             return "";
-        }        
+        }
+
+        public ActionResult OBS(BMObjectionVModel model)
+        {
+            if (!string.IsNullOrEmpty(model.obIds))
+            {
+                var obIds = model.obIds.ToGuidList(",");
+                model.SearchList = model.All.Where(p => obIds.Contains(p.ID));
+            }
+            return View(model);
+        }
     }
 }

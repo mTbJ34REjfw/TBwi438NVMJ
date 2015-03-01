@@ -112,10 +112,18 @@ namespace MorSun.Controllers.ViewModel
                 return l.OrderBy(p => p.RegTime);
             }
         }
+
+        public IQueryable<bmQAView> SearchList
+        {
+            get;
+            set;
+        }
         
 
         public Guid? sId { get; set; }
 
         public bool? sIsSort { get; set; }
+
+        public string qaIds { get; set; }
     }
 }

@@ -121,5 +121,7 @@ namespace MorSun.Controllers.ViewModel
         public Guid? sId { get; set; }
 
         public bool? sIsSort { get; set; }
+
+        public string qaIds { get; set; }
     }
 }

@@ -15,8 +15,8 @@ namespace MorSun.Controllers
         {
             var model = new BMQAVModel();
             if(id != null)
-            { 
-                model.sParentId = id;
+            {
+                model.sId = id;
                 return View(model);
             }    
             else
@@ -26,5 +26,15 @@ namespace MorSun.Controllers
             
         }
         
+
+        public ActionResult QAS(BMQAViewVModel model)
+        {
+            if(!string.IsNullOrEmpty(model.qaIds))
+            {
+                var qaids = model.qaIds.ToGuidList(",");
+                model.SearchList = model.All.Where(p => qaids.Contains(p.ID));                
+            }
+            return View(model);
+        }
     }
 }

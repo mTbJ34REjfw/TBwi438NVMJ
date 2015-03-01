@@ -1,0 +1,138 @@
+﻿@model UserVModel
+@{
+    ViewBag.Title = "用户关联";
+    Layout = "~/Views/Shared/_SysLayout.cshtml";
+    string rs = ViewBag.RS;
+    var backurl = ViewBag.ReturnUrl ?? "/MM/Index";
+
+    var refVModel = new ReferenceVModel();
+    var wxList = refVModel.GetReferencesByRefGroupId(MorSun.Common.类别组.RefGroup.微信应用).ToList();
+
+    var xfRef = Guid.Parse(Reference.马币来源_消费);
+    var mbRef = Guid.Parse(Reference.马币类别_马币);
+    var bbRef = Guid.Parse(Reference.马币类别_邦币);
+    var sumQA = 0;
+    decimal sumMB = 0;
+    decimal sumBB = 0;
+    var sumuser = 0;
+}
+@Styles.Render("~/Content/themes/base/css")
+@Scripts.Render("~/bundles/jqueryui")
+<section class="featuredwhite">
+    <div class="content-wrapper clear-fix">
+        <div class="topmenu alert @("alert-success".getBC("BootStrapCssAlert"))">
+        @using (Html.BeginForm("TreeUser", "MM", FormMethod.Get))
+        {            
+            @Html.HiddenFor(p => p.sParentId)   
+            @MvcHtmlString.Create(Html.DropDownList("WXApp", "WXApp", wxList, Model.WXApp.ToString(), "class=\"m-wrap small\"", "ID", "ItemValue", "", "==微信应用=="))           
+            @:时间 @Html.TextBox("sStartTime", Model.sStartTime.ToShortDateString(), new { @class = "Wdate", style = "width:100px;", onclick = "WdatePicker({dateFmt:'yyyy/MM/dd'})" })-@Html.TextBox("sEndTime", Model.sEndTime.ToShortDateString(), new { @class = "Wdate", style = "width:100px;", onclick = "WdatePicker({dateFmt:'yyyy/MM/dd'})" })      
+            <button class="btn yellow" type="submit">@("查询".GX())</button> 
+        }
+        </div>     
+        <div class="portlet box @("red".getBC("BootStrapCssTable"))">
+            <div class="portlet-title">
+                <div class="caption"><i class="icon-cogs"></i>类别组设置</div>
+                @*<div class="tools">
+                    <a class="collapse" href="javascript:;"></a>
+                    <a class="config" data-toggle="modal" href="#portlet-config"></a>
+                    <a class="reload" href="javascript:;"></a>
+                    <a class="remove" href="javascript:;"></a>
+                </div>*@
+            </div>
+            <div class="portlet-body">
+                <table id="MoreSunTreeTable" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>用户名</th>
+                            <th>昵称</th>
+                            <th>提问数量</th>
+                            <th>马币消耗</th>
+                            <th>邦币消耗</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            Action<wmfUserInfo> action = (u) =>
+                                {
+                                    Func<wmfUserInfo, HelperResult> fun = @<tr id="TR_@item.ID" data-tt-id="@item.ID" data-tt-parent-id="@item.InviteUser">
+                                        <td style="text-align:left;">
+                                            <span class="treespan folder ui-draggable">
+                                                @item.aspnet_Users.UserName
+                                            </span>
+                                        </td>
+                                        <td>
+                                            @item.NickName
+                                        </td>
+                                        <td>
+                                            @{
+                                                sumuser++;
+                                                var weixinIds = item.aspnet_Users.bmUserWeixins1.Select(p => p.WeiXinId).ToList();
+                                                var userQA = new BaseBll<bmQA>().All.Where(p => weixinIds.Contains(p.WeiXinId));                                               
+                                                if (Model.sStartTime.HasValue)
+                                                { 
+                                                    userQA = userQA.Where(p => p.RegTime >= Model.sStartTime);
+                                                }
+                                                if(Model.sEndTime.HasValue)
+                                                {
+                                                    var searchT = Model.sEndTime.Value.Date.AddDays(1).AddSeconds(-1);
+                                                    userQA = userQA.Where(p => p.RegTime <= searchT);
+                                                }
+                                                if (Model.WXApp.HasValue)
+                                                {
+                                                    userQA = userQA.Where(p => p.WeiXinAPP == Model.WXApp);
+                                                }
+                                                sumQA += userQA.Count();                                              
+                                            }
+                                            @userQA.Count()
+                                        </td>
+                                        <td>
+                                            @{  
+                                                var qaids = userQA.Select(p => p.ID).ToList(); 
+                                                var qaMBS = new BaseBll<bmUserMaBiRecord>().All.Where(p => p.QAId != null && qaids.Contains(p.QAId.Value) && p.SourceRef == xfRef);
+                                                var thisMBNum = qaMBS.Where(p => p.MaBiRef == mbRef).Sum(p => p.MaBiNum);
+                                                if (thisMBNum != null)
+                                                { 
+                                                    sumMB += thisMBNum.Value;
+                                                }
+                                                var thisBBNum = qaMBS.Where(p => p.MaBiRef == bbRef).Sum(p => p.MaBiNum);
+                                                if(thisBBNum != null)
+                                                {
+                                                    sumBB += thisBBNum.Value;
+                                                }
+                                                }
+                                            @thisMBNum.ToString("f2")
+                                        </td>
+                                        <td>
+                                            @thisBBNum.ToString("f2")
+                                        </td>
+                                    </tr>;
+                                    Write(fun(u));
+                                };
+                            Model.Each(Model.Roots, action, "InviteUser");
+                        }
+                        <tr>
+                            <td>合计</td>
+                            <td>@sumuser 人</td>
+                            <td>@sumQA</td>
+                            <td>@sumMB.ToString("f2")</td>
+                            <td>@sumBB.ToString("f2")</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>    
+</section>
+    @section Scripts {        
+        @Scripts.Render("~/bundles/jqueryval")        
+        @Scripts.Render("~/bundles/validator")
+        @Styles.Render("~/Content/JQueryQtipCss")
+        @Scripts.Render("~/bundles/jqueryqtip")
+        @Scripts.Render("~/bundles/morsuncommon")
+        @Styles.Render("~/Content/treetableCss")
+        @Scripts.Render("~/bundles/treetable")
+        <script src="~/Content/DatePick/WdatePicker.js"></script>     
+        <script type="text/javascript"> 
+            morsunTreeTable('#MoreSunTreeTable', "expanded", true);
+        </script>
+    }

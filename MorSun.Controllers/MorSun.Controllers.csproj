@@ -88,6 +88,7 @@
     <Compile Include="ControllersSystem\MMController.cs" />
     <Compile Include="ControllersSystem\SYSConfigController.cs" />
     <Compile Include="ControllersUserCenter\CSController.cs" />
+    <Compile Include="ControllersWeiXin\QAController.cs" />
     <Compile Include="Filter\ExceptionFilter.cs" />
     <Compile Include="Filter\PrivilegeAttribute.cs" />
     <Compile Include="ModelBinder\SmartModelBinder.cs" />

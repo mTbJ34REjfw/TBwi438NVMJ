@@ -649,6 +649,9 @@
     <Content Include="Scripts\slides.min.jquery.js" />
     <Content Include="Scripts\jquery.validator.ex.js" />
     <Content Include="Scripts\waypoints.js" />
+    <Content Include="Views\BMObjection\OBS.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Views\MM\MBR.cshtml">
       <SubType>Code</SubType>
     </Content>
@@ -786,6 +789,7 @@
     <Content Include="Views\BMObjection\HDOB.cshtml" />
     <Content Include="Views\Home\Q.cshtml" />
     <Content Include="Views\MM\TreeUser.cshtml" />
+    <Content Include="Views\QA\QAS.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

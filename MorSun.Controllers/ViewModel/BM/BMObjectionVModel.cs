@@ -114,5 +114,13 @@ namespace MorSun.Controllers.ViewModel
         public virtual Guid? sResult { get; set; }
 
         public virtual Boolean? sIsSettle { get; set; }
+
+        public virtual string obIds { get; set; }
+
+        public IQueryable<bmObjection> SearchList
+        {
+            get;
+            set;
+        }
     }
 }
