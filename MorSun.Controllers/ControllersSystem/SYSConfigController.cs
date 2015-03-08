@@ -35,26 +35,36 @@ namespace MorSun.Controllers.SystemController
         /// <returns></returns>
         public string dsdq()
         {
-            MorSunScheduler.Instance.Clear();
-            //CheckingTrigger t = new CheckingTrigger();
-            //t.Run();
-            //CheckingTrigger2 t2 = new CheckingTrigger2();
-            //t2.Run();
-            //SimpleTriggerExample t3 = new SimpleTriggerExample();
-            //t3.Run();
-            //用户数据同步
-            CheckingTrigger5 t5 = new CheckingTrigger5();
-            t5.Run();
-            //问题数据同步
-            CheckingTrigger6 t6 = new CheckingTrigger6();
-            t6.Run();
-            //充值数据同步
-            CheckingTrigger7 t7 = new CheckingTrigger7();
-            t7.Run();
-            //邦马币结算
-            CheckingTrigger8 t8 = new CheckingTrigger8();
-            t8.Run();
-            return "true";
+            if (ResourceId.HP(操作.修改))
+            {
+                MorSunScheduler.Instance.Clear();
+                //CheckingTrigger t = new CheckingTrigger();
+                //t.Run();
+                //CheckingTrigger2 t2 = new CheckingTrigger2();
+                //t2.Run();
+                //SimpleTriggerExample t3 = new SimpleTriggerExample();
+                //t3.Run();
+                //用户数据同步
+                CheckingTrigger5 t5 = new CheckingTrigger5();
+                t5.Run();
+                //问题数据同步
+                CheckingTrigger6 t6 = new CheckingTrigger6();
+                t6.Run();
+                //充值数据同步
+                CheckingTrigger7 t7 = new CheckingTrigger7();
+                t7.Run();
+                //邦马币结算
+                CheckingTrigger8 t8 = new CheckingTrigger8();
+                t8.Run();
+                return "true";
+            }
+            else
+            {
+                "".AE("无权限", ModelState);
+                var oper = new OperationResult(OperationResultType.Error, "无权限");
+                oper.AppendData = ModelState.GE();
+                return "无权限";                
+            }
         }
 
         /// <summary>
@@ -63,7 +73,17 @@ namespace MorSun.Controllers.SystemController
         /// <returns></returns>
         public string IsStart()
         {
-            return MorSunScheduler.Instance.IsStart().ToString();
+            if (ResourceId.HP(操作.修改))
+            {
+                return MorSunScheduler.Instance.IsStart().ToString();
+            }
+            else
+            {
+                "".AE("无权限", ModelState);
+                var oper = new OperationResult(OperationResultType.Error, "无权限");
+                oper.AppendData = ModelState.GE();
+                return "无权限";
+            }
         }
 
         /// <summary>
@@ -72,8 +92,18 @@ namespace MorSun.Controllers.SystemController
         /// <returns></returns>
         public string Clear()
         {
-            MorSunScheduler.Instance.Clear();
-            return "true";
+            if (ResourceId.HP(操作.修改))
+            {
+                MorSunScheduler.Instance.Clear();
+                return "true";
+            }
+            else
+            {
+                "".AE("无权限", ModelState);
+                var oper = new OperationResult(OperationResultType.Error, "无权限");
+                oper.AppendData = ModelState.GE();
+                return "无权限";
+            }
         }
 
         /// <summary>
@@ -82,8 +112,18 @@ namespace MorSun.Controllers.SystemController
         /// <returns></returns>
         public string Stop()
         {
-            MorSunScheduler.Instance.Stop(false);
-            return "true";
+            if (ResourceId.HP(操作.修改))
+            {
+                MorSunScheduler.Instance.Stop(false);
+                return "true";
+            }
+            else
+            {
+                "".AE("无权限", ModelState);
+                var oper = new OperationResult(OperationResultType.Error, "无权限");
+                oper.AppendData = ModelState.GE();
+                return "无权限";
+            }
         }
 
         /// <summary>
@@ -92,8 +132,18 @@ namespace MorSun.Controllers.SystemController
         /// <returns></returns>
         public string Start()
         {
-            MorSunScheduler.Instance.Start();
-            return "true";
+            if (ResourceId.HP(操作.修改))
+            {
+                MorSunScheduler.Instance.Start();
+                return "true";
+            }
+            else
+            {
+                "".AE("无权限", ModelState);
+                var oper = new OperationResult(OperationResultType.Error, "无权限");
+                oper.AppendData = ModelState.GE();
+                return "无权限";
+            }
         }
 
         /// <summary>
@@ -102,8 +152,18 @@ namespace MorSun.Controllers.SystemController
         /// <returns></returns>
         public string ResumeAll()
         {
-            MorSunScheduler.Instance.ResumeAll();
-            return "true";
+            if (ResourceId.HP(操作.修改))
+            {
+                MorSunScheduler.Instance.ResumeAll();
+                return "true";
+            }
+            else
+            {
+                "".AE("无权限", ModelState);
+                var oper = new OperationResult(OperationResultType.Error, "无权限");
+                oper.AppendData = ModelState.GE();
+                return "无权限";
+            }
         }
 
         /// <summary>
@@ -112,8 +172,18 @@ namespace MorSun.Controllers.SystemController
         /// <returns></returns>
         public string StopJob(string name, string group)
         {
-            MorSunScheduler.Instance.StopJob(name, group);
-            return "true";
+            if (ResourceId.HP(操作.修改))
+            {
+                MorSunScheduler.Instance.StopJob(name, group);
+                return "true";
+            }
+            else
+            {
+                "".AE("无权限", ModelState);
+                var oper = new OperationResult(OperationResultType.Error, "无权限");
+                oper.AppendData = ModelState.GE();
+                return "无权限";
+            }
         }
 
         /// <summary>
@@ -124,8 +194,18 @@ namespace MorSun.Controllers.SystemController
         /// <returns></returns>
         public string TriggerJob(string name, string group)
         {
-            MorSunScheduler.Instance.TrggerJob(name, group);
-            return "true";
+            if (ResourceId.HP(操作.修改))
+            {
+                MorSunScheduler.Instance.TrggerJob(name, group);
+                return "true";
+            }
+            else
+            {
+                "".AE("无权限", ModelState);
+                var oper = new OperationResult(OperationResultType.Error, "无权限");
+                oper.AppendData = ModelState.GE();
+                return "无权限";
+            }
         }
         #endregion
 

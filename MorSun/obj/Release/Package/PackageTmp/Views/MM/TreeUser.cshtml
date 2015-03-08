@@ -180,12 +180,28 @@
                                             <a href="javascript:void(0);" onclick="seeOB('@obStringIds')">@userOB.Count()</a>
                                         </td>
                                         <td title="消费：@thisMBNum.ToString("f2")  异议扣取: @thisKQMBNum.ToString("f2")  异议归还: @thisGHMBNum.ToString("f2")">
-                                            @{var thisvalue = thisMBNum + thisKQMBNum + thisGHMBNum;}
+                                            @{var thisvalue = thisMBNum;
+                                                  if (thisKQMBNum != null)
+                                                  { thisvalue += thisKQMBNum; }
+                                                  if (thisGHMBNum != null)
+                                                  { 
+                                                      thisvalue += thisGHMBNum;
+                                                  }
+                                              }
                                             @thisvalue.ToString("f2")
                                         </td>
                                         <td title="消费：@thisBBNum.ToString("f2")  异议扣取: @thisKQBBNum.ToString("f2")  异议归还: @thisGHBBNum.ToString("f2")">
-                                            @{thisvalue = thisBBNum + thisKQBBNum + thisGHBBNum; }
-                                            @thisvalue.ToString("f2")
+                                            @{var thisvalue2 = thisBBNum;
+                                                  if (thisKQBBNum != null)
+                                                  {
+                                                      thisvalue2 += thisKQBBNum;
+                                                  }
+                                                  if (thisGHBBNum != null)
+                                                  {
+                                                      thisvalue2 += +thisGHBBNum;
+                                                  }
+                                            }
+                                            @thisvalue2.ToString("f2")
                                         </td>
                                     </tr>;   
                                     Write(fun(u));
@@ -202,8 +218,8 @@
                                 @thissumvalue.ToString("f2")
                             </td>
                             <td title="消费：@sumXFBB.ToString("f2")  异议扣取: @sumKQBB.ToString("f2")  异议归还: @sumGHBB.ToString("f2")">
-                                @{thissumvalue = sumXFBB + sumKQBB + sumGHBB;}
-                                @thissumvalue.ToString("f2")
+                                @{var thissumvalue2 = sumXFBB + sumKQBB + sumGHBB;}
+                                @thissumvalue2.ToString("f2")
                             </td>
                         </tr>
                     </tbody>
